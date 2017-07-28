@@ -1,12 +1,13 @@
 package ua.controller;
 
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.EntityManager;
 import ua.entity.Cuisine;
 import ua.entity.Meal;
 
 public class Model {
-	
+
 	private EnterParameters enterParameters = new EnterParameters();
 
 	public void addMeal(EntityManager em) {
@@ -66,18 +67,11 @@ public class Model {
 		em.getTransaction().commit();
 	}
 
-	public void selectTable(EntityManager em) {
-		System.out.println("Введіть номер страви, яку потрібно вивести:");
-		Meal meal = em.find(Meal.class, enterParameters.intEnter());
-		if (meal != null) {
-			System.out.println(meal.getName());
-			System.out.println(meal.getShortDescription());
-			System.out.println(meal.getFullDescription());
-			System.out.println(meal.getWeight());
-			System.out.println(meal.getCuisine());
-			System.out.println(meal.getPrice());
-		} else {
-			System.out.println("Страви з таким номером не існує!");
+	public <T> void selectTable(EntityManager em, Class<T> c) {
+		String s=c.getSimpleName();
+		List<T> list = em.createQuery("From "+s, c).getResultList();
+		for (T t2 : list) {
+			System.out.println(t2.getName());
 		}
 	}
 

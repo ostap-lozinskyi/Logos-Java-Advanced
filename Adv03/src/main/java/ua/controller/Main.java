@@ -1,11 +1,15 @@
 package ua.controller;
 
-//Консольна менюшка з використанням Hibernate
+//Написати 4 запити для кожної таблиці і додати їх до консольної менюшки.
 
 import java.util.Scanner;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import ua.entity.Cuisine;
+import ua.entity.Meal;
 
 public class Main {
 	private Scanner scanner = new Scanner(System.in);
@@ -26,6 +30,7 @@ public class Main {
 					+ "Щоб додати кухню, введіть: 5 \n"
 					+ "Щоб редагувати кухню, введіть: 6 \n"
 					+ "Щоб видалити кухню, введіть: 7 \n"
+					+ "Щоб вивести на екран список кухонь, введіть: 8 \n"
 					+ "Щоб вийти з програми, введіть: 0");
 
 			switch (scanner.next()) {
@@ -39,7 +44,7 @@ public class Main {
 				model.deleteMeal(em);
 				break;
 			case "4":
-				model.selectTable(em);
+				model.selectTable(em, Meal.class);
 				break;
 			case "5":
 				model.addCuisine(em);
@@ -49,6 +54,9 @@ public class Main {
 				break;
 			case "7":
 				model.deleteCuisine(em);
+				break;
+			case "8":
+				model.selectTable(em, Cuisine.class);
 				break;
 			case "0":
 				isRun = false;
