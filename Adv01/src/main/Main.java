@@ -4,6 +4,7 @@ package main;
  * Connection має бути в одному екземплярі для всієї програми, відкривається на початку програми, якщо потрібно створює таблицю 
  * і закривається в кінці програми. Таблиця мінімум на 10 стовпців. 
  */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
