@@ -1,4 +1,4 @@
-package adv01;
+package main;
 
 import java.sql.*;
 import java.util.Random;
