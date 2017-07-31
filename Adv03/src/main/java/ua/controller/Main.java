@@ -8,9 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import ua.entity.Cuisine;
-import ua.entity.Meal;
-
 public class Main {
 	private Scanner scanner = new Scanner(System.in);
 	private Model model = new Model();
@@ -44,7 +41,7 @@ public class Main {
 				model.deleteMeal(em);
 				break;
 			case "4":
-				model.selectTable(em, Meal.class);
+				model.selectMeal(em);
 				break;
 			case "5":
 				model.addCuisine(em);
@@ -56,7 +53,7 @@ public class Main {
 				model.deleteCuisine(em);
 				break;
 			case "8":
-				model.selectTable(em, Cuisine.class);
+				model.selectCuisine(em);
 				break;
 			case "0":
 				isRun = false;

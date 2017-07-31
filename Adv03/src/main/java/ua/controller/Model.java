@@ -67,11 +67,10 @@ public class Model {
 		em.getTransaction().commit();
 	}
 
-	public <T> void selectTable(EntityManager em, Class<T> c) {
-		String s=c.getSimpleName();
-		List<T> list = em.createQuery("From "+s, c).getResultList();
-		for (T t2 : list) {
-			System.out.println(t2.getName());
+	public void selectMeal(EntityManager em) {
+		List<Meal> list = em.createQuery("From Meal", Meal.class).getResultList();
+		for (Meal meal : list) {
+			System.out.println(meal.getName());
 		}
 	}
 
@@ -108,5 +107,12 @@ public class Model {
 			System.out.println("Кухні з таким номером не існує!");
 		}
 		em.getTransaction().commit();
+	}
+	
+	public void selectCuisine(EntityManager em) {
+		List<Cuisine> list = em.createQuery("From Cuisine", Cuisine.class).getResultList();
+		for (Cuisine cuisine : list) {
+			System.out.println(cuisine.getName());
+		}
 	}
 }
