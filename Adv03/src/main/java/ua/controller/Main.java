@@ -23,11 +23,12 @@ public class Main {
 					+ "Щоб додати страву, введіть: 1 \n"
 					+ "Щоб редагувати страву, введіть: 2 \n"
 					+ "Щоб видалити страву, введіть: 3 \n"
-					+ "Щоб вивести на екран меню, введіть: 4 \n"
-					+ "Щоб додати кухню, введіть: 5 \n"
-					+ "Щоб редагувати кухню, введіть: 6 \n"
-					+ "Щоб видалити кухню, введіть: 7 \n"
-					+ "Щоб вивести на екран список кухонь, введіть: 8 \n"
+					+ "Щоб вивести на екран страву за іменем, введіть: 4 \n"
+					+ "Щоб вивести на екран меню, введіть: 5 \n"
+					+ "Щоб додати кухню, введіть: 6 \n"
+					+ "Щоб редагувати кухню, введіть: 7 \n"
+					+ "Щоб здійснити пошук страви за проміжком цін, введіть: 8 \n"
+					+ "Щоб здійснити пошук страви за першою буквою або частиною назви, введіть: 9 \n"
 					+ "Щоб вийти з програми, введіть: 0");
 
 			switch (scanner.next()) {
@@ -41,19 +42,22 @@ public class Main {
 				model.deleteMeal(em);
 				break;
 			case "4":
-				model.selectMeal(em);
+				model.selectMealByName(em);
 				break;
 			case "5":
-				model.addCuisine(em);
+				model.selectMeal(em);
 				break;
 			case "6":
-				model.updateCuisine(em);
+				model.addCuisine(em);
 				break;
 			case "7":
-				model.deleteCuisine(em);
+				model.updateCuisine(em);
 				break;
 			case "8":
-				model.selectCuisine(em);
+				model.selectMealByPriceInterval(em);
+				break;
+			case "9":
+				model.selectMealByLetter(em);
 				break;
 			case "0":
 				isRun = false;

@@ -1,5 +1,7 @@
 package ua.controller;
 
+//написати 4 запити для кожної таблиці і додати їх до вашої консольної менюшки
+
 import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -74,6 +76,21 @@ public class Model {
 		}
 	}
 
+	public void selectMealByName(EntityManager em) {
+		System.out.println("Введіть назву страви:");
+		List<Meal> list = em.createQuery("FROM Meal m WHERE m.name=?1", Meal.class)
+				.setParameter(1, enterParameters.stringEnter())
+				.getResultList();
+		for (Meal meal : list) {
+			System.out.println(meal.getName());
+			System.out.println(meal.getShortDescription());
+			System.out.println(meal.getFullDescription());
+			System.out.println(meal.getPrice());
+			System.out.println(meal.getWeight());
+			System.out.println(meal.getCuisine());
+		}
+	}
+
 	public void addCuisine(EntityManager em) {
 		em.getTransaction().begin();
 		Cuisine cuisine = new Cuisine();
@@ -97,22 +114,40 @@ public class Model {
 		em.getTransaction().commit();
 	}
 
-	public void deleteCuisine(EntityManager em) {
+	public void selectMealByPriceInterval(EntityManager em) {
 		em.getTransaction().begin();
-		System.out.println("Введіть номер кухні, яку потрібно видалити:");
-		Cuisine cuisine = em.find(Cuisine.class, enterParameters.intEnter());
-		if (cuisine != null) {
-			em.remove(cuisine);
-		} else {
-			System.out.println("Кухні з таким номером не існує!");
+		System.out.println("Введіть нижню межу ціни:");
+		String s1 = enterParameters.stringEnter();
+		System.out.println("Введіть верхню межу ціни:");
+		String s2 = enterParameters.stringEnter();
+		List<Meal> meals = em.createQuery("FROM Meal m WHERE m.price BETWEEN ?1 AND ?2", Meal.class)
+				.setParameter(1, new BigDecimal(s1))
+				.setParameter(2, new BigDecimal(s2))
+				.getResultList();
+		for (Meal meal : meals) {
+			System.out.println(meal.getName());
+			System.out.println(meal.getShortDescription());
+			System.out.println(meal.getFullDescription());
+			System.out.println(meal.getPrice());
+			System.out.println(meal.getWeight());
+			System.out.println(meal.getCuisine());
 		}
 		em.getTransaction().commit();
 	}
-	
-	public void selectCuisine(EntityManager em) {
-		List<Cuisine> list = em.createQuery("From Cuisine", Cuisine.class).getResultList();
-		for (Cuisine cuisine : list) {
-			System.out.println(cuisine.getName());
+
+	public void selectMealByLetter(EntityManager em) {
+		System.out.println("Введіть першу букву або частину слова:");
+		String s = enterParameters.stringEnter();
+		List<Meal> meals = em.createQuery("FROM Meal m WHERE m.name LIKE ?1", Meal.class)
+				.setParameter(1, s + "%")
+				.getResultList();
+		for (Meal meal : meals) {
+			System.out.println(meal.getName());
+			System.out.println(meal.getShortDescription());
+			System.out.println(meal.getFullDescription());
+			System.out.println(meal.getPrice());
+			System.out.println(meal.getWeight());
+			System.out.println(meal.getCuisine());
 		}
 	}
 }
