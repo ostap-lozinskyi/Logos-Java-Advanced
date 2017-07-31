@@ -3,6 +3,7 @@ package ua.controller;
 //написати 4 запити для кожної таблиці і додати їх до вашої консольної менюшки
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import javax.persistence.EntityManager;
 import ua.entity.Cuisine;
@@ -100,16 +101,27 @@ public class Model {
 		em.getTransaction().commit();
 	}
 
-	public void updateCuisine(EntityManager em) {
+	public void selectMealByIdList(EntityManager em) {
 		em.getTransaction().begin();
-		System.out.println("Введіть номер кухні, яку потрібно змінити:");
-		Cuisine cuisine = em.find(Cuisine.class, enterParameters.intEnter());
-		if (cuisine != null) {
-			System.out.println("Введіть нове ім'я:");
-			cuisine.setName(enterParameters.stringEnter());
-			em.persist(cuisine);
-		} else {
-			System.out.println("Кухні з таким номером не існує!");
+		Integer[] array=new Integer[3];
+		System.out.println("Введіть першу страву:");
+		array[0] = enterParameters.intEnter();
+		System.out.println("Введіть другу страву:");
+		array[1] = enterParameters.intEnter();
+		System.out.println("Введіть третю страву:");
+		array[2] = enterParameters.intEnter();
+		
+		List<Meal> meals = em.createQuery("FROM Meal m WHERE m.id IN ?1", Meal.class)
+				.setParameter(1, array)
+				.getResultList();
+		for (Meal meal : meals) {
+			System.out.println(meal.getName());
+			System.out.println(meal.getShortDescription());
+			System.out.println(meal.getFullDescription());
+			System.out.println(meal.getPrice());
+			System.out.println(meal.getWeight());
+			System.out.println(meal.getCuisine());
+			System.out.println();
 		}
 		em.getTransaction().commit();
 	}
