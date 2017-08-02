@@ -6,8 +6,7 @@ public class EnterParameters {
 	private Scanner scanner = new Scanner(System.in);
 
 	public String stringEnter() {
-		String name = scanner.next();
-		return name;
+		return scanner.next();
 	}
 
 	public int intEnter() {

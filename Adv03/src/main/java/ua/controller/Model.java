@@ -3,7 +3,7 @@ package ua.controller;
 //написати 4 запити для кожної таблиці і додати їх до вашої консольної менюшки
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import ua.entity.Cuisine;
@@ -103,16 +103,15 @@ public class Model {
 
 	public void selectMealByIdList(EntityManager em) {
 		em.getTransaction().begin();
-		Integer[] array=new Integer[3];
+		List<Integer> list = new ArrayList<>();
 		System.out.println("Введіть першу страву:");
-		array[0] = enterParameters.intEnter();
+		list.add(enterParameters.intEnter());
 		System.out.println("Введіть другу страву:");
-		array[1] = enterParameters.intEnter();
+		list.add(enterParameters.intEnter());
 		System.out.println("Введіть третю страву:");
-		array[2] = enterParameters.intEnter();
-		
-		List<Meal> meals = em.createQuery("FROM Meal m WHERE m.id IN ?1", Meal.class)
-				.setParameter(1, array)
+		list.add(enterParameters.intEnter());
+
+		List<Meal> meals = em.createQuery("FROM Meal m WHERE m.id IN ?1", Meal.class).setParameter(1, list)
 				.getResultList();
 		for (Meal meal : meals) {
 			System.out.println(meal.getName());
