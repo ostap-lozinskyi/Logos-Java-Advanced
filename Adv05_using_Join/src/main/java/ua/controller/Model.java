@@ -1,7 +1,5 @@
 package ua.controller;
 
-//написати 4 запити для кожної таблиці і додати їх до вашої консольної менюшки
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
