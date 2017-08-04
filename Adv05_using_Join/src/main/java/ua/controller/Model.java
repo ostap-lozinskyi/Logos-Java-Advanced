@@ -20,10 +20,10 @@ public class Model {
 		System.out.println("Введіть номер кухні:");
 		Cuisine cuisine = em.find(Cuisine.class, enterParameters.intEnter());
 		meal.setCuisine(cuisine);
-		System.out.println("Введіть короткий опис:");
-		meal.setShortDescription(enterParameters.stringEnter());
-		System.out.println("Введіть повний опис:");
-		meal.setFullDescription(enterParameters.stringEnter());
+		System.out.println("Введіть короткий опис (Замість пробілів-'_'):");
+		meal.setShortDescription(enterParameters.stringEnter().replace("_", " "));
+		System.out.println("Введіть повний опис (Замість пробілів-'_'):");
+		meal.setFullDescription(enterParameters.stringEnter().replace("_", " "));
 		System.out.println("Введіть ціну:");
 		meal.setPrice(new BigDecimal(enterParameters.stringEnter()));
 		System.out.println("Введіть вагу:");
