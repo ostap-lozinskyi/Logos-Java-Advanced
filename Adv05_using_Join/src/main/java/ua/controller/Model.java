@@ -11,10 +11,8 @@ import ua.model.view.MealView;
 public class Model {
 
 	private EnterParameters enterParameters = new EnterParameters();
-
-	public void addMeal(EntityManager em) {
-		em.getTransaction().begin();
-		Meal meal = new Meal();
+	
+	private void mealParametersEnter(Meal meal, EntityManager em) {		
 		System.out.println("Введіть ім'я:");
 		meal.setName(enterParameters.stringEnter());
 		System.out.println("Введіть номер кухні:");
@@ -27,33 +25,27 @@ public class Model {
 		System.out.println("Введіть ціну:");
 		meal.setPrice(new BigDecimal(enterParameters.stringEnter()));
 		System.out.println("Введіть вагу:");
-		meal.setWeight(enterParameters.intEnter());
+		meal.setWeight(enterParameters.intEnter());		
+	}
+
+	public void addMeal(EntityManager em) {	
+		em.getTransaction().begin();
+		Meal meal = new Meal();
+		mealParametersEnter(meal, em);	
 		em.persist(meal);
 		em.getTransaction().commit();
 	}
 
 	public void updateMeal(EntityManager em) {
 		em.getTransaction().begin();
-		System.out.println("Введіть номер страви, яку потрібно змінити:");
+		System.out.println("Введіть номер страви, яку потрібно змінити:");		
 		Meal meal = em.find(Meal.class, enterParameters.intEnter());
 		if (meal != null) {
-			System.out.println("Введіть нове ім'я:");
-			meal.setName(enterParameters.stringEnter());
-			System.out.println("Введіть номер кухні:");
-			Cuisine cuisine = em.find(Cuisine.class, enterParameters.intEnter());
-			meal.setCuisine(cuisine);
-			System.out.println("Введіть короткий опис:");
-			meal.setShortDescription(enterParameters.stringEnter());
-			System.out.println("Введіть повний опис:");
-			meal.setFullDescription(enterParameters.stringEnter());
-			System.out.println("Введіть ціну:");
-			meal.setPrice(new BigDecimal(enterParameters.stringEnter()));
-			System.out.println("Введіть вагу:");
-			meal.setWeight(enterParameters.intEnter());
-			em.persist(meal);
+			mealParametersEnter(meal, em);
 		} else {
 			System.out.println("Страви з таким номером не існує!");
 		}
+		em.persist(meal);
 		em.getTransaction().commit();
 	}
 
@@ -70,15 +62,14 @@ public class Model {
 	}
 
 	public void selectMealView(EntityManager em) {
-		List<MealView> views = em.createQuery("SELECT new ua.model.view.MealView(m.id, m.photoUrl, m.version, m.rate, m.name, m.fullDescription, m.price, m.weight, c.name) FROM Meal m JOIN m.cuisine c WHERE c.name=?1", MealView.class)
-				.setParameter(1, "German")
+		List<MealView> views = em.createQuery("SELECT new ua.model.view.MealView(m.id, m.photoUrl, m.version, m.rate, m.name, m.fullDescription, m.price, m.weight, c.name) FROM Meal m JOIN m.cuisine c", MealView.class)
 				.getResultList();
 		views.forEach(System.out::println);		
 	}
 
 	public void selectMealViewByName(EntityManager em) {
 		System.out.println("Введіть назву страви:");
-		List<MealView> views = em.createQuery("SELECT new ua.model.view.MealView(m.id, m.photoUrl, m.version, m.rate, m.name, m.fullDescription, m.price, m.weight, c.name) FROM Meal m JOIN m.cuisine c WHERE c.name=?1", MealView.class)
+		List<MealView> views = em.createQuery("SELECT new ua.model.view.MealView(m.id, m.photoUrl, m.version, m.rate, m.name, m.fullDescription, m.price, m.weight, c.name) FROM Meal m JOIN m.cuisine c WHERE m.name=?1", MealView.class)
 				.setParameter(1, enterParameters.stringEnter())
 				.getResultList();
 		views.forEach(System.out::println);	
@@ -167,6 +158,5 @@ public class Model {
 	public void selectSumWeight(EntityManager em) {
 		long sum = em.createQuery("SELECT sum(m.weight) FROM Meal m", Long.class).getSingleResult();
 		System.out.println("Загальна вага страв у меню: " + sum);
-	}
-	
+	}	
 }
