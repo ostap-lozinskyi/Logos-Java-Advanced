@@ -6,10 +6,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import ua.entity.Cuisine;
+import ua.entity.Cuisine_;
 import ua.entity.Meal;
+import ua.entity.Meal_;
 import ua.model.view.MealView;
 
 public class Model {
@@ -158,17 +162,26 @@ public class Model {
 		Double avg = em.createQuery("SELECT avg(m.price) FROM Meal m", Double.class).getSingleResult();
 		System.out.println("Середня ціна страв: " + avg);
 	}
-	
+
 	public void selectSumWeight(EntityManager em) {
 		long sum = em.createQuery("SELECT sum(m.weight) FROM Meal m", Long.class).getSingleResult();
 		System.out.println("Загальна вага страв у меню: " + sum);
-	}	
-	
+	}
+
 	public void criteriaSearch(EntityManager em) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Meal> cq = cb.createQuery(Meal.class);
 		Root<Meal> root = cq.from(Meal.class);
 		cq.select(root);
+
+		System.out.println("Введіть ім'я або частину імені:");
+		Predicate namePredicate = cb.like(root.get(Meal_.name), enterParameters.stringEnter() + "%");
+
+		System.out.println("Введіть назву кухні:");
+		Join<Meal, Cuisine> cuisineJoin = root.join(Meal_.cuisine);
+		Predicate cuisinePredicate= cuisineJoin.get(Cuisine_.name).in(enterParameters.stringEnter());
+		
+		cq.where(namePredicate);
 		List<Meal> meals=em.createQuery(cq).getResultList();
 		System.out.println(meals);
 	}
