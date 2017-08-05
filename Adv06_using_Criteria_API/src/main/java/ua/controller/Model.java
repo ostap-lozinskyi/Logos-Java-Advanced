@@ -170,19 +170,45 @@ public class Model {
 
 	public void criteriaSearch(EntityManager em) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Meal> cq = cb.createQuery(Meal.class);
+		CriteriaQuery<MealView> cq = cb.createQuery(MealView.class);
 		Root<Meal> root = cq.from(Meal.class);
-		cq.select(root);
-
-		System.out.println("Введіть ім'я або частину імені:");
-		Predicate namePredicate = cb.like(root.get(Meal_.name), enterParameters.stringEnter() + "%");
-
-		System.out.println("Введіть назву кухні:");
 		Join<Meal, Cuisine> cuisineJoin = root.join(Meal_.cuisine);
-		Predicate cuisinePredicate= cuisineJoin.get(Cuisine_.name).in(enterParameters.stringEnter());
 		
-		cq.where(namePredicate);
-		List<Meal> meals=em.createQuery(cq).getResultList();
+		cq.multiselect(root.get(Meal_.id),
+				root.get(Meal_.photoUrl),
+				root.get(Meal_.version),
+				root.get(Meal_.rate),
+				root.get(Meal_.name),
+				root.get(Meal_.fullDescription),
+				root.get(Meal_.price),
+				root.get(Meal_.weight),
+				cuisineJoin.get(Cuisine_.name));
+
+		List<Predicate> predicatesList = new ArrayList<>();
+
+		System.out.println("Потрібен пошук по імені? Y/N");
+		if (enterParameters.stringEnter().toLowerCase().equals("y")) {
+			System.out.println("Введіть ім'я або частину імені:");
+			Predicate namePredicate = cb.like(root.get(Meal_.name), enterParameters.stringEnter() + "%");
+			predicatesList.add(namePredicate);
+		}
+
+		System.out.println("Потрібен пошук по кухні? Y/N");
+		if (enterParameters.stringEnter().toLowerCase().equals("y")) {
+			System.out.println("Введіть назву кухні:");
+			Predicate cuisinePredicate = cuisineJoin.get(Cuisine_.name).in(enterParameters.stringEnter());
+			predicatesList.add(cuisinePredicate);
+		}
+		
+		if (!predicatesList.isEmpty()) {
+			Predicate[] predicatesArray = new Predicate[predicatesList.size()];
+			for (int i = 0; i != predicatesList.size(); i++) {
+				predicatesArray[i] = predicatesList.get(i);
+			}
+			cq.where(predicatesArray);
+		}
+
+		List<MealView> meals=em.createQuery(cq).getResultList();
 		System.out.println(meals);
 	}
 }
