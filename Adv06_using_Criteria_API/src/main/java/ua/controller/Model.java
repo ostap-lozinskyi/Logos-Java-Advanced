@@ -201,10 +201,11 @@ public class Model {
 		}
 		
 		if (!predicatesList.isEmpty()) {
-			Predicate[] predicatesArray = new Predicate[predicatesList.size()];
-			for (int i = 0; i != predicatesList.size(); i++) {
-				predicatesArray[i] = predicatesList.get(i);
-			}
+//			Predicate[] predicatesArray = new Predicate[predicatesList.size()];
+//			for (int i = 0; i != predicatesList.size(); i++) {
+//				predicatesArray[i] = predicatesList.get(i);
+//			}
+			Predicate[] predicatesArray = predicatesList.toArray(new Predicate[predicatesList.size()]);
 			cq.where(predicatesArray);
 		}
 
