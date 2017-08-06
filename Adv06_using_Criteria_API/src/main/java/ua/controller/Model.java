@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -192,6 +193,16 @@ public class Model {
 			Predicate namePredicate = cb.like(root.get(Meal_.name), enterParameters.stringEnter() + "%");
 			predicatesList.add(namePredicate);
 		}
+		
+		System.out.println("Потрібен пошук по діапазону цін? Y/N");
+		if (enterParameters.stringEnter().toLowerCase().equals("y")) {
+			System.out.println("Введіть мінімальну ціну страви:");
+			BigDecimal min = new BigDecimal(enterParameters.stringEnter());
+			System.out.println("Введіть максимальну ціну страви:");
+			BigDecimal max = new BigDecimal(enterParameters.stringEnter());
+			Predicate pricePredicate = cb.between(root.get(Meal_.price), min, max);
+			predicatesList.add(pricePredicate);
+		}
 
 		System.out.println("Потрібен пошук по кухні? Y/N");
 		if (enterParameters.stringEnter().toLowerCase().equals("y")) {
@@ -199,17 +210,15 @@ public class Model {
 			Predicate cuisinePredicate = cuisineJoin.get(Cuisine_.name).in(enterParameters.stringEnter());
 			predicatesList.add(cuisinePredicate);
 		}
-		
+
 		if (!predicatesList.isEmpty()) {
-//			Predicate[] predicatesArray = new Predicate[predicatesList.size()];
-//			for (int i = 0; i != predicatesList.size(); i++) {
-//				predicatesArray[i] = predicatesList.get(i);
-//			}
 			Predicate[] predicatesArray = predicatesList.toArray(new Predicate[predicatesList.size()]);
 			cq.where(predicatesArray);
 		}
 
-		List<MealView> meals=em.createQuery(cq).getResultList();
-		System.out.println(meals);
+		List<MealView> meals = em.createQuery(cq).getResultList();
+		for (MealView mealView : meals) {
+			System.out.println(mealView);
+		}
 	}
 }
