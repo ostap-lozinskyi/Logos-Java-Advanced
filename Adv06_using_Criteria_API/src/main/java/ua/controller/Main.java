@@ -1,6 +1,6 @@
 package ua.controller;
 
-//Додати в меню можливість виводу вʼюшок.
+//Написати динамічний фільтр.
 
 import java.util.Scanner;
 
