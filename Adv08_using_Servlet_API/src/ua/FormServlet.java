@@ -8,35 +8,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class FormServlet extends HttpServlet{
-	
+public class FormServlet extends HttpServlet {
+
 	private static final long serialVersionUID = 4656205184818860704L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		//методом GET показуюємо реєстрацію
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// методом GET показуюємо реєстрацію
 		req.getRequestDispatcher("/registration.jsp").forward(req, resp);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		//методом POST отримуємо параметри з форми яку заповнив користувач
-		//getParameter дозволяє за назвою параметра отримати значення
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// методом POST отримуємо параметри з форми яку заповнив користувач
+		// getParameter дозволяє за назвою параметра отримати значення
 		String login = req.getParameter("login");
 		String password = req.getParameter("password");
-		//створюємо користувача
+		// створюємо користувача
 		User user = new User(login, password);
-		//отримуємо сесію
+		// отримуємо сесію
 		HttpSession session = req.getSession();
-		//передаємо в сесію користувача
+		// передаємо в сесію користувача
 		session.setAttribute("user", user);
-		//після того як отримали все що потрібно з запиту
-		//робимо редірект на посилання /
-		//після методу POST в абсолютній більшості випадків
-		//потрібно робити редірект кудись
-		//це перенаправить користувача методом GET
+		// після того як отримали все що потрібно з запиту
+		// робимо редірект на посилання /
+		// після методу POST в абсолютній більшості випадків
+		// потрібно робити редірект кудись
+		// це перенаправить користувача методом GET
 		resp.sendRedirect("/");
 	}
 }
