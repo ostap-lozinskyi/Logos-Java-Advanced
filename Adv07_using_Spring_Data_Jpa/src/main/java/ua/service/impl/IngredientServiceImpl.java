@@ -1,13 +1,17 @@
 package ua.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
-import ua.entity.Component;
+import ua.entity.Ingredient;
 import ua.service.IngredientService;
 
-public class IngredientServiceImpl extends CrudServiceImpl<Component, Integer> implements IngredientService {
+@Service
+public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> implements IngredientService {
 
-	public IngredientServiceImpl(JpaRepository<Component, Integer> repository) {
+	@Autowired
+	public IngredientServiceImpl(JpaRepository<Ingredient, Integer> repository) {
 		super(repository);
 	}
 

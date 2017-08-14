@@ -1,13 +1,17 @@
 package ua.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
-import ua.entity.Component;
+import ua.entity.Cuisine;
 import ua.service.CuisineService;
 
-public class CuisineServiceImpl extends CrudServiceImpl<Component, Integer> implements CuisineService {
+@Service
+public class CuisineServiceImpl extends CrudServiceImpl<Cuisine, Integer> implements CuisineService {
 
-	public CuisineServiceImpl(JpaRepository<Component, Integer> repository) {
+	@Autowired
+	public CuisineServiceImpl(JpaRepository<Cuisine, Integer> repository) {
 		super(repository);
 	}
 

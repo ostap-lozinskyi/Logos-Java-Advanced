@@ -1,13 +1,17 @@
 package ua.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
-import ua.entity.Component;
+import ua.entity.Place;
 import ua.service.PlaceService;
 
-public class PlaceServiceImpl extends CrudServiceImpl<Component, Integer> implements PlaceService {
+@Service
+public class PlaceServiceImpl extends CrudServiceImpl<Place, Integer> implements PlaceService {
 
-	public PlaceServiceImpl(JpaRepository<Component, Integer> repository) {
+	@Autowired
+	public PlaceServiceImpl(JpaRepository<Place, Integer> repository) {
 		super(repository);
 	}
 

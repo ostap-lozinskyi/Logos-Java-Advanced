@@ -1,7 +1,7 @@
 package ua.service;
 
-import ua.entity.Component;
+import ua.entity.Cuisine;
 
-public interface CuisineService extends CrudService<Component, Integer>{
+public interface CuisineService extends CrudService<Cuisine, Integer> {
 
 }

@@ -1,7 +1,7 @@
 package ua.service;
 
-import ua.entity.Component;
+import ua.entity.Ms;
 
-public interface MsService extends CrudService<Component, Integer>{
+public interface MsService extends CrudService<Ms, Integer> {
 
 }

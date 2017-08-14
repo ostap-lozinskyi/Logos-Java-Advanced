@@ -1,7 +1,7 @@
 package ua.service;
 
-import ua.entity.Component;
+import ua.entity.Order;
 
-public interface OrderService extends CrudService<Component, Integer>{
+public interface OrderService extends CrudService<Order, Integer> {
 
 }

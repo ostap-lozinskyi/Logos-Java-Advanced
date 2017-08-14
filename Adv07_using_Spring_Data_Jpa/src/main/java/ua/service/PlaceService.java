@@ -1,7 +1,7 @@
 package ua.service;
 
-import ua.entity.Component;
+import ua.entity.Place;
 
-public interface PlaceService extends CrudService<Component, Integer>{
+public interface PlaceService extends CrudService<Place, Integer> {
 
 }
