@@ -13,6 +13,14 @@ import javax.persistence.Table;
 @Table(name="_order")
 public class Order extends AbstractEntity{
 	
+	public Order() {
+	}
+	
+	public Order(List<Meal> meals, Place place) {
+		this.meals = meals;
+		this.place = place;
+	}
+
 	@ManyToMany
 	private List<Meal> meals = new ArrayList<>();
 	
