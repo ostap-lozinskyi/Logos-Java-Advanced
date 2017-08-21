@@ -25,7 +25,7 @@ public class AdminIngredientController {
 
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("ingredients", service.findAll());
+		model.addAttribute("ingredients", service.findAllView());
 		return "ingredient";
 	}
 
