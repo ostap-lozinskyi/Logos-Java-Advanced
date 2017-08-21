@@ -26,13 +26,11 @@ public class MealView {
 	private String cuisine;
 	
 	public MealView(Integer id, String name, String fullDescription, BigDecimal price, 
-			List<ComponentView> components,	int weight, String cuisine) {
-		super();
+			int weight, String cuisine) {
 		this.id = id;
 		this.name = name;
 		this.fullDescription = fullDescription;
 		this.price = price;
-		this.components = components;
 		this.weight = weight;
 		this.cuisine = cuisine;
 	}

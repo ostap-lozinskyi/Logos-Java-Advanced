@@ -17,8 +17,8 @@ public class Meal extends AbstractEntityName {
 	public Meal() {
 	}
 
-	public Meal(String name, String fullDescription, String shortDescription, BigDecimal price, List<Component> components, int weight,
-			Cuisine cuisine) {
+	public Meal(String name, String fullDescription, String shortDescription, BigDecimal price,
+			List<Component> components, int weight, Cuisine cuisine) {
 		super(name);
 		this.fullDescription = fullDescription;
 		this.shortDescription = shortDescription;

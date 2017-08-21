@@ -15,6 +15,6 @@ public interface MealRepository extends JpaNameRepository<Meal> {
 	@Query("SELECT com.id FROM Component com")
 	List<String> findAllConponents();
 
-	@Query("SELECT new ua.model.view.MealView(m.id, m.name, m.fullDescription, m.price, com.id, m.weight, cu.name) FROM Meal m JOIN m.cuisine cu JOIN meal_components com")
+	@Query("SELECT new ua.model.view.MealView(m.id, m.name, m.fullDescription, m.price, m.weight, cu.name) FROM Meal m JOIN m.cuisine cu")
 	List<MealView> findAllView();
 }

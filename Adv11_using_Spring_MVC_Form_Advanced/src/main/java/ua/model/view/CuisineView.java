@@ -7,7 +7,6 @@ public class CuisineView {
 	private String name;
 
 	public CuisineView(Integer id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}

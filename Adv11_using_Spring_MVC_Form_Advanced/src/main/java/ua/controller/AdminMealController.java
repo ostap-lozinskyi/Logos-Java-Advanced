@@ -1,7 +1,6 @@
 package ua.controller;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +29,13 @@ public class AdminMealController {
 	public AdminMealController(MealService service) {
 		this.service = service;
 	}
-	
+
 	@Autowired
 	private CuisineRepository cuisineRepository;
-	
+
 	@Autowired
 	private ComponentRepository componentRepository;
-	
+
 	@GetMapping
 	public String show(Model model) {
 		model.addAttribute("cuisines", service.findAllcuisines());
@@ -53,13 +52,11 @@ public class AdminMealController {
 
 	@PostMapping
 	public String save(@RequestParam String name, @RequestParam String fullDescription,
-			@RequestParam String shortDescription, @RequestParam BigDecimal price, @RequestParam List<Component> components, @RequestParam int weight,
+			@RequestParam String shortDescription, @RequestParam BigDecimal price, @RequestParam int weight,
 			@RequestParam String cuisine) {
 		Cuisine cuisine2 = cuisineRepository.findByName(cuisine);
-		List<Component> components2=new ArrayList<>();
-		components2.add(componentRepository.findOne(1));
-		
-		Meal meal=new Meal(name, fullDescription, shortDescription, price, components2, weight, cuisine2);
+		List<Component> components2 = componentRepository.findAll();
+		Meal meal = new Meal(name, fullDescription, shortDescription, price, components2, weight, cuisine2);
 		service.save(meal);
 		return "redirect:/admin/meal";
 	}

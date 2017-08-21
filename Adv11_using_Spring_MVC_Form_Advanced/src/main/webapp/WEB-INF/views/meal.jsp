@@ -85,7 +85,6 @@
 					<tr>
 						<th class="text-center">Name</th>
 						<th class="text-center">Full Description</th>
-						<th class="text-center">Short Description</th>
 						<th class="text-center">Price</th>
 						<th class="text-center">Weight</th>
 						<th class="text-center">Options</th>
@@ -94,7 +93,6 @@
 						<tr>
 							<td>${meal.name}</td>
 							<td>${meal.fullDescription}</td>
-							<td>${meal.shortDescription}</td>
 							<td>${meal.price}</td>
 							<td>${meal.weight}</td>
 							<td class="text-center"><a
