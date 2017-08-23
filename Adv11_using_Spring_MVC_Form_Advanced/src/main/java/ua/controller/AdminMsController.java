@@ -33,7 +33,7 @@ public class AdminMsController {
 
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("ms", service.findAllView());
+		model.addAttribute("mss", service.findAllView());
 		return "ms";
 	}
 

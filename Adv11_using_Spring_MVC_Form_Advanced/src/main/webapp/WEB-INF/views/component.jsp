@@ -27,21 +27,13 @@
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="ms">Measuring system:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="ms" path="ms">
-								<c:forEach var="ms" items="${mss}">
-									<option value="${ms}">${ms}</option>
-								</c:forEach>
-							</form:select>
+							<form:select class="form-control" id="ms" path="ms" items="${mss}"/>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="ingredient">Ingredient:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="ingredient" path="ingredient">
-								<c:forEach var="ingredient" items="${ingredients}">
-									<option value="${ingredient}">${ingredient}</option>
-								</c:forEach>
-							</form:select>
+							<form:select class="form-control" id="ingredient" path="ingredient" items="${ingredients}"/>
 						</div>
 					</div>
 					<div class="form-group row">

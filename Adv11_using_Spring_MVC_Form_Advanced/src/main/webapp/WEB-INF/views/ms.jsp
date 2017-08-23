@@ -40,7 +40,7 @@
 						<th class="text-center">Name</th>
 						<th class="text-center">Options</th>
 					</tr>
-					<c:forEach var="ms" items="${ms}">
+					<c:forEach var="ms" items="${mss}">
 						<tr>
 							<td>${ms.name}</td>
 							<td class="text-center">

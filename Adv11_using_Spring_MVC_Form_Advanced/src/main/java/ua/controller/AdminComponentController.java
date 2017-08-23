@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.entity.Component;
+import ua.model.request.ComponentRequest;
 import ua.service.ComponentService;
 
 @Controller
@@ -27,8 +27,8 @@ public class AdminComponentController {
 	}
 	
 	@ModelAttribute("component")
-	public Component getForm() {
-		return new Component();
+	public ComponentRequest getForm() {
+		return new ComponentRequest();
 	}
 	
 	@GetMapping
@@ -46,14 +46,14 @@ public class AdminComponentController {
 	}
 	
 	@PostMapping
-	public String save(@ModelAttribute("component") Component component, SessionStatus status) {
-		service.save(component);
-		return "redirect:/admin/component";
+	public String save(@ModelAttribute("component") ComponentRequest request, SessionStatus status) {
+		service.save(request);
+		return cancel(status);
 	}
 	
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
-		model.addAttribute("component", service.findOne(id));
+		model.addAttribute("component", service.findOneRequest(id));
 		return show(model);
 	}
 

@@ -7,7 +7,6 @@ public class MsView {
 	private String name;
 
 	public MsView(Integer id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}
