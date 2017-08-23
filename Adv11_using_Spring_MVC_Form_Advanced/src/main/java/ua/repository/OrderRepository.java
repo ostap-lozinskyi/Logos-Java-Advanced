@@ -18,4 +18,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
 	@Query("SELECT new ua.model.view.OrderView(o.id) FROM Order o")
 	List<OrderView> findAllView();
+
+	@Query("SELECT o FROM Order o JOIN FETCH o.place WHERE o.id=?1")
+	Order findOneRequest(Integer id);
 }

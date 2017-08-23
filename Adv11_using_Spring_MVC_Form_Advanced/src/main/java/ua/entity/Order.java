@@ -13,6 +13,12 @@ import javax.persistence.Table;
 @Table(name="_order")
 public class Order extends AbstractEntity{
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Place place;
+	
+	@ManyToMany
+	private List<Meal> meals = new ArrayList<>();
+	
 	public Order() {
 	}
 	
@@ -20,12 +26,6 @@ public class Order extends AbstractEntity{
 		this.meals = meals;
 		this.place = place;
 	}
-
-	@ManyToMany
-	private List<Meal> meals = new ArrayList<>();
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Place place;
 
 	public List<Meal> getMeals() {
 		return meals;
