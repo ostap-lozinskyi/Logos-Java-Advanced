@@ -14,20 +14,6 @@ import javax.persistence.Table;
 @Table(name = "meal")
 public class Meal extends AbstractEntityName {
 
-	public Meal() {
-	}
-
-	public Meal(String name, String fullDescription, String shortDescription, BigDecimal price,
-			List<Component> components, int weight, Cuisine cuisine) {
-		super(name);
-		this.fullDescription = fullDescription;
-		this.shortDescription = shortDescription;
-		this.price = price;
-		this.weight = weight;
-		this.cuisine = cuisine;
-		this.components = components;
-	}
-
 	private String photoUrl;
 
 	private int version;
@@ -50,6 +36,20 @@ public class Meal extends AbstractEntityName {
 
 	@ManyToMany
 	private List<Component> components = new ArrayList<>();
+
+	public Meal() {
+	}
+
+	public Meal(String name, String fullDescription, String shortDescription, BigDecimal price,
+			List<Component> components, int weight, Cuisine cuisine) {
+		super(name);
+		this.fullDescription = fullDescription;
+		this.shortDescription = shortDescription;
+		this.price = price;
+		this.weight = weight;
+		this.cuisine = cuisine;
+		this.components = components;
+	}
 
 	public List<Order> getOrders() {
 		return orders;
@@ -122,4 +122,13 @@ public class Meal extends AbstractEntityName {
 	public void setCuisine(Cuisine cuisine) {
 		this.cuisine = cuisine;
 	}
+
+	public List<Component> getComponents() {
+		return components;
+	}
+
+	public void setComponents(List<Component> components) {
+		this.components = components;
+	}
+	
 }

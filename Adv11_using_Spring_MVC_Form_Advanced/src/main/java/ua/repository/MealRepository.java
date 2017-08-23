@@ -13,8 +13,11 @@ public interface MealRepository extends JpaNameRepository<Meal> {
 	List<String> findAllCuisines();
 	
 	@Query("SELECT com.id FROM Component com")
-	List<String> findAllConponents();
+	List<String> findAllComponents();
 
 	@Query("SELECT new ua.model.view.MealView(m.id, m.name, m.fullDescription, m.price, m.weight, cu.name) FROM Meal m JOIN m.cuisine cu")
 	List<MealView> findAllView();
+	
+	@Query("SELECT m FROM Meal m JOIN FETCH m.cuisine WHERE m.id=?1")
+	Meal findOneRequest(Integer id);
 }

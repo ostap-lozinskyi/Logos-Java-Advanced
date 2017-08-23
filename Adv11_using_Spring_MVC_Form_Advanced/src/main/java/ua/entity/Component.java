@@ -14,15 +14,6 @@ import javax.persistence.Table;
 @Table(name="component")
 public class Component extends AbstractEntity{
 	
-	public Component() {
-	}
-
-	public Component(Ingredient ingredient, BigDecimal amount, Ms ms) {
-		this.ingredient = ingredient;
-		this.amount = amount;
-		this.ms = ms;
-	}
-	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Ingredient ingredient;
 	
@@ -33,7 +24,16 @@ public class Component extends AbstractEntity{
 	
 	@ManyToMany(mappedBy="components")
 	private List<Meal> meals = new ArrayList<>();
+	
+	public Component() {
+	}
 
+	public Component(Ingredient ingredient, BigDecimal amount, Ms ms) {
+		this.ingredient = ingredient;
+		this.amount = amount;
+		this.ms = ms;
+	}
+	
 	public Ingredient getIngredient() {
 		return ingredient;
 	}
