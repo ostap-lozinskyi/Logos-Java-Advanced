@@ -50,4 +50,10 @@ public class ComponentView {
 	public void setMs(String ms) {
 		this.ms = ms;
 	}
+
+	@Override
+	public String toString() {
+		return "ComponentView [id=" + id + ", ingredient=" + ingredient + ", amount=" + amount + ", ms=" + ms + "]";
+	}
+	
 }

@@ -57,4 +57,5 @@ public class Component extends AbstractEntity{
 	public void setMs(Ms ms) {
 		this.ms = ms;
 	}
+
 }

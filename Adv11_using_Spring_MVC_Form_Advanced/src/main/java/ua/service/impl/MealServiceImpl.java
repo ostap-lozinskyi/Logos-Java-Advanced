@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ua.entity.Meal;
 import ua.model.request.MealRequest;
+import ua.model.view.ComponentView;
 import ua.model.view.MealView;
 import ua.repository.MealRepository;
 import ua.service.MealService;
@@ -28,8 +29,8 @@ public class MealServiceImpl implements MealService {
 	}
 
 	@Override
-	public List<String> findAllcomponents() {
-		return repository.findAllComponents();
+	public List<ComponentView> findAllcomponentsView() {
+		return repository.findAllComponentsView();
 	}
 
 	@Override
