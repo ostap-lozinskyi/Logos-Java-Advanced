@@ -25,7 +25,7 @@ public class AdminPlaceController {
 
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("places", service.findAll());
+		model.addAttribute("places", service.findAllView());
 		return "place";
 	}
 

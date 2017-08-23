@@ -14,16 +14,11 @@ import ua.service.CuisineService;
 public class CuisineServiceImpl extends CrudServiceImpl<Cuisine, Integer> implements CuisineService {
 
 	private final CuisineRepository repository;
-	
+
 	@Autowired
 	public CuisineServiceImpl(CuisineRepository repository) {
 		super(repository);
 		this.repository = repository;
-	}
-
-	@Override
-	public List<String> findAllcuisines() {
-		return repository.findAllCuisines();
 	}
 
 	@Override
