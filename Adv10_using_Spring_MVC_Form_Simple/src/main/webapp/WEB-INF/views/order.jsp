@@ -22,7 +22,7 @@
 					</tr>
 					<c:forEach var="order" items="${orders}">
 						<tr>
-							<td>${order.name}</td>
+							<td>${order.id}</td>
 							<td class="text-center"><a
 								href="/admin/order/update/${order.id}"
 								class="btn btn-outline-warning btn-sm">Update</a> <a
