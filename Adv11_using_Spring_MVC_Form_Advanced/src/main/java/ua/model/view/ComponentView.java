@@ -53,7 +53,7 @@ public class ComponentView {
 
 	@Override
 	public String toString() {
-		return "ComponentView [id=" + id + ", ingredient=" + ingredient + ", amount=" + amount + ", ms=" + ms + "]";
+		return "id_" + id + "_" + ingredient + "_" + amount + "_" + ms;
 	}
 	
 }

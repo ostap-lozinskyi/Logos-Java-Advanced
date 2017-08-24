@@ -12,4 +12,7 @@ public interface PlaceRepository extends JpaRepository<Place, Integer> {
 
 	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number) FROM Place p")
 	List<PlaceView> findAllView();
+	
+	@Query("SELECT p FROM Place p WHERE p.id=?1")
+	Place findOneRequest(Integer id);
 }

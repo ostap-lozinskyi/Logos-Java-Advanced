@@ -11,5 +11,8 @@ public interface MsRepository extends JpaNameRepository<Ms>{
 	
 	@Query("SELECT new ua.model.view.MsView(m.id, m.name) FROM Ms m")
 	List<MsView> findAllView();
+	
+	@Query("SELECT m FROM Ms m WHERE m.id=?1")
+	Ms findOneRequest(Integer id);
 
 }

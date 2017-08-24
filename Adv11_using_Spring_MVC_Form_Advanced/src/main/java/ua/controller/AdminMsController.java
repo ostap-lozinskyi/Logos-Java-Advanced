@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.entity.Ms;
+import ua.model.request.MsRequest;
 import ua.service.MsService;
 
 @Controller
@@ -25,10 +25,10 @@ public class AdminMsController {
 	public AdminMsController(MsService service) {
 		this.service = service;
 	}
-	
+
 	@ModelAttribute("ms")
-	public Ms getForm() {
-		return new Ms();
+	public MsRequest getForm() {
+		return new MsRequest();
 	}
 
 	@GetMapping
@@ -42,16 +42,16 @@ public class AdminMsController {
 		service.delete(id);
 		return "redirect:/admin/ms";
 	}
-	
+
 	@PostMapping
-	public String save(@ModelAttribute("ms") Ms ms, SessionStatus status) {
-		service.save(ms);
+	public String save(@ModelAttribute("ms") MsRequest request, SessionStatus status) {
+		service.save(request);
 		return "redirect:/admin/ms";
 	}
-	
+
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
-		model.addAttribute("ms", service.findOne(id));
+		model.addAttribute("ms", service.findOneRequest(id));
 		return show(model);
 	}
 

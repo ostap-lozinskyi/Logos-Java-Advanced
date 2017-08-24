@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.entity.Cuisine;
+import ua.model.request.CuisineRequest;
 import ua.service.CuisineService;
 
 @Controller
@@ -25,10 +25,10 @@ public class AdminCuisineController {
 	public AdminCuisineController(CuisineService service) {
 		this.service = service;
 	}
-	
+
 	@ModelAttribute("cuisine")
-	public Cuisine getForm() {
-		return new Cuisine();
+	public CuisineRequest getForm() {
+		return new CuisineRequest();
 	}
 
 	@GetMapping
@@ -42,16 +42,16 @@ public class AdminCuisineController {
 		service.delete(id);
 		return "redirect:/admin/cuisine";
 	}
-	
+
 	@PostMapping
-	public String save(@ModelAttribute("cuisine") Cuisine cuisine, SessionStatus status) {
-		service.save(cuisine);
+	public String save(@ModelAttribute("cuisine") CuisineRequest request, SessionStatus status) {
+		service.save(request);
 		return "redirect:/admin/cuisine";
 	}
-	
+
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
-		model.addAttribute("cuisine", service.findOne(id));
+		model.addAttribute("cuisine", service.findOneRequest(id));
 		return show(model);
 	}
 

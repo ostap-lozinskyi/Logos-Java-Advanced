@@ -59,7 +59,7 @@ public class MealServiceImpl implements MealService {
 		request.setFullDescription(meal.getFullDescription());
 		request.setId(meal.getId());
 		request.setName(meal.getName());
-		request.setPrice(String.valueOf(meal.getPrice()));
+		request.setPrice(meal.getPrice().toString());
 		request.setWeight(meal.getWeight());
 		request.setComponents(meal.getComponents());
 		return request;

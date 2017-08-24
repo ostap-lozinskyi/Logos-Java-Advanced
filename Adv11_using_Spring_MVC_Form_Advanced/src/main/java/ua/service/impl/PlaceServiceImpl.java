@@ -6,24 +6,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Place;
+import ua.model.request.PlaceRequest;
 import ua.model.view.PlaceView;
 import ua.repository.PlaceRepository;
 import ua.service.PlaceService;
 
 @Service
-public class PlaceServiceImpl extends CrudServiceImpl<Place, Integer> implements PlaceService {
+public class PlaceServiceImpl implements PlaceService {
 
 	private final PlaceRepository repository;
 
 	@Autowired
 	public PlaceServiceImpl(PlaceRepository repository) {
-		super(repository);
 		this.repository = repository;
 	}
 
 	@Override
 	public List<PlaceView> findAllView() {
 		return repository.findAllView();
+	}
+
+	@Override
+	public void save(PlaceRequest request) {
+		Place place = new Place();
+		place.setCountOfPeople(request.getCountOfPeople());
+		place.setId(request.getId());
+		place.setNumber(request.getNumber());
+		repository.save(place);
+	}
+
+	@Override
+	public PlaceRequest findOneRequest(Integer id) {
+		Place place = repository.findOneRequest(id);
+		PlaceRequest request = new PlaceRequest();
+		request.setCountOfPeople(place.getCountOfPeople());
+		request.setId(place.getId());
+		request.setNumber(place.getNumber());
+		return request;
+	}
+
+	@Override
+	public void delete(Integer id) {
+		repository.delete(id);
 	}
 
 }
