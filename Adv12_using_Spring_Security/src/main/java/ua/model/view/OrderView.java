@@ -1,15 +1,14 @@
 package ua.model.view;
 
-import ua.entity.Place;
-
 public class OrderView {
 	
 	private Integer id;
 
-	private Place place;
+	private Integer place;
 
-	public OrderView(Integer id) {
+	public OrderView(Integer id, Integer place) {
 		this.id = id;
+		this.place = place;
 	}
 
 	public Integer getId() {
@@ -20,11 +19,11 @@ public class OrderView {
 		this.id = id;
 	}
 
-	public Place getPlace() {
+	public Integer getPlace() {
 		return place;
 	}
 
-	public void setPlace(Place place) {
+	public void setPlace(Integer place) {
 		this.place = place;
 	}
 

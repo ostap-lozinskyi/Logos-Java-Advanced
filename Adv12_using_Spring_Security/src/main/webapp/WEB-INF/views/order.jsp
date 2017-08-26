@@ -43,17 +43,18 @@
 			<div class="col-12">
 				<table class="table table-bordered">
 					<tr>
-						<th class="text-center">Name</th>
+						<th class="text-center">Number</th>
+						<th class="text-center">Place</th>
 						<th class="text-center">Options</th>
 					</tr>
 					<c:forEach var="order" items="${orders}">
 						<tr>
 							<td>${order.id}</td>
-							<td class="text-center"><a
-								href="/admin/order/update/${order.id}"
-								class="btn btn-outline-warning btn-sm">Update</a> <a
-								href="/admin/order/delete/${order.id}"
-								class="btn btn-outline-danger btn-sm">Delete</a></td>
+							<td>${order.place}</td>
+							<td class="text-center">
+								<a	href="/admin/order/update/${order.id}" class="btn btn-outline-warning btn-sm">Update</a>
+								<a	href="/admin/order/delete/${order.id}" class="btn btn-outline-danger btn-sm">Delete</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>
