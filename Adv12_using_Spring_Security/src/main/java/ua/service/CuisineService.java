@@ -2,16 +2,11 @@ package ua.service;
 
 import java.util.List;
 
-import ua.model.request.CuisineRequest;
+import ua.entity.Cuisine;
 import ua.model.view.CuisineView;
 
-public interface CuisineService {
+public interface CuisineService extends CrudService<Cuisine, Integer> {
 
 	List<CuisineView> findAllView();
 
-	void save(CuisineRequest request);
-
-	CuisineRequest findOneRequest(Integer id);
-
-	void delete(Integer id);
 }

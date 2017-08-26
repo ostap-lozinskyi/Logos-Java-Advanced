@@ -2,16 +2,11 @@ package ua.service;
 
 import java.util.List;
 
-import ua.model.request.IngredientRequest;
+import ua.entity.Ingredient;
 import ua.model.view.IngredientView;
 
-public interface IngredientService {
+public interface IngredientService extends CrudService<Ingredient, Integer> {
 
 	List<IngredientView> findAllView();
 
-	void save(IngredientRequest request);
-
-	IngredientRequest findOneRequest(Integer id);
-
-	void delete(Integer id);
 }

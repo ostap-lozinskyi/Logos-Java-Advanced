@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.model.request.IngredientRequest;
+import ua.entity.Ingredient;
 import ua.service.IngredientService;
 
 @Controller
@@ -27,8 +27,8 @@ public class AdminIngredientController {
 	}
 
 	@ModelAttribute("ingredient")
-	public IngredientRequest getForm() {
-		return new IngredientRequest();
+	public Ingredient getForm() {
+		return new Ingredient();
 	}
 
 	@GetMapping
@@ -44,14 +44,14 @@ public class AdminIngredientController {
 	}
 
 	@PostMapping
-	public String save(@ModelAttribute("ingredient") IngredientRequest request, SessionStatus status) {
-		service.save(request);
+	public String save(@ModelAttribute("ingredient") Ingredient ingredient, SessionStatus status) {
+		service.save(ingredient);
 		return "redirect:/admin/ingredient";
 	}
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
-		model.addAttribute("ingredient", service.findOneRequest(id));
+		model.addAttribute("ingredient", service.findOne(id));
 		return show(model);
 	}
 
