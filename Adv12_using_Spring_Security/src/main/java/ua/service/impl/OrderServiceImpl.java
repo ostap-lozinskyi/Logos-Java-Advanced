@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import ua.entity.Order;
 import ua.model.request.OrderRequest;
 import ua.model.view.OrderView;
+import ua.model.view.PlaceView;
 import ua.repository.OrderRepository;
 import ua.service.OrderService;
 
@@ -27,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public List<String> findAllPlaces() {
+	public List<PlaceView> findAllPlaces() {
 		return repository.findAllPlaces();
 	}
 

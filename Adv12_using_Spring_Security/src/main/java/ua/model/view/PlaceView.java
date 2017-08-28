@@ -13,6 +13,10 @@ public class PlaceView {
 		this.countOfPeople = countOfPeople;
 		this.number = number;
 	}
+	
+	public String getPrint() {
+		return "table_"+number+ "_"+ "countOfPeople_"+countOfPeople;
+	}
 
 	public Integer getId() {
 		return id;

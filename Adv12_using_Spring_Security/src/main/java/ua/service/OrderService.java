@@ -4,12 +4,13 @@ import java.util.List;
 
 import ua.model.request.OrderRequest;
 import ua.model.view.OrderView;
+import ua.model.view.PlaceView;
 
 public interface OrderService {
 
 	List<String> findAllMeals();
 	
-	List<String> findAllPlaces();
+	List<PlaceView> findAllPlaces();
 
 	List<OrderView> findAllView();
 
