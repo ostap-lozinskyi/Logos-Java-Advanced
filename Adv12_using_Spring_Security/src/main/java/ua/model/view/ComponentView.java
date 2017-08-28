@@ -55,5 +55,5 @@ public class ComponentView {
 	public String toString() {
 		return "id_" + id + "_" + ingredient + "_" + amount + "_" + ms;
 	}
-	
+
 }

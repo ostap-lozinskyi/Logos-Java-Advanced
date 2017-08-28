@@ -8,7 +8,7 @@ import ua.model.view.OrderView;
 public interface OrderService {
 
 	List<String> findAllMeals();
-
+	
 	List<String> findAllPlaces();
 
 	List<OrderView> findAllView();
@@ -18,4 +18,5 @@ public interface OrderService {
 	OrderRequest findOneRequest(Integer id);
 
 	void delete(Integer id);
+
 }

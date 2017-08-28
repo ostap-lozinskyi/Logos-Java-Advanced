@@ -29,10 +29,10 @@ public class MealServiceImpl implements MealService {
 	}
 
 	@Override
-	public List<ComponentView> findAllcomponentsView() {
+	public List<ComponentView> findAllСomponentsView() {
 		return repository.findAllComponentsView();
 	}
-
+	
 	@Override
 	public List<MealView> findAllView() {
 		return repository.findAllView();

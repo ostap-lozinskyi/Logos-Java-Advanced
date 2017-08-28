@@ -77,6 +77,7 @@
 						<th class="text-center">Full Description</th>
 						<th class="text-center">Price</th>
 						<th class="text-center">Weight</th>
+						<th class="text-center">Cuisine</th>
 						<th class="text-center">Options</th>
 					</tr>
 					<c:forEach var="meal" items="${meals}">
@@ -85,6 +86,7 @@
 							<td>${meal.fullDescription}</td>
 							<td>${meal.price}</td>
 							<td>${meal.weight}</td>
+							<td>${meal.cuisine}</td>
 							<td class="text-center"><a
 								href="/admin/meal/update/${meal.id}"
 								class="btn btn-outline-warning btn-sm">Update</a> <a

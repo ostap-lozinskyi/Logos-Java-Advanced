@@ -10,8 +10,8 @@ public interface MealService {
 
 	List<String> findAllcuisines();
 
-	List<ComponentView> findAllcomponentsView();
-
+	List<ComponentView> findAllСomponentsView();
+	
 	List<MealView> findAllView();
 
 	void save(MealRequest request);

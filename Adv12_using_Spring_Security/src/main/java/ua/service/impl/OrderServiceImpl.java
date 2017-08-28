@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
 	public List<String> findAllMeals() {
 		return repository.findAllMeals();
 	}
-
+	
 	@Override
 	public List<String> findAllPlaces() {
 		return repository.findAllPlaces();
