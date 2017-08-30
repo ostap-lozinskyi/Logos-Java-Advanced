@@ -27,7 +27,7 @@
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="place">Place:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="place" path="place" items="${places}"/>
+							<form:select class="form-control" id="place" path="place" items="${places}" itemLabel="print" itemValue="id"/>
 						</div>
 					</div>
 					<div class="form-group row">
