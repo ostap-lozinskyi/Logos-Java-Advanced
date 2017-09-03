@@ -201,7 +201,7 @@
                                 <div class="container">
                                     <div class="row center">
                                         <div class="button_container">
-                                            <a href="/" class="button button_left">Menu</a><a href="/" class="button button_right">Help</a>
+                                            <a href="/" class="button button_left">Menu</a><a href="/" class="button button_right">Reserve a Table</a>
                                         </div>
                                     </div>
                                 </div>
@@ -213,7 +213,7 @@
                     </div>
                     <!--Video-->
                     <!--section!-->
-                    <div class="section section_slider white">
+                    <div class="section section_slider white" style="background: url(resources/img/fon2.jpg); height: 714px;">
                         <div class="container container_main_restaurnt">
                             <div class="section_headline">Menu</div>
                             <div class="section_branch"></div>
@@ -232,14 +232,14 @@
                                                         <div class="circle-cart"> <i class="fa fa-shopping-basket"></i> </div>
                                                     </div>
                                                     <div class="item_image">
-                                                        <a href="https://www.pestocafe.ua/delivery/menu/goryachie-bluda/dorada-s-italyanskim-pyure-67" tabindex="0"> <img src="resources/img/dorada.jpeg" title="Дорада с итальянским пюре " alt="Дорада с итальянским пюре "> </a>
+                                                        <a href="/" tabindex="0"> <img src="resources/img/dorada.jpeg"> </a>
                                                         <div class="clear"></div>
                                                     </div>
                                                     <div class="hover">
                                                         <div class="item_category">
                                                             <p>Hot meals</p>
                                                         </div>
-                                                        <div class="item_headline"> <a class="item_headline_link" href="https://www.pestocafe.ua/delivery/menu/goryachie-bluda/dorada-s-italyanskim-pyure-67" tabindex="0"><span>${meal.name}</span></a> </div>
+                                                        <div class="item_headline"> <a class="item_headline_link" href="/" tabindex="0"><span>${meal.name}</span></a> </div>
                                                         <div class="hide">
                                                             <div class="reyting">
                                                                 <div data-id="67" data-model="eyJpdiI6IjBCNlJxRUxpV3d4N1JsdVZiT1lcL1FRPT0iLCJ2YWx1ZSI6IjRKdSs2bmxSYStXYVg5SkVib0MrWGc9PSIsIm1hYyI6Ijk5YTE5ZjY4NTBjM2FiMjBhZjU2YTk1MGRiNjhhNTIxYTNjZjA3NzM1YjgzNDg4MTU2MzMxOGYxZDQ1ZmZlYzEifQ==" class="reyting"> <span data-jq-rating="" data-jq-rating-editable="true" data-jq-rating-value="4.0333" data-jq-rating-stars-count="5" data-jq-rating-based-on="5" class="jq-rating jq-rating--editable jq-rating--level-high" data-vivaldi-spatnav-clickable="1" style="position: relative; display: inline-block;">
@@ -263,13 +263,15 @@
                                                                 <p class="price_text">$</p>
                                                             </div>
                                                         </div>
-                                                        <div class="buy_row">
-                                                            <a data-price="249.00" data-count="1" type="button" class="btn buy btn-cart " onclick="Cart.addToCart(67,249, 1,$(this))" tabindex="0"> <span class="buy_headline">Order</span> <span class="buy_steps">
-                                                    <i class="steps_nav minus">-</i>
-                                                    <i class="steps_val" data-row-id="">1</i>
-                                                    <i class="steps_nav plus">+</i>
-                                                </span> </a>
-                                                        </div>
+                                                        <sec:authorize access="isAuthenticated()">
+                                                            <div class="buy_row">
+                                                                <a data-price="249.00" data-count="1" type="button" class="btn buy btn-cart " onclick="Cart.addToCart(67,249, 1,$(this))" tabindex="0"> <span class="buy_headline">Order</span> <span class="buy_steps">
+                                                                <i class="steps_nav minus">-</i>
+                                                                <i class="steps_val" data-row-id="">1</i>
+                                                                <i class="steps_nav plus">+</i>
+                                                                </span> </a>
+                                                            </div>
+                                                        </sec:authorize>
                                                     </div>
                                                 </div>
                                             </div>
@@ -497,8 +499,8 @@
                                     <br>All trademarks and registered trademarks appearing on this site are the property of their respective owners.</p>
                                 </div>
                                 
-                                Зроблено за підтримки:
-                                <img src="resources/img/logos.png" style="background: black">
+                                Made with support:
+                                <img src="resources/img/logos.png" style="background: gray; height: 50px;">
                             </div>   
                         </div>
                     </div>
@@ -507,17 +509,7 @@
                             
                 <a class="scroll-top" href="javascript:;" style="display: none;"></a>
                 <!--relations!-->
-                <script type="text/javascript">
-                    (function () {
-                        jiffyxDomain = 'pesto';
-                        var hcc = document.createElement("script");
-                        hcc.type = "text/javascript";
-                        hcc.async = true;
-                        hcc.src = "https://widget.jiffyx.com/api/app.min.js";
-                        var s = document.getElementsByTagName("script")[0];
-                        s.parentNode.insertBefore(hcc, s.nextSibling);
-                    })();
-                </script>
+                
                 <script src="resources/js/9f1951474454579b5748d0ff2d3c5c9a38014687387.js"></script>
                 <script>
                     App.lang = 'ru';
