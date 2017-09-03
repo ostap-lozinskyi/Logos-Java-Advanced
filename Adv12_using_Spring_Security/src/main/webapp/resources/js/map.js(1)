@@ -1,0 +1,149 @@
+var Map = {
+
+    maps: [],
+    markers: [],
+    center_latitude: 50.450231,
+    center_longitude: 30.513271,
+    center_latitude_temp: 50.450231,
+    center_longitude_temp: 30.513271,
+    zoom: 11,
+    zoom_close: 15,
+    content_string: "",
+
+
+
+    init: function(restaurantsMap) {
+
+        this.mapSerialize(this.center_latitude,this.center_longitude,this.zoom,restaurantsMap);
+
+    }, //end init
+
+    initialize: function (lat,lng,zoom) {
+        latlng = new google.maps.LatLng(lat,lng);
+        var mapOptions = {
+            zoom: zoom,
+            scrollwheel:false,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+            infowindow = new google.maps.InfoWindow();
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    }, //end initialize
+
+    codeAddress:function (addHeight,ballonHtml,MarkerIco,lat,lng,id) {
+    latlng = new google.maps.LatLng(lat,lng);
+
+    var marker = new google.maps.Marker({
+        map: map,
+        position: latlng,
+        icon: MarkerIco
+    });
+        Map.markers[id] = marker;
+
+        google.maps.event.addListener(marker, 'click', function() {
+
+        map.setCenter(new google.maps.LatLng(lat, lng));
+        infowindow.setContent(ballonHtml);
+        infowindow.open(map,marker);
+    });
+    
+    google.maps.event.addListenerOnce(map, 'tilesloaded', fixMyPageOnce);
+
+    function fixMyPageOnce() {
+      // do stuff
+      // no need to remove the event listener
+      $(".contacts-loader").hide();
+      $(".container_contact").css('opacity',1);
+      $(".container_contact").css('height','inherit');
+    }
+
+    },
+
+    mapSerialize:function (center_w,center_h,zoom, restaurantsMap){
+
+    Map.initialize(center_w,center_h,zoom);
+
+
+        $.each(restaurantsMap, function (i, elem) {
+            var ballonHtml = '<div id="content">'+
+                '<div id="siteNotice">'+
+                '</div>'+
+                '<div id="bodyContent">'+
+                '<div class="map_content">'+
+                '<div class="map_address">'+
+                '<div class="interior">'+
+               // '<div class="path top_left">'+
+               // '</div>'+
+                //'<div class="path top_right"></div>'+
+               // '<div class="path bottom_left"></div>'+
+                //'<div class="path bottom_right"></div>'+
+               // '<img src="'+elem.preview+'" alt="" class="marker_photo">'+
+                '<img src="/images/log_map.png" alt="" class="logo_marker">'+
+                '<p>'+elem.address+'</p>'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '</div>';
+
+            Map.codeAddress(0,ballonHtml,elem.icon,elem.latitude,elem.longitude,elem.id);
+
+       });
+    },
+
+
+
+    events : function()
+    {
+/*	    var active_el = $('.carousel_address').find('.carousel_address_item'),
+	        lat = $(active_el).attr('data-lat'),
+		    lng = $(active_el).attr('data-lng');
+
+	        Map.initialize(lat,lng);*/
+//      jQuery('.map_caption').hover(function() {
+//        $(this).addClass('wobble animated');
+//      }, function() {
+//        $(this).removeClass('wobble animated');
+//      });
+    },
+
+	changeRestaurant: function(el) {
+		var active_el = $('.carousel_address').find('.carousel_address_item'),
+            index = $(el).attr('data-id');
+
+		active_el.removeClass('active');
+
+		if (el.hasClass('active')) {
+			return false
+		} else {
+			el.addClass('active');
+		}
+
+        Map.changeMapCenter(Map.zoom_close,index);
+        Map.focusWindowOnMap();
+
+
+    },
+
+    changeMapCenter: function (zoom,index){
+        map.setZoom(zoom);
+        google.maps.event.trigger(Map.markers[index], 'click');
+    },
+
+    focusWindowOnMap: function (){
+
+        if(new RegExp('[\?&]map([^&#]*)').exec(window.location.href) != null)
+        {
+            $('html, body').animate({
+                scrollTop: parseInt($("#map").offset().top)-160
+            }, 1500);
+        }
+    }
+
+
+
+}; //end Map
+
+
+
+
