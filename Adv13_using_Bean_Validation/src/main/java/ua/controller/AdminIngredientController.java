@@ -52,7 +52,7 @@ public class AdminIngredientController {
 		if (br.hasErrors())
 			return show(model);
 		service.save(ingredient);
-		return "redirect:/admin/ingredient";
+		return cancel(status);
 	}
 
 	@GetMapping("/update/{id}")
