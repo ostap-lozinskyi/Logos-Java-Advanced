@@ -15,7 +15,7 @@ public class PlaceView {
 	}
 	
 	public String getPrint() {
-		return "table_"+number+ "_"+ "countOfPeople_"+countOfPeople;
+		return "Table_"+number+ "_"+ "CountOfPeople_"+countOfPeople;
 	}
 
 	public Integer getId() {

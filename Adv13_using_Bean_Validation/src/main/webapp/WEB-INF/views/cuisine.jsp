@@ -18,16 +18,22 @@
 			<div class="col-12">
 				<h1 class="text-center">Cuisine</h1>
 				<form:form action="/admin/cuisine" method="POST" modelAttribute="cuisine">
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="name" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="name">Name:</label>
 						<div class="col-10">
-							<form:input class="form-control" id="name" path="name"/>
+							<form:input class="form-control" id="name" path="name" />
 						</div>
 					</div>
 					<div class="form-group row">
 						<div class="col-8 mr-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/cuisine/cancel" class="btn btn-sm btn-outline-warning">Cancel</a>
+							<a href="/admin/cuisine/cancel"
+								class="btn btn-sm btn-outline-warning">Cancel</a>
 						</div>
 					</div>
 				</form:form>

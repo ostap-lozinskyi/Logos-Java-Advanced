@@ -46,7 +46,7 @@ public class MealServiceImpl implements MealService {
 		meal.setId(request.getId());
 		meal.setName(request.getName());
 		meal.setPrice(new BigDecimal(request.getPrice()));
-		meal.setWeight(request.getWeight());
+		meal.setWeight(Integer.valueOf(request.getWeight()));
 		meal.setComponents(request.getComponents());
 		repository.save(meal);
 	}
@@ -60,7 +60,7 @@ public class MealServiceImpl implements MealService {
 		request.setId(meal.getId());
 		request.setName(meal.getName());
 		request.setPrice(meal.getPrice().toString());
-		request.setWeight(meal.getWeight());
+		request.setWeight(String.valueOf(meal.getWeight()));
 		request.setComponents(meal.getComponents());
 		return request;
 	}

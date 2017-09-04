@@ -18,6 +18,11 @@
 			<div class="col-12">
 				<h1 class="text-center">Ms</h1>
 				<form:form action="/admin/ms" method="POST" modelAttribute="ms">
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="name" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="name">Name:</label>
 						<div class="col-10">

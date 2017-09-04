@@ -3,6 +3,8 @@ package ua.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import ua.model.request.PlaceRequest;
 import ua.service.PlaceService;
+import ua.validation.flag.PlaceFlag;
 
 @Controller
 @RequestMapping("/admin/place")
@@ -44,9 +47,12 @@ public class AdminPlaceController {
 	}
 
 	@PostMapping
-	public String save(@ModelAttribute("place") PlaceRequest request, SessionStatus status) {
+	public String save(@ModelAttribute("place") @Validated(PlaceFlag.class) PlaceRequest request, BindingResult br,
+			Model model, SessionStatus status) {
+		if (br.hasErrors())
+			return show(model);
 		service.save(request);
-		return "redirect:/admin/place";
+		return cancel(status);
 	}
 
 	@GetMapping("/update/{id}")

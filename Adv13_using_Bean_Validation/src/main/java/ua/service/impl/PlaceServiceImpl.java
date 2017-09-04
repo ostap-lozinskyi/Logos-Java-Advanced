@@ -29,9 +29,9 @@ public class PlaceServiceImpl implements PlaceService {
 	@Override
 	public void save(PlaceRequest request) {
 		Place place = new Place();
-		place.setCountOfPeople(request.getCountOfPeople());
+		place.setCountOfPeople(Integer.valueOf(request.getCountOfPeople()));
 		place.setId(request.getId());
-		place.setNumber(request.getNumber());
+		place.setNumber(Integer.valueOf(request.getNumber()));
 		repository.save(place);
 	}
 
@@ -39,9 +39,9 @@ public class PlaceServiceImpl implements PlaceService {
 	public PlaceRequest findOneRequest(Integer id) {
 		Place place = repository.findOneRequest(id);
 		PlaceRequest request = new PlaceRequest();
-		request.setCountOfPeople(place.getCountOfPeople());
+		request.setCountOfPeople(String.valueOf(place.getCountOfPeople()));
 		request.setId(place.getId());
-		request.setNumber(place.getNumber());
+		request.setNumber(String.valueOf(place.getNumber()));
 		return request;
 	}
 

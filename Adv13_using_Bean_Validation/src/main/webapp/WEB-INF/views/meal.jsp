@@ -18,10 +18,20 @@
 			<div class="col-12">
 				<h1 class="text-center">Meal</h1>
 				<form:form action="/admin/meal" method="POST" modelAttribute="meal">
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="name" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="name">Name:</label>
 						<div class="col-10">
 							<form:input class="form-control" id="name" path="name"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="fullDescription" />
 						</div>
 					</div>
 					<div class="form-group row">
@@ -30,16 +40,31 @@
 							<form:input class="form-control" id="fullDescription" path="fullDescription"/>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="shortDescription" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="shortDescription">Short Description:</label>
 						<div class="col-10">
 							<form:input class="form-control" id="shortDescription" path="shortDescription"/>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="price" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="price">Price:</label>
 						<div class="col-10">
 							<form:input class="form-control" id="price" path="price"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="weight" />
 						</div>
 					</div>
 					<div class="form-group row">
