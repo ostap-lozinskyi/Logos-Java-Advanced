@@ -1,8 +1,8 @@
 package ua.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Ingredient;
@@ -22,8 +22,8 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
 	}
 
 	@Override
-	public List<IngredientView> findAllView() {
-		return repository.findAllView();
+	public Page<IngredientView> findAllView(Pageable pageable) {
+		return repository.findAllView(pageable);
 	}
 
 }

@@ -3,6 +3,8 @@ package ua.controller;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,14 +23,14 @@ public class MainController {
 	}
 
 	@GetMapping("/")
-	public String index(Model model, Principal principal, As as) {
+	public String index(Model model, Principal principal, As as, @PageableDefault Pageable pageable) {
 		if(principal!=null) {
 			model.addAttribute("message", "Hello "+principal.getName());
 		} else {
 			model.addAttribute("message", "Hello unregistered user");
 		}
 		System.out.println(as.getUser());
-		model.addAttribute("meals", service.findAllView());
+		model.addAttribute("meals", service.findAllView(pageable));
 		return "index";
 	}
 

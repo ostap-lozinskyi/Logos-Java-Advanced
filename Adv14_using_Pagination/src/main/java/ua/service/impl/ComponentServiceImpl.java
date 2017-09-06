@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Component;
@@ -13,10 +15,10 @@ import ua.repository.ComponentRepository;
 import ua.service.ComponentService;
 
 @Service
-public class ComponentServiceImpl implements ComponentService{
+public class ComponentServiceImpl implements ComponentService {
 
 	private final ComponentRepository repository;
-	
+
 	@Autowired
 	public ComponentServiceImpl(ComponentRepository repository) {
 		this.repository = repository;
@@ -33,10 +35,10 @@ public class ComponentServiceImpl implements ComponentService{
 	}
 
 	@Override
-	public List<ComponentView> findAllView() {
-		return repository.findAllView();
+	public Page<ComponentView> findAllView(Pageable pageable) {
+		return repository.findAllView(pageable);
 	}
-	
+
 	@Override
 	public void save(ComponentRequest request) {
 		Component component = new Component();

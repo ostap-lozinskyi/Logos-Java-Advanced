@@ -1,12 +1,13 @@
 package ua.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import ua.entity.Ingredient;
 import ua.model.view.IngredientView;
 
 public interface IngredientService extends CrudService<Ingredient, Integer> {
 
-	List<IngredientView> findAllView();
+	Page<IngredientView> findAllView(Pageable pageable);
 
 }

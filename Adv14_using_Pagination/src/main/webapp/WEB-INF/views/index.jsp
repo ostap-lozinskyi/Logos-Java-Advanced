@@ -148,7 +148,7 @@
                     </div>
                     <!--Video-->
                     <!--section!-->
-                    <div class="section section_slider white" style="background: url(resources/img/fon2.jpg); height: 714px;">
+                    <div class="section section_slider white" style="background: url(resources/img/fon2.jpg); height: 1714px;">
                         <div class="container container_main_restaurnt">
                             <div class="section_headline">Menu</div>
                             <div class="section_branch"></div>
@@ -156,7 +156,7 @@
                             <div class="carousel slick-initialized slick-slider">                                
                                 <div aria-live="polite" class="slick-list draggable" data-vivaldi-spatnav-clickable="1">
                                     <div class="slick-track" style="opacity: 1; width: 6980px; transform: translate3d(0px, 0px, 0px);" role="listbox">
-                                       <c:forEach var="meal" items="${meals}">
+                                       <c:forEach var="meal" items="${meals.content}">
                                        <div class="slick-slide slick-current slick-active" style="width: 349px;" tabindex="0" role="option" aria-describedby="slick-slide00" data-slick-index="0" aria-hidden="false">
                                             <!--item!-->
                                             <div class="item_container">
