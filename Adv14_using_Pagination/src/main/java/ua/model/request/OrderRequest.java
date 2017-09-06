@@ -3,8 +3,11 @@ package ua.model.request;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import ua.entity.Meal;
 import ua.entity.Place;
+import ua.validation.flag.OrderFlag;
 
 public class OrderRequest {
 
@@ -12,6 +15,7 @@ public class OrderRequest {
 
 	private Place place;
 	
+	@NotEmpty(message = "This field cannot be blank", groups = { OrderFlag.class })
 	private List<Meal> meals = new ArrayList<>();
 
 	public Integer getId() {

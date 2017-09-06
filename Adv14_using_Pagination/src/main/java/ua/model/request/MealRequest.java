@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import ua.entity.Component;
 import ua.entity.Cuisine;
@@ -44,6 +45,7 @@ public class MealRequest {
 
 	private Cuisine cuisine;
 
+	@NotEmpty(message = "This field cannot be blank", groups = { MealFlag.class })
 	private List<Component> components = new ArrayList<>();
 
 	public Integer getId() {

@@ -79,6 +79,11 @@
 							<form:select class="form-control" id="cuisine" path="cuisine" items="${cuisines}"/>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="components" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="component">Components:</label>
 						<div class="col-10">

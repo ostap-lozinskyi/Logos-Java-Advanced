@@ -3,6 +3,8 @@ package ua.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import ua.model.request.OrderRequest;
 import ua.service.OrderService;
+import ua.validation.flag.OrderFlag;
 
 @Controller
 @RequestMapping("/admin/order")
@@ -25,7 +28,7 @@ public class AdminOrderController {
 	public AdminOrderController(OrderService service) {
 		this.service = service;
 	}
-	
+
 	@ModelAttribute("order")
 	public OrderRequest getForm() {
 		return new OrderRequest();
@@ -46,11 +49,14 @@ public class AdminOrderController {
 	}
 
 	@PostMapping
-	public String save(@ModelAttribute("order") OrderRequest request, SessionStatus status) {
+	public String save(@ModelAttribute("order") @Validated(OrderFlag.class) OrderRequest request, BindingResult br,
+			Model model, SessionStatus status) {
+		if (br.hasErrors())
+			return show(model);
 		service.save(request);
 		return cancel(status);
 	}
-	
+
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
 		model.addAttribute("order", service.findOneRequest(id));

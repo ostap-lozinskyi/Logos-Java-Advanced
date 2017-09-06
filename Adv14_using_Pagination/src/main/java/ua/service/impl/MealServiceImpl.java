@@ -43,6 +43,7 @@ public class MealServiceImpl implements MealService {
 		Meal meal = new Meal();
 		meal.setCuisine(request.getCuisine());
 		meal.setFullDescription(request.getFullDescription());
+		meal.setShortDescription(request.getShortDescription());
 		meal.setId(request.getId());
 		meal.setName(request.getName());
 		meal.setPrice(new BigDecimal(request.getPrice()));
@@ -57,6 +58,7 @@ public class MealServiceImpl implements MealService {
 		MealRequest request = new MealRequest();
 		request.setCuisine(meal.getCuisine());
 		request.setFullDescription(meal.getFullDescription());
+		request.setShortDescription(meal.getShortDescription());
 		request.setId(meal.getId());
 		request.setName(meal.getName());
 		request.setPrice(meal.getPrice().toString());

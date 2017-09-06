@@ -18,6 +18,11 @@
 			<div class="col-12">
 				<h1 class="text-center">Order</h1>
 				<form:form action="/admin/order" method="POST" modelAttribute="order">
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="meals" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="meal">Meals:</label>
 						<div class="col-10">

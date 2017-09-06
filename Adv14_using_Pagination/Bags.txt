@@ -5,6 +5,7 @@
 5 Селекти повинні мати плейсхолдери 
 над мультіселектом аннотація notempty
 аннотація List для декількох рег. виразів
+@Table(indexes = { @Index(name = "IDX_MYIDX1", columnList = "id,name,surname") })
 
 
 
