@@ -1,7 +1,12 @@
 package ua.model.request;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 import ua.entity.Ingredient;
 import ua.entity.Ms;
+import ua.validation.flag.ComponentFlag;
 
 public class ComponentRequest {
 
@@ -9,6 +14,9 @@ public class ComponentRequest {
 
 	private Ingredient ingredient;
 
+	@NotBlank(message = "This field cannot be blank", groups = { ComponentFlag.class })
+	@Pattern(regexp = "^[1-9][0-9]*| *$", message = "The 'Amount' should be a number and can not begin with a zero symbol", groups = {
+			ComponentFlag.class })
 	private String amount;
 
 	private Ms ms;

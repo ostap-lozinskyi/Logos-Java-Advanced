@@ -262,16 +262,20 @@
                                                                 <p class="price_value">${meal.price}</p>
                                                                 <p class="price_text">$</p>
                                                             </div>
-                                                        </div>
-                                                        <sec:authorize access="isAuthenticated()">
+                                                        </div>                                                        
                                                             <div class="buy_row">
+                                                                <sec:authorize access="isAnonymous()">
+                                                                <a href="/login" type="button" class="btn buy btn-cart ">Order</a>
+                                                                </sec:authorize>
+                                                                                                                                
+                                                                <sec:authorize access="isAuthenticated()">
                                                                 <a data-price="249.00" data-count="1" type="button" class="btn buy btn-cart " onclick="Cart.addToCart(67,249, 1,$(this))" tabindex="0"> <span class="buy_headline">Order</span> <span class="buy_steps">
                                                                 <i class="steps_nav minus">-</i>
                                                                 <i class="steps_val" data-row-id="">1</i>
                                                                 <i class="steps_nav plus">+</i>
                                                                 </span> </a>
-                                                            </div>
-                                                        </sec:authorize>
+                                                                </sec:authorize>
+                                                            </div>                                                        
                                                     </div>
                                                 </div>
                                             </div>
