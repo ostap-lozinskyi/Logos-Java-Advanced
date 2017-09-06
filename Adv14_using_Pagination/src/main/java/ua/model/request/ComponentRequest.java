@@ -1,5 +1,6 @@
 package ua.model.request;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -12,6 +13,7 @@ public class ComponentRequest {
 
 	private Integer id;
 
+	@NotNull(message = "This field cannot be blank", groups = { ComponentFlag.class })
 	private Ingredient ingredient;
 
 	@NotBlank(message = "This field cannot be blank", groups = { ComponentFlag.class })
@@ -19,6 +21,7 @@ public class ComponentRequest {
 			ComponentFlag.class })
 	private String amount;
 
+	@NotNull(message = "This field cannot be blank", groups = { ComponentFlag.class })
 	private Ms ms;
 
 	public Integer getId() {

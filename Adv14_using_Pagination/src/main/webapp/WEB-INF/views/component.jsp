@@ -29,16 +29,32 @@
 							<form:input class="form-control" id="amount" path="amount"/>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="ms" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="ms">Measuring system:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="ms" path="ms" items="${mss}"/>
+							<form:select class="form-control" id="ms" path="ms" onchange="${ms}">
+								<form:option value="" label="Select Measuring system" style="color: gray;"/>
+								<form:options items="${mss}"/>
+							</form:select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="ingredient" />
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="ingredient">Ingredient:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="ingredient" path="ingredient" items="${ingredients}"/>
+							<form:select class="form-control" id="ingredient" path="ingredient" onchange="${ingredients}">
+								<form:option value="" label="Select Ingredient" style="color: gray;"/>
+								<form:options items="${ingredients}"/>
+							</form:select>
 						</div>
 					</div>
 					<div class="form-group row">

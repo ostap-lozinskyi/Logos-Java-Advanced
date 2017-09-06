@@ -73,10 +73,18 @@
 							<form:input class="form-control" id="weight" path="weight"/>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="cuisine" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="cuisine">Cuisine:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="cuisine" path="cuisine" items="${cuisines}"/>
+							<form:select class="form-control" id="cuisine" path="cuisine" onchange="${cuisines}">
+								<form:option value="" label="Select Cuisine" style="color: gray;"/>
+								<form:options items="${cuisines}"/>
+							</form:select>
 						</div>
 					</div>
 					<div class="row">

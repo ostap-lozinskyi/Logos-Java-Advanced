@@ -29,16 +29,24 @@
 							<form:select class="form-control" id="meal" path="meals" items="${meals}"/>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="place" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="place">Place:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="place" path="place" items="${places}" itemLabel="print" itemValue="id"/>
+							<form:select class="form-control" id="place" path="place" onchange="${places}">
+								<form:option value="" label="Select Place" style="color: gray;"/>
+								<form:options items="${places}" itemLabel="print" itemValue="id"/>
+							</form:select>
 						</div>
 					</div>
 					<div class="form-group row">
 						<div class="col-8 mr-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/meal/cancel" class="btn btn-sm btn-outline-warning">Cancel</a>
+							<a href="/admin/order/cancel" class="btn btn-sm btn-outline-warning">Cancel</a>
 						</div>
 					</div>
 				</form:form>

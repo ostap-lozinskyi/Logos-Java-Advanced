@@ -3,6 +3,7 @@ package ua.model.request;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -43,6 +44,7 @@ public class MealRequest {
 			MealFlag.class })
 	private String weight;
 
+	@NotNull(message = "This field cannot be blank", groups = { MealFlag.class })
 	private Cuisine cuisine;
 
 	@NotEmpty(message = "This field cannot be blank", groups = { MealFlag.class })
