@@ -15,7 +15,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	List<String> findAllMeals();
 
 	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number) FROM Place p")
-	List<PlaceView> findAllPlaces();
+	List<PlaceView> findAllPlaceViews();
 
 	@Query("SELECT new ua.model.view.OrderView(o.id, p.number) FROM Order o JOIN o.place p")
 	List<OrderView> findAllView();

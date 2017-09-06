@@ -10,7 +10,7 @@ public interface OrderService {
 
 	List<String> findAllMeals();
 	
-	List<PlaceView> findAllPlaces();
+	List<PlaceView> findAllPlaceViews();
 
 	List<OrderView> findAllView();
 

@@ -37,7 +37,7 @@ public class AdminOrderController {
 	@GetMapping
 	public String show(Model model) {
 		model.addAttribute("meals", service.findAllMeals());
-		model.addAttribute("places", service.findAllPlaces());
+		model.addAttribute("places", service.findAllPlaceViews());
 		model.addAttribute("orders", service.findAllView());
 		return "order";
 	}

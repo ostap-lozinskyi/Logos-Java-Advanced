@@ -28,8 +28,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public List<PlaceView> findAllPlaces() {
-		return repository.findAllPlaces();
+	public List<PlaceView> findAllPlaceViews() {
+		return repository.findAllPlaceViews();
 	}
 
 	@Override
