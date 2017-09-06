@@ -13,44 +13,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.model.request.ComponentRequest;
-import ua.service.ComponentService;
-import ua.validation.flag.ComponentFlag;
+import ua.model.request.MealRequest;
+import ua.service.MealService;
+import ua.validation.flag.MealFlag;
 
 @Controller
-@RequestMapping("/admin/component")
-@SessionAttributes("component")
-public class AdminComponentController {
+@RequestMapping("/admin/meal")
+@SessionAttributes("meal")
+public class AdminMealController {
 
-	private final ComponentService service;
+	private final MealService service;
 
 	@Autowired
-	public AdminComponentController(ComponentService service) {
+	public AdminMealController(MealService service) {
 		this.service = service;
 	}
 
-	@ModelAttribute("component")
-	public ComponentRequest getForm() {
-		return new ComponentRequest();
+	@ModelAttribute("meal")
+	public MealRequest getForm() {
+		return new MealRequest();
 	}
 
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("ingredients", service.findAllIngredients());
-		model.addAttribute("mss", service.findAllMss());
-		model.addAttribute("components", service.findAllView());
-		return "component";
+		model.addAttribute("cuisines", service.findAllcuisines());
+		model.addAttribute("components", service.findAllСomponentsView());
+		model.addAttribute("meals", service.findAllView());
+		return "meal";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		service.delete(id);
-		return "redirect:/admin/component";
+		return "redirect:/admin/meal";
 	}
 
 	@PostMapping
-	public String save(@ModelAttribute("component") @Validated(ComponentFlag.class) ComponentRequest request,
-			BindingResult br, Model model, SessionStatus status) {
+	public String save(@ModelAttribute("meal") @Validated(MealFlag.class) MealRequest request, BindingResult br,
+			Model model, SessionStatus status) {
 		if (br.hasErrors())
 			return show(model);
 		service.save(request);
@@ -59,13 +59,13 @@ public class AdminComponentController {
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
-		model.addAttribute("component", service.findOneRequest(id));
+		model.addAttribute("meal", service.findOneRequest(id));
 		return show(model);
 	}
 
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus status) {
 		status.setComplete();
-		return "redirect:/admin/component";
+		return "redirect:/admin/meal";
 	}
 }

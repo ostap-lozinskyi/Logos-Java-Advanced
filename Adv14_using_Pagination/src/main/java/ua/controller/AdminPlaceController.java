@@ -13,44 +13,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.model.request.ComponentRequest;
-import ua.service.ComponentService;
-import ua.validation.flag.ComponentFlag;
+import ua.model.request.PlaceRequest;
+import ua.service.PlaceService;
+import ua.validation.flag.PlaceFlag;
 
 @Controller
-@RequestMapping("/admin/component")
-@SessionAttributes("component")
-public class AdminComponentController {
+@RequestMapping("/admin/place")
+@SessionAttributes("place")
+public class AdminPlaceController {
 
-	private final ComponentService service;
+	private final PlaceService service;
 
 	@Autowired
-	public AdminComponentController(ComponentService service) {
+	public AdminPlaceController(PlaceService service) {
 		this.service = service;
 	}
 
-	@ModelAttribute("component")
-	public ComponentRequest getForm() {
-		return new ComponentRequest();
+	@ModelAttribute("place")
+	public PlaceRequest getForm() {
+		return new PlaceRequest();
 	}
 
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("ingredients", service.findAllIngredients());
-		model.addAttribute("mss", service.findAllMss());
-		model.addAttribute("components", service.findAllView());
-		return "component";
+		model.addAttribute("places", service.findAllView());
+		return "place";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		service.delete(id);
-		return "redirect:/admin/component";
+		return "redirect:/admin/place";
 	}
 
 	@PostMapping
-	public String save(@ModelAttribute("component") @Validated(ComponentFlag.class) ComponentRequest request,
-			BindingResult br, Model model, SessionStatus status) {
+	public String save(@ModelAttribute("place") @Validated(PlaceFlag.class) PlaceRequest request, BindingResult br,
+			Model model, SessionStatus status) {
 		if (br.hasErrors())
 			return show(model);
 		service.save(request);
@@ -59,13 +57,13 @@ public class AdminComponentController {
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
-		model.addAttribute("component", service.findOneRequest(id));
+		model.addAttribute("place", service.findOneRequest(id));
 		return show(model);
 	}
 
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus status) {
 		status.setComplete();
-		return "redirect:/admin/component";
+		return "redirect:/admin/place";
 	}
 }

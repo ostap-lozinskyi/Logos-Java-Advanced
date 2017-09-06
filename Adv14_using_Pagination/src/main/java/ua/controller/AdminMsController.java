@@ -13,59 +13,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.model.request.ComponentRequest;
-import ua.service.ComponentService;
-import ua.validation.flag.ComponentFlag;
+import ua.entity.Ms;
+import ua.service.MsService;
+import ua.validation.flag.MsFlag;
 
 @Controller
-@RequestMapping("/admin/component")
-@SessionAttributes("component")
-public class AdminComponentController {
+@RequestMapping("/admin/ms")
+@SessionAttributes("ms")
+public class AdminMsController {
 
-	private final ComponentService service;
+	private final MsService service;
 
 	@Autowired
-	public AdminComponentController(ComponentService service) {
+	public AdminMsController(MsService service) {
 		this.service = service;
 	}
 
-	@ModelAttribute("component")
-	public ComponentRequest getForm() {
-		return new ComponentRequest();
+	@ModelAttribute("ms")
+	public Ms getForm() {
+		return new Ms();
 	}
 
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("ingredients", service.findAllIngredients());
-		model.addAttribute("mss", service.findAllMss());
-		model.addAttribute("components", service.findAllView());
-		return "component";
+		model.addAttribute("mss", service.findAllView());
+		return "ms";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		service.delete(id);
-		return "redirect:/admin/component";
+		return "redirect:/admin/ms";
 	}
 
 	@PostMapping
-	public String save(@ModelAttribute("component") @Validated(ComponentFlag.class) ComponentRequest request,
-			BindingResult br, Model model, SessionStatus status) {
+	public String save(@ModelAttribute("ms") @Validated(MsFlag.class) Ms ms, BindingResult br, Model model,
+			SessionStatus status) {
 		if (br.hasErrors())
 			return show(model);
-		service.save(request);
+		service.save(ms);
 		return cancel(status);
 	}
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
-		model.addAttribute("component", service.findOneRequest(id));
+		model.addAttribute("ms", service.findOne(id));
 		return show(model);
 	}
 
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus status) {
 		status.setComplete();
-		return "redirect:/admin/component";
+		return "redirect:/admin/ms";
 	}
 }

@@ -13,59 +13,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.model.request.ComponentRequest;
-import ua.service.ComponentService;
-import ua.validation.flag.ComponentFlag;
+import ua.entity.Ingredient;
+import ua.service.IngredientService;
+import ua.validation.flag.IngredientFlag;
 
 @Controller
-@RequestMapping("/admin/component")
-@SessionAttributes("component")
-public class AdminComponentController {
+@RequestMapping("/admin/ingredient")
+@SessionAttributes("ingredient")
+public class AdminIngredientController {
 
-	private final ComponentService service;
+	private final IngredientService service;
 
 	@Autowired
-	public AdminComponentController(ComponentService service) {
+	public AdminIngredientController(IngredientService service) {
 		this.service = service;
 	}
 
-	@ModelAttribute("component")
-	public ComponentRequest getForm() {
-		return new ComponentRequest();
+	@ModelAttribute("ingredient")
+	public Ingredient getForm() {
+		return new Ingredient();
 	}
 
 	@GetMapping
 	public String show(Model model) {
-		model.addAttribute("ingredients", service.findAllIngredients());
-		model.addAttribute("mss", service.findAllMss());
-		model.addAttribute("components", service.findAllView());
-		return "component";
+		model.addAttribute("ingredients", service.findAllView());
+		return "ingredient";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		service.delete(id);
-		return "redirect:/admin/component";
+		return "redirect:/admin/ingredient";
 	}
 
 	@PostMapping
-	public String save(@ModelAttribute("component") @Validated(ComponentFlag.class) ComponentRequest request,
+	public String save(@ModelAttribute("ingredient") @Validated(IngredientFlag.class) Ingredient ingredient,
 			BindingResult br, Model model, SessionStatus status) {
 		if (br.hasErrors())
 			return show(model);
-		service.save(request);
+		service.save(ingredient);
 		return cancel(status);
 	}
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
-		model.addAttribute("component", service.findOneRequest(id));
+		model.addAttribute("ingredient", service.findOne(id));
 		return show(model);
 	}
 
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus status) {
 		status.setComplete();
-		return "redirect:/admin/component";
+		return "redirect:/admin/ingredient";
 	}
 }
