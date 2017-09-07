@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="custom" uri="/WEB-INF/tags/implicit.tld"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +61,7 @@
 						<th class="text-center">Place</th>
 						<th class="text-center">Options</th>
 					</tr>
-					<c:forEach var="order" items="${orders}">
+					<c:forEach var="order" items="${orders.content}">
 						<tr>
 							<td>${order.id}</td>
 							<td>${order.place}</td>
@@ -72,6 +73,11 @@
 					</c:forEach>
 				</table>
 				<a href="/admin">Admin</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<custom:pageable page="${orders}"/>
 			</div>
 		</div>
 	</div>

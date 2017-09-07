@@ -1,6 +1,8 @@
 package ua.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,10 +37,10 @@ public class AdminOrderController {
 	}
 
 	@GetMapping
-	public String show(Model model) {
+	public String show(Model model, @PageableDefault Pageable pageable) {
 		model.addAttribute("meals", service.findAllMeals());
 		model.addAttribute("places", service.findAllPlaceViews());
-		model.addAttribute("orders", service.findAllView());
+		model.addAttribute("orders", service.findAllView(pageable));
 		return "order";
 	}
 
@@ -50,17 +52,17 @@ public class AdminOrderController {
 
 	@PostMapping
 	public String save(@ModelAttribute("order") @Validated(OrderFlag.class) OrderRequest request, BindingResult br,
-			Model model, SessionStatus status) {
+			Model model, SessionStatus status, @PageableDefault Pageable pageable) {
 		if (br.hasErrors())
-			return show(model);
+			return show(model, pageable);
 		service.save(request);
 		return cancel(status);
 	}
 
 	@GetMapping("/update/{id}")
-	public String update(@PathVariable Integer id, Model model) {
+	public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable) {
 		model.addAttribute("order", service.findOneRequest(id));
-		return show(model);
+		return show(model, pageable);
 	}
 
 	@GetMapping("/cancel")

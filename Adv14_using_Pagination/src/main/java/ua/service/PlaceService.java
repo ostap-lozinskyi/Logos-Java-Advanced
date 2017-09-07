@@ -1,13 +1,14 @@
 package ua.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import ua.model.request.PlaceRequest;
 import ua.model.view.PlaceView;
 
 public interface PlaceService {
 
-	List<PlaceView> findAllView();
+	Page<PlaceView> findAllView(Pageable pageable);
 
 	void save(PlaceRequest request);
 
