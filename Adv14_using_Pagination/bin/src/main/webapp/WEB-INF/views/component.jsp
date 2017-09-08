@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="custom" uri="/WEB-INF/tags/implicit.tld"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,22 +19,43 @@
 			<div class="col-12">
 				<h1 class="text-center">Component</h1>
 				<form:form action="/admin/component" method="POST" modelAttribute="component">
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="amount" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="amount">Amount:</label>
 						<div class="col-10">
 							<form:input class="form-control" id="amount" path="amount"/>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="ms" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="ms">Measuring system:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="ms" path="ms" items="${mss}"/>
+							<form:select class="form-control" id="ms" path="ms" onchange="${ms}">
+								<form:option value="" label="Select Measuring system" style="color: gray;"/>
+								<form:options items="${mss}"/>
+							</form:select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="ingredient" />
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="ingredient">Ingredient:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="ingredient" path="ingredient" items="${ingredients}"/>
+							<form:select class="form-control" id="ingredient" path="ingredient" onchange="${ingredients}">
+								<form:option value="" label="Select Ingredient" style="color: gray;"/>
+								<form:options items="${ingredients}"/>
+							</form:select>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -54,7 +76,7 @@
 						<th class="text-center">Ingredient</th>
 						<th class="text-center">Options</th>
 					</tr>
-					<c:forEach var="component" items="${components}">
+					<c:forEach var="component" items="${components.content}">
 						<tr>
 							<td>${component.amount}</td>
 							<td>${component.ms}</td>
@@ -67,6 +89,11 @@
 					</c:forEach>
 				</table>
 				<a href="/admin">to Admin</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<custom:pageable page="${components}"/>
 			</div>
 		</div>
 	</div>

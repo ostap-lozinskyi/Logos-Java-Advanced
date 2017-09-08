@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="custom" uri="/WEB-INF/tags/implicit.tld"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,22 +19,35 @@
 			<div class="col-12">
 				<h1 class="text-center">Order</h1>
 				<form:form action="/admin/order" method="POST" modelAttribute="order">
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="meals" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="meal">Meals:</label>
 						<div class="col-10">
 							<form:select class="form-control" id="meal" path="meals" items="${meals}"/>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="place" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="place">Place:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="place" path="place" items="${places}" itemLabel="print" itemValue="id"/>
+							<form:select class="form-control" id="place" path="place" onchange="${places}">
+								<form:option value="" label="Select Place" style="color: gray;"/>
+								<form:options items="${places}" itemLabel="print" itemValue="id"/>
+							</form:select>
 						</div>
 					</div>
 					<div class="form-group row">
 						<div class="col-8 mr-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/meal/cancel" class="btn btn-sm btn-outline-warning">Cancel</a>
+							<a href="/admin/order/cancel" class="btn btn-sm btn-outline-warning">Cancel</a>
 						</div>
 					</div>
 				</form:form>
@@ -47,7 +61,7 @@
 						<th class="text-center">Place</th>
 						<th class="text-center">Options</th>
 					</tr>
-					<c:forEach var="order" items="${orders}">
+					<c:forEach var="order" items="${orders.content}">
 						<tr>
 							<td>${order.id}</td>
 							<td>${order.place}</td>
@@ -59,6 +73,11 @@
 					</c:forEach>
 				</table>
 				<a href="/admin">Admin</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<custom:pageable page="${orders}"/>
 			</div>
 		</div>
 	</div>

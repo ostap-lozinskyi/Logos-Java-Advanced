@@ -4,12 +4,16 @@ import java.security.Principal;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.support.SessionStatus;
 
 import ua.model.request.RegistrationRequest;
 import ua.service.UserService;
+import ua.validation.flag.UserFlag;
 
 @Controller
 public class RegistrationController {
@@ -27,7 +31,10 @@ public class RegistrationController {
 	}
 	
 	@PostMapping("/registration")
-	public String save(@ModelAttribute("registration") RegistrationRequest request) {
+	public String save(@ModelAttribute("registration") @Validated(UserFlag.class) RegistrationRequest request,
+			BindingResult br, Model model, SessionStatus status) {
+		if (br.hasErrors())
+			return "registration";
 		service.save(request);
 		return "redirect:/login";
 	}

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="custom" uri="/WEB-INF/tags/implicit.tld"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +19,20 @@
 			<div class="col-12">
 				<h1 class="text-center">Place</h1>
 				<form:form action="/admin/place" method="POST" modelAttribute="place">
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="number" />
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="number">Number:</label>
 						<div class="col-10">
 							<form:input class="form-control" id="number" path="number"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="countOfPeople" />
 						</div>
 					</div>
 					<div class="form-group row">
@@ -47,7 +58,7 @@
 						<th class="text-center">Count Of People</th>
 						<th class="text-center">Options</th>
 					</tr>
-					<c:forEach var="place" items="${places}">
+					<c:forEach var="place" items="${places.content}">
 						<tr>
 							<td>${place.number}</td>
 							<td>${place.countOfPeople}</td>
@@ -60,6 +71,11 @@
 					</c:forEach>
 				</table>
 				<a href="/admin">to Admin</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<custom:pageable page="${places}"/>
 			</div>
 		</div>
 	</div>
