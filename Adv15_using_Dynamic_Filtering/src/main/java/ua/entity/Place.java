@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "place")
+@Table(name = "place", indexes=@Index(columnList = "number", unique=true))
 public class Place extends AbstractEntity {
 
 	private int countOfPeople;

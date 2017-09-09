@@ -19,6 +19,7 @@
 			<div class="col-12">
 				<h1 class="text-center">Component</h1>
 				<form:form action="/admin/component" method="POST" modelAttribute="component">
+					
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
 							<form:errors path="amount" />

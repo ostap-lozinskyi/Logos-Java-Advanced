@@ -9,6 +9,7 @@ import ua.entity.Ingredient;
 import ua.entity.Ms;
 import ua.validation.flag.ComponentFlag;
 
+//@UniqueComponent(message = "Such a Component already exists", groups = { ComponentFlag.class})
 public class ComponentRequest {
 
 	private Integer id;

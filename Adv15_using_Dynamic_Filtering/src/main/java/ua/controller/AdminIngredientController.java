@@ -2,6 +2,8 @@ package ua.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,6 +76,26 @@ public class AdminIngredientController {
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus status, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
 		status.setComplete();
-		return "redirect:/admin/ingredient";
+		return "redirect:/admin/ingredient"+buildParams(pageable, filter);
+	}
+	
+	private String buildParams(Pageable pageable, SimpleFilter filter) {
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("?page=");
+		buffer.append(String.valueOf(pageable.getPageNumber()+1));
+		buffer.append("&size=");
+		buffer.append(String.valueOf(pageable.getPageSize()));
+		if(pageable.getSort()!=null){
+			buffer.append("&sort=");
+			Sort sort = pageable.getSort();
+			sort.forEach((order)->{
+				buffer.append(order.getProperty());
+				if(order.getDirection()!=Direction.ASC)
+				buffer.append(",desc");
+			});
+		}
+		buffer.append("&search=");
+		buffer.append(filter.getSearch());
+		return buffer.toString();
 	}
 }
