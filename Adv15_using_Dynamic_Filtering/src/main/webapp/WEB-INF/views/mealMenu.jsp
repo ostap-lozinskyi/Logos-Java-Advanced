@@ -14,13 +14,10 @@
 <title>Cafe</title>
 </head>
 <body>
-	<h2>${message}</h2>
-	
-	<a href="/admin">Admin</a>
-	
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
+				<h1 class="text-center">Menu</h1>
 				<form:form action="/mealMenu" method="GET" modelAttribute="mealFilter">
 					<div class="form-group row">
 						<div class="col-12">
@@ -61,14 +58,14 @@
 							<td>${meal.name}</td>
 							<td>${meal.shortDescription}</td>
 							<td class="text-center"><a
-								href="/admin/meal/update/${meal.id}"
-								class="btn btn-outline-warning btn-sm">Update</a> <a
-								href="/admin/meal/delete/${meal.id}"
-								class="btn btn-outline-danger btn-sm">Delete</a></td>
+								href=""
+								class="btn btn-outline-success btn-sm">Order</a> 
+							</td>
 						</tr>
 					</c:forEach>
 				</table>
 				<a href="/admin">to Admin</a>
+				<br><a href="/">to Main page</a>
 			</div>
 		</div>
 	</div>

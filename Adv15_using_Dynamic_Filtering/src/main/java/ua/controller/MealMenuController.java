@@ -8,19 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import ua.model.filter.MealFilter;
-import ua.repository.MealRepository;
-import ua.repository.MealViewRepository;
+import ua.service.MealViewService;
 
 @Controller
 public class MealMenuController {
 	
-	private final MealViewRepository repository;
+	private final MealViewService service;
 	
-	private final MealRepository mealRepository;
-	
-	public MealMenuController(MealViewRepository repository, MealRepository mealRepository) {
-		this.repository = repository;
-		this.mealRepository = mealRepository;
+	public MealMenuController(MealViewService service) {
+		this.service=service;
 	}
 	
 	@ModelAttribute("mealFilter")
@@ -30,10 +26,9 @@ public class MealMenuController {
 
 	@GetMapping("/mealMenu")
 	public String mealMenu(Model model, @ModelAttribute("mealFilter") MealFilter filter, @PageableDefault Pageable pageable) {
-		model.addAttribute("meals", repository.findAll(filter, pageable));
-		model.addAttribute("cuisines", mealRepository.findAllCuisines());
+		model.addAttribute("meals", service.findAll(filter, pageable));
+		model.addAttribute("cuisines", service.findAllCuisines());
 		return "mealMenu";
 	}	
-	
 	
 }
