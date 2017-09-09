@@ -84,8 +84,8 @@
 					<c:forEach var="component" items="${components.content}">
 						<tr>
 							<td>${component.amount}</td>
-							<td>${component.ms}</td>
-							<td>${component.ingredient}</td>
+							<td>${component.ms.name}</td>
+							<td>${component.ingredient.name}</td>
 							<td class="text-center">
 								<a href="/admin/component/update/${component.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
 								<a href="/admin/component/delete/${component.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>

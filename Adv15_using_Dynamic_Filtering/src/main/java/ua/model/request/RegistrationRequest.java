@@ -4,9 +4,11 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import ua.validation.annotation.PasswordsEqual;
 import ua.validation.annotation.UniqueUser;
 import ua.validation.flag.UserFlag;
 
+@PasswordsEqual(message="Password not match", groups = { UserFlag.class })
 public class RegistrationRequest {
 
 	@UniqueUser(message = "Such an user already exists", groups = UserFlag.class)

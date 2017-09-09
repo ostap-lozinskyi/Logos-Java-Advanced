@@ -1,13 +1,8 @@
 ﻿1.При апдейті спрацьовує перевірка на унікальнісь імені: валідатор спрінга
 2.В помилці не виводяться одинарні лапки: юнікод
-3.Як перевірити унікальнісь компонента? над реквестом анотацію 
+ 
 4.В ордері в списку плейсів відобр. id замість number: вюшка
 
-якщо роблю індекс по amount
-Duplicate entry '10.00' for key 'UKt73v2jkudwmfvu3ya8rp64f3w'
-could not execute statement; SQL [n/a]; constraint [UKt73v2jkudwmfvu3ya8rp64f3w]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
-
-No validator could be found for constraint 'ua.validation.annotation.UniqueComponent' validating type 'ua.model.request.ComponentRequest'. Check configuration for '' 
 
 
 
