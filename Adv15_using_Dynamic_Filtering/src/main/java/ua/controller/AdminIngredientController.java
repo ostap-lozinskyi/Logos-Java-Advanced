@@ -47,16 +47,16 @@ public class AdminIngredientController {
 	@GetMapping
 	public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
 		model.addAttribute("ingredients", service.findAll(pageable, filter));
-		if (service.findAll(pageable, filter).hasContent())
+		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
 			return "ingredient";
 		else
-			return "ingredient" + buildParams(pageable, filter);
+			return "redirect:/admin/ingredient"+buildParams(pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Integer id) {
+	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
 		service.delete(id);
-		return "redirect:/admin/ingredient";
+		return "redirect:/admin/ingredient"+buildParams(pageable, filter);
 	}
 
 	@PostMapping
@@ -85,11 +85,11 @@ public class AdminIngredientController {
 	private String buildParams(Pageable pageable, SimpleFilter filter) {
 		StringBuilder buffer = new StringBuilder();		
 		buffer.append("?page=");
-		if(!service.findAll(pageable, filter).hasContent()&&!(pageable.getPageNumber()==0))
+		if(!(service.findAll(pageable, filter).hasContent())) 
 			buffer.append(String.valueOf(pageable.getPageNumber()));
-		else
+		else {
 			buffer.append(String.valueOf(pageable.getPageNumber()+1));
-		buffer.append(String.valueOf(pageable.getPageNumber()));
+		}
 		buffer.append("&size=");
 		buffer.append(String.valueOf(pageable.getPageSize()));
 		if(pageable.getSort()!=null){
