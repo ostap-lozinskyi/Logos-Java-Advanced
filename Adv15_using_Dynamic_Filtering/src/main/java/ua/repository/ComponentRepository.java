@@ -1,5 +1,6 @@
 package ua.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -9,6 +10,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import ua.entity.Component;
+import ua.entity.Ingredient;
+import ua.entity.Ms;
 import ua.model.view.ComponentView;
 
 public interface ComponentRepository extends JpaRepository<Component, Integer>, JpaSpecificationExecutor<Component> {
@@ -27,5 +30,8 @@ public interface ComponentRepository extends JpaRepository<Component, Integer>, 
 	
 	@Query("SELECT c FROM Component c JOIN FETCH c.ingredient JOIN FETCH c.ms WHERE c.id=?1")
 	Component findOneRequest(Integer id);
+	
+	@Query("SELECT c FROM Component c WHERE c.ingredient=?1 AND c.amount=?2 AND c.ms=?3")
+	Component existsByComponent(Ingredient ingredient, BigDecimal amount, Ms ms);	
 	
 }
