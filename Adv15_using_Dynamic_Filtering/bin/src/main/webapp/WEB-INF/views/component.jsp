@@ -19,7 +19,11 @@
 			<div class="col-12">
 				<h1 class="text-center">Component</h1>
 				<form:form action="/admin/component" method="POST" modelAttribute="component">
-					
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="${componentRequest}" />
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
 							<form:errors path="amount" />
@@ -80,8 +84,8 @@
 					<c:forEach var="component" items="${components.content}">
 						<tr>
 							<td>${component.amount}</td>
-							<td>${component.ms}</td>
-							<td>${component.ingredient}</td>
+							<td>${component.ms.name}</td>
+							<td>${component.ingredient.name}</td>
 							<td class="text-center">
 								<a href="/admin/component/update/${component.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
 								<a href="/admin/component/delete/${component.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>

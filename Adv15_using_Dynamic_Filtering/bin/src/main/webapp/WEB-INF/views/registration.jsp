@@ -17,8 +17,10 @@
 		<div class="row">
 			<div class="col-12">
 			<h1 class="text-center">Registration</h1>
-				<form:form action="/registration" method="POST"
-					modelAttribute="registration">
+				<form:form action="/registration" method="POST"	modelAttribute="registration">
+					<div class="col-10 ml-auto" style="color:red;">
+							<form:errors path="${registrationRequest}"/>
+						</div>
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
 							<form:errors path="email" />

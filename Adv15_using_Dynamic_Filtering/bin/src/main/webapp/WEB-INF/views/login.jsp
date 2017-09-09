@@ -18,6 +18,11 @@
 			<div class="col-12">
 			<h1 class="text-center">Login</h1>
 				<form:form action="/login" method="POST">
+					<c:if test="${param.fail}">
+						<div class="col-10 ml-auto" style="color: red;">
+  							Wrong user or password
+						</div>
+					</c:if>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="email">Email:</label>
 						<div class="col-10">

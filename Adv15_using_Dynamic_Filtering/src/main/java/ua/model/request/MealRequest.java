@@ -35,7 +35,7 @@ public class MealRequest {
 	private String shortDescription;
 
 	@NotBlank(message = "This field cannot be blank", groups = { MealFlag.class })
-	@Pattern(regexp = "^[1-9][0-9]*\\.[0-9]{2}| *$", message = "The 'Prise' should be a number, can not begin with a zero symbol and must have a fractional part", groups = {
+	@Pattern(regexp = "^([0-9]{1,18}\\.[0-9]{0,2})|([0-9]{1,18}\\,[0-9]{0,2})|([0-9]{1,18})| *$", message = "The 'Prise' should be a number, can not begin with a zero symbol and must have a fractional part", groups = {
 			MealFlag.class })
 	private String price;
 

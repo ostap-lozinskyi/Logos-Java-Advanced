@@ -1,4 +1,4 @@
-package ua.controller;
+package ua.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -15,57 +15,59 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.entity.Ms;
-import ua.service.MsService;
-import ua.validation.flag.MsFlag;
+import ua.model.request.MealRequest;
+import ua.service.MealService;
+import ua.validation.flag.MealFlag;
 
 @Controller
-@RequestMapping("/admin/ms")
-@SessionAttributes("ms")
-public class AdminMsController {
+@RequestMapping("/admin/meal")
+@SessionAttributes("meal")
+public class AdminMealController {
 
-	private final MsService service;
+	private final MealService service;
 
 	@Autowired
-	public AdminMsController(MsService service) {
+	public AdminMealController(MealService service) {
 		this.service = service;
 	}
 
-	@ModelAttribute("ms")
-	public Ms getForm() {
-		return new Ms();
+	@ModelAttribute("meal")
+	public MealRequest getForm() {
+		return new MealRequest();
 	}
 
 	@GetMapping
 	public String show(Model model, @PageableDefault Pageable pageable) {
-		model.addAttribute("mss", service.findAllView(pageable));
-		return "ms";
+		model.addAttribute("cuisines", service.findAllcuisines());
+		model.addAttribute("components", service.findAllСomponentsView());
+		model.addAttribute("meals", service.findAllView(pageable));
+		return "meal";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		service.delete(id);
-		return "redirect:/admin/ms";
+		return "redirect:/admin/meal";
 	}
 
 	@PostMapping
-	public String save(@ModelAttribute("ms") @Validated(MsFlag.class) Ms ms, BindingResult br, Model model,
-			SessionStatus status, @PageableDefault Pageable pageable) {
+	public String save(@ModelAttribute("meal") @Validated(MealFlag.class) MealRequest request, BindingResult br,
+			Model model, SessionStatus status, @PageableDefault Pageable pageable) {
 		if (br.hasErrors())
 			return show(model, pageable);
-		service.save(ms);
+		service.save(request);
 		return cancel(status);
 	}
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable) {
-		model.addAttribute("ms", service.findOne(id));
+		model.addAttribute("meal", service.findOneRequest(id));
 		return show(model, pageable);
 	}
 
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus status) {
 		status.setComplete();
-		return "redirect:/admin/ms";
+		return "redirect:/admin/meal";
 	}
 }
