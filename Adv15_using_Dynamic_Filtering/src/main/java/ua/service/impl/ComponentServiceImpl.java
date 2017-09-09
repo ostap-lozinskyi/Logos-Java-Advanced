@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Component;
+import ua.model.filter.SimpleFilter;
 import ua.model.request.ComponentRequest;
 import ua.model.view.ComponentView;
 import ua.repository.ComponentRepository;
@@ -37,6 +39,18 @@ public class ComponentServiceImpl implements ComponentService {
 	@Override
 	public Page<ComponentView> findAllView(Pageable pageable) {
 		return repository.findAllView(pageable);
+	}
+	
+	@Override
+	public Page<Component> findAll(Pageable pageable, SimpleFilter filter) {
+		return repository.findAll(filter(filter), pageable);
+	}
+	
+	private Specification<Component> filter(SimpleFilter filter){
+		return (root, query, cb) -> {
+			if(filter.getSearch().isEmpty()) return null;
+			return cb.like(root.get("name"), filter.getSearch()+"%");
+		};
 	}
 
 	@Override

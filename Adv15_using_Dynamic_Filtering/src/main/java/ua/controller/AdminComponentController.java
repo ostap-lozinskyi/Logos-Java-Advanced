@@ -2,6 +2,8 @@ package ua.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import ua.model.filter.SimpleFilter;
 import ua.model.request.ComponentRequest;
 import ua.service.ComponentService;
 import ua.validation.flag.ComponentFlag;
@@ -37,10 +40,10 @@ public class AdminComponentController {
 	}
 
 	@GetMapping
-	public String show(Model model, @PageableDefault Pageable pageable) {
+	public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
 		model.addAttribute("ingredients", service.findAllIngredients());
 		model.addAttribute("mss", service.findAllMss());
-		model.addAttribute("components", service.findAllView(pageable));
+		model.addAttribute("components", service.findAll(pageable, filter));
 		return "component";
 	}
 
@@ -52,22 +55,44 @@ public class AdminComponentController {
 
 	@PostMapping
 	public String save(@ModelAttribute("component") @Validated(ComponentFlag.class) ComponentRequest request,
-			BindingResult br, Model model, SessionStatus status, @PageableDefault Pageable pageable) {
+			BindingResult br, Model model, SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") SimpleFilter filter) {
 		if (br.hasErrors())
-			return show(model, pageable);
+			return show(model, pageable, filter);
 		service.save(request);
-		return cancel(status);
+		return cancel(status, pageable, filter);
 	}
 
 	@GetMapping("/update/{id}")
-	public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable) {
+	public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") SimpleFilter filter) {
 		model.addAttribute("component", service.findOneRequest(id));
-		return show(model, pageable);
+		return show(model, pageable, filter);
 	}
 
 	@GetMapping("/cancel")
-	public String cancel(SessionStatus status) {
+	public String cancel(SessionStatus status, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
 		status.setComplete();
-		return "redirect:/admin/component";
+		return "redirect:/admin/component"+buildParams(pageable, filter);
+	}
+	
+	private String buildParams(Pageable pageable, SimpleFilter filter) {
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("?page=");
+		buffer.append(String.valueOf(pageable.getPageNumber()+1));
+		buffer.append("&size=");
+		buffer.append(String.valueOf(pageable.getPageSize()));
+		if(pageable.getSort()!=null){
+			buffer.append("&sort=");
+			Sort sort = pageable.getSort();
+			sort.forEach((order)->{
+				buffer.append(order.getProperty());
+				if(order.getDirection()!=Direction.ASC)
+				buffer.append(",desc");
+			});
+		}
+		buffer.append("&search=");
+		buffer.append(filter.getSearch());
+		return buffer.toString();
 	}
 }

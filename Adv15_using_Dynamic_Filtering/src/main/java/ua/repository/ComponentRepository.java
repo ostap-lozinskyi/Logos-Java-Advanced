@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import ua.entity.Component;
 import ua.model.view.ComponentView;
 
-public interface ComponentRepository extends JpaRepository<Component, Integer> {
+public interface ComponentRepository extends JpaRepository<Component, Integer>, JpaSpecificationExecutor<Component> {
 	@Query("SELECT i.name FROM Ingredient i")
 	List<String> findAllIngredients();
 
