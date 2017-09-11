@@ -37,7 +37,7 @@ public class MealViewRepositoryImpl implements MealViewRepository{
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<MealIndexView> cq = cb.createQuery(MealIndexView.class);
 		Root<Meal> root = cq.from(Meal.class);
-		cq.multiselect(root.get(Meal_.id), root.get("photoUrl"), root.get("version"), root.get("rate"), root.get("name"), root.get("shortDescription"));
+		cq.multiselect(root.get(Meal_.id), root.get("photoUrl"), root.get("version"), root.get("rate"), root.get("price"), root.get("name"), root.get("shortDescription"));
 		Predicate predicate = new PredicateBuilder(cb, root, filter).toPredicate();
 		if(predicate!=null) cq.where(predicate);
 		cq.orderBy(toOrders(pageable.getSort(), root, cb));
@@ -94,13 +94,27 @@ public class MealViewRepositoryImpl implements MealViewRepository{
 			}
 		}
 		
+		void findByMinPrice() {
+			if(!filter.getMinPrice().isEmpty()) {
+				predicates.add(cb.ge(root.get("price"), new BigDecimal(filter.getMinPrice().replace(',', '.'))));
+			}
+		}
+		
+		void findByMaxPrice() {
+			if(!filter.getMaxPrice().isEmpty()) {
+				predicates.add(cb.le(root.get("price"), new BigDecimal(filter.getMaxPrice().replace(',', '.'))));
+			}
+		}
+		
 		Predicate toPredicate() {
 			findByMinRate();
 			findByMaxRate();
 			findBySearch();
 			findByCusinesId();
+			findByMinPrice();
+			findByMaxPrice();
 			return predicates.isEmpty() ? null : cb.and(predicates.stream().toArray(Predicate[]::new));
-		}
+		}		
 		
 	}
 

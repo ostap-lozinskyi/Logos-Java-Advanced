@@ -33,6 +33,14 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<div class="col-6">
+							<form:input path="minPrice" class="form-control" placeholder="Min price"/>
+						</div>
+						<div class="col-6">
+							<form:input path="maxPrice" class="form-control" placeholder="Max price"/>
+						</div>
+					</div>
+					<div class="form-group row">
 						<div class="col-12">
 							<form:checkboxes items="${cuisines}" path="cuisinesIds" element="div" />
 						</div>
@@ -50,12 +58,14 @@
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Name</th>
+						<th class="text-center">Price</th>
 						<th class="text-center">Short Description</th>
 						<th class="text-center">Options</th>
 					</tr>
 					<c:forEach var="meal" items="${meals.content}">
 						<tr>
 							<td>${meal.name}</td>
+							<td>${meal.price}</td>
 							<td>${meal.shortDescription}</td>
 							<td class="text-center"><a
 								href=""
