@@ -41,6 +41,14 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<div class="col-6">
+							<form:input path="minWeight" class="form-control" placeholder="Min weight"/>
+						</div>
+						<div class="col-6">
+							<form:input path="maxWeight" class="form-control" placeholder="Max weight"/>
+						</div>
+					</div>
+					<div class="form-group row">
 						<div class="col-12">
 							<form:checkboxes items="${cuisines}" path="cuisinesIds" element="div" />
 						</div>
@@ -60,6 +68,7 @@
 						<th class="text-center">Name</th>
 						<th class="text-center">Price</th>
 						<th class="text-center">Short Description</th>
+						<th class="text-center">Weight</th>
 						<th class="text-center">Options</th>
 					</tr>
 					<c:forEach var="meal" items="${meals.content}">
@@ -67,6 +76,7 @@
 							<td>${meal.name}</td>
 							<td>${meal.price}</td>
 							<td>${meal.shortDescription}</td>
+							<td>${meal.weight}</td>
 							<td class="text-center"><a
 								href=""
 								class="btn btn-outline-success btn-sm">Order</a> 

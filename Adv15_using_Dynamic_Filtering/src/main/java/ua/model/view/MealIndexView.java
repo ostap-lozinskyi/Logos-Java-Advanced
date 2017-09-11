@@ -14,18 +14,21 @@ public class MealIndexView {
 	
 	private BigDecimal price;
 	
+	private int weight;
+	
 	private String name;
 	
 	private String shortDescription;
 	
-	public MealIndexView(Integer id, String photoUrl, int version, BigDecimal rate, BigDecimal price, String name,
-			String shortDescription) {
+	public MealIndexView(Integer id, String photoUrl, int version, BigDecimal rate, BigDecimal price, int weight,
+			String name, String shortDescription) {
 		super();
 		this.id = id;
 		this.photoUrl = photoUrl;
 		this.version = version;
 		this.rate = rate;
 		this.price = price;
+		this.weight = weight;
 		this.name = name;
 		this.shortDescription = shortDescription;
 	}
@@ -68,6 +71,14 @@ public class MealIndexView {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+	
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 
 	public String getName() {

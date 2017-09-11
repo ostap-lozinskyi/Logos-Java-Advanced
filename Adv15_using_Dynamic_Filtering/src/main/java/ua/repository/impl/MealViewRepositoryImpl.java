@@ -37,7 +37,8 @@ public class MealViewRepositoryImpl implements MealViewRepository{
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<MealIndexView> cq = cb.createQuery(MealIndexView.class);
 		Root<Meal> root = cq.from(Meal.class);
-		cq.multiselect(root.get(Meal_.id), root.get("photoUrl"), root.get("version"), root.get("rate"), root.get("price"), root.get("name"), root.get("shortDescription"));
+		cq.multiselect(root.get(Meal_.id), root.get("photoUrl"), root.get("version"), root.get("rate"),
+				root.get("price"), root.get("weight"), root.get("name"), root.get("shortDescription"));
 		Predicate predicate = new PredicateBuilder(cb, root, filter).toPredicate();
 		if(predicate!=null) cq.where(predicate);
 		cq.orderBy(toOrders(pageable.getSort(), root, cb));
@@ -106,6 +107,18 @@ public class MealViewRepositoryImpl implements MealViewRepository{
 			}
 		}
 		
+		void findByMinWeight() {
+			if(!filter.getMinWeight().isEmpty()) {
+				predicates.add(cb.ge(root.get("weight"), new Integer(filter.getMinWeight())));
+			}
+		}
+		
+		void findByMaxWeight() {
+			if(!filter.getMaxWeight().isEmpty()) {
+				predicates.add(cb.le(root.get("weight"), new Integer(filter.getMaxWeight())));
+			}
+		}
+		
 		Predicate toPredicate() {
 			findByMinRate();
 			findByMaxRate();
@@ -113,6 +126,8 @@ public class MealViewRepositoryImpl implements MealViewRepository{
 			findByCusinesId();
 			findByMinPrice();
 			findByMaxPrice();
+			findByMinWeight();
+			findByMaxWeight();
 			return predicates.isEmpty() ? null : cb.and(predicates.stream().toArray(Predicate[]::new));
 		}		
 		
