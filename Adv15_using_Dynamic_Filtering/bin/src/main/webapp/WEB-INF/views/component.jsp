@@ -18,6 +18,19 @@
 		<div class="row">
 			<div class="col-12">
 				<h1 class="text-center">Component</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-1">
+				<form:form action="/admin/component" method="GET" modelAttribute="filter">
+					<div class="form-group row">
+						<div class="col-12">
+							<form:input class="form-control" path="search" placeholder="Search"/>
+						</div>
+					</div>
+				</form:form>
+			</div>
+			<div class="col-11">				
 				<form:form action="/admin/component" method="POST" modelAttribute="component">
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
@@ -98,11 +111,10 @@
 			<div class="col-3">
 				<div class="row">
 					<div class="col-6 text-center">
-							<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort
-							</button>
+							<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
 							<div class="dropdown-menu">
-								<custom:sort innerHtml="Name asc" paramValue="name"/>
-								<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
+								<custom:sort innerHtml="Name asc" paramValue="amount"/>
+								<custom:sort innerHtml="Name desc" paramValue="amount,desc"/>
 							</div>
 					</div>
 					<div class="col-6 text-center">

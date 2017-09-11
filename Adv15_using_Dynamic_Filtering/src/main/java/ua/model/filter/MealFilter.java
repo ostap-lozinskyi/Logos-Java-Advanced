@@ -24,9 +24,9 @@ public class MealFilter {
 	
 	private String maxWeight = "";
 	
-	private List<String> cuisinesIds = new ArrayList<>();
+	private List<String> cuisineName = new ArrayList<>();
 	
-	private List<Integer> ingredientIds = new ArrayList<>();
+	private List<String> ingredientName = new ArrayList<>();
 
 	public String getSearch() {
 		return search;
@@ -90,19 +90,20 @@ public class MealFilter {
 		this.maxWeight = maxWeight;
 	}
 
-	public List<String> getCuisinesIds() {
-		return cuisinesIds;
+	public List<String> getCuisineName() {
+		return cuisineName;
 	}
 
-	public void setCuisinesIds(List<String> cuisinesIds) {
-		this.cuisinesIds = cuisinesIds;
+	public void setCuisineName(List<String> cuisineName) {
+		this.cuisineName = cuisineName;
 	}
 
-	public List<Integer> getIngredientIds() {
-		return ingredientIds;
+	public List<String> getIngredientName() {
+		return ingredientName;
 	}
 
-	public void setIngredientIds(List<Integer> ingredientIds) {
-		this.ingredientIds = ingredientIds;
+	public void setIngredientName(List<String> ingredientName) {
+		this.ingredientName = ingredientName;
 	}
+	
 }

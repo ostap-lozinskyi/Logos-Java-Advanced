@@ -89,9 +89,9 @@ public class MealViewRepositoryImpl implements MealViewRepository{
 		}
 		
 		void findByCusinesId() {
-			if(!filter.getCuisinesIds().isEmpty()) {
+			if(!filter.getCuisineName().isEmpty()) {
 				Join<Meal, Cuisine> join = root.join(Meal_.cuisine);
-				predicates.add(join.get("name").in(filter.getCuisinesIds()));
+				predicates.add(join.get("name").in(filter.getCuisineName()));
 			}
 		}
 		

@@ -38,6 +38,11 @@ public class AdminComponentController {
 	public ComponentRequest getForm() {
 		return new ComponentRequest();
 	}
+	
+	@ModelAttribute("filter")
+	public SimpleFilter getFilter() {
+		return new SimpleFilter();
+	}
 
 	@GetMapping
 	public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
