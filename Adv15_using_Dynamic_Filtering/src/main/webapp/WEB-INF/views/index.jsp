@@ -3,6 +3,7 @@
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
+               <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
                 <!DOCTYPE html>
                 <html data-vivaldi-spatnav-clickable="1">
 
@@ -12,7 +13,7 @@
                     <title>Ostap cafe</title>
                     <link href="resources/css/index.css" rel="stylesheet">
                     <script src="resources/js/jquery.js"></script>
-                    <script src="resources/js/jquery-ui.js"></script>
+                    <script src="resources/js/jquery-ui.js"></script>                    
                 </head>
 
                 <body>
@@ -53,7 +54,9 @@
                                     </div>
                                 </div>
                                 <div class="row center">
-                                    <div class="button_container"> <a href="/mealMenu" class="button button_left">Menu</a><a href="/" class="button button_right">Reserve a Table</a> </div>
+                                    <div class="col-12">
+                                        <div class="button_container"> <a href="/mealMenu" class="button button_left">Menu</a><a href="/" class="button button_right">Reserve a Table</a> </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +65,7 @@
                         <div class="clear"></div>
                     </div>
                     <!--section!-->
-                    <div class="section section_slider white" style="background: url(resources/img/fon2.jpg); height: 1714px;">
+                    <div class="section section_slider white" style="background: url(resources/img/fon2.jpg); height: 914px;">
                         <div class="container container_main_restaurnt">
                             <div class="section_headline">Menu</div>
                             <div class="section_branch"></div>
@@ -103,8 +106,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="buy_row">
-                                                                <sec:authorize access="isAnonymous()"> <a href="/login" type="button" class="btn buy btn-cart ">Order</a> </sec:authorize>
-                                                                <sec:authorize access="isAuthenticated()"> <a href="/mealMenu" type="button" class="btn buy btn-cart ">Order</a> </sec:authorize>
+                                                                <sec:authorize access="isAnonymous()"> <a href="/mealMenu"><button  type="button" class="btn-cart buy btn btn-sucsess btn-lg">Order</button></a></sec:authorize>
+                                                                <sec:authorize access="isAuthenticated()"> <a href="/mealMenu"><button  type="button" class="btn-cart buy btn btn-sucsess btn-lg">Order</button></a></sec:authorize>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -127,11 +130,7 @@
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29112.343557341348!2d23.992958218503922!3d49.83885086658292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add67a0879827%3A0xc68944e5293256f2!2sIT+Academy+Logos!5e0!3m2!1suk!2sua!4v1504697969891" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </div>
                     <!--map!-->
-                    <div class="empty_footer" style="height: 326px;"></div>
-                    <!--FOOTER!-->
-                    <footer style="height: 326px; margin-top: -326px;">
-                        <div class="container">
-                            <div class="row">
+                    <div class="row">
                                 <div class="col-xs-12 center">
                                     <div class="copyright">
                                         <p>&copy; 2017 Ostap Lozinskyj
@@ -139,10 +138,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                    <div class="empty_footer" style="height: 326px;"></div>
+                    <!--FOOTER!-->
+                    <footer>
+                        <div class="container">                            
+                                <div class="col-xs-12 center">
+                                    <div class="copyright">
+                                        <p>&copy; 2017 Ostap Lozinskyj
+                                            <br>All trademarks and registered trademarks appearing on this site are the property of their respective owners.</p>
+                                    </div>
+                                </div>
                                 <div class="col-xs-6 center"> Made with support: </div>
                                 <div class="col-xs-6 center"> <img src="resources/img/logos.png" style="background: gray; height: 50px;"> </div>
-                            </div>
                         </div>
                     </footer>
                     <!--FOOTER!-->
