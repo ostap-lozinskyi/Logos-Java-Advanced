@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import ua.entity.User;
 import ua.model.filter.MealFilter;
-import ua.service.MealViewService;
+import ua.service.MealService;
 
 @Controller
 public class MainController {
 	
-	private final MealViewService service;
+	private final MealService service;
 
 	@Autowired
-	public MainController(MealViewService service) {
+	public MainController(MealService service) {
 		this.service = service;
 	}
 

@@ -9,20 +9,26 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Meal;
+import ua.model.filter.MealFilter;
 import ua.model.request.MealRequest;
 import ua.model.view.ComponentView;
+import ua.model.view.MealIndexView;
 import ua.model.view.MealView;
 import ua.repository.MealRepository;
+import ua.repository.MealViewRepository;
 import ua.service.MealService;
 
 @Service
 public class MealServiceImpl implements MealService {
 
 	private final MealRepository repository;
+	
+	private final MealViewRepository mealViewrepository;
 
 	@Autowired
-	public MealServiceImpl(MealRepository repository) {
+	public MealServiceImpl(MealRepository repository, MealViewRepository mealViewrepository) {
 		this.repository = repository;
+		this.mealViewrepository = mealViewrepository;
 	}
 
 	@Override
@@ -38,6 +44,11 @@ public class MealServiceImpl implements MealService {
 	@Override
 	public Page<MealView> findAllView(Pageable pageable) {
 		return repository.findAllView(pageable);
+	}
+	
+	@Override
+	public Page<MealIndexView> findAll(MealFilter filter, Pageable pageable) {
+		return mealViewrepository.findAll(filter, pageable);
 	}
 
 	@Override
