@@ -98,11 +98,10 @@
 			<div class="col-3">
 				<div class="row">
 					<div class="col-6 text-center">
-							<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort
-							</button>
+							<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
 							<div class="dropdown-menu">
-								<custom:sort innerHtml="Name asc" paramValue="name"/>
-								<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
+								<custom:sort innerHtml="Name asc" paramValue="amount"/>
+								<custom:sort innerHtml="Name desc" paramValue="amount,desc"/>
 							</div>
 					</div>
 					<div class="col-6 text-center">
