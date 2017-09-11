@@ -18,6 +18,19 @@
 		<div class="row">
 			<div class="col-12">
 				<h1 class="text-center">Component</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-1">
+				<form:form action="/admin/component" method="GET" modelAttribute="filter">
+					<div class="form-group row">
+						<div class="col-12">
+							<form:input class="form-control" path="search" placeholder="Search"/>
+						</div>
+					</div>
+				</form:form>
+			</div>
+			<div class="col-11">				
 				<form:form action="/admin/component" method="POST" modelAttribute="component">
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">

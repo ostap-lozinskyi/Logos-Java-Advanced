@@ -44,13 +44,17 @@ public class AdminComponentController {
 		model.addAttribute("ingredients", service.findAllIngredients());
 		model.addAttribute("mss", service.findAllMss());
 		model.addAttribute("components", service.findAll(pageable, filter));
-		return "component";
+		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
+			return "component";
+		else
+			return "redirect:/admin/component"+buildParams(pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Integer id) {
+	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") SimpleFilter filter) {
 		service.delete(id);
-		return "redirect:/admin/component";
+		return "redirect:/admin/component"+buildParams(pageable, filter);
 	}
 
 	@PostMapping
@@ -77,9 +81,13 @@ public class AdminComponentController {
 	}
 	
 	private String buildParams(Pageable pageable, SimpleFilter filter) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder();		
 		buffer.append("?page=");
-		buffer.append(String.valueOf(pageable.getPageNumber()+1));
+		if(!(service.findAll(pageable, filter).hasContent())) 
+			buffer.append(String.valueOf(pageable.getPageNumber()));
+		else {
+			buffer.append(String.valueOf(pageable.getPageNumber()+1));
+		}
 		buffer.append("&size=");
 		buffer.append(String.valueOf(pageable.getPageSize()));
 		if(pageable.getSort()!=null){

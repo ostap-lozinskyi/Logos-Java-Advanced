@@ -49,7 +49,7 @@ public class ComponentServiceImpl implements ComponentService {
 	private Specification<Component> filter(SimpleFilter filter){
 		return (root, query, cb) -> {
 			if(filter.getSearch().isEmpty()) return null;
-			return cb.like(root.get("name"), filter.getSearch()+"%");
+			return cb.le(root.get("amount"), new BigDecimal(filter.getSearch()));
 		};
 	}
 

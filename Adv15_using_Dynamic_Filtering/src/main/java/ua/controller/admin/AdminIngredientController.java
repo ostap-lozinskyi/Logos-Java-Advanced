@@ -54,7 +54,8 @@ public class AdminIngredientController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
+	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") SimpleFilter filter) {
 		service.delete(id);
 		return "redirect:/admin/ingredient"+buildParams(pageable, filter);
 	}
