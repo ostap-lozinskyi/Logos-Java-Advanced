@@ -5,19 +5,20 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import ua.entity.Meal;
 import ua.model.filter.MealFilter;
+import ua.model.filter.SimpleFilter;
 import ua.model.request.MealRequest;
 import ua.model.view.ComponentView;
 import ua.model.view.MealIndexView;
-import ua.model.view.MealView;
 
 public interface MealService {
 
 	List<String> findAllcuisines();
 
-	List<ComponentView> findAllСomponentsView();
+	List<ComponentView> findAllСomponents();
 	
-	Page<MealView> findAllView(Pageable pageable);
+	Page<Meal> findAll(Pageable pageable, SimpleFilter filter);
 	
 	Page<MealIndexView> findAll(MealFilter filter, Pageable pageable);
 
