@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import ua.entity.Ingredient;
 import ua.entity.Ms;
-import ua.validation.annotation.UniqueComponent;
 import ua.validation.flag.ComponentFlag;
 
 //@UniqueComponent(message = "Such a Component already exists", groups = { ComponentFlag.class})

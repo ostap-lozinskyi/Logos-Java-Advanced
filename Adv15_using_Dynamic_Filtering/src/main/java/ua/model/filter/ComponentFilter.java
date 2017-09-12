@@ -31,6 +31,7 @@ public class ComponentFilter {
 	}
 
 	public void setMinAmount(String minAmount) {
+		if(DECIMAL_PATTERN.matcher(minAmount).matches())
 		this.minAmount = minAmount;
 	}
 
@@ -39,6 +40,7 @@ public class ComponentFilter {
 	}
 
 	public void setMaxAmount(String maxAmount) {
+		if(DECIMAL_PATTERN.matcher(maxAmount).matches())
 		this.maxAmount = maxAmount;
 	}
 
