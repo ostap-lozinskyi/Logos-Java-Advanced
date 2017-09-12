@@ -14,6 +14,7 @@ import ua.model.request.MealRequest;
 import ua.model.view.ComponentView;
 import ua.model.view.MealIndexView;
 import ua.model.view.MealView;
+import ua.repository.CuisineRepository;
 import ua.repository.MealRepository;
 import ua.repository.MealViewRepository;
 import ua.service.MealService;
@@ -24,16 +25,20 @@ public class MealServiceImpl implements MealService {
 	private final MealRepository repository;
 	
 	private final MealViewRepository mealViewrepository;
+	
+	private final CuisineRepository cuisineRepository;
 
 	@Autowired
-	public MealServiceImpl(MealRepository repository, MealViewRepository mealViewrepository) {
+	public MealServiceImpl(MealRepository repository, MealViewRepository mealViewrepository, 
+			CuisineRepository cuisineRepository) {
 		this.repository = repository;
 		this.mealViewrepository = mealViewrepository;
+		this.cuisineRepository = cuisineRepository;
 	}
 
 	@Override
 	public List<String> findAllcuisines() {
-		return repository.findAllCuisines();
+		return cuisineRepository.findAllNames();
 	}
 
 	@Override

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import ua.entity.Ingredient;
 import ua.model.filter.SimpleFilter;
-import ua.model.view.IngredientView;
 import ua.repository.IngredientRepository;
 import ua.service.IngredientService;
 
@@ -23,10 +22,10 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
 		this.repository = repository;
 	}
 
-	@Override
-	public Page<IngredientView> findAllView(Pageable pageable) {
-		return repository.findAllView(pageable);
-	}
+//	@Override
+//	public Page<IngredientView> findAllView(Pageable pageable) {
+//		return repository.findAllView(pageable);
+//	}
 
 	@Override
 	public Page<Ingredient> findAll(Pageable pageable, SimpleFilter filter) {

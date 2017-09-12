@@ -12,8 +12,8 @@ import ua.model.view.MealView;
 
 public interface MealRepository extends JpaNameRepository<Meal> {
 	
-	@Query("SELECT c.name FROM Cuisine c")
-	List<String> findAllCuisines();
+//	@Query("SELECT c.name FROM Cuisine c")
+//	List<String> findAllCuisines();
 	
 	@Query("SELECT new ua.model.view.ComponentView(com.id, i.name, com.amount, ms.name) FROM Component com JOIN com.ingredient i JOIN com.ms ms")
 	List<ComponentView> findAllComponentsView();
