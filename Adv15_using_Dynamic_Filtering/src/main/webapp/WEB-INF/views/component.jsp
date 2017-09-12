@@ -23,6 +23,7 @@
 		<div class="row">
 			<div class="col-12">				
 				<form:form action="/admin/component" method="POST" modelAttribute="component">
+					<custom:hiddenInputs excludeParams="name, _csrf"/>
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
 							<form:errors path="${componentRequest}" />
@@ -104,8 +105,8 @@
 					<div class="col-6 text-center">
 							<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
 							<div class="dropdown-menu">
-								<custom:sort innerHtml="Name asc" paramValue="amount"/>
-								<custom:sort innerHtml="Name desc" paramValue="amount,desc"/>
+								<custom:sort innerHtml="Amount asc" paramValue="amount"/>
+								<custom:sort innerHtml="Amount desc" paramValue="amount,desc"/>
 							</div>
 					</div>
 					<div class="col-6 text-center">

@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import ua.entity.Component;
 import ua.model.filter.SimpleFilter;
 import ua.model.request.ComponentRequest;
-import ua.model.view.ComponentView;
 
 public interface ComponentService {
 
@@ -16,7 +15,7 @@ public interface ComponentService {
 
 	List<String> findAllMss();
 
-	Page<ComponentView> findAllView(Pageable pageable);
+//	Page<ComponentView> findAllView(Pageable pageable);
 	
 	Page<Component> findAll(Pageable pageable, SimpleFilter filter);
 

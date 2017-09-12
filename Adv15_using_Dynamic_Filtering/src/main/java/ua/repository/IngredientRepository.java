@@ -1,6 +1,9 @@
 package ua.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 
 import ua.entity.Ingredient;
 
@@ -15,4 +18,7 @@ public interface IngredientRepository extends JpaNameRepository<Ingredient>, Jpa
 //	
 //	@Query("SELECT i FROM Ingredient i WHERE i.id=?1")
 //	Ingredient findOneRequest(Integer id);
+	
+	@Query("SELECT i.name FROM Ingredient i")
+	List<String> findAllNames();
 }

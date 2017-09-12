@@ -12,34 +12,42 @@ import org.springframework.stereotype.Service;
 import ua.entity.Component;
 import ua.model.filter.SimpleFilter;
 import ua.model.request.ComponentRequest;
-import ua.model.view.ComponentView;
 import ua.repository.ComponentRepository;
+import ua.repository.IngredientRepository;
+import ua.repository.MsRepository;
 import ua.service.ComponentService;
 
 @Service
 public class ComponentServiceImpl implements ComponentService {
 
 	private final ComponentRepository repository;
+	
+	private final IngredientRepository ingredientRepository;
+	
+	private final MsRepository msRepository;
 
 	@Autowired
-	public ComponentServiceImpl(ComponentRepository repository) {
+	public ComponentServiceImpl(ComponentRepository repository, IngredientRepository ingredientRepository,
+			MsRepository msRepository) {
 		this.repository = repository;
+		this.ingredientRepository = ingredientRepository;
+		this.msRepository = msRepository;
 	}
 
 	@Override
 	public List<String> findAllIngredients() {
-		return repository.findAllIngredients();
+		return ingredientRepository.findAllNames();
 	}
 
 	@Override
 	public List<String> findAllMss() {
-		return repository.findAllMss();
+		return msRepository.findAllNames();
 	}
 
-	@Override
-	public Page<ComponentView> findAllView(Pageable pageable) {
-		return repository.findAllView(pageable);
-	}
+//	@Override
+//	public Page<ComponentView> findAllView(Pageable pageable) {
+//		return repository.findAllView(pageable);
+//	}
 	
 	@Override
 	public Page<Component> findAll(Pageable pageable, SimpleFilter filter) {
