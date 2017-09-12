@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import ua.entity.Cuisine;
 import ua.model.view.CuisineView;
 
-public interface CuisineRepository extends JpaNameRepository<Cuisine>{
+public interface CuisineRepository extends JpaNameRepository<Cuisine>, JpaSpecificationExecutor<Cuisine> {
 		
 	@Query("SELECT new ua.model.view.CuisineView(c.id, c.name) FROM Cuisine c")
 	List<CuisineView> findAllView();

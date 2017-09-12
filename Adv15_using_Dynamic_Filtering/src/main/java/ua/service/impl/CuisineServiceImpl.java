@@ -3,10 +3,11 @@ package ua.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Cuisine;
-import ua.model.view.CuisineView;
+import ua.model.filter.SimpleFilter;
 import ua.repository.CuisineRepository;
 import ua.service.CuisineService;
 
@@ -22,8 +23,15 @@ public class CuisineServiceImpl extends CrudServiceImpl<Cuisine, Integer> implem
 	}	
 
 	@Override
-	public Page<CuisineView> findAll(Pageable pageable) {
-		return repository.findAllView(pageable);
+	public Page<Cuisine> findAll(Pageable pageable, SimpleFilter filter) {
+		return repository.findAll(filter(filter), pageable);
+	}
+	
+	private Specification<Cuisine> filter(SimpleFilter filter){
+		return (root, query, cb) -> {
+			if(filter.getSearch().isEmpty()) return null;
+			return cb.like(root.get("name"), filter.getSearch()+"%");
+		};
 	}
 
 }
