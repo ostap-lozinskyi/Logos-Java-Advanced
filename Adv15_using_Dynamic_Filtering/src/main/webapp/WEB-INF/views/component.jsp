@@ -23,7 +23,7 @@
 		<div class="row">
 			<div class="col-12">				
 				<form:form action="/admin/component" method="POST" modelAttribute="component">
-					<custom:hiddenInputs excludeParams="name, _csrf"/>
+					<custom:hiddenInputs excludeParams="amount, _csrf"/>
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
 							<form:errors path="${componentRequest}" />
