@@ -32,7 +32,7 @@
 			</div>
 			<div class="col-10">
 				<form:form action="/admin/meal" method="POST" modelAttribute="meal">
-					<custom:hiddenInputs excludeParams="name, _csrf"/>
+					<custom:hiddenInputs excludeParams="name, fullDescription, shortDescription, price, weight, _csrf"/>
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
 							<form:errors path="name" />
