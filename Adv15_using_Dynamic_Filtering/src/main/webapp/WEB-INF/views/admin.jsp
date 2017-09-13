@@ -28,6 +28,7 @@
 				</div>
 				<div class="row">
 					<a href="/">to Main Page</a>
+					<br><a href="/userCabinet">to User Cabinet</a>
 				</div>
 			</div>
 		</div>
