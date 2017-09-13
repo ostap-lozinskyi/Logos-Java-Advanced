@@ -50,7 +50,7 @@
 					</div>
 					<div class="form-group row">
 						<div class="col-12">
-							<form:checkboxes items="${cuisines}" path="cuisinesIds" element="div" />
+							<form:checkboxes items="${cuisines}" path="cuisineName" element="div" />
 						</div>
 					</div>
 					<div class="form-group row">

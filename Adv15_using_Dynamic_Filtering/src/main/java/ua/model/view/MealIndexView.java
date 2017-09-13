@@ -20,7 +20,7 @@ public class MealIndexView {
 	
 	private String shortDescription;
 	
-	public MealIndexView(Integer id, String photoUrl, int version, BigDecimal rate, BigDecimal price, int weight,
+	public MealIndexView(Integer id, String photoUrl, Integer version, BigDecimal rate, BigDecimal price, Integer weight,
 			String name, String shortDescription) {
 		super();
 		this.id = id;
