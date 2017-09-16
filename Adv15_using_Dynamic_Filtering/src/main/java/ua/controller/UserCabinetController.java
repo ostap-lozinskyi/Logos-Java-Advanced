@@ -12,19 +12,28 @@ import ua.entity.User;
 import ua.model.filter.MealFilter;
 import ua.model.request.FileRequest;
 import ua.service.FileWriter;
+import ua.service.UserService;
 
 @Controller
 public class UserCabinetController {
 	
 	private final FileWriter writer;
 	
-	public UserCabinetController(FileWriter writer) {
+	private final UserService service;
+	
+	public UserCabinetController(FileWriter writer, UserService service) {
 		this.writer = writer;
+		this.service = service;
 	}
 
 	@ModelAttribute("fileRequest")
 	public FileRequest getForm() {
 		return new FileRequest();
+	}
+	
+	@ModelAttribute("user")
+	public User getPhotoUrl() {
+		return new User();
 	}
 
 	@GetMapping("/userCabinet")
@@ -34,8 +43,10 @@ public class UserCabinetController {
 	}
 
 	@PostMapping("/userCabinet")
-	public String saveFile(@ModelAttribute("fileRequest") FileRequest request) {
-		System.out.println(writer.write(request.getFile()));
+	public String saveFile(@ModelAttribute("fileRequest") FileRequest request, User user) {
+		String s=writer.write(request.getFile());
+		System.out.println(s);
+		service.savePhoto(s, user);
 		return "redirect:/userCabinet";
 	}
 	

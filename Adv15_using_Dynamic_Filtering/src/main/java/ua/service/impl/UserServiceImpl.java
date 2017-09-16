@@ -29,4 +29,10 @@ public class UserServiceImpl implements UserService{
 		user.setRole(Role.ROLE_CLIENT);
 		repository.save(user);
 	}
+	
+	@Override
+	public void savePhoto(String s, User user) {
+		user.setPhotoUrl(s);
+		repository.save(user);
+	}
 }
