@@ -17,7 +17,7 @@
 		<div class="row">
 			<div class="col-12">
 				<h1 class="text-center">User Cabinet</h1>
-				<img src="/img/28017160.jpg?version=${version}">
+				<img src="/img/завантаження.jpg?version=${version}">
 				<form:form action="/userCabinet" method="POST" modelAttribute="fileRequest" enctype="multipart/form-data">
 					<input name="file" type="file">
 					<button>Ok</button>

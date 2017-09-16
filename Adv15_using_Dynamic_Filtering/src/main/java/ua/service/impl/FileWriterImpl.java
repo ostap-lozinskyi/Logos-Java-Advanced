@@ -21,7 +21,7 @@ public class FileWriterImpl implements FileWriter{
 		try {
 			file.transferTo(fullPath);
 		} catch (IllegalStateException | IOException e) {
-			return null;
+			e.printStackTrace();
 		}
 		return file.getOriginalFilename();
 	}
