@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ua.entity.Role;
 import ua.entity.User;
 import ua.model.request.RegistrationRequest;
+import ua.model.request.UserPhotoRequest;
 import ua.repository.UserRepository;
 import ua.service.UserService;
 
@@ -27,12 +28,29 @@ public class UserServiceImpl implements UserService{
 		user.setEmail(request.getEmail());
 		user.setPassword(encoder.encode(request.getPassword()));
 		user.setRole(Role.ROLE_CLIENT);
-		repository.save(user);
+		user.setPhotoUrl(request.getPhotoUrl());		
+		repository.save(user);		
 	}
 	
 	@Override
-	public void savePhoto(String s, User user) {
-		user.setPhotoUrl(s);
-		repository.save(user);
+	public void savePhotoUrl(UserPhotoRequest request, String photoUrl, User user) {
+		user.setId(request.getId());
+		user.setEmail(request.getEmail());
+		user.setPassword(encoder.encode(request.getPassword()));
+		user.setRole(request.getRole());
+		user.setPhotoUrl(request.getPhotoUrl());		
+		repository.save(user);		
+	}	
+
+	@Override
+	public UserPhotoRequest findOneRequest(User user) {		
+		UserPhotoRequest request = new UserPhotoRequest();
+		request.setId(user.getId());
+		request.setEmail(user.getEmail());
+//		request.setPassword(user.getPassword());
+		request.setRole(user.getRole());
+		request.setPhotoUrl(user.getPhotoUrl());
+		return request;
 	}
+
 }

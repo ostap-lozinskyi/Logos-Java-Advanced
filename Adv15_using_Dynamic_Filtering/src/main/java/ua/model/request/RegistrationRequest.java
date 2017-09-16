@@ -10,7 +10,7 @@ import ua.validation.flag.UserFlag;
 
 @PasswordsEqual(message="Password does not match", groups = { UserFlag.class })
 public class RegistrationRequest {
-
+	
 	@UniqueUser(message = "Such an user already exists", groups = UserFlag.class)
 	@NotBlank(message = "This field cannot be blank", groups = { UserFlag.class })
 	@Pattern(regexp = "^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}| *$", message = "Enter valid email", groups = {
@@ -23,6 +23,8 @@ public class RegistrationRequest {
 
 	@NotBlank(message = "This field cannot be blank", groups = { UserFlag.class })
 	private String repeatPassword;
+	
+	private String photoUrl;
 
 	public String getEmail() {
 		return email;
@@ -47,4 +49,13 @@ public class RegistrationRequest {
 	public void setRepeatPassword(String repeatPassword) {
 		this.repeatPassword = repeatPassword;
 	}
+
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
+	}
+	
 }

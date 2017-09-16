@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ua.entity.User;
 import ua.model.filter.MealFilter;
 import ua.model.request.FileRequest;
+import ua.model.request.UserPhotoRequest;
 import ua.service.FileWriter;
 import ua.service.UserService;
 
@@ -43,10 +44,10 @@ public class UserCabinetController {
 	}
 
 	@PostMapping("/userCabinet")
-	public String saveFile(@ModelAttribute("fileRequest") FileRequest request, User user) {
+	public String saveFile(Model model, @ModelAttribute("fileRequest") FileRequest request, UserPhotoRequest userPhotoRequest, User user) {
 		String s=writer.write(request.getFile());
-		System.out.println(s);
-		service.savePhoto(s, user);
+		model.addAttribute("user", service.findOneRequest(user));
+		service.savePhotoUrl(userPhotoRequest, s, user);
 		return "redirect:/userCabinet";
 	}
 	
