@@ -21,6 +21,26 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-12">
+				<div class="text-center">
+				<div class="btn-group text-center" role="group" aria-label="Basic example">
+					<a class="btn btn-outline-primary" href="/">Main Page</a>
+					<a class="btn btn-outline-primary" href="/admin">Admin</a>
+					<a class="btn btn-outline-primary" href="/userCabinet">Admin Cabinet</a>
+					<a class="btn btn-outline-primary" href="/admin/ingredient">Ingredient</a>
+					<a class="btn btn-outline-primary" href="/admin/ms">Ms</a>
+					<a class="btn btn-outline-primary" href="/admin/component">Component</a>
+					<a class="btn btn-outline-primary" href="/admin/cuisine">Cuisine</a>
+					<a class="btn btn-outline-primary" href="/admin/meal">Meal</a>
+					<a class="btn btn-outline-primary" href="/admin/mealPhotoUpdate">Meal Photo Updade</a>
+					<a class="btn btn-outline-primary" href="/admin/order">Order</a>
+					<a class="btn btn-outline-primary" href="/admin/place">Place</a>
+				</div>
+				</div>				
+			</div>
+		</div>
+		<br>
+		<div class="row">
 			<div class="col-2">
 				<form:form action="/admin/meal" method="GET" modelAttribute="filter">
 					<div class="form-group row">
@@ -146,8 +166,6 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<a href="/admin">to Admin</a>
-				<a href="/admin/mealPhotoUpdate">to Meal Update Photo</a>
 			</div>
 			<div class="col-3">
 				<div class="row">

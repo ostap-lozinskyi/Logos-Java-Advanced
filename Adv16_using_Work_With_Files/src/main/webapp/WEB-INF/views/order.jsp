@@ -18,6 +18,30 @@
 		<div class="row">
 			<div class="col-12">
 				<h1 class="text-center">Order</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="text-center">
+				<div class="btn-group text-center" role="group" aria-label="Basic example">
+					<a class="btn btn-outline-primary" href="/">Main Page</a>
+					<a class="btn btn-outline-primary" href="/admin">Admin</a>
+					<a class="btn btn-outline-primary" href="/userCabinet">Admin Cabinet</a>
+					<a class="btn btn-outline-primary" href="/admin/ingredient">Ingredient</a>
+					<a class="btn btn-outline-primary" href="/admin/ms">Ms</a>
+					<a class="btn btn-outline-primary" href="/admin/component">Component</a>
+					<a class="btn btn-outline-primary" href="/admin/cuisine">Cuisine</a>
+					<a class="btn btn-outline-primary" href="/admin/meal">Meal</a>
+					<a class="btn btn-outline-primary" href="/admin/mealPhotoUpdate">Meal Photo Updade</a>
+					<a class="btn btn-outline-primary" href="/admin/order">Order</a>
+					<a class="btn btn-outline-primary" href="/admin/place">Place</a>
+				</div>
+				</div>				
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-12">
 				<form:form action="/admin/order" method="POST" modelAttribute="order">
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
@@ -72,7 +96,6 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<a href="/admin">Admin</a>
 			</div>
 		</div>
 		<div class="row">
