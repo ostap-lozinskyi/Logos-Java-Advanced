@@ -1,5 +1,7 @@
 package ua.controller;
 
+import java.security.Principal;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ua.entity.User;
 import ua.model.filter.MealFilter;
 import ua.model.request.FileRequest;
-import ua.model.request.UserPhotoRequest;
+import ua.model.request.RegistrationRequest;
+import ua.repository.UserRepository;
 import ua.service.FileWriter;
 import ua.service.UserService;
 
@@ -22,9 +25,14 @@ public class UserCabinetController {
 	
 	private final UserService service;
 	
-	public UserCabinetController(FileWriter writer, UserService service) {
+	private final UserRepository userRepository;
+	
+	private String photoUrl;
+	
+	public UserCabinetController(FileWriter writer, UserService service, UserRepository userRepository) {
 		this.writer = writer;
 		this.service = service;
+		this.userRepository = userRepository;
 	}
 
 	@ModelAttribute("fileRequest")
@@ -32,22 +40,26 @@ public class UserCabinetController {
 		return new FileRequest();
 	}
 	
-	@ModelAttribute("user")
-	public User getPhotoUrl() {
-		return new User();
-	}
-
 	@GetMapping("/userCabinet")
-	public String userCabinet(Model model, User user, @ModelAttribute("mealFilter") MealFilter filter,
-			@PageableDefault Pageable pageable) {
+	public String userCabinet(Model model, Principal principal) {
+		String email=principal.getName();
+		System.out.println(principal.getName());
+		User user = userRepository.findByEmail(email);
+		
+		model.addAttribute("user", user.getPhotoUrl());
+		//System.out.println(user.getPhotoUrl());
 		return "userCabinet";
 	}
 
 	@PostMapping("/userCabinet")
-	public String saveFile(Model model, @ModelAttribute("fileRequest") FileRequest request, UserPhotoRequest userPhotoRequest, User user) {
+	public String saveFile(Model model, @ModelAttribute("fileRequest") FileRequest request,
+			RegistrationRequest registrationRequest, Principal principal) {
 		String s=writer.write(request.getFile());
-		model.addAttribute("user", service.findOneRequest(user));
-		service.savePhotoUrl(userPhotoRequest, s, user);
+		photoUrl=s;
+		//model.addAttribute("user", s);
+		//System.out.println(user.getPhotoUrl());
+		
+		service.savePhoto(principal, s);
 		return "redirect:/userCabinet";
 	}
 	

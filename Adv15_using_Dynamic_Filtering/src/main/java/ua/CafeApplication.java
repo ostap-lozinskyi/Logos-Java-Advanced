@@ -2,6 +2,7 @@ package ua;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
@@ -14,6 +15,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import ua.argument.resolver.UserMethodHandlerArgumentResolver;
 import ua.entity.Role;
 import ua.entity.User;
 import ua.repository.UserRepository;
@@ -29,6 +31,9 @@ public class CafeApplication extends WebMvcConfigurerAdapter {
 		ConfigurableApplicationContext run = SpringApplication.run(CafeApplication.class, args);
 		addAdmin(run);
 	}
+	
+	@Autowired
+	UserMethodHandlerArgumentResolver userResolver;
 
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {

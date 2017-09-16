@@ -1,15 +1,12 @@
 package ua.service;
 
-import ua.entity.User;
+import java.security.Principal;
+
 import ua.model.request.RegistrationRequest;
-import ua.model.request.UserPhotoRequest;
 
 public interface UserService {
 
 	void save(RegistrationRequest request);
-	
-	void savePhotoUrl(UserPhotoRequest request, String photoUrl,  User user);
 
-	UserPhotoRequest findOneRequest(User user);
-	
+	void savePhoto(Principal principal, String photoUrl);
 }
