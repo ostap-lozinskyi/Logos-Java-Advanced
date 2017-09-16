@@ -41,6 +41,9 @@
                                             <div class="login"> <a class="transparent_btn entry" href="/login">Login</a> </div>
                                             <div class="login"> <a class="transparent_btn entry" href="/registration">Register</a> </div>
                                         </sec:authorize>
+                                        <sec:authorize access="hasRole('ROLE_CLIENT')">
+                                            <div class="login"> <a class="transparent_btn entry" href="/userCabinet" >Cabinet</a> </div>
+                                        </sec:authorize>
                                         <sec:authorize access="hasRole('ROLE_ADMIN')">
                                             <div class="login"> <a class="transparent_btn entry" href="/admin" >Admin</a> </div>
                                         </sec:authorize>
@@ -213,7 +216,7 @@
                     <!--FOOTER!-->
                     <a class="scroll-top" href="javascript:;" style="display: none;"></a>
                     <!--relations!-->
-                    <script src="resources/js/9f1951474454579b5748d0ff2d3c5c9a38014687387.js"></script>
+                    <script src="resources/js/9f1951474454579b5748d0ff2d3c5c9a38014687387.js"></script>                    
                 </body>
 
                 </html>

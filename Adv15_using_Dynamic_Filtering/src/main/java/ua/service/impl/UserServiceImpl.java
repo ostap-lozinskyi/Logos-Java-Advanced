@@ -34,11 +34,15 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public void savePhoto(Principal principal, String photoUrl) {
+	public void updatePhotoUrl(Principal principal, String photoUrl) {
 		String email=principal.getName();
 		User user = repository.findByEmail(email);
 		user.setPhotoUrl(photoUrl);		
 		repository.save(user);		
 	}
+	
+	public User findByEmail(String email) {
+		return repository.findByEmail(email);
+	};
 	
 }
