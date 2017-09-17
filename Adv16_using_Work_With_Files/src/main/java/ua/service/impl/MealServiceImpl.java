@@ -105,9 +105,15 @@ public class MealServiceImpl implements MealService {
 	}
 	
 	@Override
-	public void updatePhotoUrl(Integer id, String photoUrl) {
+	public void updatePhotoUrl(Integer id, String newPhotoUrl) {
 		Meal meal = repository.findById(id);
-		meal.setPhotoUrl(photoUrl);		
+		String oldPhotoUrl=meal.getPhotoUrl();
+		if (oldPhotoUrl.equals(newPhotoUrl)) {			
+			meal.setVersion(meal.getVersion()+1);
+		} else {
+			meal.setVersion(0);
+		}
+		meal.setPhotoUrl(newPhotoUrl);
 		repository.save(meal);		
 	}
 	

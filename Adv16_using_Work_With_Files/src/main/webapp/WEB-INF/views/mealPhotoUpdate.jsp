@@ -42,26 +42,17 @@
 		<div class="row">
 			<div class="col-9">
 				<table class="table table-bordered">
-					<tr>
-						<th class="text-center">Name</th>
-						<th class="text-center">Full Description</th>
-						<th class="text-center">Price</th>
-						<th class="text-center">Weight</th>
-						<th class="text-center">Cuisine</th>
-						<th class="text-center">Options</th>
-					</tr>
 					<c:forEach var="meal" items="${meals.content}">
 						<div class="row">
 							<div class="col-2">${meal.name}</div>
 							<div class="col-2">${meal.fullDescription}</div>
 							<div class="col-2">${meal.price}</div>
-							<div class="col-2">${meal.weight}</div>
-							<div class="col-2">${meal.cuisine.name}</div>
 							<div class="col-2 class=text-center">
-								<img src="/img/${meal.photoUrl}?version=${version}" style="height: 200px;">
+								<img src="/img/${meal.photoUrl}?version=${meal.version}" style="width: 100px;">
+							</div>
+							<div class="col-2 class=text-center">								
 							 	<form:form action="/admin/mealPhotoUpdate/${meal.id}" method="POST" modelAttribute="fileRequest" enctype="multipart/form-data">
 									<input name="file" type="file">
-									<br>
 									<br><button>Ok</button>
 								</form:form>
 							</div>

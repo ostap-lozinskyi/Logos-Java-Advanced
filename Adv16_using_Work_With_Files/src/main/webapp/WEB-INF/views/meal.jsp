@@ -142,8 +142,21 @@
 				</form:form>
 			</div>
 		</div>
+		<div class="row">				
+			<div class="col-2 text-center">
+				<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
+				<div class="dropdown-menu">
+					<custom:sort innerHtml="Name asc" paramValue="name"/>
+					<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
+				</div>
+			</div>
+			<div class="col-2 text-center">
+				<custom:size posibleSizes="1,2,5,10" size="${meals.size}" />
+			</div>			
+		</div>
+		<br>
 		<div class="row">
-			<div class="col-9">
+			<div class="col-12">
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Name</th>
@@ -166,21 +179,6 @@
 						</tr>
 					</c:forEach>
 				</table>
-			</div>
-			<div class="col-3">
-				<div class="row">
-					<div class="col-6 text-center">
-							<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort
-							</button>
-							<div class="dropdown-menu">
-								<custom:sort innerHtml="Name asc" paramValue="name"/>
-								<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
-							</div>
-					</div>
-					<div class="col-6 text-center">
-						<custom:size posibleSizes="1,2,5,10" size="${meals.size}" />
-					</div>
-				</div>
 			</div>
 		</div>
 		<div class="row">

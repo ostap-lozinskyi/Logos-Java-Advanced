@@ -34,20 +34,16 @@ public class MealPhotoUpdateController {
 	}
 	
 	@GetMapping("/admin/mealPhotoUpdate")
-	public String mealPhotoUpdate(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
+	public String mealPhotoUpdate(Model model, @PageableDefault Pageable pageable, 
+			@ModelAttribute("filter") SimpleFilter filter) {
 		model.addAttribute("meals", service.findAll(pageable, filter));
-//		String email=principal.getName();
-//		System.out.println(principal.getName());
-//		User user = service.findByEmail(email);		
-//		model.addAttribute("user", user.getPhotoUrl());
 		return "mealPhotoUpdate";
 	}
 
 	@PostMapping("/admin/mealPhotoUpdate/{id}")
-	public String saveFile(@PathVariable Integer id, Model model, @ModelAttribute("fileRequest") FileRequest request,
-			Principal principal) {
+	public String saveFile(@PathVariable Integer id, Model model, 
+			@ModelAttribute("fileRequest") FileRequest request,	Principal principal) {
 		String photoUrl=writer.write(request.getFile());
-//		String mealName = service.findById(id).getName();
 		service.updatePhotoUrl(id, photoUrl);
 		return "redirect:/admin/mealPhotoUpdate";
 	}
