@@ -1,5 +1,6 @@
 package ua.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -29,6 +30,8 @@ public interface MealService {
 	void delete(Integer id);
 	
 	void updatePhotoUrl(Integer id, String photoUrl);
+	
+	void updateRate(Integer id, BigDecimal newRate);
 	
 	Meal findById(Integer id);
 

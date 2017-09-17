@@ -1,11 +1,16 @@
 package ua.controller;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.model.filter.MealFilter;
 import ua.service.MealService;
@@ -30,5 +35,11 @@ public class MealMenuController {
 		model.addAttribute("cuisines", service.findAllcuisines());
 		return "mealMenu";
 	}	
+	
+	@PostMapping("/mealMenu/{id}")
+	public String updateRate(@PathVariable Integer id, Model model,	@RequestParam BigDecimal rate) {
+		service.updateRate(id, rate);
+		return "redirect:/mealMenu";
+	}
 	
 }

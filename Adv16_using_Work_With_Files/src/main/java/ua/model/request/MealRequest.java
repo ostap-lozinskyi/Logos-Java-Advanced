@@ -51,6 +51,8 @@ public class MealRequest {
 	private List<Component> components = new ArrayList<>();
 	
 	private String photoUrl;
+	
+	private String rate;
 
 	public Integer getId() {
 		return id;
@@ -124,4 +126,12 @@ public class MealRequest {
 		this.components = components;
 	}
 
+	public String getRate() {
+		return rate;
+	}
+
+	public void setRate(String rate) {
+		this.rate = rate;
+	}
+	
 }
