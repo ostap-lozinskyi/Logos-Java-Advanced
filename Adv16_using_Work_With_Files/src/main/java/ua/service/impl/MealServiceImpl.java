@@ -78,9 +78,7 @@ public class MealServiceImpl implements MealService {
 		meal.setName(request.getName());
 		meal.setPrice(new BigDecimal(request.getPrice()));
 		meal.setWeight(Integer.valueOf(request.getWeight()));
-		meal.setPhotoUrl(request.getPhotoUrl());
 		meal.setComponents(request.getComponents());
-		meal.setRate(new BigDecimal(request.getRate()));
 		repository.save(meal);
 	}
 
@@ -95,9 +93,7 @@ public class MealServiceImpl implements MealService {
 		request.setName(meal.getName());
 		request.setPrice(meal.getPrice().toString());
 		request.setWeight(String.valueOf(meal.getWeight()));
-		request.setPhotoUrl(meal.getPhotoUrl());
 		request.setComponents(meal.getComponents());
-		request.setRate(String.valueOf(meal.getRate()));
 		return request;
 	}
 
@@ -110,7 +106,7 @@ public class MealServiceImpl implements MealService {
 	public void updatePhotoUrl(Integer id, String newPhotoUrl) {
 		Meal meal = repository.findById(id);
 		String oldPhotoUrl=meal.getPhotoUrl();
-		if (oldPhotoUrl.equals(newPhotoUrl)) {			
+		if ((oldPhotoUrl != null)&&(oldPhotoUrl.equals(newPhotoUrl))) {			
 			meal.setVersion(meal.getVersion()+1);
 		} else {
 			meal.setVersion(0);
