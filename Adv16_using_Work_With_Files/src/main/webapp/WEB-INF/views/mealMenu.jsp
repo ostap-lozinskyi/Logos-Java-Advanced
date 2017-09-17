@@ -86,8 +86,9 @@
 								href=""
 								class="btn btn-outline-success btn-sm">Order</a> 
 							</td>
-							<td>
+							<td>								
 								<form:form action="/mealMenu/${meal.id}" method="POST" modelAttribute="meal">
+								current rate=${meal.rate}
 									<div class="star-rating">
 								      	<div class="star-rating__wrap">
 									        <input class="star-rating__input fa" id="star-rating-5" type="radio" name="rate" value="5" title="5 out of 5 stars">
@@ -97,7 +98,7 @@
 									        <input class="star-rating__input fa" id="star-rating-1" type="radio" name="rate" value="1" title="1 out of 5 stars">
 		      							</div>
     								</div>
-    								<br><button>Ok</button>
+    								<button>Ok</button>
     							</form:form>  						
 							</td>
 						</tr>
