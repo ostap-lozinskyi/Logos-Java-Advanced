@@ -70,7 +70,11 @@
                     <!--section!-->
                     <div style="background: url(resources/img/fon2.jpg); height: 1214px;">
                         <div class="container container_main_restaurnt">
-                            <div class="section_headline">Menu</div>
+                            <div class="row">
+                                <div class="col-12 center">
+                                    <br><h1>Menu</h1>
+                                </div>
+                            </div>                            
                             <div class="section_branch"></div>
                             <!--carousel!-->
                             <div>
