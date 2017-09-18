@@ -22,38 +22,41 @@
                         <div class="content">
                             <div class="container">
                                 <div class="row row_home">
-                                    <div class="col-xs-4 header_column">
-                                        <div class="tel">
-                                            <p class="feedback_link_home">Contact us</p>
-                                            <p class="tel_link tel_link_home"> +380 <span class="point point_home">•</span> 67 <span class="point point_home">•</span> 67 <span class="point point_home">•</span> 55 <span class="point point_home">•</span> 230</p>
-                                            <div class="clear"></div>
-                                        </div>
+                                    <div class="col-4 header_column">                                           
+                                        <p class="feedback_link_home">Contact us</p>
+                                        <p class="tel_link tel_link_home"> +380 <span class="point point_home">•</span> 67 <span class="point point_home">•</span> 67 <span class="point point_home">•</span> 55 <span class="point point_home">•</span> 230</p>
                                     </div>
-                                    <div class="col-xs-4 header_column center">
+                                    <div class="col-4 header_column center">
                                         <div class="logo">
                                             <a href="/"><img src="resources/img/cafe-logo.png" alt="Cafe" title="Cafe"></a>
                                         </div>
                                     </div>
-                                    <div class="col-xs-4 header_column">
+                                    <div class="col-4 header_column">
                                         <h1 class="text-center">${message}</h1>
                                         <br>
-                                        <sec:authorize access="isAnonymous()">
-                                            <div class="login"> <a class="transparent_btn entry" href="/login">Login</a> </div>
-                                            <div class="login"> <a class="transparent_btn entry" href="/registration">Register</a> </div>
-                                        </sec:authorize>
-                                        <sec:authorize access="hasRole('ROLE_CLIENT')">
-                                            <div class="login"> <a class="transparent_btn entry" href="/userCabinet" >Cabinet</a> </div>
-                                        </sec:authorize>
-                                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                            <div class="login"> <a class="transparent_btn entry" href="/admin" >Admin</a> </div>
-                                        </sec:authorize>
-                                        <sec:authorize access="isAuthenticated()">
-                                            <div class="login">
-                                                <form:form action="/logout">
-                                                    <button class="transparent_btn entry">Logout</button>
-                                                </form:form>
+                                        <div class="row">
+                                            <div class="col-4 ml-auto">
+                                                <sec:authorize access="isAnonymous()">
+                                                    <a class="transparent_btn entry" href="/registration">Register</a> 
+                                                </sec:authorize>
+                                                <sec:authorize access="hasRole('ROLE_CLIENT')">
+                                                    <a class="transparent_btn entry" href="/userCabinet" >Cabinet</a>
+                                                </sec:authorize>
+                                                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                                    <a class="transparent_btn entry" href="/admin" >Admin</a>
+                                                </sec:authorize>
                                             </div>
-                                        </sec:authorize>
+                                            <div class="col-6">
+                                                <sec:authorize access="isAnonymous()">
+                                                    <a class="transparent_btn entry" href="/login">Login</a>                                              
+                                                </sec:authorize>
+                                                <sec:authorize access="isAuthenticated()">
+                                                    <form:form action="/logout">
+                                                        <button class="transparent_btn entry">Logout</button>
+                                                    </form:form>
+                                                </sec:authorize>
+                                            </div>
+                                        </div>                                        
                                     </div>
                                 </div>
                                 <div class="row center">
@@ -197,9 +200,9 @@
                     <!--section!-->
                     <!--map!-->
                     <br>
-                    <div class="col-xs-12 center">
+                    <div class="col-12 center">
                         <h2>Find us</h2> </div>
-                    <div class="col-xs-12 center">
+                    <div class="col-12 center">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29112.343557341348!2d23.992958218503922!3d49.83885086658292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add67a0879827%3A0xc68944e5293256f2!2sIT+Academy+Logos!5e0!3m2!1suk!2sua!4v1504697969891" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </div>
                     <!--map!-->
@@ -207,14 +210,14 @@
                     <!--FOOTER!-->
                     <footer>
                         <div class="container">
-                            <div class="col-xs-12 center">
+                            <div class="col-12 center">
                                 <div class="copyright">
                                     <p>&copy; 2017 Ostap Lozinskyj
                                         <br>All trademarks and registered trademarks appearing on this site are the property of their respective owners.</p>
                                 </div>
                             </div>
-                            <div class="col-xs-6 center"> Made with support: </div>
-                            <div class="col-xs-6 center"> <img src="resources/img/logos.png" style="background: gray; height: 50px;"> </div>
+                            <div class="col-6 center"> Made with support: </div>
+                            <div class="col-6 center"> <img src="resources/img/logos.png" style="background: gray; height: 50px;"> </div>
                         </div>
                     </footer>
                     <!--FOOTER!-->
