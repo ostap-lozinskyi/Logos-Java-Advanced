@@ -20,6 +20,10 @@ public class Meal extends AbstractEntityName {
 	private int version;
 
 	private BigDecimal rate;
+	
+	private int votesAmount;
+	
+	private int votesCount;
 
 	private String fullDescription;
 
@@ -82,6 +86,22 @@ public class Meal extends AbstractEntityName {
 
 	public void setRate(BigDecimal rate) {
 		this.rate = rate;
+	}
+
+	public int getVotesAmount() {
+		return votesAmount;
+	}
+
+	public void setVotesAmount(int votesAmount) {
+		this.votesAmount = votesAmount;
+	}
+
+	public int getVotesCount() {
+		return votesCount;
+	}
+
+	public void setVotesCount(int votesCount) {
+		this.votesCount = votesCount;
 	}
 
 	public String getFullDescription() {

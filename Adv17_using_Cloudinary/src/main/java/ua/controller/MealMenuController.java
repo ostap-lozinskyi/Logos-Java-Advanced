@@ -37,7 +37,7 @@ public class MealMenuController {
 	}	
 	
 	@PostMapping("/mealMenu/{id}")
-	public String updateRate(@PathVariable Integer id, Model model,	@RequestParam BigDecimal rate) {
+	public String updateRate(@PathVariable Integer id, Model model,	@RequestParam Integer rate) {
 		service.updateRate(id, rate);
 		return "redirect:/mealMenu";
 	}

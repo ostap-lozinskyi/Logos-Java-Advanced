@@ -118,9 +118,15 @@ public class MealServiceImpl implements MealService {
 	}
 	
 	@Override
-	public void updateRate(Integer id, BigDecimal newRate) {
+	public void updateRate(Integer id, Integer newRate) {
 		Meal meal = repository.findById(id);
-		meal.setRate(newRate);
+		meal.setVotesCount(meal.getVotesCount()+1);
+		meal.setVotesAmount(meal.getVotesAmount()+newRate);
+		repository.save(meal);
+		int votesAmount=meal.getVotesAmount();
+		int votesCount=meal.getVotesCount();
+		BigDecimal saveRate=new BigDecimal(votesAmount/votesCount);
+		meal.setRate(saveRate);		
 		repository.save(meal);		
 	}
 	
