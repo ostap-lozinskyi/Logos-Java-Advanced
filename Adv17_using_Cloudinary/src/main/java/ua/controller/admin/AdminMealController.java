@@ -2,8 +2,6 @@ package ua.controller.admin;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.Principal;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.cloudinary.Cloudinary;
+import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
 
 import ua.model.filter.SimpleFilter;
@@ -43,10 +41,8 @@ public class AdminMealController {
 
 	private final MealService service;
 	
-	Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-			  "cloud_name", "hd4ylyjwf",
-			  "api_key", "586222771451182",
-			  "api_secret", "PonTilBATnfz9KBBhUkgulzmemE"));
+	@Value("${cloudinary.url}")
+	Cloudinary cloudinary = new Cloudinary();
 	
 	@Value("${file.path}")
 	private String path;
@@ -118,14 +114,14 @@ public class AdminMealController {
 			@ModelAttribute("filter") SimpleFilter filter, @ModelAttribute("fileRequest") FileRequest request) {
 		String photoUrl=writer.write(request.getFile());
 		File toUpload = new File(path+photoUrl);
-		Map<String, String> uploadResult= new HashMap<>();
 		try {
-			uploadResult = cloudinary.uploader().upload(toUpload, ObjectUtils.emptyMap());
+			@SuppressWarnings("rawtypes")
+			Map	uploadResult = cloudinary.uploader().upload(toUpload, ObjectUtils.emptyMap());
+			String cloudinaryUrl = (String) uploadResult.get("url");
+			service.updatePhotoUrl(id, cloudinaryUrl);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		String cloudinaryUrl = uploadResult.get("url");
-		service.updatePhotoUrl(id, cloudinaryUrl);
+		}		
 		return "redirect:/admin/meal"+buildParams(pageable, filter);
 	}
 	
