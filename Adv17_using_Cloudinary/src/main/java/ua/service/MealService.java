@@ -28,7 +28,7 @@ public interface MealService {
 
 	void delete(Integer id);
 	
-	void updatePhotoUrl(Integer id, String photoUrl);
+//	void updatePhotoUrl(Integer id, String photoUrl);
 	
 	void updateRate(Integer id, Integer newRate);
 	

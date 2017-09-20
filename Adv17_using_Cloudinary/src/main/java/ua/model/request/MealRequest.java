@@ -52,6 +52,8 @@ public class MealRequest {
 	
 	private String photoUrl;
 	
+	private int version;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -122,6 +124,14 @@ public class MealRequest {
 
 	public void setPhotoUrl(String photoUrl) {
 		this.photoUrl = photoUrl;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 	
 }

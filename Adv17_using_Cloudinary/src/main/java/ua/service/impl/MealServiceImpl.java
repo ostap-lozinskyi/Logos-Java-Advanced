@@ -80,6 +80,7 @@ public class MealServiceImpl implements MealService {
 		meal.setWeight(Integer.valueOf(request.getWeight()));
 		meal.setComponents(request.getComponents());
 		meal.setPhotoUrl(request.getPhotoUrl());
+		meal.setVersion(request.getVersion());
 		repository.save(meal);
 	}
 
@@ -96,6 +97,7 @@ public class MealServiceImpl implements MealService {
 		request.setWeight(String.valueOf(meal.getWeight()));
 		request.setComponents(meal.getComponents());
 		request.setPhotoUrl(meal.getPhotoUrl());
+		request.setVersion(meal.getVersion());
 		return request;
 	}
 
@@ -104,18 +106,18 @@ public class MealServiceImpl implements MealService {
 		repository.delete(id);
 	}
 	
-	@Override
-	public void updatePhotoUrl(Integer id, String newPhotoUrl) {
-		Meal meal = repository.findById(id);
-		String oldPhotoUrl=meal.getPhotoUrl();
-		if ((oldPhotoUrl != null)&&(oldPhotoUrl.equals(newPhotoUrl))) {			
-			meal.setVersion(meal.getVersion()+1);
-		} else {
-			meal.setVersion(0);
-		}
-		meal.setPhotoUrl(newPhotoUrl);
-		repository.save(meal);		
-	}
+//	@Override
+//	public void updatePhotoUrl(Integer id, String newPhotoUrl) {
+//		Meal meal = repository.findById(id);
+//		String oldPhotoUrl=meal.getPhotoUrl();
+//		if ((oldPhotoUrl != null)&&(oldPhotoUrl.equals(newPhotoUrl))) {			
+//			meal.setVersion(meal.getVersion()+1);
+//		} else {
+//			meal.setVersion(0);
+//		}
+//		meal.setPhotoUrl(newPhotoUrl);
+//		repository.save(meal);		
+//	}
 	
 	@Override
 	public void updateRate(Integer id, Integer newRate) {

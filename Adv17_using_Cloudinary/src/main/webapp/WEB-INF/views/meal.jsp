@@ -50,7 +50,7 @@
 				</form:form>
 			</div>
 			<div class="col-10">
-				<form:form action="/admin/meal" method="POST" modelAttribute="meal">
+				<form:form action="/admin/meal" method="POST" modelAttribute="meal" enctype="multipart/form-data">
 					<custom:hiddenInputs excludeParams="name, fullDescription, shortDescription, price, weight, _csrf"/>
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
@@ -133,6 +133,12 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label class="col-2 col-form-label" for="file">Photo:</label>
+						<div class="col-10">
+							<input name="file" type="file">
+						</div>
+					</div>
+					<div class="form-group row">
 						<div class="col-8 mr-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
 							<a href="/admin/meal/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
@@ -165,7 +171,6 @@
 						<th class="text-center">Cuisine</th>
 						<th class="text-center">Options</th>
 						<th class="text-center">Photo</th>
-						<th class="text-center">Upload</th>
 					</tr>
 					<c:forEach var="meal" items="${meals.content}">
 						<tr>
@@ -181,12 +186,12 @@
 							<td class="text-center">
 								<img src="${meal.photoUrl}?version=${meal.version}" style="width: 100px;">
 							</td>
-							<td>
-								<form:form action="/admin/meal/photoUpdate/${meal.id}" method="POST" modelAttribute="fileRequest" enctype="multipart/form-data">
-									<input name="file" type="file">
-									<button>Ok</button>
-								</form:form>
-							</td>
+<!-- 							<td> -->
+<%-- 								<form:form action="/admin/meal/photoUpdate/${meal.id}" method="POST" modelAttribute="fileRequest" enctype="multipart/form-data"> --%>
+<!-- 									<input name="file" type="file"> -->
+<!-- 									<button>Ok</button> -->
+<%-- 								</form:form> --%>
+<!-- 							</td> -->
 						</tr>
 					</c:forEach>
 				</table>
