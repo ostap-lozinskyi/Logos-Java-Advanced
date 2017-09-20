@@ -1,6 +1,13 @@
 package ua.controller.admin;
 
+import java.io.File;
+import java.io.IOException;
+import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -17,8 +24,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+
 import ua.model.filter.SimpleFilter;
+import ua.model.request.FileRequest;
 import ua.model.request.MealRequest;
+import ua.service.FileWriter;
 import ua.service.MealService;
 import ua.validation.flag.MealFlag;
 
@@ -26,11 +38,22 @@ import ua.validation.flag.MealFlag;
 @RequestMapping("/admin/meal")
 @SessionAttributes("meal")
 public class AdminMealController {
+	
+	private final FileWriter writer;
 
 	private final MealService service;
+	
+	Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+			  "cloud_name", "hd4ylyjwf",
+			  "api_key", "586222771451182",
+			  "api_secret", "PonTilBATnfz9KBBhUkgulzmemE"));
+	
+	@Value("${file.path}")
+	private String path;
 
 	@Autowired
-	public AdminMealController(MealService service) {
+	public AdminMealController(FileWriter writer, MealService service) {
+		this.writer = writer;
 		this.service = service;
 	}
 
@@ -42,6 +65,11 @@ public class AdminMealController {
 	@ModelAttribute("filter")
 	public SimpleFilter getFilter() {
 		return new SimpleFilter();
+	}
+	
+	@ModelAttribute("fileRequest")
+	public FileRequest getFile() {
+		return new FileRequest();
 	}
 
 	@GetMapping
@@ -82,6 +110,22 @@ public class AdminMealController {
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus status, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
 		status.setComplete();
+		return "redirect:/admin/meal"+buildParams(pageable, filter);
+	}
+	
+	@PostMapping("/photoUpdate/{id}")
+	public String saveFile(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") SimpleFilter filter, @ModelAttribute("fileRequest") FileRequest request) {
+		String photoUrl=writer.write(request.getFile());
+		File toUpload = new File(path+photoUrl);
+		Map<String, String> uploadResult= new HashMap<>();
+		try {
+			uploadResult = cloudinary.uploader().upload(toUpload, ObjectUtils.emptyMap());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String cloudinaryUrl = uploadResult.get("url");
+		service.updatePhotoUrl(id, cloudinaryUrl);
 		return "redirect:/admin/meal"+buildParams(pageable, filter);
 	}
 	

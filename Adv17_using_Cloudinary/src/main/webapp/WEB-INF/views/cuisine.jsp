@@ -32,7 +32,6 @@
 					<a class="btn btn-outline-primary" href="/admin/component">Component</a>
 					<a class="btn btn-outline-primary" href="/admin/cuisine">Cuisine</a>
 					<a class="btn btn-outline-primary" href="/admin/meal">Meal</a>
-					<a class="btn btn-outline-primary" href="/admin/mealPhotoUpdate">Meal Photo Updade</a>
 					<a class="btn btn-outline-primary" href="/admin/order">Order</a>
 					<a class="btn btn-outline-primary" href="/admin/place">Place</a>
 				</div>

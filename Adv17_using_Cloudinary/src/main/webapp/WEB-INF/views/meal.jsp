@@ -32,7 +32,6 @@
 					<a class="btn btn-outline-primary" href="/admin/component">Component</a>
 					<a class="btn btn-outline-primary" href="/admin/cuisine">Cuisine</a>
 					<a class="btn btn-outline-primary" href="/admin/meal">Meal</a>
-					<a class="btn btn-outline-primary" href="/admin/mealPhotoUpdate">Meal Photo Updade</a>
 					<a class="btn btn-outline-primary" href="/admin/order">Order</a>
 					<a class="btn btn-outline-primary" href="/admin/place">Place</a>
 				</div>
@@ -165,6 +164,8 @@
 						<th class="text-center">Weight</th>
 						<th class="text-center">Cuisine</th>
 						<th class="text-center">Options</th>
+						<th class="text-center">Options</th>
+						<th class="text-center">Options</th>
 					</tr>
 					<c:forEach var="meal" items="${meals.content}">
 						<tr>
@@ -175,7 +176,17 @@
 							<td>${meal.cuisine.name}</td>
 							<td class="text-center"><a
 								href="/admin/meal/update/${meal.id}<custom:allParams/>"	class="btn btn-outline-warning btn-sm">Update</a> <a
-								href="/admin/meal/delete/${meal.id}<custom:allParams/>"	class="btn btn-outline-danger btn-sm">Delete</a></td>
+								href="/admin/meal/delete/${meal.id}<custom:allParams/>"	class="btn btn-outline-danger btn-sm">Delete</a>
+							</td>
+							<td class="text-center">
+								<img src="${meal.photoUrl}?version=${meal.version}" style="width: 100px;">
+							</td>
+							<td class="text-center">
+								<form:form action="/admin/meal/photoUpdate/${meal.id}" method="POST" modelAttribute="fileRequest" enctype="multipart/form-data">
+									<input name="file" type="file">
+									<br><button>Ok</button>
+								</form:form>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>
