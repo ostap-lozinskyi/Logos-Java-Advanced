@@ -164,8 +164,8 @@
 						<th class="text-center">Weight</th>
 						<th class="text-center">Cuisine</th>
 						<th class="text-center">Options</th>
-						<th class="text-center">Options</th>
-						<th class="text-center">Options</th>
+						<th class="text-center">Photo</th>
+						<th class="text-center">Upload</th>
 					</tr>
 					<c:forEach var="meal" items="${meals.content}">
 						<tr>
@@ -174,17 +174,17 @@
 							<td>${meal.price}</td>
 							<td>${meal.weight}</td>
 							<td>${meal.cuisine.name}</td>
-							<td class="text-center"><a
-								href="/admin/meal/update/${meal.id}<custom:allParams/>"	class="btn btn-outline-warning btn-sm">Update</a> <a
-								href="/admin/meal/delete/${meal.id}<custom:allParams/>"	class="btn btn-outline-danger btn-sm">Delete</a>
+							<td class="text-center">
+								<a href="/admin/meal/update/${meal.id}<custom:allParams/>"	class="btn btn-outline-warning btn-sm">Update</a>
+								<a href="/admin/meal/delete/${meal.id}<custom:allParams/>"	class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 							<td class="text-center">
 								<img src="${meal.photoUrl}?version=${meal.version}" style="width: 100px;">
 							</td>
-							<td class="text-center">
+							<td>
 								<form:form action="/admin/meal/photoUpdate/${meal.id}" method="POST" modelAttribute="fileRequest" enctype="multipart/form-data">
 									<input name="file" type="file">
-									<br><button>Ok</button>
+									<button>Ok</button>
 								</form:form>
 							</td>
 						</tr>

@@ -50,6 +50,8 @@ public class MealRequest {
 	@NotEmpty(message = "This field cannot be blank", groups = { MealFlag.class })
 	private List<Component> components = new ArrayList<>();
 	
+	private String photoUrl;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -112,6 +114,14 @@ public class MealRequest {
 
 	public void setComponents(List<Component> components) {
 		this.components = components;
+	}
+
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
 	
 }

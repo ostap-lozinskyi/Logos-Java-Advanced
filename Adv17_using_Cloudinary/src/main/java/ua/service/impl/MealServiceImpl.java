@@ -79,6 +79,7 @@ public class MealServiceImpl implements MealService {
 		meal.setPrice(new BigDecimal(request.getPrice()));
 		meal.setWeight(Integer.valueOf(request.getWeight()));
 		meal.setComponents(request.getComponents());
+		meal.setPhotoUrl(request.getPhotoUrl());
 		repository.save(meal);
 	}
 
@@ -94,6 +95,7 @@ public class MealServiceImpl implements MealService {
 		request.setPrice(meal.getPrice().toString());
 		request.setWeight(String.valueOf(meal.getWeight()));
 		request.setComponents(meal.getComponents());
+		request.setPhotoUrl(meal.getPhotoUrl());
 		return request;
 	}
 
