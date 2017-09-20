@@ -92,7 +92,7 @@
                                                             <div class="label_row"> </div>
                                                             <div class="item">
                                                                 <div class="item_image">
-                                                                    <a href="/" tabindex="0"> <img src="${meal.photoUrl}"> </a>
+                                                                    <a href="/" tabindex="0"> <img src="${meal.photoUrl}?version=${meal.version}"> </a>
                                                                     <div class="clear"></div>
                                                                 </div>
                                                                 <div class="hover">
@@ -146,7 +146,7 @@
                                                             <div class="label_row"> </div>
                                                             <div class="item">
                                                                 <div class="item_image">
-                                                                    <a href="/" tabindex="0"> <img src="${meal.photoUrl}"> </a>
+                                                                    <a href="/" tabindex="0"> <img src="${meal.photoUrl}?version=${meal.version}"> </a>
                                                                     <div class="clear"></div>
                                                                 </div>
                                                                 <div class="hover">
