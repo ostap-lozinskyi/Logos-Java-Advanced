@@ -25,9 +25,12 @@ public class MealView {
 	
 	private String cuisine;
 	
-	public MealView(Integer id, String name, String fullDescription, BigDecimal price, 
+	public MealView(Integer id, String photoUrl, int version, String name, String fullDescription, BigDecimal price,
 			int weight, String cuisine) {
+		super();
 		this.id = id;
+		this.photoUrl = photoUrl;
+		this.version = version;
 		this.name = name;
 		this.fullDescription = fullDescription;
 		this.price = price;

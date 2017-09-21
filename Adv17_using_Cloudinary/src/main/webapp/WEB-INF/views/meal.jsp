@@ -40,16 +40,7 @@
 		</div>
 		<br>
 		<div class="row">
-			<div class="col-2">
-				<form:form action="/admin/meal" method="GET" modelAttribute="filter">
-					<div class="form-group row">
-						<div class="col-12">
-							<form:input class="form-control" path="search" placeholder="Search"/>
-						</div>
-					</div>
-				</form:form>
-			</div>
-			<div class="col-10">
+			<div class="col-12">
 				<form:form action="/admin/meal" method="POST" modelAttribute="meal" enctype="multipart/form-data">
 					<custom:hiddenInputs excludeParams="name, fullDescription, shortDescription, price, weight, _csrf"/>
 					<div class="row">
@@ -147,7 +138,66 @@
 				</form:form>
 			</div>
 		</div>
-		<div class="row">				
+		<div class="row">
+			<div class="col-12">
+				<br>
+				<p>
+					<button class="btn-cart buy btnCafe btn-sucsess btn-lg" type="button"
+						data-toggle="collapse" data-target="#firstCollapse"
+						aria-expanded="false" aria-controls="firstCollapse">
+						Search meal</button>
+				</p>
+				<div class="collapse" id="firstCollapse">
+					<div class="card card-body">
+						<form:form action="/admin/meal" method="GET" modelAttribute="mealFilter">
+							<div class="form-group row">
+								<div class="col-2">
+									<form:input path="minRate" class="form-control" placeholder="Min rate"/>
+								</div>
+								<div class="col-2">
+									<form:input path="maxRate" class="form-control" placeholder="Max rate"/>
+								</div>
+								<div class="col-2">
+									<form:input path="minPrice" class="form-control" placeholder="Min price"/>
+								</div>
+								<div class="col-2">
+									<form:input path="maxPrice" class="form-control" placeholder="Max price"/>
+								</div>					
+								<div class="col-2">
+									<form:input path="minWeight" class="form-control" placeholder="Min weight"/>
+								</div>
+								<div class="col-2">
+									<form:input path="maxWeight" class="form-control" placeholder="Max weight"/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-2">
+									<form:input path="search" class="form-control" placeholder="By name"/>
+								</div>						
+								<div class="col-2">
+									<p>								
+										<button class="btn btn-outline-secondary" type="button"
+											data-toggle="collapse" data-target="#secondCollapse"
+											aria-expanded="false" aria-controls="secondCollapse">
+											Select cuisine</button>
+									</p>
+									<div class="collapse" id="secondCollapse">
+										<div class="card card-body">
+											<form:checkboxes items="${cuisines}" path="cuisineName" element="div"/>
+										</div>
+									</div>
+								</div>						
+								<div class="col-12">
+		        					<button type="submit" class="btn-cart buy btnCafe btn-sucsess btn-lg">Search</button>
+		      					</div>
+							</div>
+						</form:form>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">			
 			<div class="col-2 text-center">
 				<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
 				<div class="dropdown-menu">
@@ -178,7 +228,7 @@
 							<td>${meal.fullDescription}</td>
 							<td>${meal.price}</td>
 							<td>${meal.weight}</td>
-							<td>${meal.cuisine.name}</td>
+							<td>${meal.cuisine}</td>
 							<td class="text-center">
 								<a href="/admin/meal/update/${meal.id}<custom:allParams/>"	class="btn btn-outline-warning btn-sm">Update</a>
 								<a href="/admin/meal/delete/${meal.id}<custom:allParams/>"	class="btn btn-outline-danger btn-sm">Delete</a>

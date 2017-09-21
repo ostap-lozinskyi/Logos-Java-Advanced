@@ -24,6 +24,7 @@ import ua.entity.Meal;
 import ua.entity.Meal_;
 import ua.model.filter.MealFilter;
 import ua.model.view.MealIndexView;
+import ua.model.view.MealView;
 import ua.repository.MealViewRepository;
 
 @Repository
@@ -46,6 +47,29 @@ public class MealViewRepositoryImpl implements MealViewRepository{
 				.setFirstResult(pageable.getPageNumber())
 				.setMaxResults(pageable.getPageSize())
 				.getResultList();
+		CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
+		Root<Meal> countRoot = countQuery.from(Meal.class);
+		countQuery.select(cb.count(countRoot));
+		Predicate countPredicate = new PredicateBuilder(cb, countRoot, filter).toPredicate();
+		if(countPredicate!=null) countQuery.where(countPredicate);
+		return PageableExecutionUtils.getPage(content, pageable, ()->em.createQuery(countQuery).getSingleResult());
+	}
+	
+	@Override
+	public Page<MealView> findAllView(MealFilter filter, Pageable pageable) {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<MealView> cq = cb.createQuery(MealView.class);
+		Root<Meal> root = cq.from(Meal.class);
+		Join<Meal, Cuisine> join = root.join(Meal_.cuisine);
+		cq.multiselect(root.get(Meal_.id), root.get("photoUrl"), root.get("version"), root.get("name"), 
+				root.get("fullDescription"), root.get("price"), root.get("weight"), join.get("name"));
+		Predicate predicate = new PredicateBuilder(cb, root, filter).toPredicate();
+		if(predicate!=null) cq.where(predicate);
+		cq.orderBy(toOrders(pageable.getSort(), root, cb));
+		List<MealView> content = em.createQuery(cq)
+				.setFirstResult(pageable.getPageNumber()*pageable.getPageSize())
+				.setMaxResults(pageable.getPageSize())
+				.getResultList();		
 		CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
 		Root<Meal> countRoot = countQuery.from(Meal.class);
 		countQuery.select(cb.count(countRoot));

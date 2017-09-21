@@ -5,12 +5,11 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import ua.entity.Meal;
 import ua.model.filter.MealFilter;
-import ua.model.filter.SimpleFilter;
 import ua.model.request.MealRequest;
 import ua.model.view.ComponentView;
 import ua.model.view.MealIndexView;
+import ua.model.view.MealView;
 
 public interface MealService {
 
@@ -18,9 +17,11 @@ public interface MealService {
 
 	List<ComponentView> findAllСomponents();
 	
-	Page<Meal> findAll(Pageable pageable, SimpleFilter filter);
+//	Page<Meal> findAll(Pageable pageable, SimpleFilter filter);
 	
 	Page<MealIndexView> findAll(MealFilter filter, Pageable pageable);
+	
+	Page<MealView> findAllView(MealFilter filter, Pageable pageable);
 
 	void save(MealRequest request);
 
@@ -32,6 +33,6 @@ public interface MealService {
 	
 	void updateRate(Integer id, Integer newRate);
 	
-	Meal findById(Integer id);
+//	Meal findById(Integer id);
 
 }

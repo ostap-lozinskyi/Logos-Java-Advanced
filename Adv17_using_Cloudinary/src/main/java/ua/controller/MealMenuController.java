@@ -28,14 +28,15 @@ public class MealMenuController {
 	}
 
 	@GetMapping("/mealMenu")
-	public String mealMenu(Model model, @ModelAttribute("mealFilter") MealFilter filter, @PageableDefault Pageable pageable) {
+	public String mealMenu(Model model, @ModelAttribute("mealFilter") MealFilter filter, 
+			@PageableDefault Pageable pageable) {
 		model.addAttribute("meals", service.findAll(filter, pageable));
 		model.addAttribute("cuisines", service.findAllcuisines());
 		return "mealMenu";
 	}	
 	
 	@PostMapping("/mealMenu/{id}")
-	public String updateRate(@PathVariable Integer id, Model model,	@RequestParam Integer rate) {
+	public String updateRate(@PathVariable Integer id,	@RequestParam Integer rate) {
 		service.updateRate(id, rate);
 		return "redirect:/mealMenu";
 	}

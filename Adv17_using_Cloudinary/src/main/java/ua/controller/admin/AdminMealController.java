@@ -25,7 +25,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
 
-import ua.model.filter.SimpleFilter;
+import ua.model.filter.MealFilter;
 import ua.model.request.FileRequest;
 import ua.model.request.MealRequest;
 import ua.service.FileWriter;
@@ -58,9 +58,9 @@ public class AdminMealController {
 		return new MealRequest();
 	}
 	
-	@ModelAttribute("filter")
-	public SimpleFilter getFilter() {
-		return new SimpleFilter();
+	@ModelAttribute("mealFilter")
+	public MealFilter getFilter() {
+		return new MealFilter();
 	}
 	
 	@ModelAttribute("fileRequest")
@@ -69,11 +69,11 @@ public class AdminMealController {
 	}
 
 	@GetMapping
-	public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
+	public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("mealFilter") MealFilter filter) {
 		model.addAttribute("cuisines", service.findAllcuisines());
 		model.addAttribute("components", service.findAllСomponents());
-		model.addAttribute("meals", service.findAll(pageable, filter));
-		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
+		model.addAttribute("meals", service.findAllView(filter, pageable));
+		if (service.findAllView(filter, pageable).hasContent()||pageable.getPageNumber()==0)
 			return "meal";
 		else
 			return "redirect:/admin/meal"+buildParams(pageable, filter);
@@ -81,7 +81,7 @@ public class AdminMealController {
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
-			@ModelAttribute("filter") SimpleFilter filter) {
+			@ModelAttribute("mealFilter") MealFilter filter) {
 		service.delete(id);
 		return "redirect:/admin/meal"+buildParams(pageable, filter);
 	}
@@ -89,7 +89,7 @@ public class AdminMealController {
 	@PostMapping
 	public String save(@ModelAttribute("meal") @Validated(MealFlag.class) MealRequest request, BindingResult br,
 			Model model, SessionStatus status, @PageableDefault Pageable pageable,
-			@ModelAttribute("filter") SimpleFilter filter,  @ModelAttribute("fileRequest") FileRequest fileRequest) {
+			@ModelAttribute("mealFilter") MealFilter filter,  @ModelAttribute("fileRequest") FileRequest fileRequest) {
 		if (br.hasErrors())
 			return show(model, pageable, filter);
 		String photoUrl=writer.write(fileRequest.getFile());
@@ -100,8 +100,6 @@ public class AdminMealController {
 					ObjectUtils.asMap("use_filename", "true", "unique_filename", "false"));
 			String cloudinaryUrl = (String) uploadResult.get("url");
 			String oldPhotoUrl = request.getPhotoUrl();
-			System.out.println(oldPhotoUrl);
-			System.out.println(cloudinaryUrl);
 			if ((oldPhotoUrl != null) && (oldPhotoUrl.equals(cloudinaryUrl))) {
 				request.setVersion(request.getVersion() + 1);
 			} else {
@@ -117,13 +115,14 @@ public class AdminMealController {
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
-			@ModelAttribute("filter") SimpleFilter filter) {
+			@ModelAttribute("mealFilter") MealFilter filter) {
 		model.addAttribute("meal", service.findOneRequest(id));
 		return show(model, pageable, filter);
 	}
 
 	@GetMapping("/cancel")
-	public String cancel(SessionStatus status, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
+	public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("mealFilter") MealFilter filter) {
 		status.setComplete();
 		return "redirect:/admin/meal"+buildParams(pageable, filter);
 	}
@@ -144,13 +143,13 @@ public class AdminMealController {
 //		return "redirect:/admin/meal"+buildParams(pageable, filter);
 //	}
 	
-	private String buildParams(Pageable pageable, SimpleFilter filter) {
+	private String buildParams(Pageable pageable, MealFilter filter) {
 		StringBuilder buffer = new StringBuilder();		
 		buffer.append("?page=");
-		if(!(service.findAll(pageable, filter).hasContent())) 
+		if(!(service.findAll(filter, pageable).hasContent())) 
 			buffer.append(String.valueOf(pageable.getPageNumber()));
 		else {
-			buffer.append(String.valueOf(pageable.getPageNumber()+1));
+			buffer.append(String.valueOf(pageable.getPageNumber()));
 		}
 		buffer.append("&size=");
 		buffer.append(String.valueOf(pageable.getPageSize()));

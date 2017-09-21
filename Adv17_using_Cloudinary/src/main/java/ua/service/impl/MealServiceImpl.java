@@ -6,15 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Meal;
 import ua.model.filter.MealFilter;
-import ua.model.filter.SimpleFilter;
 import ua.model.request.MealRequest;
 import ua.model.view.ComponentView;
 import ua.model.view.MealIndexView;
+import ua.model.view.MealView;
 import ua.repository.ComponentRepository;
 import ua.repository.CuisineRepository;
 import ua.repository.MealRepository;
@@ -51,21 +50,26 @@ public class MealServiceImpl implements MealService {
 		return componentRepository.findAllView();
 	}
 
-	@Override
-	public Page<Meal> findAll(Pageable pageable, SimpleFilter filter) {
-		return repository.findAll(filter(filter), pageable);
-	}
+//	@Override
+//	public Page<Meal> findAll(Pageable pageable, SimpleFilter filter) {
+//		return repository.findAll(filter(filter), pageable);
+//	}
 	
-	private Specification<Meal> filter(SimpleFilter filter){
-		return (root, query, cb) -> {
-			if(filter.getSearch().isEmpty()) return null;
-			return cb.like(root.get("name"), filter.getSearch()+"%");
-		};
-	}
+//	private Specification<Meal> filter(SimpleFilter filter){
+//		return (root, query, cb) -> {
+//			if(filter.getSearch().isEmpty()) return null;
+//			return cb.like(root.get("name"), filter.getSearch()+"%");
+//		};
+//	}
 	
 	@Override
 	public Page<MealIndexView> findAll(MealFilter filter, Pageable pageable) {
 		return mealViewrepository.findAll(filter, pageable);
+	}
+	
+	@Override
+	public Page<MealView> findAllView(MealFilter filter, Pageable pageable) {
+		return mealViewrepository.findAllView(filter, pageable);
 	}
 
 	@Override
@@ -132,8 +136,8 @@ public class MealServiceImpl implements MealService {
 		repository.save(meal);		
 	}
 	
-	public Meal findById(Integer id) {
-		return repository.findById(id);
-	}
+//	public Meal findById(Integer id) {
+//		return repository.findById(id);
+//	}
 
 }
