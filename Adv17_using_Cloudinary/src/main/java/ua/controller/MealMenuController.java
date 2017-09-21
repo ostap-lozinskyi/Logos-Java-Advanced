@@ -1,7 +1,5 @@
 package ua.controller;
 
-import java.math.BigDecimal;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
