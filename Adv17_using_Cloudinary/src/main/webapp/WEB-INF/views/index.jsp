@@ -13,9 +13,9 @@
                     
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
                     
-                    <link href="resources/css/index.css" rel="stylesheet">
-                    <script src="resources/js/jquery.js"></script>
-                    <script src="resources/js/jquery-ui.js"></script>
+                    <link href="/resources/css/index.css" rel="stylesheet">
+                    <script src="/resources/js/jquery.js"></script>
+                    <script src="/resources/js/jquery-ui.js"></script>
                 </head>
 
                 <body>
