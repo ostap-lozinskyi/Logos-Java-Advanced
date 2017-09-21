@@ -26,56 +26,80 @@
 				<h1 class="text-center">Menu</h1>
 			</div>
 		</div>	
-		<div class="row" style="background-color: white">
+		<div class="row">
+			<div class="col-2">
+				<br>
+				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/admin">Admin</a>
+			</div>
+			<div class="col-2">
+				<br>
+				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/">Main page</a>
+			</div>
 			<div class="col-12">
 				<br>
-				<form:form action="/mealMenu" method="GET" modelAttribute="mealFilter">
-					<div class="form-group row">
-						<div class="col-2">
-							<form:input path="minRate" class="form-control" placeholder="Min rate"/>
-						</div>
-						<div class="col-2">
-							<form:input path="maxRate" class="form-control" placeholder="Max rate"/>
-						</div>
-						<div class="col-2">
-							<form:input path="minPrice" class="form-control" placeholder="Min price"/>
-						</div>
-						<div class="col-2">
-							<form:input path="maxPrice" class="form-control" placeholder="Max price"/>
-						</div>					
-						<div class="col-2">
-							<form:input path="minWeight" class="form-control" placeholder="Min weight"/>
-						</div>
-						<div class="col-2">
-							<form:input path="maxWeight" class="form-control" placeholder="Max weight"/>
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-2">
-							<form:input path="search" class="form-control" placeholder="Search"/>
-						</div>						
-						<div class="col-4">
-							<p>								
-								<button class="btn btn-outline-secondary" type="button"
-									data-toggle="collapse" data-target="#collapseExample"
-									aria-expanded="false" aria-controls="collapseExample">
-									Select cuisine</button>
-							</p>
-							<div class="collapse" id="collapseExample">
-								<div class="card card-body">
-									<form:checkboxes items="${cuisines}" path="cuisineName" element="div"/>
+				<p>
+					<button class="btn-cart buy btnCafe btn-sucsess btn-lg" type="button"
+						data-toggle="collapse" data-target="#firstCollapse"
+						aria-expanded="false" aria-controls="firstCollapse">
+						Search meal</button>
+				</p>
+				<div class="collapse" id="firstCollapse">
+					<div class="card card-body">
+						<form:form action="/mealMenu" method="GET" modelAttribute="mealFilter">
+							<div class="form-group row">
+								<div class="col-2">
+									<form:input path="minRate" class="form-control" placeholder="Min rate"/>
+								</div>
+								<div class="col-2">
+									<form:input path="maxRate" class="form-control" placeholder="Max rate"/>
+								</div>
+								<div class="col-2">
+									<form:input path="minPrice" class="form-control" placeholder="Min price"/>
+								</div>
+								<div class="col-2">
+									<form:input path="maxPrice" class="form-control" placeholder="Max price"/>
+								</div>					
+								<div class="col-2">
+									<form:input path="minWeight" class="form-control" placeholder="Min weight"/>
+								</div>
+								<div class="col-2">
+									<form:input path="maxWeight" class="form-control" placeholder="Max weight"/>
 								</div>
 							</div>
-						</div>						
-						<div class="col-8">
-        					<button type="submit" class="btn-cart buy btnCafe btn-sucsess btn-lg">Search</button>
-      					</div>
+							<div class="form-group row">
+								<div class="col-2">
+									<form:input path="search" class="form-control" placeholder="By name"/>
+								</div>						
+								<div class="col-2">
+									<p>								
+										<button class="btn btn-outline-secondary" type="button"
+											data-toggle="collapse" data-target="#secondCollapse"
+											aria-expanded="false" aria-controls="secondCollapse">
+											Select cuisine</button>
+									</p>
+									<div class="collapse" id="secondCollapse">
+										<div class="card card-body">
+											<form:checkboxes items="${cuisines}" path="cuisineName" element="div"/>
+										</div>
+									</div>
+								</div>						
+								<div class="col-12">
+		        					<button type="submit" class="btn-cart buy btnCafe btn-sucsess btn-lg">Search</button>
+		      					</div>
+							</div>
+						</form:form>
+						<br>
 					</div>
-				</form:form>
+				</div>
 			</div>
 		</div>
 		<br>
 		<div class="row">
+			<div class="col-12">
+				<c:if test="${empty meals.content}">
+	    			<h2 class="text-center">Meals not found</h2>
+				</c:if>
+			</div>
 			<c:forEach var="meal" items="${meals.content}">
 				<div class="col-4">
 					<div>
@@ -141,14 +165,9 @@
 								</div>
 							</div>
 						</div>
-						<!--item!-->
 					</div>
 				</div>
-			</c:forEach>
-			<div class="col-12">
-				<a href="/admin">to Admin</a> <br>
-				<a href="/">to Main page</a>
-			</div>
+			</c:forEach>			
 		</div>
 	</div>
 </body>

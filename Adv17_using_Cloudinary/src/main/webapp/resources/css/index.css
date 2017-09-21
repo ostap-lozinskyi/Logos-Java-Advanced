@@ -785,3 +785,17 @@ footer .point {
 	font-weight: 400;
 	font-style: normal
 }
+
+
+
+
+
+
+
+
+
+
+
+.form-control, .btn-outline-secondary, .btn-outline-success {
+    border-color: #76ad00;    
+}
