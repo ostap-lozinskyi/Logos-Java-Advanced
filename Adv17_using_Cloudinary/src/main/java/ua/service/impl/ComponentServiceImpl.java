@@ -6,13 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Component;
-import ua.model.filter.SimpleFilter;
+import ua.model.filter.ComponentFilter;
 import ua.model.request.ComponentRequest;
+import ua.model.view.ComponentView;
 import ua.repository.ComponentRepository;
+import ua.repository.ComponentViewRepository;
 import ua.repository.IngredientRepository;
 import ua.repository.MsRepository;
 import ua.service.ComponentService;
@@ -22,16 +23,19 @@ public class ComponentServiceImpl implements ComponentService {
 
 	private final ComponentRepository repository;
 	
+	private final ComponentViewRepository componentViewrepository;
+	
 	private final IngredientRepository ingredientRepository;
 	
 	private final MsRepository msRepository;
 
 	@Autowired
 	public ComponentServiceImpl(ComponentRepository repository, IngredientRepository ingredientRepository,
-			MsRepository msRepository) {
+			MsRepository msRepository, ComponentViewRepository componentViewrepository) {
 		this.repository = repository;
 		this.ingredientRepository = ingredientRepository;
 		this.msRepository = msRepository;
+		this.componentViewrepository = componentViewrepository;
 	}
 
 	@Override
@@ -50,16 +54,21 @@ public class ComponentServiceImpl implements ComponentService {
 //	}
 	
 	@Override
-	public Page<Component> findAll(Pageable pageable, SimpleFilter filter) {
-		return repository.findAll(filter(filter), pageable);
+	public Page<ComponentView> findAllView(Pageable pageable, ComponentFilter filter) {
+		return componentViewrepository.findAllView(filter, pageable);
 	}
 	
-	private Specification<Component> filter(SimpleFilter filter){
-		return (root, query, cb) -> {
-			if(filter.getSearch().isEmpty()) return null;
-			return cb.le(root.get("amount"), new BigDecimal(filter.getSearch()));
-		};
-	}
+//	@Override
+//	public Page<Component> findAll(Pageable pageable, SimpleFilter filter) {
+//		return repository.findAll(filter(filter), pageable);
+//	}
+//	
+//	private Specification<Component> filter(SimpleFilter filter){
+//		return (root, query, cb) -> {
+//			if(filter.getSearch().isEmpty()) return null;
+//			return cb.le(root.get("amount"), new BigDecimal(filter.getSearch()));
+//		};
+//	}
 
 	@Override
 	public void save(ComponentRequest request) {

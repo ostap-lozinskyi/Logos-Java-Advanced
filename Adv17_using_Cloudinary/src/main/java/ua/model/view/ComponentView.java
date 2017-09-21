@@ -5,20 +5,21 @@ import java.math.BigDecimal;
 public class ComponentView {
 	
 	private Integer id;
+	
+	private BigDecimal amount;
 
 	private String ingredient;
 	
-	private BigDecimal amount;
-	
 	private String ms;
 	
-	public ComponentView(Integer id, String ingredient, BigDecimal amount, String ms) {
-		this.ingredient = ingredient;
-		this.amount = amount;
-		this.ms = ms;
+	public ComponentView(Integer id, BigDecimal amount, String ingredient, String ms) {
+		super();
 		this.id = id;
+		this.amount = amount;
+		this.ingredient = ingredient;
+		this.ms = ms;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}

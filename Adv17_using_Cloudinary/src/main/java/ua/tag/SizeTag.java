@@ -26,7 +26,7 @@ public class SizeTag extends SimpleTagSupport {
 	@Override
 	public void doTag() throws JspException, IOException {
 		JspWriter out = getJspContext().getOut();
-		sw.append("<button class='btn btn-sm btn-outline-primary dropdown-toggle' type='button' data-toggle='dropdown'>");
+		sw.append("<button class='btn btn-sm btn-outline-success dropdown-toggle' type='button' data-toggle='dropdown'>");
 		sw.append(title);
 		sw.append("</button><div class='dropdown-menu'>");
 		for(int size : posibleSizes){

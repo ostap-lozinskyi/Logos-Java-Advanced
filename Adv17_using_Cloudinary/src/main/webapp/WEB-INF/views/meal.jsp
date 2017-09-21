@@ -16,8 +16,8 @@
 <link href="/resources/css/index.css" rel="stylesheet">
 <title>Meal</title>
 </head>
-<body>
-	<div class="container">
+<body style="background: url(/resources/img/fon2.jpg)">
+	<div class="container" style="background-color: white;">
 		<div class="row">
 			<div class="col-12">
 				<h1 class="text-center">Meal</h1>
@@ -27,16 +27,16 @@
 			<div class="col-12">
 				<div class="text-center">
 				<div class="btn-group text-center" role="group" aria-label="Basic example">
-					<a class="btn btn-outline-primary" href="/">Main Page</a>
-					<a class="btn btn-outline-primary" href="/admin">Admin</a>
-					<a class="btn btn-outline-primary" href="/userCabinet">Admin Cabinet</a>
-					<a class="btn btn-outline-primary" href="/admin/ingredient">Ingredient</a>
-					<a class="btn btn-outline-primary" href="/admin/ms">Ms</a>
-					<a class="btn btn-outline-primary" href="/admin/component">Component</a>
-					<a class="btn btn-outline-primary" href="/admin/cuisine">Cuisine</a>
-					<a class="btn btn-outline-primary" href="/admin/meal">Meal</a>
-					<a class="btn btn-outline-primary" href="/admin/order">Order</a>
-					<a class="btn btn-outline-primary" href="/admin/place">Place</a>
+					<a class="btn btn-outline-success" href="/">Main Page</a>
+					<a class="btn btn-outline-success" href="/admin">Admin</a>
+					<a class="btn btn-outline-success" href="/userCabinet">Admin Cabinet</a>
+					<a class="btn btn-outline-success" href="/admin/ingredient">Ingredient</a>
+					<a class="btn btn-outline-success" href="/admin/ms">Ms</a>
+					<a class="btn btn-outline-success" href="/admin/component">Component</a>
+					<a class="btn btn-outline-success" href="/admin/cuisine">Cuisine</a>
+					<a class="btn btn-outline-success" href="/admin/meal">Meal</a>
+					<a class="btn btn-outline-success" href="/admin/order">Order</a>
+					<a class="btn btn-outline-success" href="/admin/place">Place</a>
 				</div>
 				</div>				
 			</div>
@@ -200,9 +200,10 @@
 				</div>
 			</div>
 		</div>
+		<br>
 		<div class="row">			
 			<div class="col-2 text-center">
-				<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
+				<button class="dropdown-toggle btn btn-outline-success btn-sm" type="button" data-toggle="dropdown">Sort</button>
 				<div class="dropdown-menu">
 					<custom:sort innerHtml="Name asc" paramValue="name"/>
 					<custom:sort innerHtml="Name desc" paramValue="name,desc"/>

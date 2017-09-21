@@ -8,7 +8,7 @@
 
                 <head>
                     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                    <link rel="shortcut icon" href="resources/img/cafe.ico">
+                    <link rel="shortcut icon" href="/resources/img/cafe.ico">
                     <title>Ostap cafe</title>
                     
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -19,7 +19,7 @@
                 </head>
 
                 <body>
-                    <div class="container_video" style="background: url(resources/img/fon.jpg); height: 714px;">
+                    <div class="container_video" style="background: url(/resources/img/fon.jpg); height: 714px;">
                         <div class="shadow_block"></div>
                         <div class="content">
                             <div class="container">
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="col-4 header_column center">
                                         <div class="logo">
-                                            <a href="/"><img src="resources/img/cafe-logo.png" alt="Cafe" title="Cafe"></a>
+                                            <a href="/"><img src="/resources/img/cafe-logo.png" alt="Cafe" title="Cafe"></a>
                                         </div>
                                     </div>
                                     <div class="col-4 header_column">
@@ -73,7 +73,7 @@
                         <div class="clear"></div>
                     </div>
                     <!--section!-->
-                    <div style="background: url(resources/img/fon2.jpg); height: 1214px;">
+                    <div style="background: url(/resources/img/fon2.jpg); height: 1214px;">
                         <div class="container container_main_restaurnt">
                             <div class="row">
                                 <div class="col-12 center">

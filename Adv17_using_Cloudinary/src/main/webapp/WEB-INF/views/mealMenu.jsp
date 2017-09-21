@@ -19,7 +19,7 @@
 <link href="/resources/css/index.css" rel="stylesheet">
 <title>Menu</title>
 </head>
-<body style="background: url(resources/img/fon2.jpg)">
+<body style="background: url(/resources/img/fon2.jpg)">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">

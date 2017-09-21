@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import ua.model.filter.SimpleFilter;
+import ua.model.filter.ComponentFilter;
 import ua.model.request.ComponentRequest;
 import ua.service.ComponentService;
 import ua.validation.flag.ComponentFlag;
@@ -39,17 +39,18 @@ public class AdminComponentController {
 		return new ComponentRequest();
 	}
 	
-	@ModelAttribute("filter")
-	public SimpleFilter getFilter() {
-		return new SimpleFilter();
+	@ModelAttribute("componentFilter")
+	public ComponentFilter getFilter() {
+		return new ComponentFilter();
 	}
 
 	@GetMapping
-	public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
+	public String show(Model model, @PageableDefault Pageable pageable,
+			@ModelAttribute("componentFilter") ComponentFilter filter) {
 		model.addAttribute("ingredients", service.findAllIngredients());
 		model.addAttribute("mss", service.findAllMss());
-		model.addAttribute("components", service.findAll(pageable, filter));
-		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
+		model.addAttribute("components", service.findAllView(pageable, filter));
+		if (service.findAllView(pageable, filter).hasContent()||pageable.getPageNumber()==0)
 			return "component";
 		else
 			return "redirect:/admin/component"+buildParams(pageable, filter);
@@ -57,7 +58,7 @@ public class AdminComponentController {
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
-			@ModelAttribute("filter") SimpleFilter filter) {
+			@ModelAttribute("componentFilter") ComponentFilter filter) {
 		service.delete(id);
 		return "redirect:/admin/component"+buildParams(pageable, filter);
 	}
@@ -65,7 +66,7 @@ public class AdminComponentController {
 	@PostMapping
 	public String save(@ModelAttribute("component") @Validated(ComponentFlag.class) ComponentRequest request,
 			BindingResult br, Model model, SessionStatus status, @PageableDefault Pageable pageable,
-			@ModelAttribute("filter") SimpleFilter filter) {
+			@ModelAttribute("componentFilter") ComponentFilter filter) {
 		if (br.hasErrors())
 			return show(model, pageable, filter);
 		service.save(request);
@@ -74,21 +75,22 @@ public class AdminComponentController {
 
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
-			@ModelAttribute("filter") SimpleFilter filter) {
+			@ModelAttribute("componentFilter") ComponentFilter filter) {
 		model.addAttribute("component", service.findOneRequest(id));
 		return show(model, pageable, filter);
 	}
 
 	@GetMapping("/cancel")
-	public String cancel(SessionStatus status, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
+	public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("componentFilter") ComponentFilter filter) {
 		status.setComplete();
 		return "redirect:/admin/component"+buildParams(pageable, filter);
 	}
 	
-	private String buildParams(Pageable pageable, SimpleFilter filter) {
+	private String buildParams(Pageable pageable, ComponentFilter filter) {
 		StringBuilder buffer = new StringBuilder();		
 		buffer.append("?page=");
-		if(!(service.findAll(pageable, filter).hasContent())) 
+		if(!(service.findAllView(pageable, filter).hasContent())) 
 			buffer.append(String.valueOf(pageable.getPageNumber()));
 		else {
 			buffer.append(String.valueOf(pageable.getPageNumber()+1));

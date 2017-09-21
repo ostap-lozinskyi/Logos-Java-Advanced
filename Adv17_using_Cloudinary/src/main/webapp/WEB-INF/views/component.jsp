@@ -7,14 +7,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+<link href="/resources/css/index.css" rel="stylesheet">
 <title>Component</title>
 </head>
-<body>
-	<div class="container">
+<body style="background: url(/resources/img/fon2.jpg)">
+	<div class="container" style="background-color: white;">
 		<div class="row">
 			<div class="col-12">
 				<h1 class="text-center">Component</h1>
@@ -24,16 +27,16 @@
 			<div class="col-12">
 				<div class="text-center">
 				<div class="btn-group text-center" role="group" aria-label="Basic example">
-					<a class="btn btn-outline-primary" href="/">Main Page</a>
-					<a class="btn btn-outline-primary" href="/admin">Admin</a>
-					<a class="btn btn-outline-primary" href="/userCabinet">Admin Cabinet</a>
-					<a class="btn btn-outline-primary" href="/admin/ingredient">Ingredient</a>
-					<a class="btn btn-outline-primary" href="/admin/ms">Ms</a>
-					<a class="btn btn-outline-primary" href="/admin/component">Component</a>
-					<a class="btn btn-outline-primary" href="/admin/cuisine">Cuisine</a>
-					<a class="btn btn-outline-primary" href="/admin/meal">Meal</a>
-					<a class="btn btn-outline-primary" href="/admin/order">Order</a>
-					<a class="btn btn-outline-primary" href="/admin/place">Place</a>
+					<a class="btn btn-outline-success" href="/">Main Page</a>
+					<a class="btn btn-outline-success" href="/admin">Admin</a>
+					<a class="btn btn-outline-success" href="/userCabinet">Admin Cabinet</a>
+					<a class="btn btn-outline-success" href="/admin/ingredient">Ingredient</a>
+					<a class="btn btn-outline-success" href="/admin/ms">Ms</a>
+					<a class="btn btn-outline-success" href="/admin/component">Component</a>
+					<a class="btn btn-outline-success" href="/admin/cuisine">Cuisine</a>
+					<a class="btn btn-outline-success" href="/admin/meal">Meal</a>
+					<a class="btn btn-outline-success" href="/admin/order">Order</a>
+					<a class="btn btn-outline-success" href="/admin/place">Place</a>
 				</div>
 				</div>				
 			</div>
@@ -97,6 +100,62 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-12">
+				<br>
+				<p>
+					<button class="btn-cart buy btnCafe btn-sucsess btn-lg" type="button"
+						data-toggle="collapse" data-target="#firstCollapse"
+						aria-expanded="false" aria-controls="firstCollapse">
+						Search component</button>
+				</p>
+				<div class="collapse" id="firstCollapse">
+					<div class="card card-body">
+						<form:form action="/admin/component" method="GET" modelAttribute="componentFilter">
+							<div class="form-group row">
+								<div class="col-2">
+									<form:input path="minAmount" class="form-control" placeholder="Min amount"/>
+								</div>
+								<div class="col-2">
+									<form:input path="maxAmount" class="form-control" placeholder="Max amount"/>
+								</div>								
+								<div class="col-2">
+									<p>								
+										<button class="btn btn-outline-secondary" type="button"
+											data-toggle="collapse" data-target="#secondCollapse"
+											aria-expanded="false" aria-controls="secondCollapse">
+											Select ms</button>
+									</p>
+									<div class="collapse" id="secondCollapse">
+										<div class="card card-body">
+											<form:checkboxes items="${mss}" path="msName" element="div"/>
+										</div>
+									</div>
+								</div>	
+								<div class="col-2">
+									<p>								
+										<button class="btn btn-outline-secondary" type="button"
+											data-toggle="collapse" data-target="#thirdCollapse"
+											aria-expanded="false" aria-controls="thirdCollapse">
+											Select ingredient</button>
+									</p>
+									<div class="collapse" id="thirdCollapse">
+										<div class="card card-body">
+											<form:checkboxes items="${ingredients}" path="ingredientName" element="div"/>
+										</div>
+									</div>
+								</div>						
+								<div class="col-12">
+		        					<button type="submit" class="btn-cart buy btnCafe btn-sucsess btn-lg">Search</button>
+		      					</div>
+							</div>
+						</form:form>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row">
 			<div class="col-9">
 				<table class="table table-bordered">
 					<tr>
@@ -108,8 +167,8 @@
 					<c:forEach var="component" items="${components.content}">
 						<tr>
 							<td>${component.amount}</td>
-							<td>${component.ms.name}</td>
-							<td>${component.ingredient.name}</td>
+							<td>${component.ms}</td>
+							<td>${component.ingredient}</td>
 							<td class="text-center">
 								<a href="/admin/component/update/${component.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
 								<a href="/admin/component/delete/${component.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>
@@ -117,12 +176,11 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<a href="/admin">to Admin</a>
 			</div>
 			<div class="col-3">
 				<div class="row">
 					<div class="col-6 text-center">
-							<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort</button>
+							<button class="dropdown-toggle btn btn-outline-success btn-sm" type="button" data-toggle="dropdown">Sort</button>
 							<div class="dropdown-menu">
 								<custom:sort innerHtml="Amount asc" paramValue="amount"/>
 								<custom:sort innerHtml="Amount desc" paramValue="amount,desc"/>
