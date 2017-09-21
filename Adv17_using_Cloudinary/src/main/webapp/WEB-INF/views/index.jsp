@@ -3,7 +3,6 @@
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
                 <!DOCTYPE html>
                 <html>
 
@@ -11,6 +10,9 @@
                     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                     <link rel="shortcut icon" href="resources/img/cafe.ico">
                     <title>Ostap cafe</title>
+                    
+                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+                    
                     <link href="resources/css/index.css" rel="stylesheet">
                     <script src="resources/js/jquery.js"></script>
                     <script src="resources/js/jquery-ui.js"></script>
@@ -37,22 +39,22 @@
                                         <div class="row">
                                             <div class="col-4 ml-auto">
                                                 <sec:authorize access="isAnonymous()">
-                                                    <a class="transparent_btn entry" href="/registration">Register</a> 
+                                                    <a class="transparent_btnCafe entry" href="/registration">Register</a> 
                                                 </sec:authorize>
                                                 <sec:authorize access="hasRole('ROLE_CLIENT')">
-                                                    <a class="transparent_btn entry" href="/userCabinet" >Cabinet</a>
+                                                    <a class="transparent_btnCafe entry" href="/userCabinet" >Cabinet</a>
                                                 </sec:authorize>
                                                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                                    <a class="transparent_btn entry" href="/admin" >Admin</a>
+                                                    <a class="transparent_btnCafe entry" href="/admin" >Admin</a>
                                                 </sec:authorize>
                                             </div>
                                             <div class="col-6">
                                                 <sec:authorize access="isAnonymous()">
-                                                    <a class="transparent_btn entry" href="/login">Login</a>                                              
+                                                    <a class="transparent_btnCafe entry" href="/login">Login</a>                                              
                                                 </sec:authorize>
                                                 <sec:authorize access="isAuthenticated()">
                                                     <form:form action="/logout">
-                                                        <button class="transparent_btn entry">Logout</button>
+                                                        <button class="transparent_btnCafe entry">Logout</button>
                                                     </form:form>
                                                 </sec:authorize>
                                             </div>
@@ -120,12 +122,12 @@
                                                                     <div class="buy_row">
                                                                         <sec:authorize access="isAnonymous()">
                                                                             <a href="/mealMenu">
-                                                                                <button type="button" class="btn-cart buy btn btn-sucsess btn-lg">Order</button>
+                                                                                <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
                                                                         <sec:authorize access="isAuthenticated()">
                                                                             <a href="/mealMenu">
-                                                                                <button type="button" class="btn-cart buy btn btn-sucsess btn-lg">Order</button>
+                                                                                <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
                                                                     </div>
@@ -174,12 +176,12 @@
                                                                     <div class="buy_row">
                                                                         <sec:authorize access="isAnonymous()">
                                                                             <a href="/mealMenu">
-                                                                                <button type="button" class="btn-cart buy btn btn-sucsess btn-lg">Order</button>
+                                                                                <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
                                                                         <sec:authorize access="isAuthenticated()">
                                                                             <a href="/mealMenu">
-                                                                                <button type="button" class="btn-cart buy btn btn-sucsess btn-lg">Order</button>
+                                                                                <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
                                                                     </div>

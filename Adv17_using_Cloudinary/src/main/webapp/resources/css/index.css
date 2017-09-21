@@ -17,12 +17,12 @@
 	font-weight: normal
 }
 
-.font-italic, .buy, .cart_text, .banner_btn .btn, .banner_btn .transparent_btn,
+.font-italic, .buy, .cart_text, .banner_btnCafe .btnCafe, .banner_btnCafe .transparent_btnCafe,
 	.slider_caption .middle_text {
 	font-style: italic
 }
 
-.font-light-italic, .item_category, .date, .stat_desc, .stat_btn .transparent_btn,
+.font-light-italic, .item_category, .date, .stat_desc, .stat_btnCafe .transparent_btnCafe,
 	.weight, .scrol_container, footer, .top_part.row, .action_desc,
 	.action_desc_black {
 	font-weight: 400;
@@ -54,7 +54,7 @@
 	font-size: 1.5rem
 }
 
-.font-18, .item_category, .button, .link_menu, .name, .line, .top_btn,
+.font-18, .item_category, .button, .link_menu, .name, .line, .top_btnCafe,
 	.request, .banner_info_main_rest .short_description {
 	font-size: 1.125rem
 }
@@ -123,7 +123,7 @@ ul {
 	color: #76ad00
 }
 
-.btn {
+.btnCafe {
 	display: inline-block;
 	padding: 0.8125rem 2rem 0.875rem;
 	border: none;
@@ -136,15 +136,15 @@ ul {
 	text-decoration: none
 }
 
-.btn:hover, .btn:focus {
+.btnCafe:hover, .btnCafe:focus {
 	color: #fff
 }
 
-.btn:hover {
+.btnCafe:hover {
 	opacity: 0.75
 }
 
-button.btn {
+button.btnCafe {
 	padding: 0 0.625rem;
 	line-height: 3.25rem;
 	outline: none;
@@ -173,7 +173,7 @@ button.btn {
 	font-size: 1.25rem
 }
 
-.transparent_btn {
+.transparent_btnCafe {
 	display: inline-block;
 	padding: 0.75rem 2.25rem 0.8125rem;
 	border: 1px solid #fff;
@@ -187,7 +187,7 @@ button.btn {
 	text-decoration: none
 }
 
-.transparent_btn:hover, .transparent_btn:focus {
+.transparent_btnCafe:hover, .transparent_btnCafe:focus {
 	color: #fff;
 	opacity: 0.75
 }
@@ -345,7 +345,7 @@ header {
 	background: #fff
 }
 
-header .navicon_btn {
+header .navicon_btnCafe {
 	display: none
 }
 
@@ -394,7 +394,7 @@ header .navicon_btn {
 	margin-left: 1.25rem
 }
 
-.cart_btn {
+.cart_btnCafe {
 	position: relative;
 	display: inline-block;
 	min-width: 10.375rem;
@@ -405,12 +405,12 @@ header .navicon_btn {
 	text-align: left
 }
 
-.cart_btn.active .cart_icon:before {
+.cart_btnCafe.active .cart_icon:before {
 	opacity: 1;
 	top: 0.5rem
 }
 
-.cart_btn.animate #smoke path {
+.cart_btnCafe.animate #smoke path {
 	-webkit-animation: smoke 0.5s linear alternate;
 	-moz-animation: smoke 0.5s linear alternate;
 	-o-animation: smoke 0.5s linear alternate;
@@ -420,11 +420,11 @@ header .navicon_btn {
 	stroke-dashoffset: 0
 }
 
-.header_home.active .cart_btn {
+.header_home.active .cart_btnCafe {
 	border-color: rgba(144, 186, 0, 0.3)
 }
 
-.header_home.active .cart_btn .cart_icon {
+.header_home.active .cart_btnCafe .cart_icon {
 	background: url("../../images/cart.svg") no-repeat
 }
 
