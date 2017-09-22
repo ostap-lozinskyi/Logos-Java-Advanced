@@ -23,7 +23,11 @@ public class PlaceValidator implements ConstraintValidator<UniquePlace, String> 
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		return !repository.existsByNumber(Integer.valueOf(value));
+		try {
+			return !repository.existsByNumber(Integer.valueOf(value));
+		} catch (NumberFormatException e) {
+			return true;
+		}
 	}
 
 }
