@@ -105,7 +105,21 @@
 										</div>
 									</div>
 									<br>
-								</div>						
+								</div>	
+								<div class="col-2">
+									<p>								
+										<button class="btn btn-outline-secondary" type="button"
+											data-toggle="collapse" data-target="#thirdCollapse"
+											aria-expanded="false" aria-controls="thirdCollapse">
+											Select place</button>
+									</p>
+									<div class="collapse" id="thirdCollapse">
+										<div class="card card-body">
+											<form:checkboxes items="${meals}" path="mealName" element="div"/>
+										</div>
+									</div>
+									<br>
+								</div>					
 								<div class="col-12">
 		        					<button type="submit" class="btn-cart buy btnCafe btn-sucsess btn-lg">Search</button>
 		      					</div>

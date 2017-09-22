@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
+import javax.persistence.criteria.ListJoin;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -18,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 
+import ua.entity.Meal;
 import ua.entity.Order;
 import ua.entity.Order_;
 import ua.entity.Place;
@@ -76,8 +78,16 @@ public class OrderViewRepositoryImpl implements OrderViewRepository{
 			}
 		}
 		
+		void findByMealList() {
+			if(!filter.getMealName().isEmpty()) {
+				ListJoin<Order, Meal> join = root.join(Order_.meals);
+				predicates.add(join.get("name").in(filter.getMealName()));
+			}
+		}
+		
 		Predicate toPredicate() {
 			findByPlacelId();
+			findByMealList();
 			return predicates.isEmpty() ? null : cb.and(predicates.stream().toArray(Predicate[]::new));
 		}		
 		
