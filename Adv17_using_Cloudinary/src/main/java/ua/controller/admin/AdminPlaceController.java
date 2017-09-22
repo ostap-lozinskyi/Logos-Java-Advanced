@@ -68,4 +68,6 @@ public class AdminPlaceController {
 		status.setComplete();
 		return "redirect:/admin/place";
 	}
+	
+	
 }

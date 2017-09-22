@@ -100,7 +100,7 @@
 							</div>
 					</div>
 					<div class="col-6 text-center">
-						<custom:size posibleSizes="1,2,5,10" size="${ingredients.size}" />
+						<custom:size posibleSizes="1,2,5,10" size="${cuisines.size}" />
 					</div>
 				</div>
 			</div>

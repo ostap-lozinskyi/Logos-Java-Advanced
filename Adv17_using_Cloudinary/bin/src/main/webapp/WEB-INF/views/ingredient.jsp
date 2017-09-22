@@ -13,8 +13,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 <title>Ingredient</title>
 </head>
-<body>
-	<div class="container">
+<body style="background: url(/resources/img/fon2.jpg)">
+	<div class="container" style="background-color: white;">
 		<div class="row">
 			<div class="col-12">
 				<h1 class="text-center">Ingredient</h1>
@@ -24,17 +24,16 @@
 			<div class="col-12">
 				<div class="text-center">
 				<div class="btn-group text-center" role="group" aria-label="Basic example">
-					<a class="btn btn-outline-primary" href="/">Main Page</a>
-					<a class="btn btn-outline-primary" href="/admin">Admin</a>
-					<a class="btn btn-outline-primary" href="/userCabinet">Admin Cabinet</a>
-					<a class="btn btn-outline-primary" href="/admin/ingredient">Ingredient</a>
-					<a class="btn btn-outline-primary" href="/admin/ms">Ms</a>
-					<a class="btn btn-outline-primary" href="/admin/component">Component</a>
-					<a class="btn btn-outline-primary" href="/admin/cuisine">Cuisine</a>
-					<a class="btn btn-outline-primary" href="/admin/meal">Meal</a>
-					<a class="btn btn-outline-primary" href="/admin/mealPhotoUpdate">Meal Photo Updade</a>
-					<a class="btn btn-outline-primary" href="/admin/order">Order</a>
-					<a class="btn btn-outline-primary" href="/admin/place">Place</a>
+					<a class="btn btn-outline-success" href="/">Main Page</a>
+					<a class="btn btn-outline-success" href="/admin">Admin</a>
+					<a class="btn btn-outline-success" href="/userCabinet">Admin Cabinet</a>
+					<a class="btn btn-outline-success" href="/admin/ingredient">Ingredient</a>
+					<a class="btn btn-outline-success" href="/admin/ms">Ms</a>
+					<a class="btn btn-outline-success" href="/admin/component">Component</a>
+					<a class="btn btn-outline-success" href="/admin/cuisine">Cuisine</a>
+					<a class="btn btn-outline-success" href="/admin/meal">Meal</a>
+					<a class="btn btn-outline-success" href="/admin/order">Order</a>
+					<a class="btn btn-outline-success" href="/admin/place">Place</a>
 				</div>
 				</div>				
 			</div>
@@ -90,12 +89,11 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<a href="/admin">to Admin</a>
 			</div>
 			<div class="col-3">
 				<div class="row">
 					<div class="col-6 text-center">
-							<button class="dropdown-toggle btn btn-outline-primary btn-sm" type="button" data-toggle="dropdown">Sort
+							<button class="dropdown-toggle btn btn-outline-success btn-sm" type="button" data-toggle="dropdown">Sort
 							</button>
 							<div class="dropdown-menu">
 								<custom:sort innerHtml="Name asc" paramValue="name"/>
