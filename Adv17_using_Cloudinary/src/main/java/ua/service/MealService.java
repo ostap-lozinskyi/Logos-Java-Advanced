@@ -15,7 +15,9 @@ public interface MealService {
 
 	List<String> findAllcuisines();
 
-	List<ComponentView> findAllСomponents();
+	List<ComponentView> findAllСomponentsView();
+	
+	List<String> findAllСomponentsString();
 	
 //	Page<Meal> findAll(Pageable pageable, SimpleFilter filter);
 	

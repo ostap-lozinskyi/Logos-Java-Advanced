@@ -79,6 +79,11 @@
 						<th class="text-center">Name</th>
 						<th class="text-center">Options</th>
 					</tr>
+					<c:if test="${empty cuisines.content}">
+		    			<tr>
+		    			<td colspan=2><h3 class="text-center">Cuisines with such name not found</h3></td>
+		    			</tr>
+					</c:if>
 					<c:forEach var="cuisine" items="${cuisines.content}">
 						<tr>
 							<td>${cuisine.name}</td>

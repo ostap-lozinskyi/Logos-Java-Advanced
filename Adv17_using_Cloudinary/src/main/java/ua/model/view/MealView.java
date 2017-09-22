@@ -19,7 +19,7 @@ public class MealView {
 	
 	private BigDecimal price;
 	
-	private List<ComponentView> components;
+	private List<String> components;
 	
 	private int weight;
 	
@@ -94,11 +94,11 @@ public class MealView {
 		this.price = price;
 	}
 
-	public List<ComponentView> getComponents() {
+	public List<String> getComponents() {
 		return components;
 	}
 
-	public void setComponents(List<ComponentView> components) {
+	public void setComponents(List<String> components) {
 		this.components = components;
 	}
 

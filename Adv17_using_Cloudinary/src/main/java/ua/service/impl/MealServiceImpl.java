@@ -46,8 +46,13 @@ public class MealServiceImpl implements MealService {
 	}
 
 	@Override
-	public List<ComponentView> findAllСomponents() {
-		return componentRepository.findAllView();
+	public List<String> findAllСomponentsString() {
+		return componentRepository.findAllComponentsString();
+	}
+	
+	@Override
+	public List<ComponentView> findAllСomponentsView() {
+		return componentRepository.findAllComponentsView();
 	}
 
 //	@Override

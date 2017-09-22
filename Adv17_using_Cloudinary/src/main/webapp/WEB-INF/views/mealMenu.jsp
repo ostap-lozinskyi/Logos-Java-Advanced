@@ -97,7 +97,7 @@
 		<div class="row">
 			<div class="col-12">
 				<c:if test="${empty meals.content}">
-	    			<h2 class="text-center">Meals not found</h2>
+	    			<h2 class="text-center">Meals with such parameters not found</h2>
 				</c:if>
 			</div>
 			<c:forEach var="meal" items="${meals.content}">

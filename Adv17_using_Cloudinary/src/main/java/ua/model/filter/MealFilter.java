@@ -26,7 +26,7 @@ public class MealFilter {
 	
 	private List<String> cuisineName = new ArrayList<>();
 	
-	private List<String> ingredientName = new ArrayList<>();
+	private List<String> componentsId = new ArrayList<>();
 
 	public String getSearch() {
 		return search;
@@ -98,12 +98,12 @@ public class MealFilter {
 		this.cuisineName = cuisineName;
 	}
 
-	public List<String> getIngredientName() {
-		return ingredientName;
+	public List<String> getComponentsId() {
+		return componentsId;
 	}
 
-	public void setIngredientName(List<String> ingredientName) {
-		this.ingredientName = ingredientName;
+	public void setComponentsId(List<String> componentsId) {
+		this.componentsId = componentsId;
 	}
-	
+
 }

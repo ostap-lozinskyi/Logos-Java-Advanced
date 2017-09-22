@@ -111,7 +111,7 @@
 										<button class="btn btn-outline-secondary" type="button"
 											data-toggle="collapse" data-target="#thirdCollapse"
 											aria-expanded="false" aria-controls="thirdCollapse">
-											Select place</button>
+											Select meal</button>
 									</p>
 									<div class="collapse" id="thirdCollapse">
 										<div class="card card-body">
@@ -138,6 +138,11 @@
 						<th class="text-center">Place</th>
 						<th class="text-center">Options</th>
 					</tr>
+					<c:if test="${empty orders.content}">
+		    			<tr>
+		    			<td colspan=3><h3 class="text-center">Orders with such parameters not found</h3></td>
+		    			</tr>
+					</c:if>
 					<c:forEach var="order" items="${orders.content}">
 						<tr>
 							<td>${order.id}</td>

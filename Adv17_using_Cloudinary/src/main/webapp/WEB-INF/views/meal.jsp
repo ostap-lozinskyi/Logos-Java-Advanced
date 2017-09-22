@@ -123,7 +123,7 @@
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="component">Components:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="component" path="components" items="${components}" itemValue="id"/>
+							<form:select class="form-control" id="component" path="components" items="${componentsView}" itemValue="id"/>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -189,7 +189,20 @@
 											<form:checkboxes items="${cuisines}" path="cuisineName" element="div"/>
 										</div>
 									</div>
-								</div>						
+								</div>
+								<div class="col-3">
+									<p>								
+										<button class="btn btn-outline-secondary" type="button"
+											data-toggle="collapse" data-target="#thirdCollapse"
+											aria-expanded="false" aria-controls="thirdCollapse">
+											Select component</button>
+									</p>
+									<div class="collapse" id="thirdCollapse">
+										<div class="card card-body">
+											<form:checkboxes items="${componentsString}" path="componentsId" element="div"/>
+										</div>
+									</div>
+								</div>							
 								<div class="col-12">
 		        					<button type="submit" class="btn-cart buy btnCafe btn-sucsess btn-lg">Search</button>
 		      					</div>
@@ -225,6 +238,11 @@
 						<th class="text-center">Options</th>
 						<th class="text-center">Photo</th>
 					</tr>
+					<c:if test="${empty meals.content}">
+		    			<tr>
+		    			<td colspan=7><h3 class="text-center">Meals with such parameters not found</h3></td>
+		    			</tr>
+					</c:if>
 					<c:forEach var="meal" items="${meals.content}">
 						<tr>
 							<td>${meal.name}</td>

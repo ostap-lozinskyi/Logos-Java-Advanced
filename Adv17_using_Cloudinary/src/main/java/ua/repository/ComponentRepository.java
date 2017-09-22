@@ -20,7 +20,10 @@ public interface ComponentRepository extends JpaRepository<Component, Integer>, 
 //	List<String> findAllMss();
 
 	@Query("SELECT new ua.model.view.ComponentView(c.id, c.amount, i.name, ms.name) FROM Component c JOIN c.ingredient i JOIN c.ms ms")
-	List<ComponentView> findAllView();
+	List<ComponentView> findAllComponentsView();
+	
+	@Query("SELECT c FROM Component c JOIN c.ingredient i JOIN c.ms ms")
+	List<String> findAllComponentsString();
 //	
 //	@Query(value = "SELECT new ua.model.view.ComponentView(c.id, i.name, c.amount, ms.name) FROM Component c JOIN c.ingredient i JOIN c.ms ms",
 //			countQuery = "SELECT count(c.id) FROM Component c JOIN c.ingredient i JOIN c.ms ms")
