@@ -195,7 +195,6 @@
 		      					</div>
 							</div>
 						</form:form>
-						<br>
 					</div>
 				</div>
 			</div>

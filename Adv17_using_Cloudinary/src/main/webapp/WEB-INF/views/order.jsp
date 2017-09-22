@@ -11,6 +11,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+<link href="/resources/css/index.css" rel="stylesheet">
 <title>Order</title>
 </head>
 <body style="background: url(/resources/img/fon2.jpg)">
@@ -102,13 +104,13 @@
 											<form:checkboxes items="${places}" path="placeNumber" element="div"/>
 										</div>
 									</div>
+									<br>
 								</div>						
 								<div class="col-12">
 		        					<button type="submit" class="btn-cart buy btnCafe btn-sucsess btn-lg">Search</button>
 		      					</div>
 							</div>
 						</form:form>
-						<br>
 					</div>
 				</div>
 			</div>
