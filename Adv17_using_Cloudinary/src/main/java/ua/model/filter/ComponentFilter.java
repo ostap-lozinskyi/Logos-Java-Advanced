@@ -8,8 +8,6 @@ public class ComponentFilter {
 
 	private static final Pattern DECIMAL_PATTERN = Pattern.compile("^([0-9]{1,18}\\.[0-9]{0,2})|([0-9]{1,18}\\,[0-9]{0,2})|([0-9]{1,18})$");
 	
-	private String search = "";
-
 	private String minAmount = "";
 	
 	private String maxAmount = "";
@@ -17,14 +15,6 @@ public class ComponentFilter {
 	private List<String> msName = new ArrayList<>();
 	
 	private List<String> ingredientName = new ArrayList<>();
-
-	public String getSearch() {
-		return search;
-	}
-
-	public void setSearch(String search) {
-		this.search = search;
-	}
 
 	public String getMinAmount() {
 		return minAmount;

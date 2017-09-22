@@ -107,7 +107,6 @@ public class AdminComponentController {
 			});
 		}
 		buffer.append("&search=");
-		buffer.append(filter.getSearch());
 		return buffer.toString();
 	}
 }

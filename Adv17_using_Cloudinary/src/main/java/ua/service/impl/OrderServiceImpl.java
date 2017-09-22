@@ -8,20 +8,26 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Order;
+import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.model.view.OrderView;
 import ua.model.view.PlaceView;
 import ua.repository.OrderRepository;
+import ua.repository.OrderViewRepository;
 import ua.service.OrderService;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 
 	private final OrderRepository repository;
+	
+	private final OrderViewRepository orderViewRepository;
 
 	@Autowired
-	public OrderServiceImpl(OrderRepository repository) {
+	public OrderServiceImpl(OrderRepository repository, OrderViewRepository orderViewRepository) {
+		super();
 		this.repository = repository;
+		this.orderViewRepository = orderViewRepository;
 	}
 
 	@Override
@@ -35,8 +41,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Page<OrderView> findAll(Pageable pageable) {
-		return repository.findAllView(pageable);
+	public Page<OrderView> findAll(Pageable pageable, OrderFilter filter) {
+		return orderViewRepository.findAllView(filter, pageable);
 	}
 
 	@Override

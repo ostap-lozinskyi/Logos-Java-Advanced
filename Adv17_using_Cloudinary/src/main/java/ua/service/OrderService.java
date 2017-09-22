@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.model.view.OrderView;
 import ua.model.view.PlaceView;
@@ -15,7 +16,7 @@ public interface OrderService {
 
 	List<PlaceView> findAllPlace();
 
-	Page<OrderView> findAll(Pageable pageable);
+	Page<OrderView> findAll(Pageable pageable, OrderFilter filter);
 
 	void save(OrderRequest request);
 
