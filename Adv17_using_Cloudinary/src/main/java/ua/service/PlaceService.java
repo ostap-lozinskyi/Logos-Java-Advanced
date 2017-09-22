@@ -8,7 +8,7 @@ import ua.model.view.PlaceView;
 
 public interface PlaceService {
 
-	Page<PlaceView> findAllView(Pageable pageable);
+	Page<PlaceView> findAll(Pageable pageable);
 
 	void save(PlaceRequest request);
 

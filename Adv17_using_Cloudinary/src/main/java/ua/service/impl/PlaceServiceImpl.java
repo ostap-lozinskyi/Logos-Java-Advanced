@@ -22,7 +22,7 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	public Page<PlaceView> findAllView(Pageable pageable) {
+	public Page<PlaceView> findAll(Pageable pageable) {
 		return repository.findAllView(pageable);
 	}
 
