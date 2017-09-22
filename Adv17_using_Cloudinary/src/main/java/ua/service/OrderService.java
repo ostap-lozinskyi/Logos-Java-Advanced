@@ -8,13 +8,12 @@ import org.springframework.data.domain.Pageable;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.model.view.OrderView;
-import ua.model.view.PlaceView;
 
 public interface OrderService {
 
 	List<String> findAllMeals();
 
-	List<PlaceView> findAllPlace();
+	List<String> findAllPlace();
 
 	Page<OrderView> findAll(Pageable pageable, OrderFilter filter);
 

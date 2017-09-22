@@ -9,15 +9,14 @@ import org.springframework.data.jpa.repository.Query;
 
 import ua.entity.Order;
 import ua.model.view.OrderView;
-import ua.model.view.PlaceView;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 
 	@Query("SELECT m.name FROM Meal m")
 	List<String> findAllMeals();
 
-	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number) FROM Place p")
-	List<PlaceView> findAllPlace();
+	@Query("SELECT p.number FROM Place p")
+	List<String> findAllPlace();
 
 	@Query("SELECT new ua.model.view.OrderView(o.id, p.number) FROM Order o JOIN o.place p")
 	List<OrderView> findAllView();

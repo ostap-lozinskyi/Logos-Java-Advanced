@@ -63,7 +63,8 @@
 						<div class="col-10">
 							<form:select class="form-control" id="place" path="place" onchange="${places}">
 								<form:option value="" label="Select Place" style="color: gray;"/>
-								<form:options items="${places}" itemLabel="print" itemValue="id"/>
+ 								<form:options items="${places}"/> 
+ 								<%--itemLabel="print" itemValue="id"--%>
 							</form:select>
 						</div>
 					</div>
@@ -76,6 +77,43 @@
 				</form:form>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-12">
+				<br>
+				<p>
+					<button class="btn-cart buy btnCafe btn-sucsess btn-lg" type="button"
+						data-toggle="collapse" data-target="#firstCollapse"
+						aria-expanded="false" aria-controls="firstCollapse">
+						Search meal</button>
+				</p>
+				<div class="collapse" id="firstCollapse">
+					<div class="card card-body">
+						<form:form action="/admin/order" method="GET" modelAttribute="orderFilter">
+							<div class="form-group row">
+								<div class="col-2">
+									<p>								
+										<button class="btn btn-outline-secondary" type="button"
+											data-toggle="collapse" data-target="#secondCollapse"
+											aria-expanded="false" aria-controls="secondCollapse">
+											Select place</button>
+									</p>
+									<div class="collapse" id="secondCollapse">
+										<div class="card card-body">
+											<form:checkboxes items="${places}" path="placeNumber" element="div"/>
+										</div>
+									</div>
+								</div>						
+								<div class="col-12">
+		        					<button type="submit" class="btn-cart buy btnCafe btn-sucsess btn-lg">Search</button>
+		      					</div>
+							</div>
+						</form:form>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
 		<div class="row">
 			<div class="col-9">
 				<table class="table table-bordered">

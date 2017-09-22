@@ -11,7 +11,6 @@ import ua.entity.Order;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.model.view.OrderView;
-import ua.model.view.PlaceView;
 import ua.repository.OrderRepository;
 import ua.repository.OrderViewRepository;
 import ua.service.OrderService;
@@ -36,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<PlaceView> findAllPlace() {
+	public List<String> findAllPlace() {
 		return repository.findAllPlace();
 	}
 

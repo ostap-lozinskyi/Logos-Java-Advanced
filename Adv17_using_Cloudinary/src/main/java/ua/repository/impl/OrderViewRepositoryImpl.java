@@ -18,7 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 
-import ua.entity.Meal;
 import ua.entity.Order;
 import ua.entity.Order_;
 import ua.entity.Place;
@@ -72,8 +71,8 @@ public class OrderViewRepositoryImpl implements OrderViewRepository{
 		
 		void findByPlacelId() {
 			if(!filter.getPlaceNumber().isEmpty()) {
-				Join<Order, Meal> join = root.join(Order_.meals);
-				predicates.add(join.get("name").in(filter.getPlaceNumber()));
+				Join<Order, Place> join = root.join(Order_.place);
+				predicates.add(join.get("number").in(filter.getPlaceNumber()));
 			}
 		}
 		
