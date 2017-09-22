@@ -30,12 +30,12 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<PlaceView> findAllPlaceViews() {
-		return repository.findAllPlaceViews();
+	public List<PlaceView> findAllPlace() {
+		return repository.findAllPlace();
 	}
 
 	@Override
-	public Page<OrderView> findAllView(Pageable pageable) {
+	public Page<OrderView> findAll(Pageable pageable) {
 		return repository.findAllView(pageable);
 	}
 

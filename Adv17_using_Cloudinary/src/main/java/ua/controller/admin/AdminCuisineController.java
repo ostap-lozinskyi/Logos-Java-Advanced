@@ -45,7 +45,8 @@ public class AdminCuisineController {
 	}
 
 	@GetMapping
-	public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
+	public String show(Model model, @PageableDefault Pageable pageable, 
+			@ModelAttribute("filter") SimpleFilter filter) {
 		model.addAttribute("cuisines", service.findAll(pageable, filter));
 		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
 			return "cuisine";
@@ -78,7 +79,8 @@ public class AdminCuisineController {
 	}
 
 	@GetMapping("/cancel")
-	public String cancel(SessionStatus status, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
+	public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("filter") SimpleFilter filter) {
 		status.setComplete();
 		return "redirect:/admin/cuisine"+buildParams(pageable, filter);
 	}

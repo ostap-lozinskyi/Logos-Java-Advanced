@@ -13,9 +13,9 @@ public interface OrderService {
 
 	List<String> findAllMeals();
 
-	List<PlaceView> findAllPlaceViews();
+	List<PlaceView> findAllPlace();
 
-	Page<OrderView> findAllView(Pageable pageable);
+	Page<OrderView> findAll(Pageable pageable);
 
 	void save(OrderRequest request);
 
