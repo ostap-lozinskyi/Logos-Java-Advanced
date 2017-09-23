@@ -71,8 +71,7 @@ public class AdminMealController {
 	@GetMapping
 	public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("mealFilter") MealFilter filter) {
 		model.addAttribute("cuisines", service.findAllcuisines());
-		model.addAttribute("componentsString", service.findAllСomponentsString());
-		model.addAttribute("componentsView", service.findAllСomponentsView());
+		model.addAttribute("components", service.findAllСomponentsView());
 		model.addAttribute("meals", service.findAllView(filter, pageable));
 		if (service.findAllView(filter, pageable).hasContent()||pageable.getPageNumber()==0)
 			return "meal";

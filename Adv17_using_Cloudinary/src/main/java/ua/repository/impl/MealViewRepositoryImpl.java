@@ -11,7 +11,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
-import javax.persistence.criteria.ListJoin;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -147,7 +146,7 @@ public class MealViewRepositoryImpl implements MealViewRepository{
 		
 		void findByComponentList() {
 			if(!filter.getComponentsId().isEmpty()) {
-				ListJoin<Meal, Component> join = root.join(Meal_.components);
+				Join<Meal, Component> join = root.join(Meal_.components);
 				predicates.add(join.get("id").in(filter.getComponentsId()));
 			}
 		}

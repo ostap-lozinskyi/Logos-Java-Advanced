@@ -199,7 +199,13 @@
 									</p>
 									<div class="collapse" id="thirdCollapse">
 										<div class="card card-body">
-											<form:checkboxes items="${componentsString}" path="componentsId" element="div"/>
+											<c:forEach var="component" items="${components}">
+												<div class="row">
+													<div class="col-12">
+															<form:checkbox path="componentsId" value="${component.id}"/> ${component.amount} ${component.ms} ${component.ingredient}							
+													</div>
+												</div>
+											</c:forEach>
 										</div>
 									</div>
 								</div>							
