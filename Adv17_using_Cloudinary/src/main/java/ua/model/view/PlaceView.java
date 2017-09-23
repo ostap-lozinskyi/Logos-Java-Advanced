@@ -7,13 +7,13 @@ public class PlaceView {
 	private int countOfPeople;
 
 	private int number;
-
+	
 	public PlaceView(Integer id, int countOfPeople, int number) {
 		this.id = id;
 		this.countOfPeople = countOfPeople;
 		this.number = number;
 	}
-	
+
 	public String getPrint() {
 		return "Table_"+number+ "_"+ "CountOfPeople_"+countOfPeople;
 	}
@@ -41,5 +41,5 @@ public class PlaceView {
 	public void setNumber(int number) {
 		this.number = number;
 	}
-	
+
 }

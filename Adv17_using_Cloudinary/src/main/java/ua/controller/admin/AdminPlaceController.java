@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import ua.model.filter.PlaceFilter;
 import ua.model.request.PlaceRequest;
 import ua.service.PlaceService;
 import ua.validation.flag.PlaceFlag;
@@ -37,47 +38,57 @@ public class AdminPlaceController {
 	public PlaceRequest getForm() {
 		return new PlaceRequest();
 	}
+	
+	@ModelAttribute("placeFilter")
+	public PlaceFilter getFilter() {
+		return new PlaceFilter();
+	}
 
 	@GetMapping
-	public String show(Model model, @PageableDefault Pageable pageable) {
-		model.addAttribute("places", service.findAll(pageable));
-		if (service.findAll(pageable).hasContent()||pageable.getPageNumber()==0)
+	public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("placeFilter") PlaceFilter filter) {
+		model.addAttribute("places", service.findAllView(pageable, filter));
+		model.addAttribute("placesString", service.findAllPlacesCountOfPeople());
+		if (service.findAllView(pageable, filter).hasContent()||pageable.getPageNumber()==0)
 			return "place";
 		else
-			return "redirect:/admin/place"+buildParams(pageable);
+			return "redirect:/admin/place"+buildParams(pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable) {
+	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
+			@ModelAttribute("placeFilter") PlaceFilter filter) {
 		service.delete(id);
-		return "redirect:/admin/place"+buildParams(pageable);
+		return "redirect:/admin/place"+buildParams(pageable, filter);
 	}
 
 	@PostMapping
 	public String save(@ModelAttribute("place") @Validated(PlaceFlag.class) PlaceRequest request, BindingResult br,
-			Model model, SessionStatus status, @PageableDefault Pageable pageable) {
+			Model model, SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("placeFilter") PlaceFilter filter) {
 		if (br.hasErrors())
-			return show(model, pageable);
+			return show(model, pageable, filter);
 		service.save(request);
-		return cancel(status, pageable);
+		return cancel(status, pageable, filter);
 	}
 
 	@GetMapping("/update/{id}")
-	public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable) {
+	public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
+			@ModelAttribute("placeFilter") PlaceFilter filter) {
 		model.addAttribute("place", service.findOneRequest(id));
-		return show(model, pageable);
+		return show(model, pageable, filter);
 	}
 
 	@GetMapping("/cancel")
-	public String cancel(SessionStatus status, @PageableDefault Pageable pageable) {
+	public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("placeFilter") PlaceFilter filter) {
 		status.setComplete();
-		return "redirect:/admin/place"+buildParams(pageable);
+		return "redirect:/admin/place"+buildParams(pageable, filter);
 	}
 	
-	private String buildParams(Pageable pageable) {
+	private String buildParams(Pageable pageable, @ModelAttribute("placeFilter") PlaceFilter filter) {
 		StringBuilder buffer = new StringBuilder();		
 		buffer.append("?page=");
-		if(!(service.findAll(pageable).hasContent())) 
+		if(!(service.findAllView(pageable, filter).hasContent())) 
 			buffer.append(String.valueOf(pageable.getPageNumber()));
 		else {
 			buffer.append(String.valueOf(pageable.getPageNumber()+1));

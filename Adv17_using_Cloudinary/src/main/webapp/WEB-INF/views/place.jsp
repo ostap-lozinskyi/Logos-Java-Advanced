@@ -74,6 +74,69 @@
 				</form:form>
 			</div>
 		</div>
+					<div class="row">
+				<div class="col-12">
+					<br>
+					<p>
+						<button class="btn-cart buy btnCafe btn-sucsess btn-lg" type="button"
+							data-toggle="collapse" data-target="#firstCollapse"
+							aria-expanded="false" aria-controls="firstCollapse">
+							Search place</button>
+					</p>
+				<div class="collapse" id="firstCollapse">
+					<div class="card card-body">
+						<form:form action="/admin/place" method="GET" modelAttribute="placeFilter">
+							<div class="form-group row">
+								<div class="col-2">
+									<form:input path="number" class="form-control" placeholder="By number"/>
+								</div>						
+								<div class="col-3">
+									<p>								
+										<button class="btn btn-outline-secondary" type="button"
+											data-toggle="collapse" data-target="#secondCollapse"
+											aria-expanded="false" aria-controls="secondCollapse">
+											Select count of people</button>
+									</p>
+									<div class="collapse" id="secondCollapse">
+										<div class="card card-body">
+											<c:forEach var="place" items="${placesString}">
+												<div class="row">
+													<div class="col-12">
+															<form:checkbox path="countOfPeople" value="${place}"/> ${place} 							
+													</div>
+												</div>
+											</c:forEach>
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<p>								
+										<button class="btn btn-outline-secondary" type="button"
+											data-toggle="collapse" data-target="#thirdCollapse"
+											aria-expanded="false" aria-controls="thirdCollapse">
+											Select free or not free</button>
+									</p>
+									<div class="collapse" id="thirdCollapse">
+										<div class="card card-body">
+											<div class="row">
+												<div class="col-12">
+													<form:checkbox path="isFree" value="isFree"/> free
+													<br><form:checkbox path="isFree" value="isNotFree"/> not free							
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>							
+								<div class="col-12">
+		        					<button type="submit" class="btn-cart buy btnCafe btn-sucsess btn-lg">Search</button>
+		      					</div>
+							</div>
+						</form:form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
 		<div class="row">
 			<div class="col-9">
 				<table class="table table-bordered">
