@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="row center">
                                     <div class="col-12">
-                                        <div class="button_container"> <a href="/mealMenu" class="button button_left">Menu</a><a href="/" class="button button_right">Reserve a Table</a> </div>
+                                        <div class="button_container"> <a href="/meal" class="button button_left">Menu</a><a href="/" class="button button_right">Reserve a Table</a> </div>
                                     </div>
                                 </div>
                             </div>

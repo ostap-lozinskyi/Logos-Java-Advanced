@@ -67,20 +67,20 @@ public class PlaceViewRepositoryImpl implements PlaceViewRepository{
 		}
 		
 		void findByIsFree() {
-			if((filter.getIsFree()!=null)&&(filter.getIsFree().equals("isFree"))) {
+			if(filter.getIsFree().equals("isFree")) {
 				predicates.add(cb.equal(root.get("isFree"), new Boolean(true)));
 			}
 		}
 		
 		void findByIsNotFree() {
-			if((filter.getIsFree()!=null)&&(filter.getIsFree().equals("isNotFree"))) {
+			if(filter.getIsFree().equals("isNotFree")) {
 				predicates.add(cb.equal(root.get("isFree"), new Boolean(false)));
 			}
 		}
 		
 		void findByCountOfPeople() {
 			System.out.println(filter.getCountOfPeople());
-			if((filter.getCountOfPeople()!=null)&&(!filter.getCountOfPeople().isEmpty())) {
+			if(!filter.getCountOfPeople().isEmpty()) {
 				predicates.add(root.get("countOfPeople").in(filter.getCountOfPeople()));
 			}
 		}

@@ -35,6 +35,10 @@
 				<br>
 				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/">Main page</a>
 			</div>
+			<div class="col-2">
+				<br>
+				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/ingredient">Ingredients</a>
+			</div>
 			<div class="col-12">
 				<br>
 				<p>
@@ -45,7 +49,7 @@
 				</p>
 				<div class="collapse" id="firstCollapse">
 					<div class="card card-body">
-						<form:form action="/mealMenu" method="GET" modelAttribute="mealFilter">
+						<form:form action="/meal" method="GET" modelAttribute="mealFilter">
 							<div class="form-group row">
 								<div class="col-2">
 									<form:input path="minRate" class="form-control" placeholder="Min rate"/>
@@ -116,9 +120,9 @@
 									<div class="item_category">
 										<p>Hot meals</p>
 									</div>
-									<div class="item_headline">
-										<a class="item_headline_link" href="/" tabindex="0"><span>${meal.name}</span></a>
-									</div>
+									<div class="item_headline"> 
+                                    	<a href="/meal${meal.id}"><span>${meal.name}</span></a>
+                                    </div>
 									<div class="hide">
 										<div class="reyting">
 											<div class="message"></div>
@@ -150,13 +154,13 @@
 									</div>
 									<div class="buy_row">
 										<sec:authorize access="isAnonymous()">
-											<a href="/mealMenu">
+											<a href="/meal">
 												<button type="button"
 													class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
 											</a>
 										</sec:authorize>
 										<sec:authorize access="isAuthenticated()">
-											<a href="/mealMenu">
+											<a href="/meal">
 												<button type="button"
 													class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
 											</a>

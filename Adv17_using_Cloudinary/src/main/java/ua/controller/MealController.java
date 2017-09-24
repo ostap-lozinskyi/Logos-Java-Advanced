@@ -14,11 +14,11 @@ import ua.model.filter.MealFilter;
 import ua.service.MealService;
 
 @Controller
-public class MealMenuController {
+public class MealController {
 	
 	private final MealService service;
 	
-	public MealMenuController(MealService service) {
+	public MealController(MealService service) {
 		this.service=service;
 	}
 	
@@ -27,18 +27,18 @@ public class MealMenuController {
 		return new MealFilter();
 	}
 
-	@GetMapping("/mealMenu")
+	@GetMapping("/meal")
 	public String mealMenu(Model model, @ModelAttribute("mealFilter") MealFilter filter, 
 			@PageableDefault Pageable pageable) {
 		model.addAttribute("meals", service.findAll(filter, pageable));
 		model.addAttribute("cuisines", service.findAllcuisines());
-		return "mealMenu";
+		return "meal";
 	}	
 	
-	@PostMapping("/mealMenu/{id}")
+	@PostMapping("/meal/{id}")
 	public String updateRate(@PathVariable Integer id,	@RequestParam Integer rate) {
 		service.updateRate(id, rate);
-		return "redirect:/mealMenu";
+		return "redirect:/meal";
 	}
 	
 }
