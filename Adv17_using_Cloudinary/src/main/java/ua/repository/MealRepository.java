@@ -25,5 +25,7 @@ public interface MealRepository extends JpaNameRepository<Meal>, JpaSpecificatio
 	
 	@Query("SELECT new ua.model.view.MealView(m.id, m.photoUrl, m.version, m.name, m.fullDescription, m.price, m.weight, c.name, m.rate) FROM Meal m JOIN m.cuisine c WHERE m.id=?1")
 	MealView findViewById(Integer id);
-
+	
+	@Query("SELECT distinct new ua.model.view.MealView(m.id, m.photoUrl, m.version, m.name, m.fullDescription, m.price, m.weight, c.name, m.rate) FROM Meal m JOIN m.cuisine c JOIN m.components com WHERE components_id in ?1")
+	List<MealView> findByComponentId(List<Integer> id);
 }

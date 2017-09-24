@@ -9,6 +9,7 @@ import ua.entity.Ingredient;
 import ua.model.filter.SimpleFilter;
 import ua.model.view.ComponentView;
 import ua.model.view.IngredientView;
+import ua.model.view.MealView;
 
 public interface IngredientService extends CrudService<Ingredient, Integer> {
 
@@ -17,5 +18,7 @@ public interface IngredientService extends CrudService<Ingredient, Integer> {
 	IngredientView findById(Integer id);
 	
 	List<ComponentView> findComponent(Integer id);
+	
+	List<MealView> findMeal(List<Integer> id);
 
 }

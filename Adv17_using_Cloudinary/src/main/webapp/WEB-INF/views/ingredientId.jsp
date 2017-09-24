@@ -57,14 +57,14 @@
 					<tr>
 						<th class="text-center">Name</th>
 					</tr>
-					<c:if test="${empty components}">
+					<c:if test="${empty meals}">
 		    			<tr>
-		    			<td colspan=2><h3 class="text-center">Ingredients with such name not found</h3></td>
+		    			<td colspan=2><h3 class="text-center">Meals with such ingredient not found</h3></td>
 		    			</tr>
 					</c:if>
-					<c:forEach var="component" items="${components}">
+					<c:forEach var="meal" items="${meals}">
 						<tr>
-							<td>${component}</td>
+							<td>${meal.name}</td>
 						</tr>
 					</c:forEach>
 				</table>

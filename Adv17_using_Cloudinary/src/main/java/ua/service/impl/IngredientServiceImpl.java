@@ -12,8 +12,10 @@ import ua.entity.Ingredient;
 import ua.model.filter.SimpleFilter;
 import ua.model.view.ComponentView;
 import ua.model.view.IngredientView;
+import ua.model.view.MealView;
 import ua.repository.ComponentRepository;
 import ua.repository.IngredientRepository;
+import ua.repository.MealRepository;
 import ua.service.IngredientService;
 
 @Service
@@ -22,12 +24,16 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
 	private final IngredientRepository repository;
 	
 	private final ComponentRepository componentRepository;
+	
+	private final MealRepository mealRepository;
 
 	@Autowired
-	public IngredientServiceImpl(IngredientRepository repository, ComponentRepository componentRepository) {
+	public IngredientServiceImpl(IngredientRepository repository, ComponentRepository componentRepository,
+			MealRepository mealRepository) {
 		super(repository);
 		this.repository = repository;
 		this.componentRepository = componentRepository;
+		this.mealRepository = mealRepository;
 	}
 
 	@Override
@@ -50,6 +56,11 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
 	@Override
 	public List<ComponentView> findComponent(Integer id) {
 		return componentRepository.findByIngredientId(id);
+	}
+	
+	@Override
+	public List<MealView> findMeal(List<Integer> id) {
+		return mealRepository.findByComponentId(id);
 	}
 
 }
