@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="row center">
                                     <div class="col-12">
-                                        <div class="button_container"> <a href="/meal" class="button button_left">Menu</a><a href="/" class="button button_right">Reserve a Table</a> </div>
+                                        <div class="button_container"> <a href="/meal" class="button button_left">Menu</a><a href="/reserveTable" class="button button_right">Reserve a Table</a> </div>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                                                                     <div class="hide">
                                                                         <div class="reyting">
                                                                             <div class="message"></div>
-                                                                            <form:form action="/mealMenu/${meal.id}" method="POST"
+                                                                            <form:form action="/meal/${meal.id}" method="POST"
 																				modelAttribute="meal">current rate=${meal.rate}<div class="star-rating">
 																					<div class="star-rating__wrap">
 																						<input class="star-rating__input fa" id="star-rating-5" type="radio" name="rate" value="5" title="5 out of 5 stars"> 
@@ -137,12 +137,12 @@
                                                                     </div>
                                                                     <div class="buy_row">
                                                                         <sec:authorize access="isAnonymous()">
-                                                                            <a href="/mealMenu">
+                                                                            <a href="/meal">
                                                                                 <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
                                                                         <sec:authorize access="isAuthenticated()">
-                                                                            <a href="/mealMenu">
+                                                                            <a href="/meal">
                                                                                 <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
@@ -177,7 +177,7 @@
                                                                     <div class="hide">
                                                                         <div class="reyting">
                                                                             <div class="message"></div>
-                                                                            <form:form action="/mealMenu/${meal.id}" method="POST"
+                                                                            <form:form action="/meal/${meal.id}" method="POST"
 																				modelAttribute="meal">current rate=${meal.rate}<div class="star-rating">
 																					<div class="star-rating__wrap">
 																						<input class="star-rating__input fa" id="star-rating-5" type="radio" name="rate" value="5" title="5 out of 5 stars"> 
@@ -205,12 +205,12 @@
                                                                     </div>
                                                                     <div class="buy_row">
                                                                         <sec:authorize access="isAnonymous()">
-                                                                            <a href="/mealMenu">
+                                                                            <a href="/meal">
                                                                                 <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
                                                                         <sec:authorize access="isAuthenticated()">
-                                                                            <a href="/mealMenu">
+                                                                            <a href="/meal">
                                                                                 <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>

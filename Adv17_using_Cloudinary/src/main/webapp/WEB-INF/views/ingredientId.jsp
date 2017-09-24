@@ -68,13 +68,24 @@
 							<td>${meal.name}</td>
 							<td>
 								<sec:authorize access="isAnonymous()">
-									<a href="/mealMenu">
+									<a href="/meal">
 										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
 									</a>
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()">
-									<a href="/mealMenu">
+									<a href="/meal">
 										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
+									</a>
+								</sec:authorize>
+								
+								<sec:authorize access="isAnonymous()">
+									<a href="/meal">
+										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Add comment</button>
+									</a>
+								</sec:authorize>
+								<sec:authorize access="isAuthenticated()">
+									<a href="/meal">
+										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Add comment</button>
 									</a>
 								</sec:authorize>
 							</td>
