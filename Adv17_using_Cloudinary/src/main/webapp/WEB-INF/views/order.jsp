@@ -65,8 +65,7 @@
 						<div class="col-10">
 							<form:select class="form-control" id="place" path="place" onchange="${places}">
 								<form:option value="" label="Select Place" style="color: gray;"/>
- 								<form:options items="${places}"/> 
- 								<%--itemLabel="print" itemValue="id"--%>
+ 								<form:options items="${places}" itemLabel="print" itemValue="id"/>
 							</form:select>
 						</div>
 					</div>
@@ -86,7 +85,7 @@
 					<button class="btn-cart buy btnCafe btn-sucsess btn-lg" type="button"
 						data-toggle="collapse" data-target="#firstCollapse"
 						aria-expanded="false" aria-controls="firstCollapse">
-						Search meal</button>
+						Search order</button>
 				</p>
 				<div class="collapse" id="firstCollapse">
 					<div class="card card-body">
@@ -101,7 +100,13 @@
 									</p>
 									<div class="collapse" id="secondCollapse">
 										<div class="card card-body">
-											<form:checkboxes items="${places}" path="placeNumber" element="div"/>
+											<c:forEach var="place" items="${places}">
+												<div class="row">
+													<div class="col-12">
+															<form:checkbox path="placeNumber" value="${place.number}"/> ${place.number} (${place.countOfPeople} people)							
+													</div>
+												</div>
+											</c:forEach>
 										</div>
 									</div>
 									<br>

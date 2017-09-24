@@ -11,8 +11,11 @@ import ua.entity.Order;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.model.view.OrderView;
+import ua.model.view.PlaceView;
+import ua.repository.MealRepository;
 import ua.repository.OrderRepository;
 import ua.repository.OrderViewRepository;
+import ua.repository.PlaceRepository;
 import ua.service.OrderService;
 
 @Service
@@ -21,22 +24,30 @@ public class OrderServiceImpl implements OrderService {
 	private final OrderRepository repository;
 	
 	private final OrderViewRepository orderViewRepository;
+	
+	private final MealRepository mealRepository;
+	
+	private final PlaceRepository placeRepository;
 
 	@Autowired
-	public OrderServiceImpl(OrderRepository repository, OrderViewRepository orderViewRepository) {
-		super();
+	public OrderServiceImpl(OrderRepository repository, OrderViewRepository orderViewRepository,
+			MealRepository mealRepository, PlaceRepository placeRepository) {
 		this.repository = repository;
 		this.orderViewRepository = orderViewRepository;
+		this.mealRepository = mealRepository;
+		this.placeRepository = placeRepository;
 	}
 
 	@Override
 	public List<String> findAllMeals() {
-		return repository.findAllMeals();
+		return mealRepository.findAllMeals();
 	}
 
+	
+
 	@Override
-	public List<String> findAllPlace() {
-		return repository.findAllPlace();
+	public List<PlaceView> findAllPlace() {
+		return placeRepository.findAllPlaceViews();
 	}
 
 	@Override

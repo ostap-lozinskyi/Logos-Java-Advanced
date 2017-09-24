@@ -6,15 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import ua.entity.Place;
+import ua.model.view.PlaceView;
 
 public interface PlaceRepository extends JpaRepository<Place, Integer> {
 
-//	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number) FROM Place p")
-//	List<PlaceView> findAllView();
-	
-//	@Query(value = "SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number) FROM Place p",
-//			countQuery = "SELECT count(p.id) FROM Place p")
-//	Page<PlaceView> findAllView(Pageable pageable);
+	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number) FROM Place p")
+	List<PlaceView> findAllPlaceViews();
 	
 	@Query("SELECT p.countOfPeople FROM Place p")
 	List<String> findAllPlacesCountOfPeople();
