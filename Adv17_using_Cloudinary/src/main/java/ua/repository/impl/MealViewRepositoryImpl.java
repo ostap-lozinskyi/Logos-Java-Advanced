@@ -32,7 +32,7 @@ import ua.repository.MealViewRepository;
 public class MealViewRepositoryImpl implements MealViewRepository{
 
 	@PersistenceContext
-	private EntityManager em;
+	private EntityManager em;	
 
 	@Override
 	public Page<MealIndexView> findAll(MealFilter filter, Pageable pageable) {

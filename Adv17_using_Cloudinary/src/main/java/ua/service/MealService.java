@@ -21,6 +21,8 @@ public interface MealService {
 	
 	Page<MealIndexView> findAll(MealFilter filter, Pageable pageable);
 	
+	List<MealIndexView> find5MealsByRate();
+	
 	Page<MealView> findAllView(MealFilter filter, Pageable pageable);
 
 	void save(MealRequest request);

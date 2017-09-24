@@ -25,7 +25,7 @@ public class MealServiceImpl implements MealService {
 
 	private final MealRepository repository;
 	
-	private final MealViewRepository mealViewrepository;
+	private final MealViewRepository mealViewRepository;
 	
 	private final CuisineRepository cuisineRepository;
 	
@@ -35,7 +35,7 @@ public class MealServiceImpl implements MealService {
 	public MealServiceImpl(MealRepository repository, MealViewRepository mealViewrepository, 
 			CuisineRepository cuisineRepository, ComponentRepository componentRepository) {
 		this.repository = repository;
-		this.mealViewrepository = mealViewrepository;
+		this.mealViewRepository = mealViewrepository;
 		this.cuisineRepository = cuisineRepository;
 		this.componentRepository = componentRepository;
 	}
@@ -64,12 +64,17 @@ public class MealServiceImpl implements MealService {
 	
 	@Override
 	public Page<MealIndexView> findAll(MealFilter filter, Pageable pageable) {
-		return mealViewrepository.findAll(filter, pageable);
+		return mealViewRepository.findAll(filter, pageable);
+	}
+	
+	@Override
+	public List<MealIndexView> find5MealsByRate() {
+		return repository.find5MealsByRate();
 	}
 	
 	@Override
 	public Page<MealView> findAllView(MealFilter filter, Pageable pageable) {
-		return mealViewrepository.findAllView(filter, pageable);
+		return mealViewRepository.findAllView(filter, pageable);
 	}
 
 	@Override

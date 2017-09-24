@@ -3,15 +3,11 @@ package ua.controller;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import ua.entity.User;
-import ua.model.filter.MealFilter;
 import ua.service.MealService;
 
 @Controller
@@ -25,14 +21,14 @@ public class MainController {
 	}
 
 	@GetMapping("/")
-	public String index(Model model, Principal principal, As as, @ModelAttribute("mealFilter") MealFilter filter, @PageableDefault Pageable pageable) {
+	public String index(Model model, Principal principal, As as) {
 		if(principal!=null) {
 			model.addAttribute("message", "Hello "+principal.getName());
 		} else {
 			model.addAttribute("message", "Hello unregistered user");
 		}
 		System.out.println(as.getUser());
-		model.addAttribute("meals", service.findAll(filter, pageable));
+		model.addAttribute("meals", service.find5MealsByRate());
 		return "index";
 	}
 
