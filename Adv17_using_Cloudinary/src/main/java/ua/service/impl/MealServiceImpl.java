@@ -141,8 +141,9 @@ public class MealServiceImpl implements MealService {
 		repository.save(meal);		
 	}
 	
-//	public Meal findById(Integer id) {
-//		return repository.findById(id);
-//	}
+	@Override
+	public MealView findById(Integer id) {
+		return repository.findViewById(id);
+	}
 
 }

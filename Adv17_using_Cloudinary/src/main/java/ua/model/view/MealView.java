@@ -26,8 +26,7 @@ public class MealView {
 	private String cuisine;
 	
 	public MealView(Integer id, String photoUrl, int version, String name, String fullDescription, BigDecimal price,
-			int weight, String cuisine) {
-		super();
+			int weight, String cuisine, BigDecimal rate) {
 		this.id = id;
 		this.photoUrl = photoUrl;
 		this.version = version;
@@ -36,6 +35,7 @@ public class MealView {
 		this.price = price;
 		this.weight = weight;
 		this.cuisine = cuisine;
+		this.rate = rate;
 	}
 
 	public Integer getId() {

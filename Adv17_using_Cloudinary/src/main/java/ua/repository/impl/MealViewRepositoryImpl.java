@@ -63,7 +63,7 @@ public class MealViewRepositoryImpl implements MealViewRepository{
 		Root<Meal> root = cq.from(Meal.class);
 		Join<Meal, Cuisine> join = root.join(Meal_.cuisine);
 		cq.multiselect(root.get(Meal_.id), root.get("photoUrl"), root.get("version"), root.get("name"), 
-				root.get("fullDescription"), root.get("price"), root.get("weight"), join.get("name"));
+				root.get("fullDescription"), root.get("price"), root.get("weight"), join.get("name"), root.get("rate"));
 		Predicate predicate = new PredicateBuilder(cb, root, filter).toPredicate();
 		if(predicate!=null) cq.where(predicate);
 		cq.orderBy(toOrders(pageable.getSort(), root, cb));

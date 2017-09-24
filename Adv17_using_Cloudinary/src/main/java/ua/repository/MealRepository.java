@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import ua.entity.Meal;
 import ua.model.view.MealIndexView;
+import ua.model.view.MealView;
 
 public interface MealRepository extends JpaNameRepository<Meal>, JpaSpecificationExecutor<Meal> {
 	
@@ -21,5 +22,8 @@ public interface MealRepository extends JpaNameRepository<Meal>, JpaSpecificatio
 	
 	@Query("SELECT m FROM Meal m WHERE m.id=?1")
 	Meal findById(Integer id);
+	
+	@Query("SELECT new ua.model.view.MealView(m.id, m.photoUrl, m.version, m.name, m.fullDescription, m.price, m.weight, c.name, m.rate) FROM Meal m JOIN m.cuisine c WHERE m.id=?1")
+	MealView findViewById(Integer id);
 
 }

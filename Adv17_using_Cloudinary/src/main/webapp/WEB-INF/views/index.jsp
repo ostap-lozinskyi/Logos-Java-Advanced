@@ -134,6 +134,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="buy_row">
+                                                                    	<a href="/meal${meal.id}">details</a>
+                                                                    	<br>
                                                                         <sec:authorize access="isAnonymous()">
                                                                             <a href="/mealMenu">
                                                                                 <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
@@ -214,7 +216,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!--item!-->
                                                     </div>
                                                 </div>
                                             </c:forEach>

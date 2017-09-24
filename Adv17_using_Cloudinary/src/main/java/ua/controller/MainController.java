@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import ua.entity.User;
 import ua.service.MealService;
@@ -35,6 +36,12 @@ public class MainController {
 	@GetMapping("/admin")
 	public String admin() {
 		return "admin";
+	}
+	
+	@GetMapping("/meal{id}")
+	public String mealId(Model model, @PathVariable Integer id) {
+		model.addAttribute("meal", service.findById(id));
+		return "mealId";
 	}
 	
 	static class As{

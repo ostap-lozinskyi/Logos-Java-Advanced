@@ -35,6 +35,6 @@ public interface MealService {
 	
 	void updateRate(Integer id, Integer newRate);
 	
-//	Meal findById(Integer id);
+	MealView findById(Integer id);
 
 }
