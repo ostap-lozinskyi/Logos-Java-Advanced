@@ -33,7 +33,7 @@ import ua.service.MealService;
 import ua.validation.flag.MealFlag;
 
 @Controller
-@RequestMapping("/admin/meal")
+@RequestMapping("/admin/adminMeal")
 @SessionAttributes("meal")
 public class AdminMealController {
 	
@@ -74,16 +74,16 @@ public class AdminMealController {
 		model.addAttribute("components", service.findAllСomponentsView());
 		model.addAttribute("meals", service.findAllView(filter, pageable));
 		if (service.findAllView(filter, pageable).hasContent()||pageable.getPageNumber()==0)
-			return "meal";
+			return "adminMeal";
 		else
-			return "redirect:/admin/meal"+buildParams(pageable, filter);
+			return "redirect:/admin/adminMeal"+buildParams(pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
 			@ModelAttribute("mealFilter") MealFilter filter) {
 		service.delete(id);
-		return "redirect:/admin/meal"+buildParams(pageable, filter);
+		return "redirect:/admin/adminMeal"+buildParams(pageable, filter);
 	}
 
 	@PostMapping
@@ -124,7 +124,7 @@ public class AdminMealController {
 	public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
 			@ModelAttribute("mealFilter") MealFilter filter) {
 		status.setComplete();
-		return "redirect:/admin/meal"+buildParams(pageable, filter);
+		return "redirect:/admin/adminMeal"+buildParams(pageable, filter);
 	}
 	
 //	@PostMapping("/photoUpdate/{id}")

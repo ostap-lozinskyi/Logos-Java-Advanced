@@ -20,13 +20,13 @@
 					<a class="btn btn-outline-success" href="/">Main Page</a>
 					<a class="btn btn-outline-success" href="/admin">Admin</a>
 					<a class="btn btn-outline-success" href="/userCabinet">Admin Cabinet</a>
-					<a class="btn btn-outline-success" href="/admin/ingredient">Ingredient</a>
-					<a class="btn btn-outline-success" href="/admin/ms">Ms</a>
-					<a class="btn btn-outline-success" href="/admin/component">Component</a>
-					<a class="btn btn-outline-success" href="/admin/cuisine">Cuisine</a>
-					<a class="btn btn-outline-success" href="/admin/meal">Meal</a>
-					<a class="btn btn-outline-success" href="/admin/order">Order</a>
-					<a class="btn btn-outline-success" href="/admin/place">Place</a>
+					<a class="btn btn-outline-success" href="/admin/adminIngredient">Ingredient</a>
+					<a class="btn btn-outline-success" href="/admin/adminMs">Ms</a>
+					<a class="btn btn-outline-success" href="/admin/adminComponent">Component</a>
+					<a class="btn btn-outline-success" href="/admin/adminCuisine">Cuisine</a>
+					<a class="btn btn-outline-success" href="/admin/adminMeal">Meal</a>
+					<a class="btn btn-outline-success" href="/admin/adminOrder">Order</a>
+					<a class="btn btn-outline-success" href="/admin/adminPlace">Place</a>
 				</div>
 				</div>				
 			</div>

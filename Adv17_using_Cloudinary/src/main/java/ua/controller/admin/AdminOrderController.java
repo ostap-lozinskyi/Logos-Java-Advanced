@@ -23,7 +23,7 @@ import ua.service.OrderService;
 import ua.validation.flag.OrderFlag;
 
 @Controller
-@RequestMapping("/admin/order")
+@RequestMapping("/admin/adminOrder")
 @SessionAttributes("order")
 public class AdminOrderController {
 
@@ -51,16 +51,16 @@ public class AdminOrderController {
 		model.addAttribute("places", service.findAllPlace());
 		model.addAttribute("orders", service.findAll(pageable, filter));
 		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
-			return "order";
+			return "adminOrder";
 		else
-			return "redirect:/admin/order"+buildParams(pageable, filter);
+			return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
 			@ModelAttribute("orderFilter") OrderFilter filter) {
 		service.delete(id);
-		return "redirect:/admin/order"+buildParams(pageable, filter);
+		return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
 	}
 
 	@PostMapping
@@ -84,7 +84,7 @@ public class AdminOrderController {
 	public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
 			@ModelAttribute("orderFilter") OrderFilter filter) {
 		status.setComplete();
-		return "redirect:/admin/order"+buildParams(pageable, filter);
+		return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
 	}
 	
 	private String buildParams(Pageable pageable, OrderFilter filter) {

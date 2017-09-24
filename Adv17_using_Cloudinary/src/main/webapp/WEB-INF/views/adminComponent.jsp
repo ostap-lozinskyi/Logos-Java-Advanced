@@ -30,13 +30,13 @@
 					<a class="btn btn-outline-success" href="/">Main Page</a>
 					<a class="btn btn-outline-success" href="/admin">Admin</a>
 					<a class="btn btn-outline-success" href="/userCabinet">Admin Cabinet</a>
-					<a class="btn btn-outline-success" href="/admin/ingredient">Ingredient</a>
-					<a class="btn btn-outline-success" href="/admin/ms">Ms</a>
-					<a class="btn btn-outline-success" href="/admin/component">Component</a>
-					<a class="btn btn-outline-success" href="/admin/cuisine">Cuisine</a>
-					<a class="btn btn-outline-success" href="/admin/meal">Meal</a>
-					<a class="btn btn-outline-success" href="/admin/order">Order</a>
-					<a class="btn btn-outline-success" href="/admin/place">Place</a>
+					<a class="btn btn-outline-success" href="/admin/adminIngredient">Ingredient</a>
+					<a class="btn btn-outline-success" href="/admin/adminMs">Ms</a>
+					<a class="btn btn-outline-success" href="/admin/adminComponent">Component</a>
+					<a class="btn btn-outline-success" href="/admin/adminCuisine">Cuisine</a>
+					<a class="btn btn-outline-success" href="/admin/adminMeal">Meal</a>
+					<a class="btn btn-outline-success" href="/admin/adminOrder">Order</a>
+					<a class="btn btn-outline-success" href="/admin/adminPlace">Place</a>
 				</div>
 				</div>				
 			</div>
@@ -44,7 +44,7 @@
 		<br>
 		<div class="row">
 			<div class="col-12">				
-				<form:form action="/admin/component" method="POST" modelAttribute="component">
+				<form:form action="/admin/adminComponent" method="POST" modelAttribute="component">
 					<custom:hiddenInputs excludeParams="amount, _csrf"/>
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
@@ -93,7 +93,7 @@
 					<div class="form-group row">
 						<div class="col-8 mr-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/component/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
+							<a href="/admin/adminComponent/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
 						</div>
 					</div>
 				</form:form>
@@ -110,7 +110,7 @@
 				</p>
 				<div class="collapse" id="firstCollapse">
 					<div class="card card-body">
-						<form:form action="/admin/component" method="GET" modelAttribute="componentFilter">
+						<form:form action="/admin/adminComponent" method="GET" modelAttribute="componentFilter">
 							<div class="form-group row">
 								<div class="col-2">
 									<form:input path="minAmount" class="form-control" placeholder="Min amount"/>
@@ -169,8 +169,8 @@
 							<td>${component.ms}</td>
 							<td>${component.ingredient}</td>
 							<td class="text-center">
-								<a href="/admin/component/update/${component.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
-								<a href="/admin/component/delete/${component.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>
+								<a href="/admin/adminComponent/update/${component.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
+								<a href="/admin/adminComponent/delete/${component.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>

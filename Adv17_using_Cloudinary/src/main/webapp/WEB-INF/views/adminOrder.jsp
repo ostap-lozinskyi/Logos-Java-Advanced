@@ -29,13 +29,13 @@
 					<a class="btn btn-outline-success" href="/">Main Page</a>
 					<a class="btn btn-outline-success" href="/admin">Admin</a>
 					<a class="btn btn-outline-success" href="/userCabinet">Admin Cabinet</a>
-					<a class="btn btn-outline-success" href="/admin/ingredient">Ingredient</a>
-					<a class="btn btn-outline-success" href="/admin/ms">Ms</a>
-					<a class="btn btn-outline-success" href="/admin/component">Component</a>
-					<a class="btn btn-outline-success" href="/admin/cuisine">Cuisine</a>
-					<a class="btn btn-outline-success" href="/admin/meal">Meal</a>
-					<a class="btn btn-outline-success" href="/admin/order">Order</a>
-					<a class="btn btn-outline-success" href="/admin/place">Place</a>
+					<a class="btn btn-outline-success" href="/admin/adminIngredient">Ingredient</a>
+					<a class="btn btn-outline-success" href="/admin/adminMs">Ms</a>
+					<a class="btn btn-outline-success" href="/admin/adminComponent">Component</a>
+					<a class="btn btn-outline-success" href="/admin/adminCuisine">Cuisine</a>
+					<a class="btn btn-outline-success" href="/admin/adminMeal">Meal</a>
+					<a class="btn btn-outline-success" href="/admin/adminOrder">Order</a>
+					<a class="btn btn-outline-success" href="/admin/adminPlace">Place</a>
 				</div>
 				</div>				
 			</div>
@@ -43,7 +43,7 @@
 		<br>
 		<div class="row">
 			<div class="col-12">
-				<form:form action="/admin/order" method="POST" modelAttribute="order">
+				<form:form action="/admin/adminOrder" method="POST" modelAttribute="order">
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
 							<form:errors path="meals" />
@@ -72,7 +72,7 @@
 					<div class="form-group row">
 						<div class="col-8 mr-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/order/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
+							<a href="/admin/adminOrder/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
 						</div>
 					</div>
 				</form:form>
@@ -89,7 +89,7 @@
 				</p>
 				<div class="collapse" id="firstCollapse">
 					<div class="card card-body">
-						<form:form action="/admin/order" method="GET" modelAttribute="orderFilter">
+						<form:form action="/admin/adminOrder" method="GET" modelAttribute="orderFilter">
 							<div class="form-group row">
 								<div class="col-2">
 									<p>								
@@ -153,8 +153,8 @@
 							<td>${order.id}</td>
 							<td>${order.place}</td>
 							<td class="text-center">
-								<a	href="/admin/order/update/${order.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
-								<a	href="/admin/order/delete/${order.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>
+								<a	href="/admin/adminOrder/update/${order.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
+								<a	href="/admin/adminOrder/delete/${order.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>

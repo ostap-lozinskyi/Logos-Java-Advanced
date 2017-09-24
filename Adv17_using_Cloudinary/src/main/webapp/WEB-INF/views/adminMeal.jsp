@@ -30,13 +30,13 @@
 					<a class="btn btn-outline-success" href="/">Main Page</a>
 					<a class="btn btn-outline-success" href="/admin">Admin</a>
 					<a class="btn btn-outline-success" href="/userCabinet">Admin Cabinet</a>
-					<a class="btn btn-outline-success" href="/admin/ingredient">Ingredient</a>
-					<a class="btn btn-outline-success" href="/admin/ms">Ms</a>
-					<a class="btn btn-outline-success" href="/admin/component">Component</a>
-					<a class="btn btn-outline-success" href="/admin/cuisine">Cuisine</a>
-					<a class="btn btn-outline-success" href="/admin/meal">Meal</a>
-					<a class="btn btn-outline-success" href="/admin/order">Order</a>
-					<a class="btn btn-outline-success" href="/admin/place">Place</a>
+					<a class="btn btn-outline-success" href="/admin/adminIngredient">Ingredient</a>
+					<a class="btn btn-outline-success" href="/admin/adminMs">Ms</a>
+					<a class="btn btn-outline-success" href="/admin/adminComponent">Component</a>
+					<a class="btn btn-outline-success" href="/admin/adminCuisine">Cuisine</a>
+					<a class="btn btn-outline-success" href="/admin/adminMeal">Meal</a>
+					<a class="btn btn-outline-success" href="/admin/adminOrder">Order</a>
+					<a class="btn btn-outline-success" href="/admin/adminPlace">Place</a>
 				</div>
 				</div>				
 			</div>
@@ -44,7 +44,7 @@
 		<br>
 		<div class="row">
 			<div class="col-12">
-				<form:form action="/admin/meal" method="POST" modelAttribute="meal" enctype="multipart/form-data">
+				<form:form action="/admin/adminMeal" method="POST" modelAttribute="meal" enctype="multipart/form-data">
 					<custom:hiddenInputs excludeParams="name, fullDescription, shortDescription, price, weight, _csrf"/>
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
@@ -123,7 +123,7 @@
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="component">Components:</label>
 						<div class="col-10">
-							<form:select class="form-control" id="component" path="components" items="${componentsView}" itemValue="id"/>
+							<form:select class="form-control" id="component" path="components" items="${components}" itemValue="id"/>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -135,7 +135,7 @@
 					<div class="form-group row">
 						<div class="col-8 mr-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/meal/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
+							<a href="/admin/adminMeal/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
 						</div>
 					</div>
 				</form:form>
@@ -152,7 +152,7 @@
 				</p>
 				<div class="collapse" id="firstCollapse">
 					<div class="card card-body">
-						<form:form action="/admin/meal" method="GET" modelAttribute="mealFilter">
+						<form:form action="/admin/adminMeal" method="GET" modelAttribute="mealFilter">
 							<div class="form-group row">
 								<div class="col-2">
 									<form:input path="minRate" class="form-control" placeholder="Min rate"/>
@@ -257,8 +257,8 @@
 							<td>${meal.weight}</td>
 							<td>${meal.cuisine}</td>
 							<td class="text-center">
-								<a href="/admin/meal/update/${meal.id}<custom:allParams/>"	class="btn btn-outline-warning btn-sm">Update</a>
-								<a href="/admin/meal/delete/${meal.id}<custom:allParams/>"	class="btn btn-outline-danger btn-sm">Delete</a>
+								<a href="/admin/adminMeal/update/${meal.id}<custom:allParams/>"	class="btn btn-outline-warning btn-sm">Update</a>
+								<a href="/admin/adminMeal/delete/${meal.id}<custom:allParams/>"	class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 							<td class="text-center">
 								<img src="${meal.photoUrl}?version=${meal.version}" style="width: 100px;">

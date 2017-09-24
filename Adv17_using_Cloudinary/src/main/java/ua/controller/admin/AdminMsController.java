@@ -23,7 +23,7 @@ import ua.service.MsService;
 import ua.validation.flag.MsFlag;
 
 @Controller
-@RequestMapping("/admin/ms")
+@RequestMapping("/admin/adminMs")
 @SessionAttributes("ms")
 public class AdminMsController {
 
@@ -48,16 +48,16 @@ public class AdminMsController {
 	public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
 		model.addAttribute("mss", service.findAll(pageable, filter));
 		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
-			return "ms";
+			return "adminMs";
 		else
-			return "redirect:/admin/ms"+buildParams(pageable, filter);
+			return "redirect:/admin/adminMs"+buildParams(pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
 			@ModelAttribute("filter") SimpleFilter filter) {
 		service.delete(id);
-		return "redirect:/admin/ms"+buildParams(pageable, filter);
+		return "redirect:/admin/adminMs"+buildParams(pageable, filter);
 	}
 
 	@PostMapping
@@ -79,7 +79,7 @@ public class AdminMsController {
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus status, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
 		status.setComplete();
-		return "redirect:/admin/ms"+buildParams(pageable, filter);
+		return "redirect:/admin/adminMs"+buildParams(pageable, filter);
 	}
 	
 	private String buildParams(Pageable pageable, SimpleFilter filter) {

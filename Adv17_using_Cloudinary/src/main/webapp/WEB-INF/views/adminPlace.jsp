@@ -29,13 +29,13 @@
 					<a class="btn btn-outline-success" href="/">Main Page</a>
 					<a class="btn btn-outline-success" href="/admin">Admin</a>
 					<a class="btn btn-outline-success" href="/userCabinet">Admin Cabinet</a>
-					<a class="btn btn-outline-success" href="/admin/ingredient">Ingredient</a>
-					<a class="btn btn-outline-success" href="/admin/ms">Ms</a>
-					<a class="btn btn-outline-success" href="/admin/component">Component</a>
-					<a class="btn btn-outline-success" href="/admin/cuisine">Cuisine</a>
-					<a class="btn btn-outline-success" href="/admin/meal">Meal</a>
-					<a class="btn btn-outline-success" href="/admin/order">Order</a>
-					<a class="btn btn-outline-success" href="/admin/place">Place</a>
+					<a class="btn btn-outline-success" href="/admin/adminIngredient">Ingredient</a>
+					<a class="btn btn-outline-success" href="/admin/adminMs">Ms</a>
+					<a class="btn btn-outline-success" href="/admin/adminComponent">Component</a>
+					<a class="btn btn-outline-success" href="/admin/adminCuisine">Cuisine</a>
+					<a class="btn btn-outline-success" href="/admin/adminMeal">Meal</a>
+					<a class="btn btn-outline-success" href="/admin/adminOrder">Order</a>
+					<a class="btn btn-outline-success" href="/admin/adminPlace">Place</a>
 				</div>
 				</div>				
 			</div>
@@ -43,7 +43,7 @@
 		<br>
 		<div class="row">
 			<div class="col-12">
-				<form:form action="/admin/place" method="POST" modelAttribute="place">
+				<form:form action="/admin/adminPlace" method="POST" modelAttribute="place">
 					<custom:hiddenInputs excludeParams="number, countOfPeople, _csrf"/>
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
@@ -70,7 +70,7 @@
 					<div class="form-group row">
 						<div class="col-8 mr-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/place/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
+							<a href="/admin/adminPlace/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
 						</div>
 					</div>
 				</form:form>
@@ -87,7 +87,7 @@
 					</p>
 				<div class="collapse" id="firstCollapse">
 					<div class="card card-body">
-						<form:form action="/admin/place" method="GET" modelAttribute="placeFilter">
+						<form:form action="/admin/adminPlace" method="GET" modelAttribute="placeFilter">
 							<div class="form-group row">
 								<div class="col-2">
 									<form:input path="number" class="form-control" placeholder="By number"/>
@@ -143,8 +143,8 @@
 							<td>${place.number}</td>
 							<td>${place.countOfPeople}</td>
 							<td class="text-center">
-								<a href="/admin/place/update/${place.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
-								<a href="/admin/place/delete/${place.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>
+								<a href="/admin/adminPlace/update/${place.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
+								<a href="/admin/adminPlace/delete/${place.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>

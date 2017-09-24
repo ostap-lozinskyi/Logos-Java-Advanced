@@ -23,7 +23,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<h1 class="text-center">Menu</h1>
+				<h1 class="text-center">${meal.name}</h1>
 			</div>
 		</div>	
 		<div class="row">
@@ -39,66 +39,43 @@
 		<br>
 		<div class="row">
 			<div class="col-6">
-                                                    <div>
-                                                        <br>
-                                                        <div class="item_container">
-                                                            <div class="label_row"> </div>
-                                                            <div class="item">
-                                                                <div class="item_image">
-                                                                    <a href="/" tabindex="0"> <img src="${meal.photoUrl}?version=${meal.version}"> </a>
-                                                                    <div class="clear"></div>
-                                                                </div>
-                                                                <div class="hover">
-                                                                    <div class="item_category">
-                                                                        <p>Hot meals</p>
-                                                                    </div>
-                                                                    <div class="item_headline"> <a class="item_headline_link" href="/" tabindex="0"><span>${meal.name}</span></a> </div>
-                                                                    <div class="hide">
-                                                                        <div class="reyting">
-                                                                            <div class="message"></div>
-                                                                            <form:form action="/mealMenu/${meal.id}" method="POST"
-																				modelAttribute="meal">current rate=${meal.rate}<div class="star-rating">
-																					<div class="star-rating__wrap">
-																						<input class="star-rating__input fa" id="star-rating-5" type="radio" name="rate" value="5" title="5 out of 5 stars"> 
-																						<input class="star-rating__input fa" id="star-rating-4"	type="radio" name="rate" value="4" title="4 out of 5 stars">
-																						<input class="star-rating__input fa" id="star-rating-3"	type="radio" name="rate" value="3" title="3 out of 5 stars"> 
-																						<input class="star-rating__input fa" id="star-rating-2"	type="radio" name="rate" value="2" title="2 out of 5 stars"> 
-																						<input class="star-rating__input fa" id="star-rating-1"	type="radio" name="rate" value="1" title="1 out of 5 stars">
-																					</div>
-																				</div>
-																				<button>Ok</button>
-																			</form:form>
-                                                                        </div>
-                                                                        <div class="weight_row">
-                                                                            <div class="weight">${meal.weight} gr</div>
-                                                                        </div>
-                                                                        <div class="short_description">
-                                                                            <p>${meal.fullDescription}</p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="price_row">
-                                                                        <div class="price">
-                                                                            <p class="price_value">${meal.price}</p>
-                                                                            <p class="price_text">$</p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="buy_row">
-                                                                        <sec:authorize access="isAnonymous()">
-                                                                            <a href="/mealMenu">
-                                                                                <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
-                                                                            </a>
-                                                                        </sec:authorize>
-                                                                        <sec:authorize access="isAuthenticated()">
-                                                                            <a href="/mealMenu">
-                                                                                <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
-                                                                            </a>
-                                                                        </sec:authorize>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+				<img class="product-img" src="${meal.photoUrl}?version=${meal.version}" width="536" height="536">
+			</div>
+			<div class="col-6" style="background-color: white;">
+				<div class="banner_info">
+					<div class="back"></div>
+					<div class="front">
+						<div class="front_inside">
+							<h1 class="center">${meal.name}</h1>
+							<div class="weight_row">
+								<div class="weight">${meal.weight}gr</div>
+							</div>
+							<div class="short_description">
+								<p>${meal.fullDescription}</p>
+							</div>
+							<div class="price_row">
+								<div class="price">
+									<span class="price_value">${meal.price}</span> $</span>
+								</div>
+							</div>
+							<div class="buy_row">
+								<sec:authorize access="isAnonymous()">
+									<a href="/mealMenu">
+										<button type="button"
+											class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
+									</a>
+								</sec:authorize>
+								<sec:authorize access="isAuthenticated()">
+									<a href="/mealMenu">
+										<button type="button"
+											class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
+									</a>
+								</sec:authorize>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

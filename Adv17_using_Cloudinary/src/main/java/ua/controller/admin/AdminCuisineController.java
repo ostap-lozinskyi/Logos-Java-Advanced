@@ -23,7 +23,7 @@ import ua.service.CuisineService;
 import ua.validation.flag.CuisineFlag;
 
 @Controller
-@RequestMapping("/admin/cuisine")
+@RequestMapping("/admin/adminCuisine")
 @SessionAttributes("cuisine")
 public class AdminCuisineController {
 
@@ -49,16 +49,16 @@ public class AdminCuisineController {
 			@ModelAttribute("filter") SimpleFilter filter) {
 		model.addAttribute("cuisines", service.findAll(pageable, filter));
 		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
-			return "cuisine";
+			return "adminCuisine";
 		else
-			return "redirect:/admin/cuisine"+buildParams(pageable, filter);
+			return "redirect:/admin/adminCuisine"+buildParams(pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
 			@ModelAttribute("filter") SimpleFilter filter) {
 		service.delete(id);
-		return "redirect:/admin/cuisine"+buildParams(pageable, filter);
+		return "redirect:/admin/adminCuisine"+buildParams(pageable, filter);
 	}
 
 	@PostMapping
@@ -82,7 +82,7 @@ public class AdminCuisineController {
 	public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
 			@ModelAttribute("filter") SimpleFilter filter) {
 		status.setComplete();
-		return "redirect:/admin/cuisine"+buildParams(pageable, filter);
+		return "redirect:/admin/adminCuisine"+buildParams(pageable, filter);
 	}
 	
 	private String buildParams(Pageable pageable, SimpleFilter filter) {

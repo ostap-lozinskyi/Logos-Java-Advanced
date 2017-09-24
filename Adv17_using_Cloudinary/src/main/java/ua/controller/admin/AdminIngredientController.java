@@ -23,7 +23,7 @@ import ua.service.IngredientService;
 import ua.validation.flag.IngredientFlag;
 
 @Controller
-@RequestMapping("/admin/ingredient")
+@RequestMapping("/admin/adminIngredient")
 @SessionAttributes("ingredient")
 public class AdminIngredientController {
 
@@ -48,16 +48,16 @@ public class AdminIngredientController {
 	public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
 		model.addAttribute("ingredients", service.findAll(pageable, filter));
 		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
-			return "ingredient";
+			return "adminIngredient";
 		else
-			return "redirect:/admin/ingredient"+buildParams(pageable, filter);
+			return "redirect:/admin/adminIngredient"+buildParams(pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
 			@ModelAttribute("filter") SimpleFilter filter) {
 		service.delete(id);
-		return "redirect:/admin/ingredient"+buildParams(pageable, filter);
+		return "redirect:/admin/adminIngredient"+buildParams(pageable, filter);
 	}
 
 	@PostMapping
@@ -80,7 +80,7 @@ public class AdminIngredientController {
 	@GetMapping("/cancel")
 	public String cancel(SessionStatus status, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
 		status.setComplete();
-		return "redirect:/admin/ingredient"+buildParams(pageable, filter);
+		return "redirect:/admin/adminIngredient"+buildParams(pageable, filter);
 	}
 	
 	private String buildParams(Pageable pageable, SimpleFilter filter) {

@@ -23,7 +23,7 @@ import ua.service.ComponentService;
 import ua.validation.flag.ComponentFlag;
 
 @Controller
-@RequestMapping("/admin/component")
+@RequestMapping("/admin/adminComponent")
 @SessionAttributes("component")
 public class AdminComponentController {
 
@@ -51,16 +51,16 @@ public class AdminComponentController {
 		model.addAttribute("mss", service.findAllMss());
 		model.addAttribute("components", service.findAllView(pageable, filter));
 		if (service.findAllView(pageable, filter).hasContent()||pageable.getPageNumber()==0)
-			return "component";
+			return "adminComponent";
 		else
-			return "redirect:/admin/component"+buildParams(pageable, filter);
+			return "redirect:/admin/adminComponent"+buildParams(pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
 			@ModelAttribute("componentFilter") ComponentFilter filter) {
 		service.delete(id);
-		return "redirect:/admin/component"+buildParams(pageable, filter);
+		return "redirect:/admin/adminComponent"+buildParams(pageable, filter);
 	}
 
 	@PostMapping
@@ -84,7 +84,7 @@ public class AdminComponentController {
 	public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
 			@ModelAttribute("componentFilter") ComponentFilter filter) {
 		status.setComplete();
-		return "redirect:/admin/component"+buildParams(pageable, filter);
+		return "redirect:/admin/adminComponent"+buildParams(pageable, filter);
 	}
 	
 	private String buildParams(Pageable pageable, ComponentFilter filter) {

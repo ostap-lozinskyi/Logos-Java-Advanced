@@ -23,7 +23,7 @@ import ua.service.PlaceService;
 import ua.validation.flag.PlaceFlag;
 
 @Controller
-@RequestMapping("/admin/place")
+@RequestMapping("/admin/adminPlace")
 @SessionAttributes("place")
 public class AdminPlaceController {
 
@@ -49,16 +49,16 @@ public class AdminPlaceController {
 		model.addAttribute("places", service.findAllView(pageable, filter));
 		model.addAttribute("placesString", service.findAllPlacesCountOfPeople());
 		if (service.findAllView(pageable, filter).hasContent()||pageable.getPageNumber()==0)
-			return "place";
+			return "adminPlace";
 		else
-			return "redirect:/admin/place"+buildParams(pageable, filter);
+			return "redirect:/admin/adminPlace"+buildParams(pageable, filter);
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
 			@ModelAttribute("placeFilter") PlaceFilter filter) {
 		service.delete(id);
-		return "redirect:/admin/place"+buildParams(pageable, filter);
+		return "redirect:/admin/adminPlace"+buildParams(pageable, filter);
 	}
 
 	@PostMapping
@@ -82,7 +82,7 @@ public class AdminPlaceController {
 	public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
 			@ModelAttribute("placeFilter") PlaceFilter filter) {
 		status.setComplete();
-		return "redirect:/admin/place"+buildParams(pageable, filter);
+		return "redirect:/admin/adminPlace"+buildParams(pageable, filter);
 	}
 	
 	private String buildParams(Pageable pageable, @ModelAttribute("placeFilter") PlaceFilter filter) {

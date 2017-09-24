@@ -27,13 +27,13 @@
 					<a class="btn btn-outline-success" href="/">Main Page</a>
 					<a class="btn btn-outline-success" href="/admin">Admin</a>
 					<a class="btn btn-outline-success" href="/userCabinet">Admin Cabinet</a>
-					<a class="btn btn-outline-success" href="/admin/ingredient">Ingredient</a>
-					<a class="btn btn-outline-success" href="/admin/ms">Ms</a>
-					<a class="btn btn-outline-success" href="/admin/component">Component</a>
-					<a class="btn btn-outline-success" href="/admin/cuisine">Cuisine</a>
-					<a class="btn btn-outline-success" href="/admin/meal">Meal</a>
-					<a class="btn btn-outline-success" href="/admin/order">Order</a>
-					<a class="btn btn-outline-success" href="/admin/place">Place</a>
+					<a class="btn btn-outline-success" href="/admin/adminIngredient">Ingredient</a>
+					<a class="btn btn-outline-success" href="/admin/adminMs">Ms</a>
+					<a class="btn btn-outline-success" href="/admin/adminComponent">Component</a>
+					<a class="btn btn-outline-success" href="/admin/adminCuisine">Cuisine</a>
+					<a class="btn btn-outline-success" href="/admin/adminMeal">Meal</a>
+					<a class="btn btn-outline-success" href="/admin/adminOrder">Order</a>
+					<a class="btn btn-outline-success" href="/admin/adminPlace">Place</a>
 				</div>
 				</div>				
 			</div>
@@ -41,7 +41,7 @@
 		<br>
 		<div class="row">
 			<div class="col-3">
-				<form:form action="/admin/cuisine" method="GET" modelAttribute="filter">
+				<form:form action="/admin/adminCuisine" method="GET" modelAttribute="filter">
 					<div class="form-group row">
 						<div class="col-12">
 							<form:input class="form-control" path="search" placeholder="Search"/>
@@ -50,7 +50,7 @@
 				</form:form>
 			</div>
 			<div class="col-9">
-				<form:form action="/admin/cuisine" method="POST" modelAttribute="cuisine">
+				<form:form action="/admin/adminCuisine" method="POST" modelAttribute="cuisine">
 					<custom:hiddenInputs excludeParams="name, _csrf"/>
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
@@ -66,7 +66,7 @@
 					<div class="form-group row">
 						<div class="col-8 mr-auto">
 							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/cuisine/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
+							<a href="/admin/adminCuisine/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
 						</div>
 					</div>
 				</form:form>
@@ -88,8 +88,8 @@
 						<tr>
 							<td>${cuisine.name}</td>
 							<td class="text-center"><a
-								href="/admin/cuisine/update/${cuisine.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a> <a
-								href="/admin/cuisine/delete/${cuisine.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a></td>
+								href="/admin/adminCuisine/update/${cuisine.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a> <a
+								href="/admin/adminCuisine/delete/${cuisine.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a></td>
 						</tr>
 					</c:forEach>
 				</table>
