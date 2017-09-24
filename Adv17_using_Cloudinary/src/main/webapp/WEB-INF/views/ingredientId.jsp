@@ -56,6 +56,7 @@
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Name</th>
+						<th class="text-center">Options</th>
 					</tr>
 					<c:if test="${empty meals}">
 		    			<tr>
@@ -65,6 +66,18 @@
 					<c:forEach var="meal" items="${meals}">
 						<tr>
 							<td>${meal.name}</td>
+							<td>
+								<sec:authorize access="isAnonymous()">
+									<a href="/mealMenu">
+										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
+									</a>
+								</sec:authorize>
+								<sec:authorize access="isAuthenticated()">
+									<a href="/mealMenu">
+										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
+									</a>
+								</sec:authorize>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>
