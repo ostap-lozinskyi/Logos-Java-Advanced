@@ -76,8 +76,8 @@
 				</form:form>
 			</div>
 		</div>
-					<div class="row">
-				<div class="col-12">
+		<div class="row">
+			<div class="col-12">
 					<br>
 					<p>
 						<button class="btn-cart buy btnCafe btn-sucsess btn-lg" type="button"
@@ -111,23 +111,9 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-3">
-									<p>								
-										<button class="btn btn-outline-secondary" type="button"
-											data-toggle="collapse" data-target="#thirdCollapse"
-											aria-expanded="false" aria-controls="thirdCollapse">
-											Select free or not free</button>
-									</p>
-									<div class="collapse" id="thirdCollapse">
-										<div class="card card-body">
-											<div class="row">
-												<div class="col-12">
-													<form:checkbox path="isFree" value="isFree"/> free
-													<br><form:checkbox path="isFree" value="isNotFree"/> not free							
-												</div>
-											</div>
-										</div>
-									</div>
+								<div class="col-2">
+									<form:radiobutton  path="isFree" value="isFree"/> free
+									<br><form:radiobutton  path="isFree" value="isNotFree"/> not free
 								</div>							
 								<div class="col-12">
 		        					<button type="submit" class="btn-cart buy btnCafe btn-sucsess btn-lg">Search</button>

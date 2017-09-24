@@ -67,8 +67,14 @@ public class PlaceViewRepositoryImpl implements PlaceViewRepository{
 		}
 		
 		void findByIsFree() {
-			if(filter.getIsFree()!=null) {
+			if((filter.getIsFree()!=null)&&(filter.getIsFree().equals("isFree"))) {
 				predicates.add(cb.equal(root.get("isFree"), new Boolean(true)));
+			}
+		}
+		
+		void findByIsNotFree() {
+			if((filter.getIsFree()!=null)&&(filter.getIsFree().equals("isNotFree"))) {
+				predicates.add(cb.equal(root.get("isFree"), new Boolean(false)));
 			}
 		}
 		
@@ -87,6 +93,7 @@ public class PlaceViewRepositoryImpl implements PlaceViewRepository{
 		
 		Predicate toPredicate() {
 			findByIsFree();
+			findByIsNotFree();
 			findByCountOfPeople();
 			findBySearch();
 			return predicates.isEmpty() ? null : cb.and(predicates.stream().toArray(Predicate[]::new));
