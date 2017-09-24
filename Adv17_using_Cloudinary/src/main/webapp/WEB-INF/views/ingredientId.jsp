@@ -18,7 +18,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
 <link href="/resources/css/index.css" rel="stylesheet">
-<title>Menu</title>
+<title>IngredientId</title>
 </head>
 <body style="background: url(/resources/img/fon2.jpg)">
 	<div class="container" style="background-color: white;">
@@ -34,6 +34,7 @@
 					<a class="btn btn-outline-success" href="/">Main Page</a>
 					<a class="btn btn-outline-success" href="/admin">Admin</a>
 					<a class="btn btn-outline-success" href="/meal">Menu</a>
+					<a class="btn btn-outline-success" href="/ingredient">Ingredients</a>
 				</div>
 				</div>				
 			</div>
@@ -41,13 +42,13 @@
 		<br>
 		<div class="row">
 			<div class="col-3">
-				<form:form action="ingredient" method="GET" modelAttribute="filter">
-					<div class="form-group row">
-						<div class="col-12">
-							<form:input class="form-control" path="search" placeholder="Search"/>
-						</div>
-					</div>
-				</form:form>
+<%-- 				<form:form action="ingredient" method="GET" modelAttribute="filter"> --%>
+<!-- 					<div class="form-group row"> -->
+<!-- 						<div class="col-12"> -->
+<%-- 							<form:input class="form-control" path="search" placeholder="Search"/> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</form:form> --%>
 			</div>
 		</div>
 		<div class="row">
@@ -56,38 +57,38 @@
 					<tr>
 						<th class="text-center">Name</th>
 					</tr>
-					<c:if test="${empty ingredients.content}">
+					<c:if test="${empty components}">
 		    			<tr>
 		    			<td colspan=2><h3 class="text-center">Ingredients with such name not found</h3></td>
 		    			</tr>
 					</c:if>
-					<c:forEach var="ingredient" items="${ingredients.content}">
+					<c:forEach var="component" items="${components}">
 						<tr>
-							<td><a href="/ingredient${ingredient.id}">${ingredient.name}</a></td>
+							<td>${component}</td>
 						</tr>
 					</c:forEach>
 				</table>
 			</div>
 			<div class="col-3">
 				<div class="row">
-					<div class="col-6 text-center">
-							<button class="dropdown-toggle btn btn-outline-success btn-sm" type="button" data-toggle="dropdown">Sort
-							</button>
-							<div class="dropdown-menu">
-								<custom:sort innerHtml="Name asc" paramValue="name"/>
-								<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
-							</div>
-					</div>
-					<div class="col-6 text-center">
-						<custom:size posibleSizes="1,2,5,10" size="${ingredients.size}" />
-					</div>
+<!-- 					<div class="col-6 text-center"> -->
+<!-- 							<button class="dropdown-toggle btn btn-outline-success btn-sm" type="button" data-toggle="dropdown">Sort -->
+<!-- 							</button> -->
+<!-- 							<div class="dropdown-menu"> -->
+<%-- 								<custom:sort innerHtml="Name asc" paramValue="name"/> --%>
+<%-- 								<custom:sort innerHtml="Name desc" paramValue="name,desc"/> --%>
+<!-- 							</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-6 text-center"> -->
+<%-- 						<custom:size posibleSizes="1,2,5,10" size="${ingredients.size}" /> --%>
+<!-- 					</div> -->
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
-				<custom:pageable page="${ingredients}"/>
-			</div>
+<!-- 			<div class="col-12"> -->
+<%-- 				<custom:pageable page="${ingredients}"/> --%>
+<!-- 			</div> -->
 		</div>
 	</div>
 </body>

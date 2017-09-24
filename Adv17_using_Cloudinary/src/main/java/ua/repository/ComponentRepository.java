@@ -17,10 +17,9 @@ public interface ComponentRepository extends JpaRepository<Component, Integer>, 
 	@Query("SELECT new ua.model.view.ComponentView(c.id, c.amount, i.name, ms.name) FROM Component c JOIN c.ingredient i JOIN c.ms ms")
 	List<ComponentView> findAllComponentsView();
 	
-//	@Query(value = "SELECT new ua.model.view.ComponentView(c.id, i.name, c.amount, ms.name) FROM Component c JOIN c.ingredient i JOIN c.ms ms",
-//			countQuery = "SELECT count(c.id) FROM Component c JOIN c.ingredient i JOIN c.ms ms")
-//	Page<ComponentView> findAllView(Pageable pageable);
-//	
+	@Query(value = "SELECT new ua.model.view.ComponentView(c.id, c.amount, i.name, ms.name) FROM Component c JOIN c.ingredient i JOIN c.ms ms WHERE i.id=?1")
+	List<ComponentView> findByIngredientId(Integer id);
+	
 	@Query("SELECT c FROM Component c JOIN FETCH c.ingredient JOIN FETCH c.ms WHERE c.id=?1")
 	Component findOneRequest(Integer id);
 	
