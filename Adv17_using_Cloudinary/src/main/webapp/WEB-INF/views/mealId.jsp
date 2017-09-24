@@ -59,18 +59,18 @@
 							</div>
 							<div class="price_row">
 								<div class="price">
-									<span class="price_value">${meal.price}</span> $</span>
+									<span class="price_value">${meal.price}</span> $
 								</div>
 							</div>
 							<div class="buy_row">
 								<sec:authorize access="isAnonymous()">
-									<a href="/meal">
+									<a href="/login">
 										<button type="button"
 											class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
 									</a>
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()">
-									<a href="/meal">
+									<a href="/reserveTable">
 										<button type="button"
 											class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
 									</a>
