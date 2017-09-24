@@ -1,5 +1,7 @@
 package ua.model.filter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class PlaceFilter {
@@ -8,7 +10,7 @@ public class PlaceFilter {
 
 	private String number = "";
 
-	private String countOfPeople = "";
+	private List<String> countOfPeople = new ArrayList<>();
 	
 	private String isFree = "";
 
@@ -21,11 +23,11 @@ public class PlaceFilter {
 		this.number = number;
 	}
 
-	public String getCountOfPeople() {
+	public List<String> getCountOfPeople() {
 		return countOfPeople;
 	}
 
-	public void setCountOfPeople(String countOfPeople) {
+	public void setCountOfPeople(List<String> countOfPeople) {
 		this.countOfPeople = countOfPeople;
 	}
 
