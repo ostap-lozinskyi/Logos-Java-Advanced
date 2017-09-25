@@ -8,10 +8,15 @@ public class PlaceView {
 
 	private int number;
 	
-	public PlaceView(Integer id, int countOfPeople, int number) {
+	private boolean isFree;
+	
+	private String isFreeString = String.valueOf(isFree);
+	
+	public PlaceView(Integer id, int countOfPeople, int number, boolean isFree) {
 		this.id = id;
 		this.countOfPeople = countOfPeople;
 		this.number = number;
+		this.isFree = isFree;
 	}
 
 	public String getPrint() {
@@ -42,4 +47,20 @@ public class PlaceView {
 		this.number = number;
 	}
 
+	public boolean isFree() {
+		return isFree;
+	}
+
+	public void setFree(boolean isFree) {
+		this.isFree = isFree;
+	}
+
+	public String getIsFreeString() {
+		return isFreeString;
+	}
+
+	public void setIsFreeString(String isFreeString) {
+		this.isFreeString = isFreeString;
+	}
+	
 }

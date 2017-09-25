@@ -37,6 +37,11 @@ public class PlaceServiceImpl implements PlaceService {
 	public List<String> findAllPlacesCountOfPeople() {
 		return repository.findAllPlacesCountOfPeople();
 	}
+	
+	@Override
+	public List<PlaceView> findAllPlaces() {
+		return repository.findAllPlaceViews();
+	}
 
 	@Override
 	public void save(PlaceRequest request) {

@@ -34,7 +34,7 @@ public class PlaceViewRepositoryImpl implements PlaceViewRepository{
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<PlaceView> cq = cb.createQuery(PlaceView.class);
 		Root<Place> root = cq.from(Place.class);
-		cq.multiselect(root.get(Place_.id), root.get("countOfPeople"), root.get("number"));
+		cq.multiselect(root.get(Place_.id), root.get("countOfPeople"), root.get("number"), root.get("isFree"));
 		Predicate predicate = new PredicateBuilder(cb, root, filter).toPredicate();
 		if(predicate!=null) cq.where(predicate);
 		cq.orderBy(toOrders(pageable.getSort(), root, cb));

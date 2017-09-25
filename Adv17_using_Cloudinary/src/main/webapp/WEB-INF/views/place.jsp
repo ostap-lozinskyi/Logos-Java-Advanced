@@ -42,7 +42,25 @@
 		</div>
 		<br>
 		<div class="row">
-			<img src="/resources/img/tables.jpg">
+			<div class="col-10">
+				<img src="/resources/img/tables.jpg">
+			</div>
+			<div class="col-2">
+				<h2>Free tables</h2>
+<%-- 				<c:if test="${empty places}"> --%>
+<!-- 					<h3 class="text-center">There are not free tables</h3> -->
+<%-- 				</c:if> --%>
+				<c:forEach var="place" items="${places}">
+					<c:if test="${place.isFreeString = true}">
+						<div class="row">
+							<div class="col-12">
+								<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/admin">${place.number}</a>
+							</div>
+						</div>
+						<br>
+					</c:if>
+				</c:forEach>				
+			</div>
 		</div>
 	</div>
 </body>

@@ -10,14 +10,14 @@ import ua.model.view.PlaceView;
 
 public interface PlaceRepository extends JpaRepository<Place, Integer> {
 
-	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number) FROM Place p")
+	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number, p.isFree) FROM Place p ORDER BY number")
 	List<PlaceView> findAllPlaceViews();
 	
 	@Query("SELECT distinct p.countOfPeople FROM Place p")
 	List<String> findAllPlacesCountOfPeople();
 	
 	@Query("SELECT p FROM Place p WHERE p.id=?1")
-	Place findOneRequest(Integer id);
+	Place findOneRequest(Integer id);	
 	
 	boolean existsByNumber(Integer number);
 }

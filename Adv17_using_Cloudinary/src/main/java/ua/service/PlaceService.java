@@ -13,6 +13,8 @@ public interface PlaceService {
 
 	Page<PlaceView> findAllView(Pageable pageable, PlaceFilter filter);
 	
+	List<PlaceView> findAllPlaces();
+	
 	public List<String> findAllPlacesCountOfPeople();
 
 	void save(PlaceRequest request);
