@@ -11,5 +11,7 @@ public interface UserService {
 
 	void updatePhotoUrl(Principal principal, String photoUrl);
 	
+	void updateTableId(Principal principal, Integer tableId);
+	
 	User findByEmail(String email);
 }

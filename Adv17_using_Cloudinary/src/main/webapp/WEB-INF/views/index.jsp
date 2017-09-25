@@ -104,7 +104,7 @@
                                                                         <p>Hot meals</p>
                                                                     </div>
                                                                     <div class="item_headline"> 
-                                                                    	<a href="/meal${meal.id}"><span>${meal.name}</span></a>
+                                                                    	<a href="/meal/${meal.id}"><span>${meal.name}</span></a>
                                                                     </div>
                                                                     <div class="hide">
                                                                         <div class="reyting">
@@ -172,7 +172,7 @@
                                                                         <p>Hot meals</p>
                                                                     </div>
                                                                     <div class="item_headline"> 
-                                                                    	<a href="/meal${meal.id}"><span>${meal.name}</span></a>
+                                                                    	<a href="/meal/${meal.id}"><span>${meal.name}</span></a>
                                                                     </div>
                                                                     <div class="hide">
                                                                         <div class="reyting">

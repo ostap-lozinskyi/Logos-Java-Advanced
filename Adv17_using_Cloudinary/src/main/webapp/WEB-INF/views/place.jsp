@@ -54,7 +54,7 @@
 					<c:if test="${place.isFreeString = true}">
 						<div class="row">
 							<div class="col-12">
-								<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/place/setNotFree/${place.id}">${place.number}</a>
+								<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/place/${place.id}/order">${place.number}</a>
 							</div>
 						</div>
 						<br>

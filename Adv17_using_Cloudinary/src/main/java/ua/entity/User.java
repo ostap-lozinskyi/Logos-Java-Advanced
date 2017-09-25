@@ -14,6 +14,8 @@ public class User extends AbstractEntity {
 	private Role role;
 	
 	private String photoUrl;
+	
+	private Integer tableId;
 
 	public String getEmail() {
 		return email;
@@ -45,6 +47,14 @@ public class User extends AbstractEntity {
 
 	public void setPhotoUrl(String photoUrl) {
 		this.photoUrl = photoUrl;
+	}
+
+	public Integer getTableId() {
+		return tableId;
+	}
+
+	public void setTableId(Integer tableId) {
+		this.tableId = tableId;
 	}
 
 }

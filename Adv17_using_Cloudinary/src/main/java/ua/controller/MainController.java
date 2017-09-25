@@ -38,7 +38,7 @@ public class MainController {
 		return "admin";
 	}
 	
-	@GetMapping("/meal{id}")
+	@GetMapping("/meal/{id}")
 	public String mealId(Model model, @PathVariable Integer id) {
 		model.addAttribute("meal", service.findById(id));
 		return "mealId";
