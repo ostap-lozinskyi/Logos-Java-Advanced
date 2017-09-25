@@ -22,4 +22,6 @@ public interface PlaceService {
 	PlaceRequest findOneRequest(Integer id);
 
 	void delete(Integer id);
+
+	void setNotFree(Integer id);
 }

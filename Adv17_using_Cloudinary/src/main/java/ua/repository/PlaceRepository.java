@@ -17,7 +17,10 @@ public interface PlaceRepository extends JpaRepository<Place, Integer> {
 	List<String> findAllPlacesCountOfPeople();
 	
 	@Query("SELECT p FROM Place p WHERE p.id=?1")
-	Place findOneRequest(Integer id);	
+	Place findOneRequest(Integer id);
+	
+	@Query("SELECT p FROM Place p WHERE p.id=?1")
+	Place findById(Integer id);
 	
 	boolean existsByNumber(Integer number);
 }

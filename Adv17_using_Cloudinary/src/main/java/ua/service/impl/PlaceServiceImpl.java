@@ -67,5 +67,12 @@ public class PlaceServiceImpl implements PlaceService {
 	public void delete(Integer id) {
 		repository.delete(id);
 	}
+	
+	public void setNotFree(Integer id) {
+		Place place = repository.findById(id);
+		place.setId(id);
+		place.setFree(false);
+		repository.save(place);
+	}
 
 }
