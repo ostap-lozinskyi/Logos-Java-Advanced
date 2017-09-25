@@ -17,32 +17,32 @@
 </head>
 <body style="background: url(/resources/img/fon2.jpg)">
 	<div class="container" class="container" style="background-color: white;">
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col-12"> -->
-<!-- 				<h1 class="text-center">PlaceOrder</h1> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col-12"> -->
-<!-- 				<div class="text-center"> -->
-<!-- 				<div class="btn-group text-center" role="group" aria-label="Basic example"> -->
-<!-- 					<a class="btn btn-outline-success" href="/">Main Page</a> -->
-<!-- 					<a class="btn btn-outline-success" href="/admin">Admin</a> -->
-<!-- 					<a class="btn btn-outline-success" href="/userCabinet">Admin Cabinet</a> -->
-<!-- 					<a class="btn btn-outline-success" href="/admin/adminIngredient">Ingredient</a> -->
-<!-- 					<a class="btn btn-outline-success" href="/admin/adminMs">Ms</a> -->
-<!-- 					<a class="btn btn-outline-success" href="/admin/adminComponent">Component</a> -->
-<!-- 					<a class="btn btn-outline-success" href="/admin/adminCuisine">Cuisine</a> -->
-<!-- 					<a class="btn btn-outline-success" href="/admin/adminMeal">Meal</a> -->
-<!-- 					<a class="btn btn-outline-success" href="/admin/adminOrder">Order</a> -->
-<!-- 					<a class="btn btn-outline-success" href="/admin/adminPlace">Place</a> -->
-<!-- 				</div> -->
-<!-- 				</div>				 -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 		<br> -->
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col-12"> -->
+		<div class="row">
+			<div class="col-12">
+				<h1 class="text-center">PlaceOrder</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="text-center">
+				<div class="btn-group text-center" role="group" aria-label="Basic example">
+					<a class="btn btn-outline-success" href="/">Main Page</a>
+					<a class="btn btn-outline-success" href="/admin">Admin</a>
+					<a class="btn btn-outline-success" href="/userCabinet">Admin Cabinet</a>
+					<a class="btn btn-outline-success" href="/admin/adminIngredient">Ingredient</a>
+					<a class="btn btn-outline-success" href="/admin/adminMs">Ms</a>
+					<a class="btn btn-outline-success" href="/admin/adminComponent">Component</a>
+					<a class="btn btn-outline-success" href="/admin/adminCuisine">Cuisine</a>
+					<a class="btn btn-outline-success" href="/admin/adminMeal">Meal</a>
+					<a class="btn btn-outline-success" href="/admin/adminOrder">Order</a>
+					<a class="btn btn-outline-success" href="/admin/adminPlace">Place</a>
+				</div>
+				</div>				
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-12">
 <%-- 				<form:form action="/admin/adminOrder" method="POST" modelAttribute="order"> --%>
 <!-- 					<div class="row"> -->
 <!-- 						<div class="col-10 ml-auto" style="color: red;"> -->
@@ -59,16 +59,7 @@
 <!-- 						<div class="col-10 ml-auto" style="color: red;"> -->
 <%-- 							<form:errors path="place" /> --%>
 <!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="form-group row"> -->
-<!-- 						<label class="col-2 col-form-label" for="place">Place:</label> -->
-<!-- 						<div class="col-10"> -->
-<%-- 							<form:select class="form-control" id="place" path="place" onchange="${places}"> --%>
-<%-- 								<form:option value="" label="Select Place" style="color: gray;"/> --%>
-<%--  								<form:options items="${places}" itemLabel="print" itemValue="id"/> --%>
-<%-- 							</form:select> --%>
-<!-- 						</div> -->
-<!-- 					</div> -->
+<!-- 					</div>					 -->
 <!-- 					<div class="form-group row"> -->
 <!-- 						<div class="col-8 mr-auto"> -->
 <!-- 							<button class="btn btn-sm btn-outline-success">Save</button> -->
@@ -76,8 +67,8 @@
 <!-- 						</div> -->
 <!-- 					</div> -->
 <%-- 				</form:form> --%>
-<!-- 			</div> -->
-<!-- 		</div> -->
+			</div>
+		</div>
 <!-- 		<div class="row"> -->
 <!-- 			<div class="col-12"> -->
 <!-- 				<br> -->
@@ -134,7 +125,7 @@
 <!-- 				</div> -->
 <!-- 			</div> -->
 <!-- 		</div> -->
-<!-- 		<br> -->
+		<br>
 <!-- 		<div class="row"> -->
 <!-- 			<div class="col-9"> -->
 <!-- 				<table class="table table-bordered"> -->

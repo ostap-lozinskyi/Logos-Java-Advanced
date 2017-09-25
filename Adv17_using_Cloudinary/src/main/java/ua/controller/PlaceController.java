@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import ua.service.OrderService;
 import ua.service.PlaceService;
 import ua.service.UserService;
 
@@ -17,9 +18,12 @@ public class PlaceController {
 	
 	private final UserService userService;
 	
-	public PlaceController(PlaceService service, UserService userService) {
+	private final OrderService orderService;
+	
+	public PlaceController(PlaceService service, UserService userService, OrderService orderService) {
 		this.service = service;
 		this.userService = userService;
+		this.orderService = orderService;
 	}
 	
 	@GetMapping("/place")
@@ -39,8 +43,8 @@ public class PlaceController {
 	public String idOrder(Model model, @PathVariable Integer id, Principal principal) {
 		userService.updateTableId(principal, id);
 		service.setNotFree(id);
+		model.addAttribute("meals", orderService.findAllMeals());
 		
-//		model.addAttribute("meal", service.findById(id));
 		return "idOrder";
 	}
 	
