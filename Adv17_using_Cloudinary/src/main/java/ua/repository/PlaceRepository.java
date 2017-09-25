@@ -22,5 +22,8 @@ public interface PlaceRepository extends JpaRepository<Place, Integer> {
 	@Query("SELECT p FROM Place p WHERE p.id=?1")
 	Place findById(Integer id);
 	
+	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number, p.isFree) FROM Place p WHERE p.id=?1")
+	PlaceView findViewById(Integer id);
+	
 	boolean existsByNumber(Integer number);
 }

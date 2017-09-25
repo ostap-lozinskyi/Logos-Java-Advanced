@@ -49,6 +49,11 @@ public class OrderServiceImpl implements OrderService {
 	public List<PlaceView> findAllPlace() {
 		return placeRepository.findAllPlaceViews();
 	}
+	
+	@Override
+	public PlaceView findPlaceById(Integer id) {
+		return placeRepository.findViewById(id);
+	}
 
 	@Override
 	public Page<OrderView> findAll(Pageable pageable, OrderFilter filter) {

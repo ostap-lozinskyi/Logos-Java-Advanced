@@ -15,6 +15,8 @@ public interface OrderService {
 	List<String> findAllMeals();
 
 	List<PlaceView> findAllPlace();
+	
+	PlaceView findPlaceById(Integer id);
 
 	Page<OrderView> findAll(Pageable pageable, OrderFilter filter);
 
