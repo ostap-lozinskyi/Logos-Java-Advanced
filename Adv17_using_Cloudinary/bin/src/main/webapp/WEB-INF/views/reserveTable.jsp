@@ -17,13 +17,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
 <link href="/resources/css/index.css" rel="stylesheet">
-<title>MealId</title>
+<title>ReserveTable</title>
 </head>
 <body style="background: url(/resources/img/fon2.jpg)">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<h1 class="text-center">${meal.name}</h1>
+				<h1 class="text-center">Reserve Table</h1>
 			</div>
 		</div>	
 		<div class="row">
@@ -42,44 +42,7 @@
 		</div>
 		<br>
 		<div class="row">
-			<div class="col-6">
-				<img class="product-img" src="${meal.photoUrl}?version=${meal.version}" width="536" height="536">
-			</div>
-			<div class="col-6" style="background-color: white;">
-				<div class="banner_info">
-					<div class="back"></div>
-					<div class="front">
-						<div class="front_inside">
-							<h1 class="center">${meal.name}</h1>
-							<div class="weight_row">
-								<div class="weight">${meal.weight}gr</div>
-							</div>
-							<div class="short_description">
-								<p>${meal.fullDescription}</p>
-							</div>
-							<div class="price_row">
-								<div class="price">
-									<span class="price_value">${meal.price}</span> $
-								</div>
-							</div>
-							<div class="buy_row">
-								<sec:authorize access="isAnonymous()">
-									<a href="/login">
-										<button type="button"
-											class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
-									</a>
-								</sec:authorize>
-								<sec:authorize access="isAuthenticated()">
-									<a href="/place">
-										<button type="button"
-											class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
-									</a>
-								</sec:authorize>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<img src="/resources/img/tables.jpg">
 		</div>
 	</div>
 </body>

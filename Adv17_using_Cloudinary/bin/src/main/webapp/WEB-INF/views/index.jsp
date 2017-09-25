@@ -10,6 +10,8 @@
                     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                     <link rel="shortcut icon" href="/resources/img/cafe.ico">
                     <title>Ostap cafe</title>
+                    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+					<link rel="stylesheet" href="resources/css/rateStars.css" type="text/css"/>
                     
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
                     
@@ -63,7 +65,7 @@
                                 </div>
                                 <div class="row center">
                                     <div class="col-12">
-                                        <div class="button_container"> <a href="/mealMenu" class="button button_left">Menu</a><a href="/" class="button button_right">Reserve a Table</a> </div>
+                                        <div class="button_container"> <a href="/meal" class="button button_left">Menu</a><a href="/reserveTable" class="button button_right">Reserve a Table</a> </div>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +88,7 @@
                                 <div>
                                     <div>
                                         <div class="row">
-                                            <c:forEach var="meal" items="${meals.content}" end="2">
+                                            <c:forEach var="meal" items="${meals}" end="2">
                                                 <div class="col-4">
                                                     <div>
                                                         <!--item!-->
@@ -101,10 +103,24 @@
                                                                     <div class="item_category">
                                                                         <p>Hot meals</p>
                                                                     </div>
-                                                                    <div class="item_headline"> <a class="item_headline_link" href="/" tabindex="0"><span>${meal.name}</span></a> </div>
+                                                                    <div class="item_headline"> 
+                                                                    	<a href="/meal${meal.id}"><span>${meal.name}</span></a>
+                                                                    </div>
                                                                     <div class="hide">
                                                                         <div class="reyting">
                                                                             <div class="message"></div>
+                                                                            <form:form action="/meal/${meal.id}" method="POST"
+																				modelAttribute="meal">current rate=${meal.rate}<div class="star-rating">
+																					<div class="star-rating__wrap">
+																						<input class="star-rating__input fa" id="star-rating-5" type="radio" name="rate" value="5" title="5 out of 5 stars"> 
+																						<input class="star-rating__input fa" id="star-rating-4"	type="radio" name="rate" value="4" title="4 out of 5 stars">
+																						<input class="star-rating__input fa" id="star-rating-3"	type="radio" name="rate" value="3" title="3 out of 5 stars"> 
+																						<input class="star-rating__input fa" id="star-rating-2"	type="radio" name="rate" value="2" title="2 out of 5 stars"> 
+																						<input class="star-rating__input fa" id="star-rating-1"	type="radio" name="rate" value="1" title="1 out of 5 stars">
+																					</div>
+																				</div>
+																				<button>Ok</button>
+																			</form:form>
                                                                         </div>
                                                                         <div class="weight_row">
                                                                             <div class="weight">${meal.weight} gr</div>
@@ -121,12 +137,12 @@
                                                                     </div>
                                                                     <div class="buy_row">
                                                                         <sec:authorize access="isAnonymous()">
-                                                                            <a href="/mealMenu">
+                                                                            <a href="/login">
                                                                                 <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
                                                                         <sec:authorize access="isAuthenticated()">
-                                                                            <a href="/mealMenu">
+                                                                            <a href="/reserveTable">
                                                                                 <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
@@ -140,7 +156,7 @@
                                             </c:forEach>
                                         </div>
                                         <div class="row">
-                                            <c:forEach var="meal" items="${meals.content}" begin="3" end="4">
+                                            <c:forEach var="meal" items="${meals}" begin="3" end="4">
                                                 <div class="col-6">
                                                     <div>
                                                         <br>
@@ -155,10 +171,24 @@
                                                                     <div class="item_category">
                                                                         <p>Hot meals</p>
                                                                     </div>
-                                                                    <div class="item_headline"> <a class="item_headline_link" href="/" tabindex="0"><span>${meal.name}</span></a> </div>
+                                                                    <div class="item_headline"> 
+                                                                    	<a href="/meal${meal.id}"><span>${meal.name}</span></a>
+                                                                    </div>
                                                                     <div class="hide">
                                                                         <div class="reyting">
                                                                             <div class="message"></div>
+                                                                            <form:form action="/meal/${meal.id}" method="POST"
+																				modelAttribute="meal">current rate=${meal.rate}<div class="star-rating">
+																					<div class="star-rating__wrap">
+																						<input class="star-rating__input fa" id="star-rating-5" type="radio" name="rate" value="5" title="5 out of 5 stars"> 
+																						<input class="star-rating__input fa" id="star-rating-4"	type="radio" name="rate" value="4" title="4 out of 5 stars">
+																						<input class="star-rating__input fa" id="star-rating-3"	type="radio" name="rate" value="3" title="3 out of 5 stars"> 
+																						<input class="star-rating__input fa" id="star-rating-2"	type="radio" name="rate" value="2" title="2 out of 5 stars"> 
+																						<input class="star-rating__input fa" id="star-rating-1"	type="radio" name="rate" value="1" title="1 out of 5 stars">
+																					</div>
+																				</div>
+																				<button>Ok</button>
+																			</form:form>
                                                                         </div>
                                                                         <div class="weight_row">
                                                                             <div class="weight">${meal.weight} gr</div>
@@ -175,12 +205,12 @@
                                                                     </div>
                                                                     <div class="buy_row">
                                                                         <sec:authorize access="isAnonymous()">
-                                                                            <a href="/mealMenu">
+                                                                            <a href="/login">
                                                                                 <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
                                                                         <sec:authorize access="isAuthenticated()">
-                                                                            <a href="/mealMenu">
+                                                                            <a href="/reserveTable">
                                                                                 <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
@@ -188,7 +218,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!--item!-->
                                                     </div>
                                                 </div>
                                             </c:forEach>

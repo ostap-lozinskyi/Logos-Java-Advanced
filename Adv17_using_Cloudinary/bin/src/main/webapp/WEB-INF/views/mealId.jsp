@@ -70,7 +70,7 @@
 									</a>
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()">
-									<a href="/place">
+									<a href="/reserveTable">
 										<button type="button"
 											class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
 									</a>

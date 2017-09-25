@@ -11,25 +11,20 @@ import ua.model.filter.MealFilter;
 import ua.service.MealService;
 
 @Controller
-public class ReserveTableController {
+public class PlaceController {
 	
 	private final MealService service;
 	
-	public ReserveTableController(MealService service) {
+	public PlaceController(MealService service) {
 		this.service=service;
 	}
 	
-	@ModelAttribute("mealFilter")
-	public MealFilter getFilter() {
-		return new MealFilter();
-	}
-
-	@GetMapping("/reserveTable")
+	@GetMapping("/place")
 	public String mealMenu(Model model, @ModelAttribute("mealFilter") MealFilter filter, 
 			@PageableDefault Pageable pageable) {
 		model.addAttribute("meals", service.findAll(filter, pageable));
 		model.addAttribute("cuisines", service.findAllcuisines());
-		return "reserveTable";
+		return "place";
 	}	
 	
 }

@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="row center">
                                     <div class="col-12">
-                                        <div class="button_container"> <a href="/meal" class="button button_left">Menu</a><a href="/reserveTable" class="button button_right">Reserve a Table</a> </div>
+                                        <div class="button_container"> <a href="/meal" class="button button_left">Menu</a><a href="/place" class="button button_right">Reserve a Table</a> </div>
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                                                             </a>
                                                                         </sec:authorize>
                                                                         <sec:authorize access="isAuthenticated()">
-                                                                            <a href="/reserveTable">
+                                                                            <a href="/place">
                                                                                 <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
@@ -210,7 +210,7 @@
                                                                             </a>
                                                                         </sec:authorize>
                                                                         <sec:authorize access="isAuthenticated()">
-                                                                            <a href="/reserveTable">
+                                                                            <a href="/place">
                                                                                 <button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
                                                                             </a>
                                                                         </sec:authorize>
@@ -225,11 +225,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--carousel!-->
                         </div>
                     </div>
-                    <!--section!-->
-                    <!--map!-->
                     <br>
                     <div class="col-12 center">
                         <h2>Find us</h2> </div>
