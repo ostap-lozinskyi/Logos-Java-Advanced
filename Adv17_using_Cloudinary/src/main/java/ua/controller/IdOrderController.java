@@ -2,8 +2,6 @@ package ua.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,20 +47,9 @@ public class IdOrderController {
 	public String show(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable, 
 			@ModelAttribute("orderFilter") OrderFilter filter) {
 		model.addAttribute("meals", service.findAllMeals());
-		model.addAttribute("places", service.findAllPlace());
-		model.addAttribute("orders", service.findAll(pageable, filter));
+		model.addAttribute("orders", service.findForTable(id));
 		model.addAttribute("placeCurrent", service.findPlaceById(id));
-		//if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
-			return "idOrder";
-		//else
-			//return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
-	}
-
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
-			@ModelAttribute("orderFilter") OrderFilter filter) {
-		service.delete(id);
-		return "redirect:/place/{id}/order"+buildParams(pageable, filter);
+		return "idOrder";
 	}
 
 	@PostMapping
@@ -75,37 +62,7 @@ public class IdOrderController {
 		place.setId(id);
 		request.setPlace(place);
 		service.save(request);
-		return "redirect:/place/{id}/order"+buildParams(pageable, filter);
+		return "redirect:/place/{id}/order";
 	}
 
-//	@GetMapping("/update/{id}")
-//	public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
-//			@ModelAttribute("orderFilter") OrderFilter filter) {
-//		model.addAttribute("order", service.findOneRequest(id));
-//		return show(model, pageable, filter);
-//	}
-
-	
-	
-	private String buildParams(Pageable pageable, OrderFilter filter) {
-		StringBuilder buffer = new StringBuilder();		
-		buffer.append("?page=");
-		if(!(service.findAll(pageable, filter).hasContent())) 
-			buffer.append(String.valueOf(pageable.getPageNumber()));
-		else {
-			buffer.append(String.valueOf(pageable.getPageNumber()+1));
-		}
-		buffer.append("&size=");
-		buffer.append(String.valueOf(pageable.getPageSize()));
-		if(pageable.getSort()!=null){
-			buffer.append("&sort=");
-			Sort sort = pageable.getSort();
-			sort.forEach((order)->{
-				buffer.append(order.getProperty());
-				if(order.getDirection()!=Direction.ASC)
-				buffer.append(",desc");
-			});
-		}
-		return buffer.toString();
-	}
 }

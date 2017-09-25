@@ -59,6 +59,11 @@ public class OrderServiceImpl implements OrderService {
 	public Page<OrderView> findAll(Pageable pageable, OrderFilter filter) {
 		return orderViewRepository.findAllView(filter, pageable);
 	}
+	
+	@Override
+	public List<OrderView> findForTable(Integer tableId) {
+		return repository.findForTable(tableId);
+	}
 
 	@Override
 	public void save(OrderRequest request) {

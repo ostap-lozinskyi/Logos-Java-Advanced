@@ -12,12 +12,15 @@ import ua.model.view.OrderView;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 
-	@Query("SELECT new ua.model.view.OrderView(o.id, p.number) FROM Order o JOIN o.place p")
+	@Query("SELECT new ua.model.view.OrderView(o.id, p.number, o.status) FROM Order o JOIN o.place p")
 	List<OrderView> findAllView();
 	
-	@Query(value = "SELECT new ua.model.view.OrderView(o.id, p.number) FROM Order o JOIN o.place p",
+	@Query(value = "SELECT new ua.model.view.OrderView(o.id, p.number, o.status) FROM Order o JOIN o.place p",
 			countQuery = "SELECT count(o.id) FROM Order o JOIN o.place p")
 	Page<OrderView> findAllView(Pageable pageable);
+	
+	@Query(value = "SELECT new ua.model.view.OrderView(o.id, p.number, o.status) FROM Order o JOIN o.place p WHERE p.id=?1 ORDER BY o.status DESC")
+	List<OrderView> findForTable(Integer tableId);
 
 	@Query("SELECT o FROM Order o JOIN FETCH o.place WHERE o.id=?1")
 	Order findOneRequest(Integer id);
