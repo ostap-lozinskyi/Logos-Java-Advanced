@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
+import ua.model.view.MealView;
 import ua.model.view.OrderView;
 import ua.model.view.PlaceView;
 
@@ -22,7 +23,7 @@ public interface OrderService {
 	
 	List<OrderView> findForTable(Integer tableId);
 	
-	List<String> findForOrder(Integer orderId);
+	List<MealView> findForOrder(Integer orderId);
 
 	void save(OrderRequest request);
 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import ua.entity.Order;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
+import ua.model.view.MealView;
 import ua.model.view.OrderView;
 import ua.model.view.PlaceView;
 import ua.repository.MealRepository;
@@ -66,7 +67,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public List<String> findForOrder(Integer orderId) {
+	public List<MealView> findForOrder(Integer orderId) {
 		return mealRepository.findForOrder(orderId);
 	}
 
