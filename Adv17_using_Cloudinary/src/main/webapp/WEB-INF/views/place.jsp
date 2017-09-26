@@ -29,10 +29,6 @@
 		<div class="row">
 			<div class="col-2">
 				<br>
-				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/admin">Admin</a>
-			</div>
-			<div class="col-2">
-				<br>
 				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/">Main page</a>
 			</div>
 			<div class="col-2">
@@ -53,9 +49,16 @@
 				<c:forEach var="place" items="${places}">
 					<c:if test="${place.isFreeString = true}">
 						<div class="row">
-							<div class="col-12">
-								<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/place/setNotFree/${place.id}">${place.number}</a>
-							</div>
+							<sec:authorize access="isAnonymous()">
+								<div class="col-12">
+									<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/login">${place.number}</a>
+								</div>
+							</sec:authorize>
+							<sec:authorize access="isAuthenticated()">
+								<div class="col-12">
+									<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/place/setNotFree/${place.id}">${place.number}</a>
+								</div>
+							</sec:authorize>
 						</div>
 						<br>
 					</c:if>
