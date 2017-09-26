@@ -47,7 +47,7 @@ public class AdminOrderController {
 	@GetMapping
 	public String show(Model model, @PageableDefault Pageable pageable, 
 			@ModelAttribute("orderFilter") OrderFilter filter) {
-		model.addAttribute("meals", service.findAllMeals());
+		model.addAttribute("meals", service.findForOrder(5));
 		model.addAttribute("places", service.findAllPlace());
 		model.addAttribute("orders", service.findAll(pageable, filter));
 		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
@@ -56,20 +56,10 @@ public class AdminOrderController {
 			return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
 	}
 
-	@PostMapping
-	public String save(@ModelAttribute("order") @Validated(OrderFlag.class) OrderRequest request, BindingResult br,
-			Model model, SessionStatus status, @PageableDefault Pageable pageable,
-			@ModelAttribute("orderFilter") OrderFilter filter) {
-		if (br.hasErrors())
-			return show(model, pageable, filter);
-		service.save(request);
-		return cancel(status, pageable, filter);
-	}
-
-	@GetMapping("/updateStatus/{id}")
-	public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
-			@ModelAttribute("orderFilter") OrderFilter filter) {
-		service.updateStatus(id, 1);
+	@GetMapping("/updateStatus/{id}/{status}")
+	public String update(@PathVariable Integer id, @PathVariable Integer status, Model model,
+			@PageableDefault Pageable pageable,	@ModelAttribute("orderFilter") OrderFilter filter) {
+		service.updateStatus(id, status);
 		return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
 	}
 

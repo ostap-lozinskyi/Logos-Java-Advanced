@@ -21,6 +21,8 @@ public interface OrderService {
 	Page<OrderView> findAll(Pageable pageable, OrderFilter filter);
 	
 	List<OrderView> findForTable(Integer tableId);
+	
+	List<String> findForOrder(Integer orderId);
 
 	void save(OrderRequest request);
 

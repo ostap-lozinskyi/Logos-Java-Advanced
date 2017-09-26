@@ -64,6 +64,11 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderView> findForTable(Integer tableId) {
 		return repository.findForTable(tableId);
 	}
+	
+	@Override
+	public List<String> findForOrder(Integer orderId) {
+		return mealRepository.findForOrder(orderId);
+	}
 
 	@Override
 	public void save(OrderRequest request) {

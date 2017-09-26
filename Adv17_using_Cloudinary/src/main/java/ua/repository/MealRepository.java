@@ -14,6 +14,9 @@ public interface MealRepository extends JpaNameRepository<Meal>, JpaSpecificatio
 	@Query("SELECT m.name FROM Meal m")
 	List<String> findAllMeals();
 	
+	@Query("SELECT m.name FROM Meal m JOIN m.orders o WHERE o.id=?1")
+	List<String> findForOrder(Integer orderId);
+	
 	@Query("SELECT new ua.model.view.MealIndexView(m.id, m.photoUrl, m.version, m.rate, m.price, m.weight, m.name, m.shortDescription) FROM Meal m ORDER BY m.rate DESC")
 	List<MealIndexView> find5MealsByRate();
 	

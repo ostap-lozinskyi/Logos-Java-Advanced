@@ -7,13 +7,13 @@ public class OrderView {
 	private Integer place;
 	
 	private Integer status;
-
+	
 	public OrderView(Integer id, Integer place, Integer status) {
 		this.id = id;
 		this.place = place;
 		this.status = status;
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}

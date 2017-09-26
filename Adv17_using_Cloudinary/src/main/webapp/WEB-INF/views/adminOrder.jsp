@@ -43,43 +43,6 @@
 		<br>
 		<div class="row">
 			<div class="col-12">
-				<form:form action="/admin/adminOrder" method="POST" modelAttribute="order">
-					<div class="row">
-						<div class="col-10 ml-auto" style="color: red;">
-							<form:errors path="meals" />
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-2 col-form-label" for="meal">Meals:</label>
-						<div class="col-10">
-							<form:select class="form-control" id="meal" path="meals" items="${meals}"/>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-10 ml-auto" style="color: red;">
-							<form:errors path="place" />
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-2 col-form-label" for="place">Place:</label>
-						<div class="col-10">
-							<form:select class="form-control" id="place" path="place" onchange="${places}">
-								<form:option value="" label="Select Place" style="color: gray;"/>
- 								<form:options items="${places}" itemLabel="print" itemValue="id"/>
-							</form:select>
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-8 mr-auto">
-							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/adminOrder/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
-						</div>
-					</div>
-				</form:form>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
 				<br>
 				<p>
 					<button class="btn-cart buy btnCafe btn-sucsess btn-lg" type="button"
@@ -140,6 +103,7 @@
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Place</th>
+						<th class="text-center">Meals</th>
 						<th class="text-center">Status</th>
 						<th class="text-center">Options</th>
 					</tr>
@@ -151,9 +115,20 @@
 					<c:forEach var="order" items="${orders.content}">
 						<tr>
 							<td>${order.place}</td>
+							<td>${order.place}</td>
 							<td>${order.status}</td>
 							<td class="text-center">
-								<a	href="/admin/adminOrder/updateStatus/${order.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update Status</a>
+								<div class="dropdown">
+									<button class="btn btn-outline-warning dropdown-toggle" type="button"
+										id="dropdownMenuButton" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">Update Status</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/1<custom:allParams/>">Accepted</a>
+										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/2<custom:allParams/>">Is being prepared</a>
+										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/3<custom:allParams/>">Is ready</a>
+										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/4<custom:allParams/>">Is paid</a>
+									</div>
+								</div> 
 							</td>
 						</tr>
 					</c:forEach>
