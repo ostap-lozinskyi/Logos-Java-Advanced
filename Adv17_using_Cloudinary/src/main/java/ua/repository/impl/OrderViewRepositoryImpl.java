@@ -39,7 +39,7 @@ public class OrderViewRepositoryImpl implements OrderViewRepository{
 		CriteriaQuery<OrderView> cq = cb.createQuery(OrderView.class);
 		Root<Order> root = cq.from(Order.class);
 		Join<Order, Place> joinPlace = root.join(Order_.place);
-		cq.multiselect(root.get(Order_.id), joinPlace.get("number"));
+		cq.multiselect(root.get(Order_.id), joinPlace.get("number"), root.get("status"));
 		Predicate predicate = new PredicateBuilder(cb, root, filter).toPredicate();
 		if(predicate!=null) cq.where(predicate);
 		cq.orderBy(toOrders(pageable.getSort(), root, cb));

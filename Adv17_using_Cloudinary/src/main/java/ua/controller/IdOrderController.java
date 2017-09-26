@@ -23,7 +23,7 @@ import ua.validation.flag.OrderFlag;
 
 @Controller
 @RequestMapping("/place/{id}/order")
-@SessionAttributes("order")
+@SessionAttributes("order2")
 public class IdOrderController {
 
 	private final OrderService service;
@@ -56,10 +56,12 @@ public class IdOrderController {
 	public String save(@PathVariable Integer id, @ModelAttribute("order") @Validated(OrderFlag.class) OrderRequest request, BindingResult br,
 			Model model, SessionStatus status, @PageableDefault Pageable pageable,
 			@ModelAttribute("orderFilter") OrderFilter filter) {
-//		if (br.hasErrors())
+//		if (br.hasErrors()) System.out.println("!!!!!!!!");
 //			return show(model, pageable, filter);
+		System.out.println("!!!!!!!!!!!");
 		Place place=new Place();
 		place.setId(id);
+		System.out.println(place.getId());
 		request.setPlace(place);
 		service.save(request);
 		return "redirect:/place/{id}/order";

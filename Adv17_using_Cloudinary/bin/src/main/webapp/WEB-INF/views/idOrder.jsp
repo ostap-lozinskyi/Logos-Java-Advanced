@@ -49,7 +49,7 @@
 					</div>
 					<div class="form-group row">
 						<div class="col-8 mr-auto">
-							<button class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
+							<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
 						</div>
 					</div>
 				</form:form>
