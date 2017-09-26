@@ -71,7 +71,7 @@ public class AdminOrderController {
 	}
 
 	@GetMapping("/updateStatus/{id}/{status}")
-	public String update(@PathVariable Integer id, @PathVariable Integer status, Model model,
+	public String update(@PathVariable Integer id, @PathVariable String status, Model model,
 			@PageableDefault Pageable pageable,	@ModelAttribute("orderFilter") OrderFilter filter) {
 		service.updateStatus(id, status);
 		return "redirect:/admin/adminOrder"+buildParams(pageable, filter);

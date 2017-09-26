@@ -31,6 +31,6 @@ public interface OrderService {
 
 	void delete(Integer id);
 	
-	void updateStatus(Integer id, Integer newStatus);
+	void updateStatus(Integer id, String newStatus);
 
 }

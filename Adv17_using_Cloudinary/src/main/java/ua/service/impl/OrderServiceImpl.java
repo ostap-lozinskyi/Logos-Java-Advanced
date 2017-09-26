@@ -96,7 +96,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public void updateStatus(Integer id, Integer newStatus) {
+	public void updateStatus(Integer id, String newStatus) {
 		Order order = repository.findById(id);
 		order.setStatus(newStatus);
 		repository.save(order);

@@ -6,9 +6,9 @@ public class OrderView {
 
 	private Integer place;
 	
-	private Integer status;
+	private String status;
 	
-	public OrderView(Integer id, Integer place, Integer status) {
+	public OrderView(Integer id, Integer place, String status) {
 		this.id = id;
 		this.place = place;
 		this.status = status;
@@ -30,11 +30,11 @@ public class OrderView {
 		this.place = place;
 	}
 
-	public Integer getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Integer status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

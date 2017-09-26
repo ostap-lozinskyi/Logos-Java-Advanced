@@ -129,10 +129,10 @@
 										id="dropdownMenuButton" data-toggle="dropdown"
 										aria-haspopup="true" aria-expanded="false">Update Status</button>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/1<custom:allParams/>">Accepted</a>
-										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/2<custom:allParams/>">Is being prepared</a>
-										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/3<custom:allParams/>">Is ready</a>
-										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/4<custom:allParams/>">Is paid</a>
+										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/Accepted<custom:allParams/>">Accepted</a>
+										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/Is being prepared<custom:allParams/>">Is being prepared</a>
+										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/Is ready<custom:allParams/>">Is ready</a>
+										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/Is paid<custom:allParams/>">Is paid</a>
 									</div>
 								</div> 
 							</td>
