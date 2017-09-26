@@ -24,4 +24,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
 	@Query("SELECT o FROM Order o JOIN FETCH o.place WHERE o.id=?1")
 	Order findOneRequest(Integer id);
+	
+	@Query("SELECT o FROM Order o WHERE o.id=?1")
+	Order findById(Integer id);
 }

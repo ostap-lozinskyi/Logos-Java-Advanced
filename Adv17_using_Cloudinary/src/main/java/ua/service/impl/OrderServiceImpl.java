@@ -88,5 +88,12 @@ public class OrderServiceImpl implements OrderService {
 	public void delete(Integer id) {
 		repository.delete(id);
 	}
+	
+	@Override
+	public void updateStatus(Integer id, Integer newStatus) {
+		Order order = repository.findById(id);
+		order.setStatus(newStatus);
+		repository.save(order);
+	}
 
 }

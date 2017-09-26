@@ -27,5 +27,7 @@ public interface OrderService {
 	OrderRequest findOneRequest(Integer id);
 
 	void delete(Integer id);
+	
+	void updateStatus(Integer id, Integer newStatus);
 
 }

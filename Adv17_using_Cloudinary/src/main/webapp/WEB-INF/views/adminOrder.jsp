@@ -139,8 +139,8 @@
 			<div class="col-9">
 				<table class="table table-bordered">
 					<tr>
-						<th class="text-center">Id</th>
 						<th class="text-center">Place</th>
+						<th class="text-center">Status</th>
 						<th class="text-center">Options</th>
 					</tr>
 					<c:if test="${empty orders.content}">
@@ -150,11 +150,10 @@
 					</c:if>
 					<c:forEach var="order" items="${orders.content}">
 						<tr>
-							<td>${order.id}</td>
 							<td>${order.place}</td>
+							<td>${order.status}</td>
 							<td class="text-center">
-								<a	href="/admin/adminOrder/update/${order.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
-								<a	href="/admin/adminOrder/delete/${order.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>
+								<a	href="/admin/adminOrder/updateStatus/${order.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update Status</a>
 							</td>
 						</tr>
 					</c:forEach>

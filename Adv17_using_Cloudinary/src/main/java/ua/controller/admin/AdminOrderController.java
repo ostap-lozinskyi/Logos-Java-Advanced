@@ -56,13 +56,6 @@ public class AdminOrderController {
 			return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
 	}
 
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
-			@ModelAttribute("orderFilter") OrderFilter filter) {
-		service.delete(id);
-		return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
-	}
-
 	@PostMapping
 	public String save(@ModelAttribute("order") @Validated(OrderFlag.class) OrderRequest request, BindingResult br,
 			Model model, SessionStatus status, @PageableDefault Pageable pageable,
@@ -73,11 +66,11 @@ public class AdminOrderController {
 		return cancel(status, pageable, filter);
 	}
 
-	@GetMapping("/update/{id}")
+	@GetMapping("/updateStatus/{id}")
 	public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
 			@ModelAttribute("orderFilter") OrderFilter filter) {
-		model.addAttribute("order", service.findOneRequest(id));
-		return show(model, pageable, filter);
+		service.updateStatus(id, 1);
+		return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
 	}
 
 	@GetMapping("/cancel")
