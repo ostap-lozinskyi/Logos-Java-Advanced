@@ -1,6 +1,10 @@
 package ua.controller.admin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -16,6 +20,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
+import ua.model.view.MealView;
+import ua.model.view.OrderView;
 import ua.service.OrderService;
 
 @Controller
@@ -46,6 +52,18 @@ public class AdminOrderController {
 		model.addAttribute("meals", service.findAllMeals());
 		model.addAttribute("places", service.findAllPlace());
 		model.addAttribute("orders", service.findAll(pageable, filter));
+		
+		Page<OrderView> ordersPage = service.findAll(pageable, filter);
+		List<List<MealView>> orderedMeals=new ArrayList<>();
+		for (OrderView orderView : ordersPage) {
+			orderedMeals.add(service.findForOrder(orderView.getId()));
+			System.out.println(service.findForOrder(orderView.getId()));
+		}
+		for (List<MealView> orderView : orderedMeals) {
+			System.out.println(orderView);
+		}
+		
+		model.addAttribute("orderedMeals", orderedMeals);
 		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
 			return "adminOrder";
 		else
