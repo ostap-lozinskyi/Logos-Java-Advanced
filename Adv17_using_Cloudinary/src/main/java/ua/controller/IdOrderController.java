@@ -77,7 +77,7 @@ public class IdOrderController {
 //		if (br.hasErrors())
 //			return show(id, model, pageable, filter);
 		if (!request.getMeals().isEmpty())
-			service.save(request);
+			service.save(request, principal);
 		return "redirect:/place/{id}/order";
 	}
 

@@ -21,7 +21,8 @@ public class Order extends AbstractEntity {
 
 	private String status;
 
-	private String user;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User user;
 
 	public Order() {
 	}
@@ -55,11 +56,11 @@ public class Order extends AbstractEntity {
 		this.status = status;
 	}
 
-	public String getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(String user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

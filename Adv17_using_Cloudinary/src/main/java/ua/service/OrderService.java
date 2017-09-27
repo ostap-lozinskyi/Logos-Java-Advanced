@@ -1,5 +1,6 @@
 package ua.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -27,7 +28,7 @@ public interface OrderService {
 	
 	List<MealView> findForOrder(Integer orderId);
 
-	void save(OrderRequest request);
+	void save(OrderRequest request, Principal principal);
 
 	OrderRequest findOneRequest(Integer id);
 

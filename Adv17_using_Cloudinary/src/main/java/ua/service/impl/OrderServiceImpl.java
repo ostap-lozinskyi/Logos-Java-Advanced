@@ -1,5 +1,6 @@
 package ua.service.impl;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import ua.entity.Meal;
 import ua.entity.Order;
+import ua.entity.User;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.model.view.MealView;
@@ -17,6 +20,7 @@ import ua.repository.MealRepository;
 import ua.repository.OrderRepository;
 import ua.repository.OrderViewRepository;
 import ua.repository.PlaceRepository;
+import ua.repository.UserRepository;
 import ua.service.OrderService;
 
 @Service
@@ -29,14 +33,17 @@ public class OrderServiceImpl implements OrderService {
 	private final MealRepository mealRepository;
 	
 	private final PlaceRepository placeRepository;
+	
+	private final UserRepository userRepository;
 
 	@Autowired
 	public OrderServiceImpl(OrderRepository repository, OrderViewRepository orderViewRepository,
-			MealRepository mealRepository, PlaceRepository placeRepository) {
+			MealRepository mealRepository, PlaceRepository placeRepository, UserRepository userRepository) {
 		this.repository = repository;
 		this.orderViewRepository = orderViewRepository;
 		this.mealRepository = mealRepository;
 		this.placeRepository = placeRepository;
+		this.userRepository = userRepository;
 	}
 
 	@Override
@@ -75,13 +82,20 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public void save(OrderRequest request) {
+	public void save(OrderRequest request, Principal principal) {
 		Order order = new Order();
 		order.setId(request.getId());
 		order.setPlace(request.getPlace());
 		order.setMeals(request.getMeals());
 		order.setStatus(request.getStatus());
-		order.setUser(request.getUser());
+		String email = principal.getName();
+		User user=userRepository.findByEmail(email);
+		order.setUser(user);
+		
+		List<Meal> userMeals = user.getMeals();
+		userMeals.add(order.getMeals().get(0));
+		user.setMeals(userMeals);
+		userRepository.save(user);
 		repository.save(order);
 	}
 
