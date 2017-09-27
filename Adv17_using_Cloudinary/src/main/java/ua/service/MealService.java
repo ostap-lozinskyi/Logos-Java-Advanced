@@ -17,8 +17,6 @@ public interface MealService {
 
 	List<ComponentView> findAllСomponentsView();
 	
-//	Page<Meal> findAll(Pageable pageable, SimpleFilter filter);
-	
 	Page<MealIndexView> findAll(MealFilter filter, Pageable pageable);
 	
 	List<MealIndexView> find5MealsByRate();
@@ -31,10 +29,10 @@ public interface MealService {
 
 	void delete(Integer id);
 	
-//	void updatePhotoUrl(Integer id, String photoUrl);
-	
 	void updateRate(Integer id, Integer newRate);
 	
 	MealView findById(Integer id);
+	
+	List<Integer> findByUserId(Integer id);
 
 }

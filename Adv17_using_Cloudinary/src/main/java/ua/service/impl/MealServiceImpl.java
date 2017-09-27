@@ -18,6 +18,7 @@ import ua.repository.ComponentRepository;
 import ua.repository.CuisineRepository;
 import ua.repository.MealRepository;
 import ua.repository.MealViewRepository;
+import ua.repository.UserRepository;
 import ua.service.MealService;
 
 @Service
@@ -30,14 +31,17 @@ public class MealServiceImpl implements MealService {
 	private final CuisineRepository cuisineRepository;
 	
 	private final ComponentRepository componentRepository;
+	
+	private final UserRepository userRepository;
 
 	@Autowired
 	public MealServiceImpl(MealRepository repository, MealViewRepository mealViewrepository, 
-			CuisineRepository cuisineRepository, ComponentRepository componentRepository) {
+			CuisineRepository cuisineRepository, ComponentRepository componentRepository, UserRepository userRepository) {
 		this.repository = repository;
 		this.mealViewRepository = mealViewrepository;
 		this.cuisineRepository = cuisineRepository;
 		this.componentRepository = componentRepository;
+		this.userRepository = userRepository;
 	}
 
 	@Override
@@ -50,18 +54,6 @@ public class MealServiceImpl implements MealService {
 		return componentRepository.findAllComponentsView();
 	}
 
-//	@Override
-//	public Page<Meal> findAll(Pageable pageable, SimpleFilter filter) {
-//		return repository.findAll(filter(filter), pageable);
-//	}
-	
-//	private Specification<Meal> filter(SimpleFilter filter){
-//		return (root, query, cb) -> {
-//			if(filter.getSearch().isEmpty()) return null;
-//			return cb.like(root.get("name"), filter.getSearch()+"%");
-//		};
-//	}
-	
 	@Override
 	public Page<MealIndexView> findAll(MealFilter filter, Pageable pageable) {
 		return mealViewRepository.findAll(filter, pageable);
@@ -144,6 +136,11 @@ public class MealServiceImpl implements MealService {
 	@Override
 	public MealView findById(Integer id) {
 		return repository.findViewById(id);
+	}
+	
+	@Override
+	public List<Integer> findByUserId(Integer id) {
+		return userRepository.findMealByUserId(id);
 	}
 
 }
