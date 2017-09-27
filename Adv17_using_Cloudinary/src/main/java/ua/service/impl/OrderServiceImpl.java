@@ -88,10 +88,9 @@ public class OrderServiceImpl implements OrderService {
 		order.setPlace(request.getPlace());
 		order.setMeals(request.getMeals());
 		order.setStatus(request.getStatus());
-		String email = principal.getName();
-		User user=userRepository.findByEmail(email);
-		order.setUser(user);
 		
+		String email = principal.getName();
+		User user=userRepository.findByEmail(email);		
 		List<Meal> userMeals = user.getMeals();
 		userMeals.add(order.getMeals().get(0));
 		user.setMeals(userMeals);

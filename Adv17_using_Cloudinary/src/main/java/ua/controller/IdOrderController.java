@@ -73,7 +73,6 @@ public class IdOrderController {
 		place.setId(id);
 		request.setPlace(place);
 		request.setStatus("Accepted");		
-		request.setUser(principal.getName());
 //		if (br.hasErrors())
 //			return show(id, model, pageable, filter);
 		if (!request.getMeals().isEmpty())
