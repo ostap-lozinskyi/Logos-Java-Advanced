@@ -19,7 +19,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 			countQuery = "SELECT count(o.id) FROM Order o JOIN o.place p")
 	Page<OrderView> findAllView(Pageable pageable);
 	
-	@Query(value = "SELECT new ua.model.view.OrderView(o.id, p.number, o.status) FROM Order o JOIN o.place p WHERE p.id=?1 ORDER BY o.status DESC")
+	@Query(value = "SELECT new ua.model.view.OrderView(o.id, p.number, o.status) FROM Order o JOIN o.place p WHERE p.id=?1 AND (NOT (o.status='Is paid') OR o.status=null) ORDER BY o.status DESC")
 	List<OrderView> findForTable(Integer tableId);
 
 	@Query("SELECT o FROM Order o JOIN FETCH o.place WHERE o.id=?1")
