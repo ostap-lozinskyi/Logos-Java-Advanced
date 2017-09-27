@@ -85,9 +85,16 @@ public class OrderViewRepositoryImpl implements OrderViewRepository{
 			}
 		}
 		
+		void findByStatus() {
+			if(!filter.getStatus().isEmpty()) {
+				predicates.add(root.get("status").in(filter.getStatus()));
+			}
+		}
+		
 		Predicate toPredicate() {
 			findByPlacelId();
 			findByMealList();
+			findByStatus();
 			return predicates.isEmpty() ? null : cb.and(predicates.stream().toArray(Predicate[]::new));
 		}		
 		

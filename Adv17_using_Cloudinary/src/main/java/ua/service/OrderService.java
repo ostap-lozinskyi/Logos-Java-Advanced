@@ -14,6 +14,8 @@ import ua.model.view.PlaceView;
 public interface OrderService {
 
 	List<String> findAllMeals();
+	
+	List<String> findStatusForSearch();
 
 	List<PlaceView> findAllPlace();
 	

@@ -87,7 +87,21 @@
 										</div>
 									</div>
 									<br>
-								</div>					
+								</div>
+								<div class="col-3">
+									<p>								
+										<button class="btn btn-outline-secondary" type="button"
+											data-toggle="collapse" data-target="#fourthCollapse"
+											aria-expanded="false" aria-controls="fourthCollapse">
+											Select status</button>
+									</p>
+									<div class="collapse" id="fourthCollapse">
+										<div class="card card-body">
+											<form:checkboxes items="${statuses}" path="mealName" element="div"/>
+										</div>
+									</div>
+									<br>
+								</div>							
 								<div class="col-12">
 		        					<button type="submit" class="btn-cart buy btnCafe btn-sucsess btn-lg">Search</button>
 		      					</div>

@@ -43,8 +43,11 @@ public class OrderServiceImpl implements OrderService {
 	public List<String> findAllMeals() {
 		return mealRepository.findAllMeals();
 	}
-
 	
+	@Override
+	public List<String> findStatusForSearch() {
+		return repository.findStatusForSearch();
+	}
 
 	@Override
 	public List<PlaceView> findAllPlace() {
@@ -77,6 +80,7 @@ public class OrderServiceImpl implements OrderService {
 		order.setId(request.getId());
 		order.setPlace(request.getPlace());
 		order.setMeals(request.getMeals());
+		order.setStatus(request.getStatus());
 		repository.save(order);
 	}
 

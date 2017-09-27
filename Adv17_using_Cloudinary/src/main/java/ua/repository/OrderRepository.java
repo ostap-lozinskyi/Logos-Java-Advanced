@@ -15,6 +15,9 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	@Query("SELECT new ua.model.view.OrderView(o.id, p.number, o.status) FROM Order o JOIN o.place p")
 	List<OrderView> findAllView();
 	
+	@Query("SELECT distinct o.status FROM Order o")
+	List<String> findStatusForSearch();
+	
 	@Query(value = "SELECT new ua.model.view.OrderView(o.id, p.number, o.status) FROM Order o JOIN o.place p",
 			countQuery = "SELECT count(o.id) FROM Order o JOIN o.place p")
 	Page<OrderView> findAllView(Pageable pageable);

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
@@ -52,6 +51,7 @@ public class AdminOrderController {
 		model.addAttribute("meals", service.findAllMeals());
 		model.addAttribute("places", service.findAllPlace());
 		model.addAttribute("orders", service.findAll(pageable, filter));
+		model.addAttribute("statuses", service.findStatusForSearch());
 		
 		Page<OrderView> ordersPage = service.findAll(pageable, filter);
 		List<List<MealView>> orderedMeals=new ArrayList<>();
@@ -77,13 +77,6 @@ public class AdminOrderController {
 		return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
 	}
 
-	@GetMapping("/cancel")
-	public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
-			@ModelAttribute("orderFilter") OrderFilter filter) {
-		status.setComplete();
-		return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
-	}
-	
 	private String buildParams(Pageable pageable, OrderFilter filter) {
 		StringBuilder buffer = new StringBuilder();		
 		buffer.append("?page=");

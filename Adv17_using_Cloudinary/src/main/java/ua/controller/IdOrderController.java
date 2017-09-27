@@ -75,7 +75,9 @@ public class IdOrderController {
 		place.setId(id);
 		System.out.println(place.getId());
 		request.setPlace(place);
+		request.setStatus("Accepted");
 		service.save(request);
+		System.out.println(request.getStatus());
 		return "redirect:/place/{id}/order";
 	}
 
