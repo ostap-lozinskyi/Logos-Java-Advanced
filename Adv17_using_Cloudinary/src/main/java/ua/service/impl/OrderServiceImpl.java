@@ -92,7 +92,11 @@ public class OrderServiceImpl implements OrderService {
 		String email = principal.getName();
 		User user=userRepository.findByEmail(email);		
 		List<Meal> userMeals = user.getMeals();
-		userMeals.add(order.getMeals().get(0));
+		List<Meal> orderMeals = order.getMeals();
+		for (Meal meal : orderMeals) {
+			if (!userMeals.contains(meal))
+				userMeals.add(meal);
+		}		
 		user.setMeals(userMeals);
 		userRepository.save(user);
 		repository.save(order);
