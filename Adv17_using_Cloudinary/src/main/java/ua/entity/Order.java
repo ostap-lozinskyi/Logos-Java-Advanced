@@ -10,20 +10,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="_order")
-public class Order extends AbstractEntity{
-	
-	@ManyToOne(fetch=FetchType.LAZY)
+@Table(name = "_order")
+public class Order extends AbstractEntity {
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Place place;
-	
+
 	@ManyToMany
 	private List<Meal> meals = new ArrayList<>();
-	
+
 	private String status;
-	
+
+	private String user;
+
 	public Order() {
 	}
-	
+
 	public Order(List<Meal> meals, Place place) {
 		this.meals = meals;
 		this.place = place;
@@ -52,5 +54,13 @@ public class Order extends AbstractEntity{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
 }

@@ -81,6 +81,7 @@ public class OrderServiceImpl implements OrderService {
 		order.setPlace(request.getPlace());
 		order.setMeals(request.getMeals());
 		order.setStatus(request.getStatus());
+		order.setUser(request.getUser());
 		repository.save(order);
 	}
 

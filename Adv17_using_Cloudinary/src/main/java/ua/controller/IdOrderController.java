@@ -1,5 +1,6 @@
 package ua.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,19 +66,18 @@ public class IdOrderController {
 	}
 
 	@PostMapping
-	public String save(@PathVariable Integer id, @ModelAttribute("order") @Validated(OrderFlag.class) OrderRequest request, BindingResult br,
-			Model model, SessionStatus status, @PageableDefault Pageable pageable,
-			@ModelAttribute("orderFilter") OrderFilter filter) {
-//		if (br.hasErrors()) System.out.println("!!!!!!!!");
-//			return show(model, pageable, filter);
-		System.out.println("!!!!!!!!!!!");
+	public String save(@PathVariable Integer id, @ModelAttribute("order") @Validated(OrderFlag.class) OrderRequest request,
+			BindingResult br, Model model, SessionStatus status, @PageableDefault Pageable pageable,
+			@ModelAttribute("orderFilter") OrderFilter filter, Principal principal) {
 		Place place=new Place();
 		place.setId(id);
-		System.out.println(place.getId());
 		request.setPlace(place);
-		request.setStatus("Accepted");
-		service.save(request);
-		System.out.println(request.getStatus());
+		request.setStatus("Accepted");		
+		request.setUser(principal.getName());
+//		if (br.hasErrors())
+//			return show(id, model, pageable, filter);
+		if (!request.getMeals().isEmpty())
+			service.save(request);
 		return "redirect:/place/{id}/order";
 	}
 

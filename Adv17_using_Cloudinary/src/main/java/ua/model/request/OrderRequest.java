@@ -19,6 +19,8 @@ public class OrderRequest {
 	@NotNull(message = "This field cannot be blank", groups = { OrderFlag.class })
 	private List<Meal> meals = new ArrayList<>();
 	
+	private String user;
+	
 	private String status;
 
 	public Integer getId() {
@@ -51,6 +53,14 @@ public class OrderRequest {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
 	}
 	
 }
