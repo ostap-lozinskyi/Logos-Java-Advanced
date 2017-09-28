@@ -1,6 +1,7 @@
 package ua.service.impl;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,6 +123,16 @@ public class OrderServiceImpl implements OrderService {
 		Order order = repository.findById(id);
 		order.setStatus(newStatus);
 		repository.save(order);
+	}
+	
+	@Override
+	public List<List<MealView>> getOrderedMeals(Pageable pageable, OrderFilter filter) {
+		Page<OrderView> ordersPage = findAll(pageable, filter);
+		List<List<MealView>> orderedMeals=new ArrayList<>();
+		for (OrderView orderView : ordersPage) {
+			orderedMeals.add(findForOrder(orderView.getId()));
+		}
+		return orderedMeals;
 	}
 
 }

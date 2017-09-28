@@ -35,5 +35,7 @@ public interface OrderService {
 	void delete(Integer id);
 	
 	void updateStatus(Integer id, String newStatus);
+	
+	List<List<MealView>> getOrderedMeals(Pageable pageable, OrderFilter filter);
 
 }
