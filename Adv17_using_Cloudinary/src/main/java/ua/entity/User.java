@@ -19,6 +19,8 @@ public class User extends AbstractEntity {
 	
 	private String photoUrl;
 	
+	private int version;
+	
 	private Integer tableId;
 	
 	@ManyToMany
@@ -54,6 +56,14 @@ public class User extends AbstractEntity {
 
 	public void setPhotoUrl(String photoUrl) {
 		this.photoUrl = photoUrl;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public Integer getTableId() {
