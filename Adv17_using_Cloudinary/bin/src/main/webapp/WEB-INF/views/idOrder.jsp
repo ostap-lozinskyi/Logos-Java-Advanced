@@ -37,19 +37,19 @@
 			<div class="col-12">
 				<form:form action="/place/${placeCurrent.id}/order" method="POST" modelAttribute="order">
 					<div class="row">
-						<div class="col-10 ml-auto" style="color: red;">
+						<div class="col-6 ml-auto" style="color: red;">
 							<form:errors path="meals" />
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="meal">Meals:</label>
-						<div class="col-10">
+						<div class="col-6">
 							<form:select class="form-control" id="meal" path="meals" items="${meals}"/>
 						</div>
 					</div>
 					<div class="form-group row">
 						<div class="col-8 mr-auto">
-							<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
+							<button class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
 						</div>
 					</div>
 				</form:form>
@@ -59,7 +59,7 @@
 			<div class="col-12">
 				<table class="table table-bordered">
 					<tr>
-						<th class="text-center">Order</th>
+						<th class="text-center">Meal</th>
 						<th class="text-center">Status</th>
 					</tr>
 					<c:if test="${empty orders}">
@@ -67,10 +67,17 @@
 		    			<td colspan=3><h3 class="text-center">Orders with such parameters not found</h3></td>
 		    			</tr>
 					</c:if>
-					<c:forEach var="order" items="${orders}">
+					<c:forEach var="order" items="${orders}" varStatus="theCount">
 						<tr>
-							<td>${order.id}</td>
+							<td>
+								<c:forEach var="orderedMeal" items="${orderedMeals}" begin="${theCount.index}" end="${theCount.index}">
+									<c:forEach var="ordered" items="${orderedMeal}">
+									<img src="${ordered.photoUrl}?version=${ordered.version}" style="height: 50px">${ordered.name}
+									</c:forEach>
+								</c:forEach>
+							</td>
 							<td class="text-center">${order.status}</td>
+							
 						</tr>
 					</c:forEach>
 				</table>

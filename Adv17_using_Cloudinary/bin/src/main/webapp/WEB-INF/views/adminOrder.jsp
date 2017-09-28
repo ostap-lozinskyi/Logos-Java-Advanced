@@ -43,43 +43,6 @@
 		<br>
 		<div class="row">
 			<div class="col-12">
-				<form:form action="/admin/adminOrder" method="POST" modelAttribute="order">
-					<div class="row">
-						<div class="col-10 ml-auto" style="color: red;">
-							<form:errors path="meals" />
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-2 col-form-label" for="meal">Meals:</label>
-						<div class="col-10">
-							<form:select class="form-control" id="meal" path="meals" items="${meals}"/>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-10 ml-auto" style="color: red;">
-							<form:errors path="place" />
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-2 col-form-label" for="place">Place:</label>
-						<div class="col-10">
-							<form:select class="form-control" id="place" path="place" onchange="${places}">
-								<form:option value="" label="Select Place" style="color: gray;"/>
- 								<form:options items="${places}" itemLabel="print" itemValue="id"/>
-							</form:select>
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-8 mr-auto">
-							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/adminOrder/cancel<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
-						</div>
-					</div>
-				</form:form>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
 				<br>
 				<p>
 					<button class="btn-cart buy btnCafe btn-sucsess btn-lg" type="button"
@@ -124,7 +87,21 @@
 										</div>
 									</div>
 									<br>
-								</div>					
+								</div>
+								<div class="col-3">
+									<p>								
+										<button class="btn btn-outline-secondary" type="button"
+											data-toggle="collapse" data-target="#fourthCollapse"
+											aria-expanded="false" aria-controls="fourthCollapse">
+											Select status</button>
+									</p>
+									<div class="collapse" id="fourthCollapse">
+										<div class="card card-body">
+											<form:checkboxes items="${statuses}" path="mealName" element="div"/>
+										</div>
+									</div>
+									<br>
+								</div>							
 								<div class="col-12">
 		        					<button type="submit" class="btn-cart buy btnCafe btn-sucsess btn-lg">Search</button>
 		      					</div>
@@ -139,8 +116,9 @@
 			<div class="col-9">
 				<table class="table table-bordered">
 					<tr>
-						<th class="text-center">Id</th>
 						<th class="text-center">Place</th>
+						<th class="text-center">Meals</th>
+						<th class="text-center">Status</th>
 						<th class="text-center">Options</th>
 					</tr>
 					<c:if test="${empty orders.content}">
@@ -148,13 +126,29 @@
 		    			<td colspan=3><h3 class="text-center">Orders with such parameters not found</h3></td>
 		    			</tr>
 					</c:if>
-					<c:forEach var="order" items="${orders.content}">
+					<c:forEach var="order" items="${orders.content}" varStatus="theCount">
 						<tr>
-							<td>${order.id}</td>
 							<td>${order.place}</td>
+							<td>
+								<c:forEach var="orderedMeal" items="${orderedMeals}" begin="${theCount.index}" end="${theCount.index}">
+									<c:forEach var="ordered" items="${orderedMeal}">
+										<img src="${ordered.photoUrl}?version=${ordered.version}" style="height: 50px">${ordered.name}
+									</c:forEach>
+								</c:forEach>
+							</td>
+							<td>${order.status}</td>
 							<td class="text-center">
-								<a	href="/admin/adminOrder/update/${order.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
-								<a	href="/admin/adminOrder/delete/${order.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>
+								<div class="dropdown">
+									<button class="btn btn-outline-warning dropdown-toggle" type="button"
+										id="dropdownMenuButton" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">Update Status</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/Accepted<custom:allParams/>">Accepted</a>
+										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/Is being prepared<custom:allParams/>">Is being prepared</a>
+										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/Is ready<custom:allParams/>">Is ready</a>
+										<a class="dropdown-item" href="/admin/adminOrder/updateStatus/${order.id}/Is paid<custom:allParams/>">Is paid</a>
+									</div>
+								</div> 
 							</td>
 						</tr>
 					</c:forEach>
