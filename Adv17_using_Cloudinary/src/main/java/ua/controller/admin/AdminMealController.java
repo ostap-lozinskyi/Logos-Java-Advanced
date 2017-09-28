@@ -2,7 +2,6 @@ package ua.controller.admin;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,9 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.cloudinary.*;
-import com.cloudinary.utils.ObjectUtils;
-
 import ua.model.filter.MealFilter;
 import ua.model.request.FileRequest;
 import ua.model.request.MealRequest;
@@ -40,9 +36,6 @@ public class AdminMealController {
 	private final FileWriter writer;
 
 	private final MealService service;
-	
-	@Value("${cloudinary.url}")
-	Cloudinary cloudinary = new Cloudinary();
 	
 	@Value("${file.path}")
 	private String path;
@@ -95,21 +88,10 @@ public class AdminMealController {
 		String photoUrl=writer.write(fileRequest.getFile());
 		File toUpload = new File(path+photoUrl);
 		try {
-			@SuppressWarnings("rawtypes")
-			Map uploadResult = cloudinary.uploader().upload(toUpload,
-					ObjectUtils.asMap("use_filename", "true", "unique_filename", "false"));
-			String cloudinaryUrl = (String) uploadResult.get("url");
-			String oldPhotoUrl = request.getPhotoUrl();
-			if ((oldPhotoUrl != null) && (oldPhotoUrl.equals(cloudinaryUrl))) {
-				request.setVersion(request.getVersion() + 1);
-			} else {
-				request.setVersion(0);
-			}
-			request.setPhotoUrl(cloudinaryUrl);
-			service.save(request);
+			service.save(service.uploadPhotoToCloudinary(request, toUpload));
 		} catch (IOException e) {
-			e.printStackTrace();
-		}		
+			service.save(request);
+		}
 		return cancel(status, pageable, filter);
 	}
 
@@ -126,22 +108,6 @@ public class AdminMealController {
 		status.setComplete();
 		return "redirect:/admin/adminMeal"+buildParams(pageable, filter);
 	}
-	
-//	@PostMapping("/photoUpdate/{id}")
-//	public String saveFile(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
-//			@ModelAttribute("filter") SimpleFilter filter, @ModelAttribute("fileRequest") FileRequest request) {
-//		String photoUrl=writer.write(request.getFile());
-//		File toUpload = new File(path+photoUrl);
-//		try {
-//			@SuppressWarnings("rawtypes")
-//			Map	uploadResult = cloudinary.uploader().upload(toUpload, ObjectUtils.emptyMap());
-//			String cloudinaryUrl = (String) uploadResult.get("url");
-//			service.updatePhotoUrl(id, cloudinaryUrl);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}		
-//		return "redirect:/admin/meal"+buildParams(pageable, filter);
-//	}
 	
 	private String buildParams(Pageable pageable, MealFilter filter) {
 		StringBuilder buffer = new StringBuilder();		

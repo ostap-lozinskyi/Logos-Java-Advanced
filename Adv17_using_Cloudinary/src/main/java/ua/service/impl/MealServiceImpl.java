@@ -1,12 +1,19 @@
 package ua.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 import ua.entity.Meal;
 import ua.model.filter.MealFilter;
@@ -33,6 +40,9 @@ public class MealServiceImpl implements MealService {
 	private final ComponentRepository componentRepository;
 	
 	private final UserRepository userRepository;
+	
+	@Value("${cloudinary.url}")
+	Cloudinary cloudinary = new Cloudinary();
 
 	@Autowired
 	public MealServiceImpl(MealRepository repository, MealViewRepository mealViewrepository, 
@@ -107,19 +117,6 @@ public class MealServiceImpl implements MealService {
 		repository.delete(id);
 	}
 	
-//	@Override
-//	public void updatePhotoUrl(Integer id, String newPhotoUrl) {
-//		Meal meal = repository.findById(id);
-//		String oldPhotoUrl=meal.getPhotoUrl();
-//		if ((oldPhotoUrl != null)&&(oldPhotoUrl.equals(newPhotoUrl))) {			
-//			meal.setVersion(meal.getVersion()+1);
-//		} else {
-//			meal.setVersion(0);
-//		}
-//		meal.setPhotoUrl(newPhotoUrl);
-//		repository.save(meal);		
-//	}
-	
 	@Override
 	public void updateRate(Integer id, Integer newRate) {
 		Meal meal = repository.findById(id);
@@ -141,6 +138,21 @@ public class MealServiceImpl implements MealService {
 	@Override
 	public List<Integer> findByUserId(Integer id) {
 		return userRepository.findMealByUserId(id);
+	}
+	
+	public MealRequest uploadPhotoToCloudinary(MealRequest request, File toUpload) throws IOException {
+			@SuppressWarnings("rawtypes")
+			Map uploadResult = cloudinary.uploader().upload(toUpload,
+					ObjectUtils.asMap("use_filename", "true", "unique_filename", "false"));
+			String cloudinaryUrl = (String) uploadResult.get("url");
+			String oldPhotoUrl = request.getPhotoUrl();
+			if ((oldPhotoUrl != null) && (oldPhotoUrl.equals(cloudinaryUrl))) {
+				request.setVersion(request.getVersion() + 1);
+			} else {
+				request.setVersion(0);
+			}
+			request.setPhotoUrl(cloudinaryUrl);
+		return request;
 	}
 
 }

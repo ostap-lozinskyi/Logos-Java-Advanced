@@ -12,8 +12,8 @@
 	crossorigin="anonymous">
 <title>Login</title>
 </head>
-<body>
-	<div class="container">
+<body style="background: url(/resources/img/fon2.jpg)">
+	<div class="container" style="background-color: white;">
 		<div class="row">
 			<div class="col-12">
 			<h1 class="text-center">Login</h1>

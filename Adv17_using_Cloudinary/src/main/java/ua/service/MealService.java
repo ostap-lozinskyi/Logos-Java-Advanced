@@ -1,5 +1,7 @@
 package ua.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -34,5 +36,7 @@ public interface MealService {
 	MealView findById(Integer id);
 	
 	List<Integer> findByUserId(Integer id);
+	
+	MealRequest uploadPhotoToCloudinary(MealRequest request, File toUpload) throws IOException;
 
 }

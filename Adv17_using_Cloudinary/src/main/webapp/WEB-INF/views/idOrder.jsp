@@ -27,7 +27,7 @@
 				<div class="text-center">
 				<div class="btn-group text-center" role="group" aria-label="Basic example">
 					<a class="btn btn-outline-success" href="/">Main Page</a>
-					<a class="btn btn-outline-success" href="/admin">Admin</a>
+					<a class="btn btn-outline-success" href="/meal">Menu</a>
 				</div>
 				</div>				
 			</div>
