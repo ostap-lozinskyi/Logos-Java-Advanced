@@ -70,11 +70,9 @@
 					<c:forEach var="order" items="${orders}" varStatus="theCount">
 						<tr>
 							<td>
-								<c:forEach var="orderedMeal" items="${orderedMeals}" begin="${theCount.index}" end="${theCount.index}">
-									<c:forEach var="ordered" items="${orderedMeal}">
-									<img src="${ordered.photoUrl}?version=${ordered.version}" style="height: 50px">${ordered.name}
+									<c:forEach var="orderedMeal" items="${orderedMeals[theCount.index]}">
+										<img src="${orderedMeal.photoUrl}?version=${orderedMeal.version}" style="height: 50px">${orderedMeal.name}
 									</c:forEach>
-								</c:forEach>
 							</td>
 							<td class="text-center">${order.status}</td>
 							

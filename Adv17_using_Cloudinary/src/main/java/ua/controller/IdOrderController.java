@@ -53,14 +53,16 @@ public class IdOrderController {
 	public String show(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable, 
 			@ModelAttribute("orderFilter") OrderFilter filter) {
 		model.addAttribute("meals", service.findAllMeals());		
-		model.addAttribute("orders", service.findForTable(id));
+		
 		
 		List<OrderView> ordersList = service.findForTable(id);
+		model.addAttribute("orders", service.findForTable(id));
 		List<List<MealView>> orderedMeals=new ArrayList<>();
 		for (OrderView orderView : ordersList) {
 			orderedMeals.add(service.findForOrder(orderView.getId()));
 		}	
 		model.addAttribute("orderedMeals", orderedMeals);
+		
 		model.addAttribute("placeCurrent", service.findPlaceById(id));
 		return "idOrder";
 	}
