@@ -57,12 +57,7 @@ public class AdminOrderController {
 		List<List<MealView>> orderedMeals=new ArrayList<>();
 		for (OrderView orderView : ordersPage) {
 			orderedMeals.add(service.findForOrder(orderView.getId()));
-			System.out.println(service.findForOrder(orderView.getId()));
-		}
-		for (List<MealView> orderView : orderedMeals) {
-			System.out.println(orderView);
-		}
-		
+		}		
 		model.addAttribute("orderedMeals", orderedMeals);
 		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
 			return "adminOrder";
