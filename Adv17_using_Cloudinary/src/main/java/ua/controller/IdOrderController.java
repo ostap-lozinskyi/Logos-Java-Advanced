@@ -1,8 +1,6 @@
 package ua.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -22,8 +20,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import ua.entity.Place;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
-import ua.model.view.MealView;
-import ua.model.view.OrderView;
 import ua.service.OrderService;
 import ua.validation.flag.OrderFlag;
 
@@ -52,17 +48,10 @@ public class IdOrderController {
 	@GetMapping
 	public String show(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable, 
 			@ModelAttribute("orderFilter") OrderFilter filter) {
-		model.addAttribute("meals", service.findAllMeals());		
-		
-		
-		List<OrderView> ordersList = service.findForTable(id);
+		model.addAttribute("meals", service.findAllMeals());
 		model.addAttribute("orders", service.findForTable(id));
-		List<List<MealView>> orderedMeals=new ArrayList<>();
-		for (OrderView orderView : ordersList) {
-			orderedMeals.add(service.findForOrder(orderView.getId()));
-		}	
-		model.addAttribute("orderedMeals", orderedMeals);
 		
+		model.addAttribute("orderedMeals", service.getOrderedMealsForTable(id));
 		model.addAttribute("placeCurrent", service.findPlaceById(id));
 		return "idOrder";
 	}

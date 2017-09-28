@@ -2,6 +2,7 @@ package ua.service;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +37,8 @@ public interface OrderService {
 	
 	void updateStatus(Integer id, String newStatus);
 	
-	List<List<MealView>> getOrderedMeals(Pageable pageable, OrderFilter filter);
+	Map<Integer, List<MealView>> getOrderedMealsForAdmin(Pageable pageable, OrderFilter filter);
+	
+	Map<Integer, List<MealView>> getOrderedMealsForTable(Integer id);
 
 }

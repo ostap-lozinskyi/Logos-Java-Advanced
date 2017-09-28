@@ -1,8 +1,9 @@
 package ua.service.impl;
 
 import java.security.Principal;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -126,12 +127,22 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public List<List<MealView>> getOrderedMeals(Pageable pageable, OrderFilter filter) {
+	public Map<Integer, List<MealView>> getOrderedMealsForAdmin(Pageable pageable, OrderFilter filter) {
 		Page<OrderView> ordersPage = findAll(pageable, filter);
-		List<List<MealView>> orderedMeals=new ArrayList<>();
+		Map<Integer, List<MealView>> orderedMeals = new HashMap<>();
 		for (OrderView orderView : ordersPage) {
-			orderedMeals.add(findForOrder(orderView.getId()));
+			orderedMeals.put(orderView.getId(), findForOrder(orderView.getId()));
 		}
+		return orderedMeals;
+	}
+	
+	@Override
+	public Map<Integer, List<MealView>> getOrderedMealsForTable(Integer id) {
+		List<OrderView> ordersList = findForTable(id);
+		Map<Integer, List<MealView>> orderedMeals = new HashMap<>();
+		for (OrderView orderView : ordersList) {
+			orderedMeals.put(orderView.getId(), findForOrder(orderView.getId()));
+		}	
 		return orderedMeals;
 	}
 

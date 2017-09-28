@@ -126,11 +126,11 @@
 		    			<td colspan=3><h3 class="text-center">Orders with such parameters not found</h3></td>
 		    			</tr>
 					</c:if>
-					<c:forEach var="order" items="${orders.content}" varStatus="theCount">
+					<c:forEach var="order" items="${orders.content}">
 						<tr>
 							<td>${order.place}</td>
 							<td>
-									<c:forEach var="orderedMeal" items="${orderedMeals[theCount.index]}">
+									<c:forEach var="orderedMeal" items="${orderedMeals[order.id]}">
 										<img src="${orderedMeal.photoUrl}?version=${orderedMeal.version}" style="height: 50px">${orderedMeal.name}
 									</c:forEach>
 							</td>
