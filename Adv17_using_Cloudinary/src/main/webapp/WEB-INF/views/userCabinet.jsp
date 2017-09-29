@@ -21,7 +21,7 @@
 		</div>
 		<div class="row">
 			<div class="col-4">
-				<img src="/img/${user}?version=${version}" style="height: 200px;">
+				<img src="${user.photoUrl}?version=${user.version}" style="height: 200px;">
 			</div>
 			<div class="col-8">								
 				<form:form action="/userCabinet" method="POST" modelAttribute="fileRequest" enctype="multipart/form-data">

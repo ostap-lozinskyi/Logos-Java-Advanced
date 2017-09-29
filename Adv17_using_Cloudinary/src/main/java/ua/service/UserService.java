@@ -1,5 +1,6 @@
 package ua.service;
 
+import java.io.File;
 import java.security.Principal;
 
 import ua.entity.User;
@@ -9,9 +10,9 @@ public interface UserService {
 
 	void save(RegistrationRequest request);
 
-	void updatePhotoUrl(Principal principal, String photoUrl);
-	
 	void updateTableId(Principal principal, Integer tableId);
 	
 	User findByEmail(String email);
+	
+	void uploadPhotoToCloudinary(File toUpload, Principal principal);
 }
