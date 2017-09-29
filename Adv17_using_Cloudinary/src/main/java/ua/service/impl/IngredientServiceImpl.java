@@ -73,5 +73,10 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
 		repository.save(ingredient);
 		System.out.println(ingredient.getComments());
 	}
+	
+	@Override
+	public List<Comment> findCommentList(Integer id) {
+		return repository.findCommentList(id);
+	}
 
 }

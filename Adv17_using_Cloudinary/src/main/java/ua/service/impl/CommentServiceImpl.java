@@ -1,27 +1,36 @@
 package ua.service.impl;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Comment;
+import ua.entity.User;
 import ua.model.request.CommentRequest;
 import ua.repository.CommentRepository;
+import ua.repository.UserRepository;
 import ua.service.CommentService;
 
 @Service
 public class CommentServiceImpl implements CommentService {
 
 	private final CommentRepository repository;
+	
+	private final UserRepository userRepository;
 
 	@Autowired
-	public CommentServiceImpl(CommentRepository repository) {
+	public CommentServiceImpl(CommentRepository repository, UserRepository userRepository) {
 		this.repository = repository;
+		this.userRepository = userRepository;
 	}	
 
 	@Override
-	public Integer save(CommentRequest request) {
+	public Integer save(CommentRequest request, Principal principal) {
+		User user = userRepository.findByEmail(principal.getName());
 		Comment comment = new Comment();
 		comment.setText(request.getText());
+		comment.setUser(user);
 		repository.save(comment);
 		System.out.println(comment.getId());
 		return comment.getId();

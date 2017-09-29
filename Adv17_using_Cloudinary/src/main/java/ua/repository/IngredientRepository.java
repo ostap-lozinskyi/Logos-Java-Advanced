@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
+import ua.entity.Comment;
 import ua.entity.Ingredient;
 import ua.model.view.IngredientView;
 
@@ -18,4 +19,7 @@ public interface IngredientRepository extends JpaNameRepository<Ingredient>, Jpa
 	
 	@Query("SELECT i FROM Ingredient i WHERE i.id=?1")
 	Ingredient findById(Integer id);
+	
+	@Query("SELECT c FROM Ingredient i JOIN i.comments c WHERE i.id=?1")
+	List<Comment> findCommentList(Integer id);
 }

@@ -39,12 +39,13 @@
 				</div>				
 			</div>
 		</div>
+		<br>
 		<div class="row">
 			<div class="col-12">
+				<h3 class="text-center">Comment ${ingredient.name}</h3>
 				<form:form action="/ingredient/${ingredient.id}" method="POST"
 					modelAttribute="comment">
 					<custom:hiddenInputs excludeParams="text, _csrf" />
-					<br>
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
 							<form:errors path="text" />
@@ -59,12 +60,28 @@
 					</div>
 					<div class="form-group row">
 						<div class="col-8 mr-auto">
-							<button class="btn btn-sm btn-outline-success">Save</button>
-							<a href="/admin/adminMeal/cancel<custom:allParams/>"
-								class="btn btn-sm btn-outline-warning">Cancel</a>
+							<button class="btn btn-sm btn-outline-success">Save comment</button>
+							<a href="/ingredient/${ingredient.id}<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
 						</div>
 					</div>
 				</form:form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<h3 class="text-center">Comments</h3>
+				<table class="table table-bordered">
+					<tr>
+						<th class="text-center">User</th>
+						<th class="text-center">Text</th>
+					</tr>
+					<c:forEach var="commentsOfingredient" items="${ingredient.comments}">
+						<tr>
+							<td>${commentsOfingredient.user.email}</td>
+							<td>${commentsOfingredient.text}</td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 		</div>
 		<br>
@@ -81,9 +98,11 @@
 		</div>
 		<div class="row">
 			<div class="col-9">
+				<h3 class="text-center">Meals with ${ingredient.name}</h3>
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Name</th>
+						<th class="text-center">Photo</th>
 						<th class="text-center">Options</th>
 					</tr>
 					<c:if test="${empty meals}">
@@ -94,6 +113,7 @@
 					<c:forEach var="meal" items="${meals}">
 						<tr>
 							<td>${meal.name}</td>
+							<td><img src="${meal.photoUrl}?version=${meal.version}" style="height: 50px"></td>
 							<td>
 								<sec:authorize access="isAnonymous()">
 									<a href="/login">
@@ -105,18 +125,6 @@
 										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Order</button>
 									</a>
 								</sec:authorize>
-								
-								<sec:authorize access="isAnonymous()">
-									<a href="/login">
-										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Add comment</button>
-									</a>
-								</sec:authorize>
-								<sec:authorize access="isAuthenticated()">
-									<a href="/ingredient/${ingredient.id}">
-										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Add comment</button>
-									</a>
-								</sec:authorize>
-								
 							</td>
 						</tr>
 					</c:forEach>

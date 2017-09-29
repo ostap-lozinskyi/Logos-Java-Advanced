@@ -23,5 +23,7 @@ public interface IngredientService extends CrudService<Ingredient, Integer> {
 	List<MealView> findMeal(List<Integer> id);
 	
 	void updateComments(Integer id, Comment comment);
+	
+	List<Comment> findCommentList(Integer id);
 
 }

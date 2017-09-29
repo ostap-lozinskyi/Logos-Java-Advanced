@@ -1,5 +1,6 @@
 package ua.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ua.entity.Comment;
 import ua.model.request.CommentRequest;
 import ua.model.view.ComponentView;
+import ua.model.view.IngredientView;
 import ua.service.CommentService;
 import ua.service.IngredientService;
 import ua.validation.flag.CommentFlag;
@@ -41,7 +43,9 @@ public class IngredientIdController {
 
 	@GetMapping("/ingredient/{id}")
 	public String show(Model model, @PathVariable Integer id) {
-		model.addAttribute("ingredient", service.findById(id));
+		IngredientView ingredient = service.findById(id);
+		ingredient.setComments(service.findCommentList(id));
+		model.addAttribute("ingredient", ingredient);
 		List<ComponentView> componentsList = service.findComponent(id);
 		List<Integer> componentsIds = new ArrayList<>();
 		for (ComponentView componentView : componentsList) {
@@ -53,10 +57,11 @@ public class IngredientIdController {
 	
 	@PostMapping("/ingredient/{id}")
 	public String ingredientIdComment(Model model, @PathVariable Integer id, @RequestParam String text,
-			@ModelAttribute("comment") @Validated(CommentFlag.class) CommentRequest request, BindingResult br) {
+			@ModelAttribute("comment") @Validated(CommentFlag.class) CommentRequest request, BindingResult br,
+			Principal principal) {
 		if (br.hasErrors())
 			return show(model, id);
-		Integer commentId = commentService.save(request);
+		Integer commentId = commentService.save(request, principal);
 		Comment comment = commentService.findById(commentId);
 		service.updateComments(id, comment);
 		return "redirect:/ingredient/{id}";

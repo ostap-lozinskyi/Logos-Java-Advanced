@@ -3,6 +3,8 @@ package ua.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +15,8 @@ public class Comment extends AbstractEntity {
 
 	private Date date;
 
-	private String user;
+	@OneToOne(fetch = FetchType.LAZY)
+	private User user;
 	
 	private Boolean isPositive;
 	
@@ -41,11 +44,11 @@ public class Comment extends AbstractEntity {
 		this.date = date;
 	}
 
-	public String getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(String user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
