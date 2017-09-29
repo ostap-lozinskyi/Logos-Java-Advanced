@@ -15,12 +15,14 @@ import org.springframework.stereotype.Service;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
+import ua.entity.Comment;
 import ua.entity.Meal;
 import ua.model.filter.MealFilter;
 import ua.model.request.MealRequest;
 import ua.model.view.ComponentView;
 import ua.model.view.MealIndexView;
 import ua.model.view.MealView;
+import ua.repository.CommentRepository;
 import ua.repository.ComponentRepository;
 import ua.repository.CuisineRepository;
 import ua.repository.MealRepository;
@@ -41,17 +43,21 @@ public class MealServiceImpl implements MealService {
 	
 	private final UserRepository userRepository;
 	
+	private final CommentRepository commentRepository;
+	
 	@Value("${cloudinary.url}")
 	Cloudinary cloudinary = new Cloudinary();
 
 	@Autowired
 	public MealServiceImpl(MealRepository repository, MealViewRepository mealViewrepository, 
-			CuisineRepository cuisineRepository, ComponentRepository componentRepository, UserRepository userRepository) {
+			CuisineRepository cuisineRepository, ComponentRepository componentRepository, 
+			UserRepository userRepository, CommentRepository commentRepository) {
 		this.repository = repository;
 		this.mealViewRepository = mealViewrepository;
 		this.cuisineRepository = cuisineRepository;
 		this.componentRepository = componentRepository;
 		this.userRepository = userRepository;
+		this.commentRepository = commentRepository;
 	}
 
 	@Override
@@ -128,6 +134,17 @@ public class MealServiceImpl implements MealService {
 		BigDecimal saveRate=new BigDecimal(votesAmount/votesCount);
 		meal.setRate(saveRate);		
 		repository.save(meal);		
+	}
+	
+	@Override
+	public void updateComments(Integer id, String text) {
+		Meal meal = repository.findById(id);
+		Comment comment = new Comment(text);
+		commentRepository.save(comment);
+		List<Comment> comments = meal.getComments();
+		comments.add(comment);
+		meal.setComments(comments);
+		repository.save(meal);
 	}
 	
 	@Override

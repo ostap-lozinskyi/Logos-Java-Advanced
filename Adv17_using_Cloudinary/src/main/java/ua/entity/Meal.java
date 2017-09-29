@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Index;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -41,6 +42,9 @@ public class Meal extends AbstractEntityName {
 
 	@ManyToMany
 	private List<Component> components = new ArrayList<>();
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Comment> comments;
 
 	public Meal() {
 	}
@@ -150,6 +154,14 @@ public class Meal extends AbstractEntityName {
 
 	public void setComponents(List<Component> components) {
 		this.components = components;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 	
 }

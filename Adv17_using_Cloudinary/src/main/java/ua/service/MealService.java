@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import ua.entity.Comment;
 import ua.model.filter.MealFilter;
 import ua.model.request.MealRequest;
 import ua.model.view.ComponentView;
@@ -32,6 +33,8 @@ public interface MealService {
 	void delete(Integer id);
 	
 	void updateRate(Integer id, Integer newRate);
+	
+	void updateComments(Integer id, String text);
 	
 	MealView findById(Integer id);
 	
