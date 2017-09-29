@@ -3,16 +3,19 @@ package ua.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ua.entity.Meal;
-import ua.model.request.MealRequest;
+import ua.entity.Comment;
+import ua.model.request.CommentRequest;
 import ua.service.CommentService;
 import ua.service.MealService;
+import ua.validation.flag.CommentFlag;
 
 @Controller
 @RequestMapping("/meal/{id}")
@@ -28,18 +31,11 @@ public class MealIdController {
 		this.commentService = commentService;
 	}
 	
-	
+	@ModelAttribute("comment")
+	public CommentRequest getForm() {
+		return new CommentRequest();
+	}
 
-//	@ModelAttribute("order")
-//	public OrderRequest getForm() {
-//		return new OrderRequest();
-//	}
-//	
-//	@ModelAttribute("orderFilter")
-//	public OrderFilter getFilter() {
-//		return new OrderFilter();
-//	}
-	
 	@GetMapping
 	public String show(Model model, @PathVariable Integer id) {
 		model.addAttribute("meal", service.findById(id));
@@ -47,22 +43,17 @@ public class MealIdController {
 	}
 	
 	@GetMapping("/comment")
-	public String mealIdComent(Model model, @PathVariable Integer id, @RequestParam String text) {
+	public String mealIdComent(Model model, @PathVariable Integer id, @RequestParam String text,
+			@ModelAttribute("comment") @Validated(CommentFlag.class) CommentRequest request, BindingResult br) {
 		model.addAttribute("meal", service.findById(id));
-		service.updateComments(id, text);
+		if (br.hasErrors())
+			return show(model, id);
+		commentService.save(request);		
+		Comment comment = commentService.findByText(request.getText());
+		System.out.println(request.getId());
+		service.updateComments(id, comment);
 		return "mealId";
 	}
-
-//	@GetMapping
-//	public String show(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable, 
-//			@ModelAttribute("orderFilter") OrderFilter filter) {
-//		model.addAttribute("meals", service.findAllMeals());
-//		model.addAttribute("orders", service.findForTable(id));
-//		
-//		model.addAttribute("orderedMeals", service.getOrderedMealsForTable(id));
-//		model.addAttribute("placeCurrent", service.findPlaceById(id));
-//		return "idOrder";
-//	}
 
 //	@PostMapping
 //	public String save(@PathVariable Integer id, @ModelAttribute("order") @Validated(OrderFlag.class) OrderRequest request,

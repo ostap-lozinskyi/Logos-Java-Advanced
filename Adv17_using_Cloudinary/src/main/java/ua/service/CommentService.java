@@ -1,9 +1,14 @@
 package ua.service;
 
 import ua.entity.Comment;
+import ua.model.request.CommentRequest;
 
-public interface CommentService extends CrudService<Comment, Integer> {
+public interface CommentService {
 
-	//Page<Cuisine> findAll(Pageable pageable, SimpleFilter filter);
+	void save(CommentRequest request);
+	
+	public CommentRequest findOneRequest(Integer id);
+	
+	Comment findByText(String text);
 
 }

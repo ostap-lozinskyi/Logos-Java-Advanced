@@ -43,8 +43,6 @@ public class MealServiceImpl implements MealService {
 	
 	private final UserRepository userRepository;
 	
-	private final CommentRepository commentRepository;
-	
 	@Value("${cloudinary.url}")
 	Cloudinary cloudinary = new Cloudinary();
 
@@ -57,7 +55,6 @@ public class MealServiceImpl implements MealService {
 		this.cuisineRepository = cuisineRepository;
 		this.componentRepository = componentRepository;
 		this.userRepository = userRepository;
-		this.commentRepository = commentRepository;
 	}
 
 	@Override
@@ -137,10 +134,8 @@ public class MealServiceImpl implements MealService {
 	}
 	
 	@Override
-	public void updateComments(Integer id, String text) {
+	public void updateComments(Integer id, Comment comment) {
 		Meal meal = repository.findById(id);
-		Comment comment = new Comment(text);
-		commentRepository.save(comment);
 		List<Comment> comments = meal.getComments();
 		comments.add(comment);
 		meal.setComments(comments);

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="custom" uri="/WEB-INF/tags/implicit.tld"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,8 +87,8 @@
 										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Add comment</button>
 									</a>
 								</sec:authorize>
-								<form:form action="/meal/${meal.id}/comment" method="GET">
-									<%-- 					<custom:hiddenInputs excludeParams="name, fullDescription, shortDescription, price, weight, _csrf"/> --%>
+								<form:form action="/meal/${meal.id}/comment" method="GET" modelAttribute="comment">
+									<custom:hiddenInputs excludeParams="text, _csrf"/>
 									<br>
 									<div class="row">
 										<div class="col-10 ml-auto" style="color: red;">
@@ -97,8 +98,7 @@
 									<div class="form-group row">
 										<label class="col-2 col-form-label" for="text">Text:</label>
 										<div class="col-10">
-											<textarea class="form-control"
-												id="exampleFormControlTextarea1" rows="3" name="text"></textarea>
+											<form:textarea class="form-control" id="text" rows="3" path="text"></form:textarea>
 										</div>
 									</div>
 									<div class="form-group row">
