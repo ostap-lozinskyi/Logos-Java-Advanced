@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.entity.Comment;
 import ua.model.request.CommentRequest;
+import ua.model.view.MealView;
 import ua.service.CommentService;
 import ua.service.MealService;
 
@@ -40,7 +41,9 @@ public class MealIdController {
 
 	@GetMapping
 	public String show(Model model, @PathVariable Integer id) {
-		model.addAttribute("meal", service.findById(id));
+		MealView meal = service.findById(id);
+		meal.setComments(service.findCommentList(id));
+		model.addAttribute("meal", meal);
 		return "mealId";
 	}
 	
@@ -48,8 +51,8 @@ public class MealIdController {
 	public String mealIdCommentAndRate(Model model, @PathVariable Integer id, @RequestParam String text,
 			@ModelAttribute("comment") CommentRequest request, BindingResult br,
 			Principal principal, @RequestParam Integer rate) {
-		if (br.hasErrors())
-			return show(model, id);
+//		if (br.hasErrors())
+//			return show(model, id);
 		Integer commentId = commentService.save(request, principal);		
 		Comment comment = commentService.findById(commentId);
 		service.updateComments(id, comment);

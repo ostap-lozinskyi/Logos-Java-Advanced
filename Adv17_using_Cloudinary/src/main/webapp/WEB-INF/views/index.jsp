@@ -119,9 +119,6 @@
 																						<input class="star-rating__input fa" id="star-rating-1"	type="radio" name="rate" value="1" title="1 out of 5 stars">
 																					</div>
 																				</div>
-																				<sec:authorize access="isAuthenticated()">
-																					<button>Ok</button>
-																				</sec:authorize>
 																			</form:form>
                                                                         </div>
                                                                         <div class="weight_row">
@@ -189,7 +186,6 @@
 																						<input class="star-rating__input fa" id="star-rating-1"	type="radio" name="rate" value="1" title="1 out of 5 stars">
 																					</div>
 																				</div>
-																				<button>Ok</button>
 																			</form:form>
                                                                         </div>
                                                                         <div class="weight_row">

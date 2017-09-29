@@ -166,5 +166,10 @@ public class MealServiceImpl implements MealService {
 			request.setPhotoUrl(cloudinaryUrl);
 		return request;
 	}
+	
+	@Override
+	public List<Comment> findCommentList(Integer id) {
+		return repository.findCommentList(id);
+	}
 
 }

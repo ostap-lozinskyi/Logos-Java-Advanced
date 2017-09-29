@@ -128,6 +128,23 @@
 				</div>
 			</div>
 		</div>
+		<div class="row" style="background-color: white;">
+			<div class="col-12">
+				<h3 class="text-center">Comments</h3>
+				<table class="table table-bordered">
+					<tr>
+						<th class="text-center">User</th>
+						<th class="text-center">Text</th>
+					</tr>
+					<c:forEach var="commentsOfmeal" items="${meal.comments}">
+						<tr>
+							<td>${commentsOfmeal.user.email}</td>
+							<td>${commentsOfmeal.text}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

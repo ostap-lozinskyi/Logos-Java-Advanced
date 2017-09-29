@@ -3,6 +3,8 @@ package ua.model.view;
 import java.math.BigDecimal;
 import java.util.List;
 
+import ua.entity.Comment;
+
 public class MealView {
 
 	private Integer id;
@@ -24,6 +26,8 @@ public class MealView {
 	private int weight;
 	
 	private String cuisine;
+	
+	private List<Comment> comments;
 	
 	public MealView(Integer id, String photoUrl, int version, String name, String fullDescription, BigDecimal price,
 			int weight, String cuisine, BigDecimal rate) {
@@ -116,6 +120,14 @@ public class MealView {
 
 	public void setCuisine(String cuisine) {
 		this.cuisine = cuisine;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

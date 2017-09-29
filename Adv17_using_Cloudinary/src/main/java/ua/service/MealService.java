@@ -41,5 +41,7 @@ public interface MealService {
 	List<Integer> findByUserId(Integer id);
 	
 	MealRequest uploadPhotoToCloudinary(MealRequest request, File toUpload) throws IOException;
+	
+	List<Comment> findCommentList(Integer id);
 
 }
