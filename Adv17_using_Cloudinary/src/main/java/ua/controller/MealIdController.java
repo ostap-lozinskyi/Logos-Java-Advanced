@@ -1,13 +1,11 @@
 package ua.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,12 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.entity.Comment;
-import ua.entity.User;
 import ua.model.request.CommentRequest;
 import ua.service.CommentService;
 import ua.service.MealService;
-import ua.service.UserService;
-import ua.validation.flag.CommentFlag;
 
 @Controller
 @RequestMapping("/meal/{id}")
@@ -31,13 +26,11 @@ public class MealIdController {
 
 	private final CommentService commentService;
 	
-	private final UserService userService;
 
 	@Autowired
-	public MealIdController(MealService service, CommentService commentService, UserService userService) {
+	public MealIdController(MealService service, CommentService commentService) {
 		this.service = service;
 		this.commentService = commentService;
-		this.userService = userService;
 	}
 	
 	@ModelAttribute("comment")
@@ -60,14 +53,7 @@ public class MealIdController {
 		Integer commentId = commentService.save(request, principal);		
 		Comment comment = commentService.findById(commentId);
 		service.updateComments(id, comment);
-		User user = userService.findByEmail(principal.getName());
-		List<Integer> userMealsId = service.findByUserId(user.getId());
-		if (userMealsId.contains(id)) {
-			service.updateRate(id, rate);
-			System.out.println("updated");
-		} else {
-			System.out.println("not updated");
-		}
+		service.updateRate(id, rate);
 		return "redirect:/meal/{id}";
 	}
 	

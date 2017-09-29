@@ -112,9 +112,13 @@
 									</div>
 									<div class="form-group row">
 										<div class="col-8 mr-auto">
-											<button class="btn btn-sm btn-outline-success">Save</button>
-											<a href="/admin/adminMeal/cancel<custom:allParams/>"
-												class="btn btn-sm btn-outline-warning">Cancel</a>
+											<sec:authorize access="isAnonymous()">
+												<a href="/login">Sign up for a meal assessment</a>
+											</sec:authorize>
+											<sec:authorize access="isAuthenticated()">
+												<button class="btn btn-sm btn-outline-success">Save</button>
+												<a href="/meal/${meal.id}<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
+											</sec:authorize>
 										</div>
 									</div>
 								</form:form>

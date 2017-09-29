@@ -60,8 +60,13 @@
 					</div>
 					<div class="form-group row">
 						<div class="col-8 mr-auto">
-							<button class="btn btn-sm btn-outline-success">Save comment</button>
-							<a href="/ingredient/${ingredient.id}<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
+							<sec:authorize access="isAnonymous()">
+								<a href="/login">Sign up for a ingredient assessment</a>
+							</sec:authorize>
+							<sec:authorize access="isAuthenticated()">
+								<button class="btn btn-sm btn-outline-success">Save comment</button>
+								<a href="/ingredient/${ingredient.id}<custom:allParams/>" class="btn btn-sm btn-outline-warning">Cancel</a>
+							</sec:authorize>
 						</div>
 					</div>
 				</form:form>
