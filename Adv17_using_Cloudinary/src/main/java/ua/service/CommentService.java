@@ -5,10 +5,10 @@ import ua.model.request.CommentRequest;
 
 public interface CommentService {
 
-	void save(CommentRequest request);
+	Integer save(CommentRequest request);
 	
-	public CommentRequest findOneRequest(Integer id);
+	CommentRequest findOneRequest(Integer id);
 	
-	Comment findByText(String text);
+	Comment findById(Integer id);
 
 }

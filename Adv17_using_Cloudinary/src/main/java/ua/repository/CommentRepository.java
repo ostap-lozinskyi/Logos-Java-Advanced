@@ -11,6 +11,6 @@ public interface CommentRepository extends JpaRepository<Comment, Integer>, JpaS
 	@Query("SELECT c FROM Comment c WHERE c.id=?1")
 	Comment findOneRequest(Integer id);	
 	
-	@Query("SELECT c FROM Comment c WHERE c.text=?1")
-	Comment findByText(String text);
+	@Query("SELECT c FROM Comment c WHERE c.id=?1")
+	Comment findById(Integer id);
 }

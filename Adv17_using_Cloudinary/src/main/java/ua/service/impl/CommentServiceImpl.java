@@ -19,11 +19,12 @@ public class CommentServiceImpl implements CommentService {
 	}	
 
 	@Override
-	public void save(CommentRequest request) {
+	public Integer save(CommentRequest request) {
 		Comment comment = new Comment();
-		comment.setId(request.getId());
 		comment.setText(request.getText());
 		repository.save(comment);
+		System.out.println(comment.getId());
+		return comment.getId();
 	}
 
 	@Override
@@ -36,8 +37,8 @@ public class CommentServiceImpl implements CommentService {
 	}
 	
 	@Override
-	public Comment findByText(String text) {
-		return repository.findByText(text);
+	public Comment findById(Integer id) {
+		return repository.findById(id);
 	}
 
 }

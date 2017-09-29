@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import ua.entity.Comment;
 import ua.entity.Ingredient;
 import ua.model.filter.SimpleFilter;
 import ua.model.view.ComponentView;
@@ -20,5 +21,7 @@ public interface IngredientService extends CrudService<Ingredient, Integer> {
 	List<ComponentView> findComponent(Integer id);
 	
 	List<MealView> findMeal(List<Integer> id);
+	
+	void updateComments(Integer id, Comment comment);
 
 }

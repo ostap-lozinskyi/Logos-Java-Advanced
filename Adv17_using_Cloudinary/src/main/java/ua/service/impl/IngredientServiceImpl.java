@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import ua.entity.Comment;
 import ua.entity.Ingredient;
 import ua.model.filter.SimpleFilter;
 import ua.model.view.ComponentView;
@@ -61,6 +62,16 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
 	@Override
 	public List<MealView> findMeal(List<Integer> id) {
 		return mealRepository.findByComponentId(id);
+	}
+	
+	@Override
+	public void updateComments(Integer id, Comment newComment) {
+		Ingredient ingredient = repository.findById(id);
+		List<Comment> comments = ingredient.getComments();
+		comments.add(newComment);
+		ingredient.setComments(comments);
+		repository.save(ingredient);
+		System.out.println(ingredient.getComments());
 	}
 
 }

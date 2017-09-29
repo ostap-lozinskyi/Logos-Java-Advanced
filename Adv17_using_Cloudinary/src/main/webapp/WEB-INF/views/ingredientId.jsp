@@ -39,6 +39,34 @@
 				</div>				
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-12">
+				<form:form action="/ingredient/${ingredient.id}" method="POST"
+					modelAttribute="comment">
+					<custom:hiddenInputs excludeParams="text, _csrf" />
+					<br>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color: red;">
+							<form:errors path="text" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label" for="text">Text:</label>
+						<div class="col-10">
+							<form:textarea class="form-control" id="text" rows="3"
+								path="text"></form:textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-8 mr-auto">
+							<button class="btn btn-sm btn-outline-success">Save</button>
+							<a href="/admin/adminMeal/cancel<custom:allParams/>"
+								class="btn btn-sm btn-outline-warning">Cancel</a>
+						</div>
+					</div>
+				</form:form>
+			</div>
+		</div>
 		<br>
 		<div class="row">
 			<div class="col-3">
@@ -79,15 +107,16 @@
 								</sec:authorize>
 								
 								<sec:authorize access="isAnonymous()">
-									<a href="/meal">
+									<a href="/login">
 										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Add comment</button>
 									</a>
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()">
-									<a href="/meal">
+									<a href="/ingredient/${ingredient.id}">
 										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Add comment</button>
 									</a>
 								</sec:authorize>
+								
 							</td>
 						</tr>
 					</c:forEach>

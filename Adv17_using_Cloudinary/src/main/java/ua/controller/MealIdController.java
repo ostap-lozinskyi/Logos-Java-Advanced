@@ -43,15 +43,15 @@ public class MealIdController {
 	}
 	
 	@GetMapping("/comment")
-	public String mealIdComent(Model model, @PathVariable Integer id, @RequestParam String text,
+	public String mealIdComment(Model model, @PathVariable Integer id, @RequestParam String text,
 			@ModelAttribute("comment") @Validated(CommentFlag.class) CommentRequest request, BindingResult br) {
 		model.addAttribute("meal", service.findById(id));
 		if (br.hasErrors())
 			return show(model, id);
 		commentService.save(request);		
-		Comment comment = commentService.findByText(request.getText());
+//		Comment comment = commentService.findByText(request.getText());
 		System.out.println(request.getId());
-		service.updateComments(id, comment);
+//		service.updateComments(id, comment);
 		return "mealId";
 	}
 

@@ -15,4 +15,7 @@ public interface IngredientRepository extends JpaNameRepository<Ingredient>, Jpa
 	
 	@Query("SELECT new ua.model.view.IngredientView(i.id, i.name) FROM Ingredient i WHERE i.id=?1")
 	IngredientView findViewById(Integer id);
+	
+	@Query("SELECT i FROM Ingredient i WHERE i.id=?1")
+	Ingredient findById(Integer id);
 }
