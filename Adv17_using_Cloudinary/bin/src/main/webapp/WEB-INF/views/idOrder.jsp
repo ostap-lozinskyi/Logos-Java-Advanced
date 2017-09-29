@@ -27,7 +27,7 @@
 				<div class="text-center">
 				<div class="btn-group text-center" role="group" aria-label="Basic example">
 					<a class="btn btn-outline-success" href="/">Main Page</a>
-					<a class="btn btn-outline-success" href="/admin">Admin</a>
+					<a class="btn btn-outline-success" href="/meal">Menu</a>
 				</div>
 				</div>				
 			</div>
@@ -67,14 +67,12 @@
 		    			<td colspan=3><h3 class="text-center">Orders with such parameters not found</h3></td>
 		    			</tr>
 					</c:if>
-					<c:forEach var="order" items="${orders}" varStatus="theCount">
+					<c:forEach var="order" items="${orders}">
 						<tr>
 							<td>
-								<c:forEach var="orderedMeal" items="${orderedMeals}" begin="${theCount.index}" end="${theCount.index}">
-									<c:forEach var="ordered" items="${orderedMeal}">
-									<img src="${ordered.photoUrl}?version=${ordered.version}" style="height: 50px">${ordered.name}
+									<c:forEach var="orderedMeal" items="${orderedMeals[order.id]}">
+										<img src="${orderedMeal.photoUrl}?version=${orderedMeal.version}" style="height: 50px">${orderedMeal.name}
 									</c:forEach>
-								</c:forEach>
 							</td>
 							<td class="text-center">${order.status}</td>
 							

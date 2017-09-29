@@ -51,7 +51,6 @@ public class IdOrderController {
 		model.addAttribute("meals", service.findAllMeals());
 		model.addAttribute("orders", service.findForTable(id));
 		
-		model.addAttribute("orderedMeals", service.getOrderedMealsForTable(id));
 		model.addAttribute("placeCurrent", service.findPlaceById(id));
 		return "idOrder";
 	}

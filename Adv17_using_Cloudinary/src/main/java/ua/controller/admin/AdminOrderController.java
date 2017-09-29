@@ -46,7 +46,6 @@ public class AdminOrderController {
 		model.addAttribute("places", service.findAllPlace());
 		model.addAttribute("orders", service.findAll(pageable, filter));
 		model.addAttribute("statuses", service.findStatusForSearch());		
-		model.addAttribute("orderedMeals", service.getOrderedMealsForAdmin(pageable, filter));
 		if (service.findAll(pageable, filter).hasContent()||pageable.getPageNumber()==0)
 			return "adminOrder";
 		else

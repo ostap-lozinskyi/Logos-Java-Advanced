@@ -70,11 +70,19 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Page<OrderView> findAll(Pageable pageable, OrderFilter filter) {
+		Page<OrderView> ordersPage = orderViewRepository.findAllView(filter, pageable);
+		for (OrderView orderView : ordersPage) {
+			orderView.setMealViews(findForOrder(orderView.getId()));
+		}
 		return orderViewRepository.findAllView(filter, pageable);
 	}
 	
 	@Override
 	public List<OrderView> findForTable(Integer tableId) {
+		List<OrderView> ordersPage = repository.findForTable(tableId);
+		for (OrderView orderView : ordersPage) {
+			orderView.setMealViews(findForOrder(orderView.getId()));
+		}
 		return repository.findForTable(tableId);
 	}
 	
@@ -124,26 +132,6 @@ public class OrderServiceImpl implements OrderService {
 		Order order = repository.findById(id);
 		order.setStatus(newStatus);
 		repository.save(order);
-	}
-	
-	@Override
-	public Map<Integer, List<MealView>> getOrderedMealsForAdmin(Pageable pageable, OrderFilter filter) {
-		Page<OrderView> ordersPage = findAll(pageable, filter);
-		Map<Integer, List<MealView>> orderedMeals = new HashMap<>();
-		for (OrderView orderView : ordersPage) {
-			orderedMeals.put(orderView.getId(), findForOrder(orderView.getId()));
-		}
-		return orderedMeals;
-	}
-	
-	@Override
-	public Map<Integer, List<MealView>> getOrderedMealsForTable(Integer id) {
-		List<OrderView> ordersList = findForTable(id);
-		Map<Integer, List<MealView>> orderedMeals = new HashMap<>();
-		for (OrderView orderView : ordersList) {
-			orderedMeals.put(orderView.getId(), findForOrder(orderView.getId()));
-		}	
-		return orderedMeals;
 	}
 
 }

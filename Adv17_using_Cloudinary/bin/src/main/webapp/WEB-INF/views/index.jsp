@@ -39,7 +39,7 @@
                                         <h1 class="text-center">${message}</h1>
                                         <br>
                                         <div class="row">
-                                            <div class="col-4 ml-auto">
+                                            <div class="col-lg-6 col-sm-12">
                                                 <sec:authorize access="isAnonymous()">
                                                     <a class="transparent_btnCafe entry" href="/registration">Register</a> 
                                                 </sec:authorize>
@@ -50,7 +50,7 @@
                                                     <a class="transparent_btnCafe entry" href="/admin" >Admin</a>
                                                 </sec:authorize>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-lg-6 col-sm-12">
                                                 <sec:authorize access="isAnonymous()">
                                                     <a class="transparent_btnCafe entry" href="/login">Login</a>                                              
                                                 </sec:authorize>
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="row center">
                                     <div class="col-12">
-                                        <div class="button_container"> <a href="/meal" class="button button_left">Menu</a><a href="/place" class="button button_right">Reserve a Table</a> </div>
+                                        <div class="button_container"> <a href="/meal" class="button button_left">Menu</a><a href="/place" class="button button_right">Tables</a> </div>
                                     </div>
                                 </div>
                             </div>
