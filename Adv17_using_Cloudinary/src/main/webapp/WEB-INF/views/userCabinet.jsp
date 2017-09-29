@@ -10,6 +10,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
+	
+<link href="/resources/css/index.css" rel="stylesheet">
 <title>Cabinet</title>
 </head>
 <body style="background: url(/resources/img/fon2.jpg)">
@@ -20,18 +22,36 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-lg-2 col-sm-4">
+				<br>
+				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/">Main page</a>
+			</div>
+			<div class="col-lg-2 col-sm-4">
+				<br>
+				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/meal">Menu</a>
+			</div>
+			<div class="col-lg-2 col-sm-4">
+				<br>
+				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/place">Tables</a>
+			</div>
+		</div>
+		<br>
+		<div class="row">
 			<div class="col-4">
 				<img src="${user.photoUrl}?version=${user.version}" style="height: 200px;">
 			</div>
-			<div class="col-8">								
+		</div>
+		<div class="row">
+			<div class="col-8">	
+				<br>							
 				<form:form action="/userCabinet" method="POST" modelAttribute="fileRequest" enctype="multipart/form-data">
 					<input name="file" type="file">
 					<br>
 					<br><button>Ok</button>
 				</form:form>
 			</div>
-			<a href="/">to Main page</a>
 		</div>
+		<br>
 	</div>
 </body>
 </html>

@@ -39,7 +39,7 @@
                                         <h1 class="text-center">${message}</h1>
                                         <br>
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-lg-6 col-sm-12">
                                                 <sec:authorize access="isAnonymous()">
                                                     <a class="transparent_btnCafe entry" href="/registration">Register</a> 
                                                 </sec:authorize>
@@ -50,7 +50,7 @@
                                                     <a class="transparent_btnCafe entry" href="/admin" >Admin</a>
                                                 </sec:authorize>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-lg-6 col-sm-12">
                                                 <sec:authorize access="isAnonymous()">
                                                     <a class="transparent_btnCafe entry" href="/login">Login</a>                                              
                                                 </sec:authorize>

@@ -27,15 +27,15 @@
 			</div>
 		</div>	
 		<div class="row">
-			<div class="col-2">
+			<div class="col-lg-2 col-sm-4">
 				<br>
 				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/admin">Admin</a>
 			</div>
-			<div class="col-2">
+			<div class="col-lg-2 col-sm-4">
 				<br>
 				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/">Main page</a>
 			</div>
-			<div class="col-2">
+			<div class="col-lg-2 col-sm-4">
 				<br>
 				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/ingredient">Ingredients</a>
 			</div>
