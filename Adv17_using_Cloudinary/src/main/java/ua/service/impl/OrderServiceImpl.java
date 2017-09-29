@@ -1,9 +1,7 @@
 package ua.service.impl;
 
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -74,7 +72,7 @@ public class OrderServiceImpl implements OrderService {
 		for (OrderView orderView : ordersPage) {
 			orderView.setMealViews(findForOrder(orderView.getId()));
 		}
-		return orderViewRepository.findAllView(filter, pageable);
+		return ordersPage;
 	}
 	
 	@Override
@@ -83,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
 		for (OrderView orderView : ordersPage) {
 			orderView.setMealViews(findForOrder(orderView.getId()));
 		}
-		return repository.findForTable(tableId);
+		return ordersPage;
 	}
 	
 	@Override
