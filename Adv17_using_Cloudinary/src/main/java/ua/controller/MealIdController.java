@@ -1,5 +1,8 @@
 package ua.controller;
 
+import java.security.Principal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,13 +11,16 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.entity.Comment;
+import ua.entity.User;
 import ua.model.request.CommentRequest;
 import ua.service.CommentService;
 import ua.service.MealService;
+import ua.service.UserService;
 import ua.validation.flag.CommentFlag;
 
 @Controller
@@ -24,11 +30,14 @@ public class MealIdController {
 	private final MealService service;
 
 	private final CommentService commentService;
+	
+	private final UserService userService;
 
 	@Autowired
-	public MealIdController(MealService service, CommentService commentService) {
+	public MealIdController(MealService service, CommentService commentService, UserService userService) {
 		this.service = service;
 		this.commentService = commentService;
+		this.userService = userService;
 	}
 	
 	@ModelAttribute("comment")
@@ -42,32 +51,24 @@ public class MealIdController {
 		return "mealId";
 	}
 	
-	@GetMapping("/comment")
-	public String mealIdComment(Model model, @PathVariable Integer id, @RequestParam String text,
-			@ModelAttribute("comment") @Validated(CommentFlag.class) CommentRequest request, BindingResult br) {
-		model.addAttribute("meal", service.findById(id));
+	@PostMapping
+	public String mealIdCommentAndRate(Model model, @PathVariable Integer id, @RequestParam String text,
+			@ModelAttribute("comment") CommentRequest request, BindingResult br,
+			Principal principal, @RequestParam Integer rate) {
 		if (br.hasErrors())
 			return show(model, id);
-		commentService.save(request);		
-//		Comment comment = commentService.findByText(request.getText());
-		System.out.println(request.getId());
-//		service.updateComments(id, comment);
-		return "mealId";
+		Integer commentId = commentService.save(request, principal);		
+		Comment comment = commentService.findById(commentId);
+		service.updateComments(id, comment);
+		User user = userService.findByEmail(principal.getName());
+		List<Integer> userMealsId = service.findByUserId(user.getId());
+		if (userMealsId.contains(id)) {
+			service.updateRate(id, rate);
+			System.out.println("updated");
+		} else {
+			System.out.println("not updated");
+		}
+		return "redirect:/meal/{id}";
 	}
-
-//	@PostMapping
-//	public String save(@PathVariable Integer id, @ModelAttribute("order") @Validated(OrderFlag.class) OrderRequest request,
-//			BindingResult br, Model model, SessionStatus status, @PageableDefault Pageable pageable,
-//			@ModelAttribute("orderFilter") OrderFilter filter, Principal principal) {
-//		Place place=new Place();
-//		place.setId(id);
-//		request.setPlace(place);
-//		request.setStatus("Accepted");		
-////		if (br.hasErrors())
-////			return show(id, model, pageable, filter);
-//		if (!request.getMeals().isEmpty())
-//			service.save(request, principal);
-//		return "redirect:/place/{id}/order";
-//	}
-
+	
 }
