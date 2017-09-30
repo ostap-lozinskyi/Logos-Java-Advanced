@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public List<MealView> findUserMealsIds(User user) {
+	public List<Integer> findUserMealsIds(User user) {
 		return repository.findUserMealsIds(user.getId());
 	}
 	

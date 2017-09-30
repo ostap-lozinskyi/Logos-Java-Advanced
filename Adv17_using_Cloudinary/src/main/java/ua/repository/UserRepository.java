@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("SELECT m.id FROM User u JOIN u.meals m WHERE u.id=?1")
 	List<Integer> findMealByUserId(Integer id);
 	
-	@Query("SELECT new ua.model.view.MealView(m.id, m.photoUrl, m.version, m.name, m.fullDescription, m.price, m.weight, c.name, m.rate) FROM User u JOIN u.meals m JOIN m.cuisine c WHERE u.id=?1")
-	List<MealView> findUserMealsIds(Integer userId);
+	@Query("SELECT m.id FROM User u JOIN u.meals m WHERE u.id=?1")
+	List<Integer> findUserMealsIds(Integer userId);
 	
 }

@@ -18,5 +18,5 @@ public interface UserService {
 	
 	void uploadPhotoToCloudinary(File toUpload, Principal principal);
 	
-	List<MealView> findUserMealsIds(User user);
+	List<Integer> findUserMealsIds(User user);
 }

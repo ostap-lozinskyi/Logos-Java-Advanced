@@ -77,7 +77,6 @@ public class IngredientIdController {
 			mealViews = service.findMeal(filter, pageable);
 			model.addAttribute("meals", mealViews);
 		} 
-		
 		if (service.findMeal(filter, pageable).hasContent()||pageable.getPageNumber()==0)
 			return "ingredientId";
 		else
@@ -93,15 +92,20 @@ public class IngredientIdController {
 			return show(model, id, pageable, filter);
 		User user = userService.findByEmail(principal.getName());
 		boolean hasMeal = false;
-		List<MealView> userMeals = userService.findUserMealsIds(user);
+		List<Integer> userMealsIds = userService.findUserMealsIds(user);
 		if (mealViews != null) {
+			List<Integer> mealViewIds = new ArrayList<>();
 			for (MealView mealView : mealViews) {
-				for (MealView userMeal : userMeals) {
-					if (mealView.getId() == userMeal.getId()) {
-						hasMeal = true;
-					}
+				mealViewIds.add(mealView.getId());
+			}
+			for (Integer userMealId : userMealsIds) {
+				if (mealViewIds.contains(userMealId)) {
+					hasMeal = true;
 				}
 			}
+			System.out.println(userMealsIds);
+			System.out.println(mealViewIds);
+			
 			if (hasMeal == true) {
 				Integer commentId = commentService.save(request, principal);
 				Comment comment = commentService.findById(commentId);
