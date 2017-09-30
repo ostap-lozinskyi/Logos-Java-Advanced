@@ -43,11 +43,11 @@
 			</div>
 			<div class="col-2">
 				<h2>Free tables</h2>
-<%-- 				<c:if test="${empty places}"> --%>
-<!-- 					<h3 class="text-center">There are not free tables</h3> -->
-<%-- 				</c:if> --%>
+				<c:if test="${place.isFree() == 'false'}">
+					<h3 class="text-center">There are not free tables</h3>
+				</c:if>
 				<c:forEach var="place" items="${places}">
-					<c:if test="${place.isFreeString = true}">
+					<c:if test="${place.isFree() == 'true'}">
 						<div class="row">
 							<sec:authorize access="isAnonymous()">
 								<div class="col-12">

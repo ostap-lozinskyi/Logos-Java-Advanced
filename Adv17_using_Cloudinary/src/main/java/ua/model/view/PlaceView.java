@@ -10,8 +10,6 @@ public class PlaceView {
 	
 	private boolean isFree;
 	
-	private String isFreeString = String.valueOf(isFree);
-	
 	public PlaceView(Integer id, int countOfPeople, int number, boolean isFree) {
 		this.id = id;
 		this.countOfPeople = countOfPeople;
@@ -55,12 +53,4 @@ public class PlaceView {
 		this.isFree = isFree;
 	}
 
-	public String getIsFreeString() {
-		return isFreeString;
-	}
-
-	public void setIsFreeString(String isFreeString) {
-		this.isFreeString = isFreeString;
-	}
-	
 }

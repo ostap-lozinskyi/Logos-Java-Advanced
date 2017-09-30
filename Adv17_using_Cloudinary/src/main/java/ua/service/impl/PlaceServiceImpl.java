@@ -56,6 +56,7 @@ public class PlaceServiceImpl implements PlaceService {
 		place.setId(request.getId());
 		place.setNumber(Integer.valueOf(request.getNumber()));
 		place.setFree(true);
+		place.setUser(userRepository.findOne(1));
 		repository.save(place);
 	}
 
