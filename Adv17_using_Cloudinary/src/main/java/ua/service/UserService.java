@@ -11,8 +11,6 @@ public interface UserService {
 
 	void save(RegistrationRequest request);
 
-	void updateTableId(Principal principal, Integer tableId);
-	
 	User findByEmail(String email);
 	
 	void uploadPhotoToCloudinary(File toUpload, Principal principal);

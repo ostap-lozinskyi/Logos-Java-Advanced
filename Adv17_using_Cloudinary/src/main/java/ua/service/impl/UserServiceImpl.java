@@ -44,14 +44,6 @@ public class UserServiceImpl implements UserService{
 		repository.save(user);		
 	}
 	
-	@Override
-	public void updateTableId(Principal principal, Integer tableId) {
-		String email=principal.getName();
-		User user = repository.findByEmail(email);
-		user.setTableId(tableId);		
-		repository.save(user);		
-	}
-	
 	public User findByEmail(String email) {
 		return repository.findByEmail(email);
 	};

@@ -21,8 +21,6 @@ public class User extends AbstractEntity {
 	
 	private int version;
 	
-	private Integer tableId;
-	
 	@ManyToMany
 	private List<Meal> meals = new ArrayList<>();
 
@@ -64,14 +62,6 @@ public class User extends AbstractEntity {
 
 	public void setVersion(int version) {
 		this.version = version;
-	}
-
-	public Integer getTableId() {
-		return tableId;
-	}
-
-	public void setTableId(Integer tableId) {
-		this.tableId = tableId;
 	}
 
 	public List<Meal> getMeals() {

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.service.OrderService;
+import ua.service.PlaceService;
 
 @Controller
 @RequestMapping("/admin/adminOrder")
@@ -23,10 +24,13 @@ import ua.service.OrderService;
 public class AdminOrderController {
 
 	private final OrderService service;
+	
+	private final PlaceService placeService;
 
 	@Autowired
-	public AdminOrderController(OrderService service) {
+	public AdminOrderController(OrderService service, PlaceService placeService) {
 		this.service = service;
+		this.placeService = placeService;
 	}
 
 	@ModelAttribute("order")
@@ -55,6 +59,10 @@ public class AdminOrderController {
 	@GetMapping("/updateStatus/{id}/{status}")
 	public String update(@PathVariable Integer id, @PathVariable String status, Model model,
 			@PageableDefault Pageable pageable,	@ModelAttribute("orderFilter") OrderFilter filter) {
+		if (status.equals("Is paid")) {
+			Integer placeId = service.findPlaceById(id).getId();
+			placeService.updateUserId(placeId, null);
+		}
 		service.updateStatus(id, status);
 		return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
 	}

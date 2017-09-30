@@ -56,7 +56,7 @@
 							</sec:authorize>
 							<sec:authorize access="isAuthenticated()">
 								<div class="col-12">
-									<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/place/setNotFree/${place.id}">${place.number}</a>
+									<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/place/setUser/${place.id}">${place.number}</a>
 								</div>
 							</sec:authorize>
 						</div>
