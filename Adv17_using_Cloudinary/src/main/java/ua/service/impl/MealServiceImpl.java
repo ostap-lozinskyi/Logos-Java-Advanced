@@ -126,9 +126,9 @@ public class MealServiceImpl implements MealService {
 		meal.setVotesCount(meal.getVotesCount()+1);
 		meal.setVotesAmount(meal.getVotesAmount()+newRate);
 		repository.save(meal);
-		int votesAmount=meal.getVotesAmount();
-		int votesCount=meal.getVotesCount();
-		BigDecimal saveRate=new BigDecimal(votesAmount/votesCount);
+		BigDecimal votesAmount=new BigDecimal(meal.getVotesAmount());
+		BigDecimal votesCount=new BigDecimal(meal.getVotesCount());
+		BigDecimal saveRate=votesAmount.divide(votesCount, 2, BigDecimal.ROUND_HALF_UP);
 		meal.setRate(saveRate);		
 		repository.save(meal);		
 	}
