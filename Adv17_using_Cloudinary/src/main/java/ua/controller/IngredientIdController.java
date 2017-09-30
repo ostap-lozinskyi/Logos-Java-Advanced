@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.entity.Comment;
-import ua.entity.User;
 import ua.model.filter.MealFilter;
 import ua.model.request.CommentRequest;
 import ua.model.view.ComponentView;
@@ -42,6 +41,8 @@ public class IngredientIdController {
 	private final UserService userService;
 	
 	Page<MealView> mealViews;
+	
+	String error="";
 	
 	@Autowired
 	public IngredientIdController(IngredientService service, CommentService commentService,
@@ -77,6 +78,8 @@ public class IngredientIdController {
 			mealViews = service.findMeal(filter, pageable);
 			model.addAttribute("meals", mealViews);
 		} 
+		model.addAttribute("tasteMeal", error);
+		error="";
 		if (service.findMeal(filter, pageable).hasContent()||pageable.getPageNumber()==0)
 			return "ingredientId";
 		else
@@ -90,9 +93,9 @@ public class IngredientIdController {
 			@ModelAttribute("mealFilter") MealFilter filter) {
 		if (br.hasErrors())
 			return show(model, id, pageable, filter);
-		User user = userService.findByEmail(principal.getName());
+		
 		boolean hasMeal = false;
-		List<Integer> userMealsIds = userService.findUserMealsIds(user);
+		List<Integer> userMealsIds = userService.findUserMealsIds(principal);
 		if (mealViews != null) {
 			List<Integer> mealViewIds = new ArrayList<>();
 			for (MealView mealView : mealViews) {
@@ -103,14 +106,13 @@ public class IngredientIdController {
 					hasMeal = true;
 				}
 			}
-			System.out.println(userMealsIds);
-			System.out.println(mealViewIds);
-			
 			if (hasMeal == true) {
 				Integer commentId = commentService.save(request, principal);
 				Comment comment = commentService.findById(commentId);
 				service.updateComments(id, comment);
 				hasMeal = false;
+			} else {
+				error = "Taste the ingredient before the evaluation";
 			}
 		} 
 		return "redirect:/ingredient/{id}";

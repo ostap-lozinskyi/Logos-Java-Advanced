@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import ua.entity.User;
-import ua.model.view.MealView;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 

@@ -48,6 +48,7 @@
 					<div class="row">
 						<div class="col-10 ml-auto" style="color: red;">
 							<form:errors path="text" />
+							${tasteMeal}
 						</div>
 					</div>
 					<div class="form-group row">

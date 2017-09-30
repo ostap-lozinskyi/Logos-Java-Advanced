@@ -6,7 +6,6 @@ import java.util.List;
 
 import ua.entity.User;
 import ua.model.request.RegistrationRequest;
-import ua.model.view.MealView;
 
 public interface UserService {
 
@@ -18,5 +17,5 @@ public interface UserService {
 	
 	void uploadPhotoToCloudinary(File toUpload, Principal principal);
 	
-	List<Integer> findUserMealsIds(User user);
+	List<Integer> findUserMealsIds(Principal principal);
 }

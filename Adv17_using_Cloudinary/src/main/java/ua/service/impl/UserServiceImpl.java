@@ -16,7 +16,6 @@ import com.cloudinary.utils.ObjectUtils;
 import ua.entity.Role;
 import ua.entity.User;
 import ua.model.request.RegistrationRequest;
-import ua.model.view.MealView;
 import ua.repository.UserRepository;
 import ua.service.UserService;
 
@@ -81,7 +80,8 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public List<Integer> findUserMealsIds(User user) {
+	public List<Integer> findUserMealsIds(Principal principal) {
+		User user = repository.findByEmail(principal.getName());
 		return repository.findUserMealsIds(user.getId());
 	}
 	
