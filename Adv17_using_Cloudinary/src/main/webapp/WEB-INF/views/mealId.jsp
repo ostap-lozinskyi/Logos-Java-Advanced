@@ -53,6 +53,9 @@
 							<div class="short_description">
 								<p>${meal.fullDescription}</p>
 							</div>
+							<div>
+								<p>Rate: ${meal.rate}</p>
+							</div>
 							<div class="price_row">
 								<div class="price">
 									<span class="price_value">${meal.price}</span> $

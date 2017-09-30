@@ -18,6 +18,8 @@ public class CommentRequest {
 	private String user;
 	
 	private Boolean isPositive;
+	
+	private Integer rate;
 
 	public String getText() {
 		return text;
@@ -57,6 +59,14 @@ public class CommentRequest {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public Integer getRate() {
+		return rate;
+	}
+
+	public void setRate(Integer rate) {
+		this.rate = rate;
 	}
 
 }

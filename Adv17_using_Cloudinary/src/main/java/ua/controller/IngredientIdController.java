@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.entity.Comment;
 import ua.model.filter.MealFilter;
@@ -92,7 +91,7 @@ public class IngredientIdController {
 	}
 	
 	@PostMapping("/ingredient/{id}")
-	public String ingredientIdComment(Model model, @PathVariable Integer id, @RequestParam String text,
+	public String ingredientIdComment(Model model, @PathVariable Integer id,
 			@ModelAttribute("comment") @Validated(CommentFlag.class) CommentRequest request, 
 			BindingResult br, Principal principal, @PageableDefault Pageable pageable, 
 			@ModelAttribute("mealFilter") MealFilter filter) {

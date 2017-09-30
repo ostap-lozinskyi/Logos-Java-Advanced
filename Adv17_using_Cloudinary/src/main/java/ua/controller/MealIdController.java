@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.entity.Comment;
 import ua.model.request.CommentRequest;
@@ -57,17 +56,21 @@ public class MealIdController {
 	}
 	
 	@PostMapping
-	public String mealIdCommentAndRate(Model model, @PathVariable Integer id, @RequestParam String text,
+	public String mealIdCommentAndRate(Model model, @PathVariable Integer id,
 			@ModelAttribute("comment") CommentRequest request, BindingResult br,
-			Principal principal, @RequestParam Integer rate) {
-//		if (br.hasErrors())
-//			return show(model, id);
+			Principal principal) {
 		List<Integer> userMealsIds = userService.findUserMealsIds(principal);
 		if (userMealsIds.contains(id)) {
 			Integer commentId = commentService.save(request, principal);		
 			Comment comment = commentService.findById(commentId);
-			service.updateComments(id, comment);
-			service.updateRate(id, rate);
+			if (!request.getText().isEmpty()) {
+				service.updateComments(id, comment);
+			}
+			if (request.getRate()!=null) {
+				service.updateRate(id, request.getRate());
+			} else {
+				error = "You must enter a rate!";
+			}
 		} else {
 			error = "Taste the ingredient before the evaluation";
 		}
