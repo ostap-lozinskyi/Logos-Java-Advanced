@@ -52,10 +52,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-2 col-form-label" for="text">Text:</label>
+						<label class="col-2 col-form-label" for="text">Enter your comment:</label>
 						<div class="col-10">
-							<form:textarea class="form-control" id="text" rows="3"
-								path="text"></form:textarea>
+							<form:textarea class="form-control" id="text" rows="3" path="text"></form:textarea>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -77,7 +76,7 @@
 				<h3 class="text-center">Comments</h3>
 				<table class="table table-bordered">
 					<tr>
-						<th class="text-center">User</th>
+						<th class="text-center" style="width:20%">User</th>
 						<th class="text-center">Text</th>
 					</tr>
 					<c:forEach var="commentsOfingredient" items="${ingredient.comments}">

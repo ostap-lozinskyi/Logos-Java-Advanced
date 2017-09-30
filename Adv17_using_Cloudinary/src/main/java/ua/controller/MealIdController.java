@@ -1,6 +1,7 @@
 package ua.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import ua.model.request.CommentRequest;
 import ua.model.view.MealView;
 import ua.service.CommentService;
 import ua.service.MealService;
+import ua.service.UserService;
 
 @Controller
 @RequestMapping("/meal/{id}")
@@ -27,11 +29,16 @@ public class MealIdController {
 
 	private final CommentService commentService;
 	
+	private final UserService userService;
+	
+	String error="";
+	
 
 	@Autowired
-	public MealIdController(MealService service, CommentService commentService) {
+	public MealIdController(MealService service, CommentService commentService, UserService userService) {
 		this.service = service;
 		this.commentService = commentService;
+		this.userService = userService;
 	}
 	
 	@ModelAttribute("comment")
@@ -44,6 +51,8 @@ public class MealIdController {
 		MealView meal = service.findById(id);
 		meal.setComments(service.findCommentList(id));
 		model.addAttribute("meal", meal);
+		model.addAttribute("tasteMeal", error);
+		error="";
 		return "mealId";
 	}
 	
@@ -53,10 +62,15 @@ public class MealIdController {
 			Principal principal, @RequestParam Integer rate) {
 //		if (br.hasErrors())
 //			return show(model, id);
-		Integer commentId = commentService.save(request, principal);		
-		Comment comment = commentService.findById(commentId);
-		service.updateComments(id, comment);
-		service.updateRate(id, rate);
+		List<Integer> userMealsIds = userService.findUserMealsIds(principal);
+		if (userMealsIds.contains(id)) {
+			Integer commentId = commentService.save(request, principal);		
+			Comment comment = commentService.findById(commentId);
+			service.updateComments(id, comment);
+			service.updateRate(id, rate);
+		} else {
+			error = "Taste the ingredient before the evaluation";
+		}
 		return "redirect:/meal/{id}";
 	}
 	

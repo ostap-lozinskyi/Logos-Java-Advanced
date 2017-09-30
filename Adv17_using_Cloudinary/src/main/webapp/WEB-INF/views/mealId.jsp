@@ -21,17 +21,8 @@
 <title>MealId</title>
 </head>
 <body style="background: url(/resources/img/fon2.jpg)">
-	<div class="container">
+	<div class="container"  style="background-color: white;">
 		<div class="row">
-			<div class="col-12">
-				<h1 class="text-center">${meal.name}</h1>
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-2">
-				<br>
-				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/admin">Admin</a>
-			</div>
 			<div class="col-2">
 				<br>
 				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/">Main page</a>
@@ -40,20 +31,24 @@
 				<br>
 				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/meal">Menu</a>
 			</div>
+			<div class="col-2">
+				<br>
+				<a class="btn-cart buy btnCafe btn-sucsess btn-lg" href="/ingredient">Ingredients</a>
+			</div>
 		</div>
 		<br>
 		<div class="row">
-			<div class="col-6">
-				<img class="product-img" src="${meal.photoUrl}?version=${meal.version}" width="536" height="536">
+			<div class="col-4">
+				<img class="product-img" src="${meal.photoUrl}?version=${meal.version}" width="400">
 			</div>
-			<div class="col-6" style="background-color: white;">
+			<div class="col-8">
 				<div class="banner_info">
 					<div class="back"></div>
 					<div class="front">
 						<div class="front_inside">
 							<h1 class="center">${meal.name}</h1>
 							<div class="weight_row">
-								<div class="weight">${meal.weight}gr</div>
+								<div>Weight ${meal.weight}gr</div>
 							</div>
 							<div class="short_description">
 								<p>${meal.fullDescription}</p>
@@ -77,26 +72,17 @@
 									</a>
 								</sec:authorize>
 								
-								<sec:authorize access="isAnonymous()">
-									<a href="/login">
-										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Add comment</button>
-									</a>
-								</sec:authorize>
-								<sec:authorize access="isAuthenticated()">
-									<a href="/meal/${meal.id}/comment">
-										<button type="button" class="btn-cart buy btnCafe btn-sucsess btn-lg">Add comment</button>
-									</a>
-								</sec:authorize>
 								<form:form action="/meal/${meal.id}" method="POST" modelAttribute="comment">
 									<custom:hiddenInputs excludeParams="text, _csrf"/>
 									<br>
 									<div class="row">
 										<div class="col-10 ml-auto" style="color: red;">
 											<form:errors path="text" />
+											${tasteMeal}
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-2 col-form-label" for="text">Text:</label>
+										<label class="col-2 col-form-label" for="text">Enter your comment:</label>
 										<div class="col-10">
 											<form:textarea class="form-control" id="text" rows="3" path="text"></form:textarea>
 										</div>
@@ -128,12 +114,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="row" style="background-color: white;">
+		<div class="row">
 			<div class="col-12">
 				<h3 class="text-center">Comments</h3>
 				<table class="table table-bordered">
 					<tr>
-						<th class="text-center">User</th>
+						<th class="text-center" style="width:20%">User</th>
 						<th class="text-center">Text</th>
 					</tr>
 					<c:forEach var="commentsOfmeal" items="${meal.comments}">
