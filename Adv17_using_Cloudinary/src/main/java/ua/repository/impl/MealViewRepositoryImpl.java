@@ -59,7 +59,7 @@ public class MealViewRepositoryImpl implements MealViewRepository{
 	@Override
 	public Page<MealView> findAllView(MealFilter filter, Pageable pageable) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<MealView> cq = cb.createQuery(MealView.class);
+		CriteriaQuery<MealView> cq = cb.createQuery(MealView.class).distinct(true);
 		Root<Meal> root = cq.from(Meal.class);
 		Join<Meal, Cuisine> join = root.join(Meal_.cuisine);
 		cq.multiselect(root.get(Meal_.id), root.get("photoUrl"), root.get("version"), root.get("name"), 

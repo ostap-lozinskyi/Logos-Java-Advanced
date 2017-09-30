@@ -102,9 +102,9 @@
 						<th class="text-center">Photo</th>
 						<th class="text-center">Options</th>
 					</tr>
-					<c:if test="${empty meals}">
+					<c:if test="${mealsNotPresent==0}">
 		    			<tr>
-		    			<td colspan=3><h3 class="text-center">Meals with such ingredient not found</h3></td>
+		    				<td colspan=3><h3 class="text-center">Meals with such ingredient not found</h3></td>
 		    			</tr>
 					</c:if>
 					<c:forEach var="meal" items="${meals.content}">

@@ -78,6 +78,11 @@ public class IngredientIdController {
 			mealViews = service.findMeal(filter, pageable);
 			model.addAttribute("meals", mealViews);
 		} 
+		
+		if(!mealViews.hasContent()) {
+			model.addAttribute("mealsNotPresent", 0);
+		}
+		
 		model.addAttribute("tasteMeal", error);
 		error="";
 		if (service.findMeal(filter, pageable).hasContent()||pageable.getPageNumber()==0)
