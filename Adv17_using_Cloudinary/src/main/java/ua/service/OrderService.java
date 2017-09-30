@@ -2,11 +2,11 @@ package ua.service;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import ua.entity.Order;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.model.view.MealView;
@@ -28,6 +28,10 @@ public interface OrderService {
 	List<OrderView> findForTable(Integer tableId);
 	
 	List<MealView> findForOrder(Integer orderId);
+	
+	Order findOrderById(Integer id);
+	
+	List<Order> findOrderByPlaceId(Integer id);
 
 	void save(OrderRequest request, Principal principal);
 

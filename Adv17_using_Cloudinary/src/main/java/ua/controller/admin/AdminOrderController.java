@@ -1,5 +1,7 @@
 package ua.controller.admin;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import ua.entity.Order;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.service.OrderService;
@@ -59,11 +62,18 @@ public class AdminOrderController {
 	@GetMapping("/updateStatus/{id}/{status}")
 	public String update(@PathVariable Integer id, @PathVariable String status, Model model,
 			@PageableDefault Pageable pageable,	@ModelAttribute("orderFilter") OrderFilter filter) {
-		if (status.equals("Is paid")) {
-			Integer placeId = service.findPlaceById(id).getId();
-			placeService.updateUserId(placeId, null);
-		}
+		Integer placeId = service.findOrderById(id).getPlace().getId();
 		service.updateStatus(id, status);
+		List<Order> tableOrders = service.findOrderByPlaceId(placeId);
+		boolean hasUnpaidOrders = false;
+		for (Order order : tableOrders) {
+			if (!order.getStatus().equals("Is paid")) {
+				hasUnpaidOrders = true;
+			}
+		}
+		if (hasUnpaidOrders == false) {
+			placeService.updateUserId(placeId, 1);
+		}
 		return "redirect:/admin/adminOrder"+buildParams(pageable, filter);
 	}
 

@@ -79,7 +79,7 @@ public class PlaceServiceImpl implements PlaceService {
 		Place place = repository.findById(placeId);
 		User user = userRepository.findOne(userId);
 		place.setUser(user);
-		if (place.getUser() == null) {
+		if (place.getUser().getId() == 1) {
 			place.setFree(true);
 		} else {
 			place.setFree(false);

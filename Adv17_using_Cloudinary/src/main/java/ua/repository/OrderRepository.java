@@ -30,4 +30,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	
 	@Query("SELECT o FROM Order o WHERE o.id=?1")
 	Order findById(Integer id);
+	
+	@Query("SELECT o FROM Order o WHERE o.place.id=?1")
+	List<Order> findByPlaceId(Integer id);
 }
