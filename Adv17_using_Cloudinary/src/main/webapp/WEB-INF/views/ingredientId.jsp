@@ -32,7 +32,6 @@
 				<div class="text-center">
 				<div class="btn-group text-center" role="group" aria-label="Basic example">
 					<a class="btn btn-outline-success" href="/">Main Page</a>
-					<a class="btn btn-outline-success" href="/admin">Admin</a>
 					<a class="btn btn-outline-success" href="/meal">Menu</a>
 					<a class="btn btn-outline-success" href="/ingredient">Ingredients</a>
 				</div>
@@ -91,19 +90,11 @@
 		</div>
 		<br>
 		<div class="row">
-			<div class="col-3">
-<%-- 				<form:form action="ingredient" method="GET" modelAttribute="filter"> --%>
-<!-- 					<div class="form-group row"> -->
-<!-- 						<div class="col-12"> -->
-<%-- 							<form:input class="form-control" path="search" placeholder="Search"/> --%>
-<!-- 						</div> -->
-<!-- 					</div> -->
-<%-- 				</form:form> --%>
-			</div>
-		</div>
-		<div class="row">
+				<div class="col-12">
+					<h3 class="text-center">Meals with ${ingredient.name}</h3>
+				</div>
 			<div class="col-9">
-				<h3 class="text-center">Meals with ${ingredient.name}</h3>
+				
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Name</th>
@@ -112,10 +103,10 @@
 					</tr>
 					<c:if test="${empty meals}">
 		    			<tr>
-		    			<td colspan=2><h3 class="text-center">Meals with such ingredient not found</h3></td>
+		    			<td colspan=3><h3 class="text-center">Meals with such ingredient not found</h3></td>
 		    			</tr>
 					</c:if>
-					<c:forEach var="meal" items="${meals}">
+					<c:forEach var="meal" items="${meals.content}">
 						<tr>
 							<td>${meal.name}</td>
 							<td><img src="${meal.photoUrl}?version=${meal.version}" style="height: 50px"></td>
@@ -137,24 +128,26 @@
 			</div>
 			<div class="col-3">
 				<div class="row">
-<!-- 					<div class="col-6 text-center"> -->
-<!-- 							<button class="dropdown-toggle btn btn-outline-success btn-sm" type="button" data-toggle="dropdown">Sort -->
-<!-- 							</button> -->
-<!-- 							<div class="dropdown-menu"> -->
-<%-- 								<custom:sort innerHtml="Name asc" paramValue="name"/> --%>
-<%-- 								<custom:sort innerHtml="Name desc" paramValue="name,desc"/> --%>
-<!-- 							</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-6 text-center"> -->
-<%-- 						<custom:size posibleSizes="1,2,5,10" size="${ingredients.size}" /> --%>
-<!-- 					</div> -->
+					<div class="col-6 text-center">
+							<button class="dropdown-toggle btn btn-outline-success btn-sm" type="button" data-toggle="dropdown">Sort
+							</button>
+							<div class="dropdown-menu">
+								<custom:sort innerHtml="Name asc" paramValue="name"/>
+								<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
+							</div>
+					</div>
+					<div class="col-6 text-center">
+						<custom:size posibleSizes="1,2,5,10" size="${meals.size}" />
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-<!-- 			<div class="col-12"> -->
-<%-- 				<custom:pageable page="${ingredients}"/> --%>
-<!-- 			</div> -->
+			<div class="col-12">
+				<c:if test="${not empty meals}">
+						<custom:pageable page="${meals}"/>
+				</c:if>
+			</div>
 		</div>
 	</div>
 </body>

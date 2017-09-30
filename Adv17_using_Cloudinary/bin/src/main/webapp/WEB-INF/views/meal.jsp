@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="resources/css/rateStars.css" type="text/css"/>
+<link rel="stylesheet" href="/resources/css/rateStars.css" type="text/css"/>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -126,8 +126,9 @@
 									<div class="hide">
 										<div class="reyting">
 											<div class="message"></div>
-											<form:form action="/meal/${meal.id}" method="POST"
-												modelAttribute="meal">current rate=${meal.rate}<div class="star-rating">
+											<form:form action="/meal/${meal.id}" method="POST"	modelAttribute="meal">
+												current rate=${meal.rate}
+												<div class="star-rating">
 													<div class="star-rating__wrap">
 														<input class="star-rating__input fa" id="star-rating-5" type="radio" name="rate" value="5" title="5 out of 5 stars"> 
 														<input class="star-rating__input fa" id="star-rating-4"	type="radio" name="rate" value="4" title="4 out of 5 stars">
@@ -136,9 +137,6 @@
 														<input class="star-rating__input fa" id="star-rating-1"	type="radio" name="rate" value="1" title="1 out of 5 stars">
 													</div>
 												</div>
-												<sec:authorize access="isAuthenticated()">
-													<button>Ok</button>
-												</sec:authorize>
 											</form:form>
 										</div>
 										<div class="weight_row">

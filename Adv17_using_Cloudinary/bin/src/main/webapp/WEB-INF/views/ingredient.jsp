@@ -63,7 +63,7 @@
 					</c:if>
 					<c:forEach var="ingredient" items="${ingredients.content}">
 						<tr>
-							<td><a href="/ingredient${ingredient.id}">${ingredient.name}</a></td>
+							<td><a href="/ingredient/${ingredient.id}">${ingredient.name}</a></td>
 						</tr>
 					</c:forEach>
 				</table>

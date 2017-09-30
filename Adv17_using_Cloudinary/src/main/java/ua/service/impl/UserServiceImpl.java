@@ -3,6 +3,7 @@ package ua.service.impl;
 import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +16,7 @@ import com.cloudinary.utils.ObjectUtils;
 import ua.entity.Role;
 import ua.entity.User;
 import ua.model.request.RegistrationRequest;
+import ua.model.view.MealView;
 import ua.repository.UserRepository;
 import ua.service.UserService;
 
@@ -42,14 +44,6 @@ public class UserServiceImpl implements UserService{
 		user.setPhotoUrl(request.getPhotoUrl());		
 		repository.save(user);		
 	}
-	
-//	@Override
-//	public void updatePhotoUrl(Principal principal, String photoUrl) {
-//		String email=principal.getName();
-//		User user = repository.findByEmail(email);
-//		user.setPhotoUrl(photoUrl);		
-//		repository.save(user);		
-//	}
 	
 	@Override
 	public void updateTableId(Principal principal, Integer tableId) {
@@ -84,6 +78,11 @@ public class UserServiceImpl implements UserService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public List<MealView> findUserMealsIds(User user) {
+		return repository.findUserMealsIds(user.getId());
 	}
 	
 }

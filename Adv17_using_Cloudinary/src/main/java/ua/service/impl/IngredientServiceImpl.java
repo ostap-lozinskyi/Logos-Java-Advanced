@@ -10,13 +10,14 @@ import org.springframework.stereotype.Service;
 
 import ua.entity.Comment;
 import ua.entity.Ingredient;
+import ua.model.filter.MealFilter;
 import ua.model.filter.SimpleFilter;
 import ua.model.view.ComponentView;
 import ua.model.view.IngredientView;
 import ua.model.view.MealView;
 import ua.repository.ComponentRepository;
 import ua.repository.IngredientRepository;
-import ua.repository.MealRepository;
+import ua.repository.MealViewRepository;
 import ua.service.IngredientService;
 
 @Service
@@ -26,15 +27,15 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
 	
 	private final ComponentRepository componentRepository;
 	
-	private final MealRepository mealRepository;
+	private final MealViewRepository mealViewRepository;
 
 	@Autowired
 	public IngredientServiceImpl(IngredientRepository repository, ComponentRepository componentRepository,
-			MealRepository mealRepository) {
+			MealViewRepository mealViewRepository) {
 		super(repository);
 		this.repository = repository;
 		this.componentRepository = componentRepository;
-		this.mealRepository = mealRepository;
+		this.mealViewRepository = mealViewRepository;
 	}
 
 	@Override
@@ -60,8 +61,8 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
 	}
 	
 	@Override
-	public List<MealView> findMeal(List<Integer> id) {
-		return mealRepository.findByComponentId(id);
+	public Page<MealView> findMeal(MealFilter filter, Pageable pageable) {
+		return mealViewRepository.findAllView(filter, pageable);
 	}
 	
 	@Override

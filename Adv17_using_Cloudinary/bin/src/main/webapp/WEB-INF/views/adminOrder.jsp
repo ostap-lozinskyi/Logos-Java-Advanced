@@ -130,7 +130,7 @@
 						<tr>
 							<td>${order.place}</td>
 							<td>
-									<c:forEach var="orderedMeal" items="${orderedMeals[order.id]}">
+									<c:forEach var="orderedMeal" items="${order.mealViews}">
 										<img src="${orderedMeal.photoUrl}?version=${orderedMeal.version}" style="height: 50px">${orderedMeal.name}
 									</c:forEach>
 							</td>

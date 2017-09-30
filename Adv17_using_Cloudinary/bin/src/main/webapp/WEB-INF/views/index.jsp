@@ -11,7 +11,7 @@
                     <link rel="shortcut icon" href="/resources/img/cafe.ico">
                     <title>Ostap cafe</title>
                     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-					<link rel="stylesheet" href="resources/css/rateStars.css" type="text/css"/>
+					<link rel="stylesheet" href="/resources/css/rateStars.css" type="text/css"/>
                     
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
                     
@@ -119,9 +119,6 @@
 																						<input class="star-rating__input fa" id="star-rating-1"	type="radio" name="rate" value="1" title="1 out of 5 stars">
 																					</div>
 																				</div>
-																				<sec:authorize access="isAuthenticated()">
-																					<button>Ok</button>
-																				</sec:authorize>
 																			</form:form>
                                                                         </div>
                                                                         <div class="weight_row">
@@ -189,7 +186,6 @@
 																						<input class="star-rating__input fa" id="star-rating-1"	type="radio" name="rate" value="1" title="1 out of 5 stars">
 																					</div>
 																				</div>
-																				<button>Ok</button>
 																			</form:form>
                                                                         </div>
                                                                         <div class="weight_row">

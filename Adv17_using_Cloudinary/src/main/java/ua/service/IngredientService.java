@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import ua.entity.Comment;
 import ua.entity.Ingredient;
+import ua.model.filter.MealFilter;
 import ua.model.filter.SimpleFilter;
 import ua.model.view.ComponentView;
 import ua.model.view.IngredientView;
@@ -20,7 +21,7 @@ public interface IngredientService extends CrudService<Ingredient, Integer> {
 	
 	List<ComponentView> findComponent(Integer id);
 	
-	List<MealView> findMeal(List<Integer> id);
+	Page<MealView> findMeal(MealFilter filter, Pageable pageable);
 	
 	void updateComments(Integer id, Comment comment);
 	
