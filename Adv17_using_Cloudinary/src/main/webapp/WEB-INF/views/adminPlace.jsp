@@ -19,7 +19,7 @@
 	<div class="container" class="container" style="background-color: white;">
 		<div class="row">
 			<div class="col-12">
-				<h1 class="text-center">Place</h1>
+				<h1 class="text-center">Places</h1>
 			</div>
 		</div>
 		<div class="row">
@@ -124,7 +124,11 @@
 				</div>
 			</div>
 		</div>
-		<br>
+		<div class="row">
+			<div class="col-12 ml-auto" style="color: red;">
+				<p>${error}<p>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-9">
 				<table class="table table-bordered">

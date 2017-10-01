@@ -19,7 +19,7 @@
 	<div class="container" class="container" style="background-color: white;">
 		<div class="row">
 			<div class="col-12">
-				<h1 class="text-center">Order</h1>
+				<h1 class="text-center">Orders</h1>
 			</div>
 		</div>
 		<div class="row">

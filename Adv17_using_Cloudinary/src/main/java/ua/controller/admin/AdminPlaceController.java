@@ -1,6 +1,9 @@
 package ua.controller.admin;
 
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +32,8 @@ import ua.validation.flag.PlaceFlag;
 public class AdminPlaceController {
 
 	private final PlaceService service;
+	
+	String error = "";
 
 	@Autowired
 	public AdminPlaceController(PlaceService service) {
@@ -48,6 +54,8 @@ public class AdminPlaceController {
 	public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("placeFilter") PlaceFilter filter) {
 		model.addAttribute("places", service.findAllView(pageable, filter));
 		model.addAttribute("placesString", service.findAllPlacesCountOfPeople());
+		model.addAttribute("error", error);
+		error = "";
 		if (service.findAllView(pageable, filter).hasContent()||pageable.getPageNumber()==0)
 			return "adminPlace";
 		else
@@ -59,6 +67,12 @@ public class AdminPlaceController {
 			@ModelAttribute("placeFilter") PlaceFilter filter) {
 		service.delete(id);
 		return "redirect:/admin/adminPlace"+buildParams(pageable, filter);
+	}
+	
+	@ExceptionHandler({SQLException.class,DataAccessException.class})
+	public String databaseError() {
+		error = "You can't delete this place because it is used!";
+		return "redirect:/admin/adminPlace";
 	}
 
 	@PostMapping

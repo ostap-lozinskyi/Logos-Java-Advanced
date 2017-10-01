@@ -20,7 +20,7 @@
 	<div class="container" style="background-color: white;">
 		<div class="row">
 			<div class="col-12">
-				<h1 class="text-center">Meal</h1>
+				<h1 class="text-center">Meals</h1>
 			</div>
 		</div>
 		<div class="row">
@@ -232,6 +232,11 @@
 			</div>			
 		</div>
 		<br>
+		<div class="row">
+			<div class="col-12 ml-auto" style="color: red;">
+				<p>${error}<p>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-12">
 				<table class="table table-bordered">

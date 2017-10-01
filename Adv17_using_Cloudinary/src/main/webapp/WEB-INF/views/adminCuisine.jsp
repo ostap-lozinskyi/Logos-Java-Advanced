@@ -14,10 +14,10 @@
 <title>Cuisine</title>
 </head>
 <body style="background: url(/resources/img/fon2.jpg)">
-	<div class="container" class="container" style="background-color: white;">
+	<div class="container" style="background-color: white;">
 		<div class="row">
 			<div class="col-12">
-				<h1 class="text-center">Cuisine</h1>
+				<h1 class="text-center">Cuisines</h1>
 			</div>
 		</div>
 		<div class="row">
@@ -70,6 +70,11 @@
 						</div>
 					</div>
 				</form:form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 ml-auto" style="color: red;">
+				<p>${error}<p>
 			</div>
 		</div>
 		<div class="row">

@@ -1,6 +1,9 @@
 package ua.controller.admin;
 
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +32,8 @@ import ua.validation.flag.ComponentFlag;
 public class AdminComponentController {
 
 	private final ComponentService service;
+	
+	String error = "";
 
 	@Autowired
 	public AdminComponentController(ComponentService service) {
@@ -50,6 +56,8 @@ public class AdminComponentController {
 		model.addAttribute("ingredients", service.findAllIngredients());
 		model.addAttribute("mss", service.findAllMss());
 		model.addAttribute("components", service.findAllView(pageable, filter));
+		model.addAttribute("error", error);
+		error = "";
 		if (service.findAllView(pageable, filter).hasContent()||pageable.getPageNumber()==0)
 			return "adminComponent";
 		else
@@ -61,6 +69,12 @@ public class AdminComponentController {
 			@ModelAttribute("componentFilter") ComponentFilter filter) {
 		service.delete(id);
 		return "redirect:/admin/adminComponent"+buildParams(pageable, filter);
+	}
+	
+	@ExceptionHandler({SQLException.class,DataAccessException.class})
+	public String databaseError() {
+		error = "You can't delete this component because it is used!";
+		return "redirect:/admin/adminComponent";
 	}
 
 	@PostMapping

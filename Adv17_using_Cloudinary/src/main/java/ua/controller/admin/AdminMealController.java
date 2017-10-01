@@ -2,9 +2,11 @@ package ua.controller.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +39,8 @@ public class AdminMealController {
 	private final FileWriter writer;
 
 	private final MealService service;
+	
+	String error = "";
 	
 	@Value("${file.path}")
 	private String path;
@@ -66,6 +71,8 @@ public class AdminMealController {
 		model.addAttribute("cuisines", service.findAllcuisines());
 		model.addAttribute("components", service.findAllСomponentsView());
 		model.addAttribute("meals", service.findAllView(filter, pageable));
+		model.addAttribute("error", error);
+		error = "";
 		if (service.findAllView(filter, pageable).hasContent()||pageable.getPageNumber()==0)
 			return "adminMeal";
 		else
@@ -77,6 +84,12 @@ public class AdminMealController {
 			@ModelAttribute("mealFilter") MealFilter filter) {
 		service.delete(id);
 		return "redirect:/admin/adminMeal"+buildParams(pageable, filter);
+	}
+	
+	@ExceptionHandler({SQLException.class,DataAccessException.class})
+	public String databaseError() {
+		error = "You can't delete this meal because it is used!";
+		return "redirect:/admin/adminMeal";
 	}
 
 	@PostMapping

@@ -20,7 +20,7 @@
 	<div class="container" style="background-color: white;">
 		<div class="row">
 			<div class="col-12">
-				<h1 class="text-center">Component</h1>
+				<h1 class="text-center">Components</h1>
 			</div>
 		</div>
 		<div class="row">
@@ -71,7 +71,7 @@
 						<label class="col-2 col-form-label" for="ms">Measuring system:</label>
 						<div class="col-10">
 							<form:select class="form-control" id="ms" path="ms" onchange="${ms}">
-								<form:option value="" label="Select Measuring system" style="color: gray;"/>
+								<form:option value="" label="Select Measuring unit" style="color: gray;"/>
 								<form:options items="${mss}"/>
 							</form:select>
 						</div>
@@ -153,7 +153,11 @@
 				</div>
 			</div>
 		</div>
-		<br>
+		<div class="row">
+			<div class="col-12 ml-auto" style="color: red;">
+				<p>${error}<p>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-9">
 				<table class="table table-bordered">
