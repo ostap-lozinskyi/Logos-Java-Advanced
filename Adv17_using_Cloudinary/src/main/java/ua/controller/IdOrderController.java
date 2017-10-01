@@ -1,7 +1,6 @@
 package ua.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -63,7 +62,7 @@ public class IdOrderController {
 		Place place=new Place();
 		place.setId(id);
 		request.setPlace(place);
-		request.setStatus("Accepted");		
+		request.setStatus("Accepted");
 //		if (br.hasErrors())
 //			return show(id, model, pageable, filter);
 		if (!request.getMeals().isEmpty())

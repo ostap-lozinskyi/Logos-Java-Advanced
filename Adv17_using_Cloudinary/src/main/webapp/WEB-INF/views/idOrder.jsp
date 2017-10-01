@@ -54,7 +54,6 @@
 									<c:forEach var="meal" items="${meals}">
 										<option>${meal}</option>
 									</c:forEach>
-									<button class="btn-cart buy btnCafe btn-sucsess btn-lg" path="meals">meal</button>
 								</form:select>
 								<script src="/resources/chosen/chosen.jquery.js" type="text/javascript"></script>
 								<script src="/resources/chosen/init.js" type="text/javascript" charset="utf-8"></script>
