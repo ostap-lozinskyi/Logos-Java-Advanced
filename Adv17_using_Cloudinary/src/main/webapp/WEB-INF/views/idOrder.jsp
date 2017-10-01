@@ -13,6 +13,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
 <link href="/resources/css/index.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/resources/chosen/style.css">
+<link rel="stylesheet" href="/resources/chosen/prism.css">
+<link rel="stylesheet" href="/resources/chosen/chosen.css">
+
 <title>Order</title>
 </head>
 <body style="background: url(/resources/img/fon2.jpg)">
@@ -44,7 +49,18 @@
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="meal">Meals:</label>
 						<div class="col-6">
-							<form:select class="form-control" id="meal" path="meals" items="${meals}"/>
+							<div class="side-by-side clearfix">
+								<form:select data-placeholder="Select meals" class="chosen-select" id="meal" path="meals">
+									<option value=""></option>
+									<c:forEach var="meal" items="${meals}">
+										<option>${meal}</option>
+									</c:forEach>
+								</form:select>
+<!-- 								<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript"></script> -->
+								<script src="/resources/chosen/chosen.jquery.js" type="text/javascript"></script>
+<!-- 								<script src="/resources/chosen/prism.js" type="text/javascript"	charset="utf-8"></script> -->
+								<script src="/resources/chosen/init.js" type="text/javascript" charset="utf-8"></script>
+							</div>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -75,7 +91,6 @@
 									</c:forEach>
 							</td>
 							<td class="text-center">${order.status}</td>
-							
 						</tr>
 					</c:forEach>
 				</table>
