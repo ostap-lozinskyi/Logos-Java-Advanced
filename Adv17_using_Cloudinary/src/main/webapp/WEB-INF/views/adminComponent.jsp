@@ -163,7 +163,7 @@
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Amount</th>
-						<th class="text-center">Measuring system</th>
+						<th class="text-center">Measuring unit</th>
 						<th class="text-center">Ingredient</th>
 						<th class="text-center">Options</th>
 					</tr>

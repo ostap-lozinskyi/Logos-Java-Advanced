@@ -41,7 +41,6 @@ public class RegistrationController {
 	
 	@GetMapping("/login")
 	public String login(Principal principal) {
-		if(principal != null) System.out.println(principal.getName());
 		return "login";
 	}
 }

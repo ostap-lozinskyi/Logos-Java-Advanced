@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +30,6 @@ public class MealIdController {
 	private final UserService userService;
 	
 	String error="";
-	
 
 	@Autowired
 	public MealIdController(MealService service, CommentService commentService, UserService userService) {
@@ -57,8 +55,7 @@ public class MealIdController {
 	
 	@PostMapping
 	public String mealIdCommentAndRate(Model model, @PathVariable Integer id,
-			@ModelAttribute("comment") CommentRequest request, BindingResult br,
-			Principal principal) {
+			@ModelAttribute("comment") CommentRequest request, Principal principal) {
 		List<Integer> userMealsIds = userService.findUserMealsIds(principal);
 		if (userMealsIds.contains(id)) {
 			Integer commentId = commentService.save(request, principal);		

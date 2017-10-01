@@ -108,7 +108,7 @@ a:focus, a:active, a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	color: #361b08;
+	color: black;
 	margin: 0
 }
 
@@ -644,7 +644,7 @@ footer .point {
 	height: 100px;
 	border: 1px solid rgba(255, 255, 255, 0.3);
 	border-radius: 50%;
-	background: url("../../images/mouse.png") no-repeat;
+	background: url("/resources/img/mouse.png") no-repeat;
 	background-position: 50% 50%;
 	z-index: 2;
 	overflow: hidden;
@@ -798,4 +798,8 @@ footer .point {
 
 .form-control, .btn-outline-secondary, .btn-outline-success {
     border-color: #76ad00;    
+}
+
+a:hover {
+    text-decoration: none;
 }

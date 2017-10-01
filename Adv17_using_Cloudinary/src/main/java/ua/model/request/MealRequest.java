@@ -20,27 +20,23 @@ public class MealRequest {
 
 	@UniqueMeal(message = "Such a meal already exists", groups = MealFlag.class)
 	@NotBlank(message = "This field cannot be blank", groups = { MealFlag.class })
-	@Pattern(regexp = "^[A-Z][A-Za-z0-9]+| *$", message = "The 'Name' should begin with a capital letter and have at least 2 letters", groups = {
+	@Pattern(regexp = "^[A-Z][A-Za-z0-9 ]+| *$", message = "The 'Name' should begin with a capital letter and have at least 2 letters", groups = {
 			MealFlag.class })
 	private String name;
 
 	@NotBlank(message = "This field cannot be blank", groups = { MealFlag.class })
-	@Pattern(regexp = "^[A-Z][A-Za-z0-9 ]+| *$", message = "The 'Full Description' should begin with a capital letter and have at least 2 letters", groups = {
-			MealFlag.class })
 	private String fullDescription;
 
 	@NotBlank(message = "This field cannot be blank", groups = { MealFlag.class })
-	@Pattern(regexp = "^[A-Z][A-Za-z0-9 ]+| *$", message = "The 'Short Description' should begin with a capital letter and have at least 2 letters", groups = {
-			MealFlag.class })
 	private String shortDescription;
 
 	@NotBlank(message = "This field cannot be blank", groups = { MealFlag.class })
-	@Pattern(regexp = "^([0-9]{1,18}\\.[0-9]{0,2})|([0-9]{1,18}\\,[0-9]{0,2})|([0-9]{1,18})| *$", message = "The 'Prise' should be a number, can not begin with a zero symbol and must have a fractional part", groups = {
+	@Pattern(regexp = "^([0-9]{1,18}\\.[0-9]{0,2})|([0-9]{1,18}\\,[0-9]{0,2})|([0-9]{1,18})| *$", message = "The 'Prise' should be a number", groups = {
 			MealFlag.class })
 	private String price;
 
 	@NotBlank(message = "This field cannot be blank", groups = { MealFlag.class })
-	@Pattern(regexp = "^[1-9][0-9]*| *$", message = "The 'Weight' should be a number and can not begin with a zero symbol", groups = {
+	@Pattern(regexp = "^[1-9][0-9]*| *$", message = "The Weight should be a number and can not begin with a zero symbol", groups = {
 			MealFlag.class })
 	private String weight;
 	

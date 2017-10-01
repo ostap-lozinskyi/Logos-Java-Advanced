@@ -32,11 +32,11 @@
                                     </div>
                                     <div class="col-4 header_column center">
                                         <div class="logo">
-                                            <a href="/"><img src="/resources/img/cafe-logo.png" alt="Cafe" title="Cafe"></a>
+                                            <img src="/resources/img/cafe-logo.png" alt="Cafe" title="Cafe">
                                         </div>
                                     </div>
                                     <div class="col-4 header_column">
-                                        <h1 class="text-center">${message}</h1>
+                                        <h4 class="text-center">${message}</h4>
                                         <br>
                                         <div class="row">
                                             <div class="col-lg-6 col-sm-12">
@@ -71,7 +71,6 @@
                             </div>
                         </div>
                         <div class="mouse"> </div>
-                        <!--</div>-->
                         <div class="clear"></div>
                     </div>
                     <!--section!-->
@@ -83,7 +82,6 @@
                                 </div>
                             </div>                            
                             <div class="section_branch"></div>
-                            <!--carousel!-->
                             <div>
                                 <div>
                                     <div>
@@ -96,7 +94,7 @@
                                                             <div class="label_row"> </div>
                                                             <div class="item">
                                                                 <div class="item_image">
-                                                                    <a href="/" tabindex="0"> <img src="${meal.photoUrl}?version=${meal.version}"> </a>
+                                                                    <a href="/" tabindex="0"> <img src="${meal.photoUrl}?version=${meal.version}" style="width: 313px"> </a>
                                                                     <div class="clear"></div>
                                                                 </div>
                                                                 <div class="hover">
@@ -153,7 +151,7 @@
                                                             <div class="label_row"> </div>
                                                             <div class="item">
                                                                 <div class="item_image">
-                                                                    <a href="/" tabindex="0"> <img src="${meal.photoUrl}?version=${meal.version}"> </a>
+                                                                    <a href="/" tabindex="0"> <img src="${meal.photoUrl}?version=${meal.version}" style="width: 313px"> </a>
                                                                     <div class="clear"></div>
                                                                 </div>
                                                                 <div class="hover">

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import ua.entity.User;
 import ua.service.MealService;
 
 @Controller
@@ -21,13 +20,12 @@ public class MainController {
 	}
 
 	@GetMapping("/")
-	public String index(Model model, Principal principal, As as) {
+	public String index(Model model, Principal principal) {
 		if(principal!=null) {
 			model.addAttribute("message", "Hello "+principal.getName());
 		} else {
-			model.addAttribute("message", "Hello unregistered user");
+			model.addAttribute("message", "Hello guest");
 		}
-		System.out.println(as.getUser());
 		model.addAttribute("meals", service.find5MealsByRate());
 		return "index";
 	}
@@ -37,16 +35,4 @@ public class MainController {
 		return "admin";
 	}
 	
-	static class As{
-		
-		private User user;
-
-		public User getUser() {
-			return user;
-		}
-
-		public void setUser(User user) {
-			this.user = user;
-		}
-	}
 }

@@ -12,11 +12,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
-<link href="/resources/css/index.css" rel="stylesheet">
-
 <link rel="stylesheet" href="/resources/chosen/style.css">
-<link rel="stylesheet" href="/resources/chosen/prism.css">
 <link rel="stylesheet" href="/resources/chosen/chosen.css">
+
+<link href="/resources/css/index.css" rel="stylesheet">
 
 <title>Order</title>
 </head>
@@ -55,10 +54,9 @@
 									<c:forEach var="meal" items="${meals}">
 										<option>${meal}</option>
 									</c:forEach>
+									<button class="btn-cart buy btnCafe btn-sucsess btn-lg" path="meals">meal</button>
 								</form:select>
-<!-- 								<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript"></script> -->
 								<script src="/resources/chosen/chosen.jquery.js" type="text/javascript"></script>
-<!-- 								<script src="/resources/chosen/prism.js" type="text/javascript"	charset="utf-8"></script> -->
 								<script src="/resources/chosen/init.js" type="text/javascript" charset="utf-8"></script>
 							</div>
 						</div>
@@ -76,7 +74,7 @@
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Meal</th>
-						<th class="text-center">Status</th>
+						<th class="text-center" style="width:20%">Status</th>
 					</tr>
 					<c:if test="${empty orders}">
 		    			<tr>
@@ -86,9 +84,23 @@
 					<c:forEach var="order" items="${orders}">
 						<tr>
 							<td>
+								<div class="row">
 									<c:forEach var="orderedMeal" items="${order.mealViews}">
-										<img src="${orderedMeal.photoUrl}?version=${orderedMeal.version}" style="height: 50px">${orderedMeal.name}
+										<div class="col-2">
+											<div class="row">
+												<div class="col-12">
+													<img src="${orderedMeal.photoUrl}?version=${orderedMeal.version}" style="height: 50px">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-2">
+													${orderedMeal.name}
+												</div>
+											</div>
+										
+										</div>
 									</c:forEach>
+								</div>
 							</td>
 							<td class="text-center">${order.status}</td>
 						</tr>

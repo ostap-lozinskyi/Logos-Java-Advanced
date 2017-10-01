@@ -92,7 +92,6 @@
 		      					</div>
 							</div>
 						</form:form>
-						<br>
 					</div>
 				</div>
 			</div>
@@ -106,13 +105,12 @@
 			</div>
 			<c:forEach var="meal" items="${meals.content}">
 				<div class="col-4">
-					<div>
-						<div class="item_container">
+					    <div class="item_container">
 							<div class="label_row"></div>
 							<div class="item">
 								<div class="item_image">
 									<a href="/" tabindex="0"> <img
-										src="${meal.photoUrl}?version=${meal.version}">
+										src="${meal.photoUrl}?version=${meal.version}" style="width: 313px">
 									</a>
 									<div class="clear"></div>
 								</div>
@@ -158,8 +156,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
+				    </div>
 			</c:forEach>			
 		</div>
 	</div>
