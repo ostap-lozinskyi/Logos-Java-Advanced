@@ -109,17 +109,7 @@
                                                                     <div class="hide">
                                                                         <div class="reyting">
                                                                             <div class="message"></div>
-                                                                            <form:form action="/meal/${meal.id}" method="POST"
-																				modelAttribute="meal">current rate=${meal.rate}<div class="star-rating">
-																					<div class="star-rating__wrap">
-																						<input class="star-rating__input fa" id="star-rating-5" type="radio" name="rate" value="5" title="5 out of 5 stars"> 
-																						<input class="star-rating__input fa" id="star-rating-4"	type="radio" name="rate" value="4" title="4 out of 5 stars">
-																						<input class="star-rating__input fa" id="star-rating-3"	type="radio" name="rate" value="3" title="3 out of 5 stars"> 
-																						<input class="star-rating__input fa" id="star-rating-2"	type="radio" name="rate" value="2" title="2 out of 5 stars"> 
-																						<input class="star-rating__input fa" id="star-rating-1"	type="radio" name="rate" value="1" title="1 out of 5 stars">
-																					</div>
-																				</div>
-																			</form:form>
+                                                                            Rate: ${meal.rate}
                                                                         </div>
                                                                         <div class="weight_row">
                                                                             <div class="weight">${meal.weight} gr</div>
@@ -176,17 +166,7 @@
                                                                     <div class="hide">
                                                                         <div class="reyting">
                                                                             <div class="message"></div>
-                                                                            <form:form action="/meal/${meal.id}" method="POST"
-																				modelAttribute="meal">current rate=${meal.rate}<div class="star-rating">
-																					<div class="star-rating__wrap">
-																						<input class="star-rating__input fa" id="star-rating-5" type="radio" name="rate" value="5" title="5 out of 5 stars"> 
-																						<input class="star-rating__input fa" id="star-rating-4"	type="radio" name="rate" value="4" title="4 out of 5 stars">
-																						<input class="star-rating__input fa" id="star-rating-3"	type="radio" name="rate" value="3" title="3 out of 5 stars"> 
-																						<input class="star-rating__input fa" id="star-rating-2"	type="radio" name="rate" value="2" title="2 out of 5 stars"> 
-																						<input class="star-rating__input fa" id="star-rating-1"	type="radio" name="rate" value="1" title="1 out of 5 stars">
-																					</div>
-																				</div>
-																			</form:form>
+                                                                            Rate: ${meal.rate}
                                                                         </div>
                                                                         <div class="weight_row">
                                                                             <div class="weight">${meal.weight} gr</div>
