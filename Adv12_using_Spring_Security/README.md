@@ -1,1 +1,0 @@
-You can see this project on https://cafeostap.herokuapp.com/
